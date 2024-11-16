@@ -4,4 +4,4 @@ import {Ability} from './ability';
 
 import './style.css';
 
-render(<Item />, document.getElementById('app'));
+render(<Ability />, document.getElementById('app'));

@@ -30,18 +30,31 @@ const example = {
 };
 
 const Header = ({name, cooldown, duration, charges, chargeCooldown, range, aoe}) => {
+  return (
+    <div className="mock-ability-header">
+      <div className="mock-ability-header-title">
+        <Bold bright>{name}</Bold>
+      </div>
+    </div>
+  );
 };
 
-const Upgrade = ({tier, text}) => {
-  <div className="mock-ability-upgrade">
-    <div className="mock-ability-upgrade-cost">
-      <Icon icon="ability_point" />
-      <Bold>{tier}</Bold>
+const Upgrade = ({tier, text, active}) => {
+  const classes = classNames('mock-ability-upgrade', {
+    'mock-ability-upgrade-inactive': !active,
+  });
+
+  return (
+    <div className={classes}>
+      <div className="mock-ability-upgrade-cost">
+        <Icon small icon="ability_point_colored" />
+        <Bold>{tier}</Bold>
+      </div>
+      <div className="mock-ability-upgrade-text">
+        <Markdown text={text} />
+      </div>
     </div>
-    <div className="mock-ability-upgrade-text">
-      <Markdown text={text} />
-    </div>
-  </div>
+  );
 };
 
 
@@ -52,8 +65,10 @@ const Ability = () => {
     <div className="mock-ability">
       <Header {...{name, cooldown, duration, charges, chargeCooldown, range, aoe}} />
       <div className="mock-ability-body">
-        <Markdown text={description} />
-        <Grid data={grid} />
+        <div className="mock-ability-description">
+          <Markdown text={description} />
+          <Grid data={grid} />
+        </div>
         <div className="mock-ability-upgrades">
           {upgrades.map((x, i) => (<Upgrade tier={i+1} text={x} />))}
         </div>
