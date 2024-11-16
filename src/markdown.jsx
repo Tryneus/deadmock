@@ -30,9 +30,6 @@ const convertTokens = (tokens) => {
     }
   });
 
-  console.log('stack', stack);
-  console.log('tokens', tokens);
-
   if (stack.length != 1) {
     console.log('invalid markdown stack:', stack, tokens);
   }

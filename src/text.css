@@ -1,0 +1,29 @@
+.mock-text {
+    font-weight: 400;
+    font-style: normal;
+    color: #c8c6ca;
+}
+
+.mock-text.mock-text-bright {
+    color: #ffefd7;
+}
+
+.mock-text.mock-text-muted {
+    color: #968291;
+}
+
+.mock-text.mock-text-medium {
+    font-weight: 500;
+}
+
+.mock-text.mock-text-semibold {
+    font-weight: 600;
+}
+
+.mock-text.mock-text-bold {
+    font-weight: 700;
+}
+
+.mock-text.mock-text-italic {
+    font-style: italic;
+}

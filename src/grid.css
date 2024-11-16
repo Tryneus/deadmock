@@ -1,0 +1,53 @@
+.mock-grid {
+    padding: 15px 0px 5px 0px;
+}
+
+.mock-grid-row {
+    display: flex;
+    justify-content: stretch;
+    margin-top: 3px;
+}
+
+.mock-grid-row:first-child > .mock-grid-cell:first-child, .mock-grid-row.mock-grid-cell:first-child {
+    border-top-left-radius: 6px;
+}
+
+.mock-grid-row:first-child > .mock-grid-cell:last-child, .mock-grid-row.mock-grid-cell:first-child {
+    border-top-right-radius: 6px;
+}
+
+.mock-grid-row:last-child > .mock-grid-cell:first-child, .mock-grid-row.mock-grid-cell:last-child {
+    border-bottom-left-radius: 6px;
+}
+
+.mock-grid-row:last-child > .mock-grid-cell:last-child, .mock-grid-row.mock-grid-cell:last-child {
+    border-bottom-right-radius: 6px;
+}
+
+.mock-grid-row > .mock-grid-cell:not(:first-child) {
+    margin-left: 3px;
+    margin-top: 0px;
+}
+
+.mock-grid-row > div {
+    flex-grow: 1;
+}
+
+.mock-grid-cell {
+    flex-grow: 1;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.mock-grid-cell:only-child {
+    flex-direction: row;
+}
+
+.mock-grid-cell:only-child > div {
+    flex-grow: 1;
+    text-align: left;
+    padding: 10px 15px;
+}

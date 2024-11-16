@@ -1,0 +1,12 @@
+.mock-icon {
+  height: 1.2lh;
+  width: 1.2lh;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.mock-icon.mock-icon-small {
+    height: 0.9lh;
+    width: 0.9lh;
+}

@@ -1,5 +1,7 @@
 import classNames from 'classnames';
 
+import './text.css';
+
 const Text = ({bright, muted, italic, variant, color, size, children}) => {
   const classes = classNames(
     'mock-text',
