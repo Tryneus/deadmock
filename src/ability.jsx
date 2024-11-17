@@ -14,12 +14,12 @@ const example = {
   description: "Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.",
   grid: [
     [
-      {type: "spirit_damage", value: 70},
+      {type: "spirit_damage", value: 70, spiritScaling: 0.7},
       {type: "value", value: 1.5, units: "s", stat: "Lift Duration", noPos: true, icon: "duration"},
-      {type: "value", value: 30, units: "%", stat: "Bullet Evasion Chance", noPos: true, icon: "duration"},
+      {type: "value", value: 30, units: "%", stat: "Bullet Evasion Chance", noPos: true},
     ], [{type: "values", values: [
       {value: 3.5, units: 's', stat: 'Bullet Evasion Duration'},
-      {value: 3.5, units: 'm', stat: 'Radius'},
+      {value: 3.5, units: 'm', stat: 'Radius', icon: 'aoe'},
     ]}],
   ],
   upgrades: [
@@ -47,7 +47,7 @@ const Upgrade = ({tier, text, active}) => {
   return (
     <div className={classes}>
       <div className="mock-ability-upgrade-cost">
-        <Icon small icon="ability_point_colored" />
+        <Icon size={14} icon="ability_point" color="purple" />
         <Bold>{tier}</Bold>
       </div>
       <div className="mock-ability-upgrade-text">

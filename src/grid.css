@@ -51,3 +51,12 @@
     text-align: left;
     padding: 10px 15px;
 }
+
+.mock-grid-cell-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mock-grid-cell-line > span {
+}

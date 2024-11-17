@@ -1,12 +1,33 @@
 .mock-icon {
-  height: 1.2lh;
-  width: 1.2lh;
-  display: inline-block;
-  background-size: contain;
-  background-repeat: no-repeat;
+    height: 1.2lh;
+    width: 1.2lh;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .mock-icon.mock-icon-small {
     height: 0.9lh;
     width: 0.9lh;
+}
+
+/* approximation of #999999 */
+.mock-icon.mock-icon-grey {
+    filter: invert(40%);
+}
+
+/* approximation of #be7b24 (#bc7d24) */
+.mock-icon.mock-icon-orange {
+filter: invert(51%) sepia(98%) saturate(365%) hue-rotate(354deg) brightness(83%) contrast(93%);
+}
+
+/* only used for the healing icon? */
+/* approximation of #00ff9a */
+.mock-icon.mock-icon-green {
+    filter: invert(73%) sepia(89%) saturate(767%) hue-rotate(92deg) brightness(100%) contrast(103%);
+}
+
+/* approximation of #ce91ff (#cd92ff) */
+.mock-icon.mock-icon-purple {
+    filter: invert(52%) sepia(92%) saturate(528%) hue-rotate(217deg) brightness(108%) contrast(101%);
 }

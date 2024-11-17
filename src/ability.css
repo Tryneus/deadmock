@@ -1,5 +1,5 @@
 .mock-ability {
-    width: 650px;
+    width: 600px;
 }
 
 .mock-ability-header {
@@ -12,7 +12,8 @@
 }
 
 .mock-ability-body {
-    background: linear-gradient(45deg, #181818, #3b3b3b);
+    background: linear-gradient(45deg, #181818, #3b3b3b), url("/noise3.svg");
+    background-blend-mode: multiply;
 }
 
 .mock-ability-description {
@@ -35,7 +36,7 @@
 }
 
 .mock-ability-upgrade-cost {
-    padding: 5px;
+    padding: 1px;
     background: #11140e;
     border-radius: 5px 5px 0 0;
     display: flex;
@@ -58,6 +59,16 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.mock-ability .mock-grid-cell {
+    background: rgba(24, 24, 24, 0.5);
+    padding: 10px 20px;
+}
+
+.mock-ability .mock-grid-cell-spirit-scaling {
+    border: 2px solid #5a3875;
+    background: radial-gradient(transparent 20%, rgba(88, 56, 117, 0.5) 100%);
 }
 
 .mock-ability-upgrade.mock-ability-upgrade-inactive {

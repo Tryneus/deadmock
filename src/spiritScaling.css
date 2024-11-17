@@ -1,0 +1,26 @@
+.mock-spirit-scaling {
+    position: relative;
+    align-self: flex-end;
+    top: -0.4lh;
+    left: 0.9lh;
+    height: 0px;
+    display: flex;
+    align-items: center;
+}
+
+/* spirit scaling icon has wonky aspect ratio */
+.mock-spirit-scaling .mock-icon {
+    height: 1.2lh;
+    width: 1.6lh;
+    position: relative;
+    left: 0.5lh;
+}
+
+.mock-spirit-scaling .mock-spirit-scaling-box {
+    background-color: #65358a;
+    height: 0.7lh;
+    padding: 0 6px 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

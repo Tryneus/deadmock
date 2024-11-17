@@ -26,8 +26,8 @@ const example = {
     grid: [
       [
         {type: "spirit_damage", value: 80},
-        {type: "conditional", value: 20, units: "%", stat: "Movement Slow", noPos: true, icon: "movement_slow_grey"},
-        {type: "conditional", value: -30, units: "%", stat: "Dash Distance", noPos: true, icon: "movement_slow_grey"}],
+        {type: "conditional", value: 20, units: "%", stat: "Movement Slow", noPos: true, icon: "movement_slow"},
+        {type: "conditional", value: -30, units: "%", stat: "Dash Distance", noPos: true, icon: "movement_slow"}],
       [{type: "values", values: [
         {value: 29, units: 'm', stat: 'Cast Range'},
         {value: 3, units: 's', stat: 'Duration'},
@@ -128,7 +128,7 @@ const Stats = ({data}) => {
 
 const Cooldown = ({seconds}) => (
   <div>
-    <Icon small icon="cooldown_white" />
+    <Icon small icon="cooldown" />
     <Bold bright>{seconds}s</Bold>
   </div>
 );
