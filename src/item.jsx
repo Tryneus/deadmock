@@ -123,7 +123,7 @@ const Components = ({data}) => {
 const Stats = ({data}) => {
   const lines = data.map((x) => (
     <div key={x.stat}>
-      <Value value={x.value} units={x.units}/><Medium> {x.stat}</Medium>
+      <Value value={x.value} units={x.units} signed/><Medium> {x.stat}</Medium>
     </div>
   ));
   return (
