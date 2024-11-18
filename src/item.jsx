@@ -29,8 +29,8 @@ const example = {
         {type: "conditional", value: 20, units: "%", stat: "Movement Slow", noPos: true, icon: "movement_slow"},
         {type: "conditional", value: -30, units: "%", stat: "Dash Distance", noPos: true, icon: "movement_slow"}],
       [{type: "values", values: [
-        {value: 29, units: 'm', stat: 'Cast Range'},
-        {value: 3, units: 's', stat: 'Duration'},
+        {value: 29, units: 'm', stat: 'Cast Range', icon: 'range'},
+        {value: 3, units: 's', stat: 'Duration', icon: 'duration'},
       ]}],
     ],
   },

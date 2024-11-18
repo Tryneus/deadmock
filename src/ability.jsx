@@ -29,6 +29,36 @@ const example = {
   ],
 };
 
+const upgradeMarkdownFormat = {
+  text: {
+    Component: Text,
+    props: {variant: 'semibold', size: 17},
+  },
+  strong: {
+    Component: Text,
+    props: {variant: 'bold', bright: true, size: 25},
+  },
+  emphasis: {
+    Component: Text,
+    props: {variant: 'medium', italic: true, muted: true},
+  },
+};
+
+const descriptionMarkdownFormat = {
+  text: {
+    Component: Text,
+    props: {bright: true},
+  },
+  strong: {
+    Component: Text,
+    props: {variant: 'bold', bright: true},
+  },
+  emphasis: {
+    Component: Text,
+    props: {variant: 'medium', italic: true, muted: true},
+  },
+};
+
 const Header = ({name, cooldown, duration, charges, chargeCooldown, range, aoe}) => {
   return (
     <div className="mock-ability-header">
@@ -48,10 +78,11 @@ const Upgrade = ({tier, text, active}) => {
     <div className={classes}>
       <div className="mock-ability-upgrade-cost">
         <Icon size={14} icon="ability_point" color="purple" />
+        &nbsp;
         <Bold>{tier}</Bold>
       </div>
       <div className="mock-ability-upgrade-text">
-        <Markdown text={text} />
+        <Markdown text={text} format={upgradeMarkdownFormat} />
       </div>
     </div>
   );
@@ -66,7 +97,7 @@ const Ability = () => {
       <Header {...{name, cooldown, duration, charges, chargeCooldown, range, aoe}} />
       <div className="mock-ability-body">
         <div className="mock-ability-description">
-          <Markdown text={description} />
+          <Markdown text={description} format={descriptionMarkdownFormat} />
           <Grid data={grid} />
         </div>
         <div className="mock-ability-upgrades">

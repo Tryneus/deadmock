@@ -44,11 +44,12 @@ const Grid = ({data}) => {
 const GridCellValues = ({values}) => (
   <>
     {values.map(({icon, value, units, stat}) => (
-      <div className="mock-grid-cell-line">
-        {icon ? <Icon small icon={icon} color="grey" /> : null}
+      <div className="mock-grid-cell-values-line">
+        <Icon small icon={icon} color="grey" />
         &nbsp;
         <Value noPos value={value} units={units} />
-        <Medium>&nbsp;&nbsp;{stat}</Medium>
+        &nbsp;&nbsp;
+        <Medium bright size={16}>{stat}</Medium>
       </div>
     ))}
   </>
@@ -57,7 +58,8 @@ const GridCellValues = ({values}) => (
 const GridCellValue = ({icon, value, units, stat, noPos}) => (
   <>
     <div className="mock-grid-cell-line">
-      {icon ? <Icon small icon={icon} color="grey" /> : null}
+      <Icon small icon={icon} color="grey" />
+      &nbsp;
       <Value noPos={noPos} value={value} units={units} />
     </div>
     <div className="mock-grid-cell-line">
@@ -93,7 +95,8 @@ const GridCellWeaponDamage = ({value}) => (
 const GridCellConditional = ({icon, value, units, stat, noPos}) => (
   <>
     <div className="mock-grid-cell-line">
-      {icon ? <Icon small icon={icon} color="grey" /> : null}
+      <Icon small icon={icon} color="grey" />
+      &nbsp;
       <Value noPos={noPos} value={value} units={units} />
     </div>
     <div className="mock-grid-cell-line">

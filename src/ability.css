@@ -21,7 +21,7 @@
 }
 
 .mock-ability-upgrades {
-    padding: 15px;
+    padding: 20px;
     display: flex;
     background: rgba(16, 16, 16, 0.25);
 }
@@ -29,7 +29,7 @@
 .mock-ability-upgrade {
     flex-basis: 50%;
     flex-grow: 1;
-    margin: 10px;
+    margin: 5px;
     align-self: stretch;
     display: flex;
     flex-direction: column;
@@ -43,10 +43,6 @@
     justify-content: center;
     align-items: center;
     font-size: 20px;
-}
-
-.mock-ability-upgrade-cost > span {
-    margin-left: 5px;
 }
 
 .mock-ability-upgrade-text {

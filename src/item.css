@@ -87,11 +87,11 @@
     background-color: #3c590e;
 }
 
-.mock.item > div:first-child {
+.mock-item > div:first-child {
     border-radius: 10px 10px 0 0;
 }
 
-.mock.item > div:last-child {
+.mock-item > div:last-child {
     border-radius: 0 0 10px 10px;
 }
 
@@ -162,7 +162,6 @@
 
 .mock-components-badge .mock-icon {
     border-radius: 100px;
-    line-height: 25px;
 }
 
 .mock-components-badge .mock-components-badge-name {

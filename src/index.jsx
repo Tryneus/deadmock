@@ -4,4 +4,9 @@ import {Ability} from './ability';
 
 import './style.css';
 
-render(<Ability />, document.getElementById('app'));
+render((
+  <div style={{display: 'flex'}}>
+    <Ability />,
+    <Item />
+  </div>
+), document.getElementById('app'));

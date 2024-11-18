@@ -58,5 +58,7 @@
     justify-content: center;
 }
 
-.mock-grid-cell-line > span {
+.mock-grid-cell-values-line {
+    display: flex;
+    align-items: center;
 }
