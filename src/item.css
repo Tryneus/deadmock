@@ -187,13 +187,13 @@
 
 .mock-active-header > div {
     padding: 3px 15px;
+    display: flex;
+    align-items: center;
 }
 
 .mock-active-header > div:last-child {
     /*padding: 3px 15px;*/
     background-color: #0c1414;
-    display: flex;
-    align-items: center;
 }
 
 .mock-active-header .mock-icon {

@@ -25,12 +25,18 @@ const Grid = ({data}) => {
 
   const rows = data.map((x) => (
     <div className="mock-grid-row">
-      {x.map((x) => (
-        <div className={classNames('mock-grid-cell', {'mock-grid-cell-spirit-scaling': x.spiritScaling})}>
-          {x.spiritScaling ? <SpiritScaling detailed value={x.spiritScaling} /> : null}
-          {cellContents(x)}
-        </div>
-      ))}
+      {x.map((x) => {
+        const classes = classNames('mock-grid-cell', {
+          'mock-grid-cell-spirit-scaling': x.spiritScaling,
+          'mock-grid-cell-values': x.type === 'values',
+        });
+        return (
+          <div className={classes}>
+            {x.spiritScaling ? <SpiritScaling detailed value={x.spiritScaling} /> : null}
+            {cellContents(x)}
+          </div>
+        );
+      })}
     </div>
   ));
 
@@ -41,26 +47,38 @@ const Grid = ({data}) => {
   );
 };
 
-const GridCellValues = ({values}) => (
-  <>
-    {values.map(({icon, value, units, stat}) => (
-      <div className="mock-grid-cell-values-line">
-        <Icon small icon={icon} color="grey" />
-        &nbsp;
-        <Value noPos value={value} units={units} />
-        &nbsp;&nbsp;
-        <Medium bright size={16}>{stat}</Medium>
-      </div>
-    ))}
-  </>
-);
+const renderIcon = (icon) => {
+  if (!icon) {
+    return null;
+  }
+  return (
+    <>
+      <Icon size={18} icon={icon} color="grey" />
+      &nbsp;
+    </>
+  );
+};
 
-const GridCellValue = ({icon, value, units, stat, noPos}) => (
+const GridCellValues = ({values}) => {
+  return (
+    <>
+      {values.map(({icon, value, units, stat, signed}) => (
+        <div className="mock-grid-cell-values-item">
+          {renderIcon(icon)}
+          <Value signed={signed} value={value} units={units} />
+          &nbsp;&nbsp;
+          <Medium bright size={15}>{stat}</Medium>
+        </div>
+      ))}
+    </>
+  );
+};
+
+const GridCellValue = ({icon, value, units, stat, signed}) => (
   <>
     <div className="mock-grid-cell-line">
-      <Icon small icon={icon} color="grey" />
-      &nbsp;
-      <Value noPos={noPos} value={value} units={units} />
+      {renderIcon(icon)}
+      <Value signed={signed} value={value} units={units} />
     </div>
     <div className="mock-grid-cell-line">
       <SemiBold bright size={15}>{stat}</SemiBold>
@@ -71,7 +89,7 @@ const GridCellValue = ({icon, value, units, stat, noPos}) => (
 const GridCellSpiritDamage = ({value}) => (
   <>
     <div className="mock-grid-cell-line">
-      <Icon icon="spirit_damage" color="purple" />
+      <Icon size={18} icon="spirit_damage" color="purple" />
       <Bold bright size={22}>{value}</Bold>
     </div>
     <div className="mock-grid-cell-line">
@@ -83,7 +101,7 @@ const GridCellSpiritDamage = ({value}) => (
 const GridCellWeaponDamage = ({value}) => (
   <>
     <div className="mock-grid-cell-line">
-      <Icon icon="weapon_damage" color="orange" />
+      <Icon size={18} icon="weapon_damage" color="orange" />
       <Bold bright size={22}>{value}</Bold>
     </div>
     <div className="mock-grid-cell-line">
@@ -92,12 +110,11 @@ const GridCellWeaponDamage = ({value}) => (
   </>
 );
 
-const GridCellConditional = ({icon, value, units, stat, noPos}) => (
+const GridCellConditional = ({icon, value, units, stat, signed}) => (
   <>
     <div className="mock-grid-cell-line">
-      <Icon small icon={icon} color="grey" />
-      &nbsp;
-      <Value noPos={noPos} value={value} units={units} />
+      {renderIcon(icon)}
+      <Value signed={signed} value={value} units={units} />
     </div>
     <div className="mock-grid-cell-line">
       <SemiBold bright size={15}>{stat}</SemiBold>

@@ -1,8 +1,8 @@
 import {Text, SemiBold, Bold} from './text';
 
-const Value = ({value, units, noPos}) => {
+const Value = ({value, units, signed}) => {
   const signStr = value > 0 ? '+' : '-';
-  const sign = (value >= 0 && noPos) ? null : (<SemiBold bright={value < 0}>{signStr}</SemiBold>);
+  const sign = (signed || (value < 0)) ? (<SemiBold bright={value < 0}>{signStr}</SemiBold>) : null;
   return (
     <>
       {sign}
