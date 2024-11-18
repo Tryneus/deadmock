@@ -1,8 +1,9 @@
 .mock-spirit-scaling {
     position: relative;
     align-self: flex-end;
-    top: -0.4lh;
-    left: 0.9lh;
+    line-height: 100%;
+    top: -0.8lh;
+    left: 0.85lh;
     height: 0px;
     display: flex;
     align-items: center;
@@ -19,7 +20,7 @@
 .mock-spirit-scaling .mock-spirit-scaling-box {
     background-color: #65358a;
     height: 0.7lh;
-    padding: 0 6px 0 15px;
+    padding: 2px 6px 2px 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;

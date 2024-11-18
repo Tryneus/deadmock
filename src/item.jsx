@@ -13,7 +13,7 @@ const example = {
   cost: 1750,
   tier: 2,
   components: [
-    {icon: "item/enduring_spirit", name: "Enduring Spirit"},
+    {icon: "item/enduring_spirit", name: "Enduring Spirit", color: "green"},
   ],
   stats: [
     {units: "%", value: 10, stat: "Spirit Lifesteal"},
@@ -89,7 +89,7 @@ const Header = ({name, cost, tier, category}) => {
       </div>
       <div>
         <div className="item-bonus-value">
-          <Value value={bonus.tier[tier]} units={bonus.units} />
+          <Value value={bonus.tier[tier]} units={bonus.units} signed />
           <Icon small icon={bonus.icon} />
         </div>
         <div className="item-bonus-stat">{bonus.stat}</div>
@@ -99,12 +99,19 @@ const Header = ({name, cost, tier, category}) => {
 };
 
 const Components = ({data}) => {
-  const lines = data.map((x) => (
-    <div className="mock-components-badge" key={x.name}>
-      <Icon icon={x.icon} />
-      <div className="mock-components-badge-name"><Bold>{x.name}</Bold></div>
-    </div>
-  ));
+  const lines = data.map((x) => {
+    const classes = classNames('mock-components-badge', {
+      'mock-components-badge-green': x.color === 'green',
+      'mock-components-badge-purple': x.color === 'purple',
+      'mock-components-badge-orange': x.color === 'orange',
+    });
+    return (
+      <div className={classes} key={x.name}>
+        <Icon icon={x.icon} />
+        <div className="mock-components-badge-name"><Bold>{x.name}</Bold></div>
+      </div>
+    );
+  });
   return (
     <div className="mock-components">
       <div><Bold>COMPONENTS:</Bold></div>

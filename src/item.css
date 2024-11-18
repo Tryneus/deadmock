@@ -162,6 +162,20 @@
 
 .mock-components-badge .mock-icon {
     border-radius: 100px;
+    background-size: 90%;
+    background-position: center;
+}
+
+.mock-components-badge.mock-components-badge-green .mock-icon {
+    background-color: #7cbb1e;
+}
+
+.mock-components-badge.mock-components-badge-purple .mock-icon {
+    background-color: #ce91ff;
+}
+
+.mock-components-badge.mock-components-badge-orange .mock-icon {
+    background-color: #dd9642;
 }
 
 .mock-components-badge .mock-components-badge-name {
