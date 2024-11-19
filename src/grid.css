@@ -33,6 +33,12 @@
     flex-grow: 1;
 }
 
+.mock-grid-cell-values:nth-child(2) {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding-left: 1.5em;
+}
+
 .mock-grid-cell {
     flex-grow: 1;
     align-content: center;

@@ -1,12 +1,10 @@
 import {render} from 'preact';
-import {Item} from './item';
-import {Ability} from './ability';
+import {Editor} from './editor';
 
 import './style.css';
 
 render((
   <div style={{display: 'flex'}}>
-    <Ability />,
-    <Item />
+    <Editor />
   </div>
 ), document.getElementById('app'));

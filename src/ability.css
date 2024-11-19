@@ -9,6 +9,29 @@
     flex-wrap: wrap;
 }
 
+.mock-ability-header-misc-stats .mock-ability-header-stat {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.mock-ability-header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mock-ability-header-right {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.mock-ability-header-right > .mock-ability-header-stat:not(:first-child) {
+    margin-top: 10px;
+}
+
 .mock-ability-header-title {
     font-size: 30px;
     flex-basis: 50%;
@@ -19,9 +42,7 @@
 }
 
 .mock-ability-header-stat-group {
-    flex-basis: 50%;
     display: flex;
-    margin-bottom: 6px;
 }
 
 .mock-ability-header-stat-group:nth-child(2n + 1 of .mock-ability-header-stat-group) {
@@ -48,10 +69,6 @@
 .mock-ability-description {
     padding: 15px 25px 15px 25px;
     line-height: 135%;
-}
-
-.mock-ability-description .mock-grid {
-    padding-top: 20px;
 }
 
 .mock-ability-upgrades {
@@ -89,6 +106,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.mock-ability-description .mock-grid {
+    padding-top: 20px;
 }
 
 .mock-ability .mock-grid-cell {

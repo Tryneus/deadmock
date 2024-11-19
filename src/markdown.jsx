@@ -57,6 +57,9 @@ const convertTokens = (tokens, format) => {
 };
 
 const Markdown = ({text, format = defaultFormat}) => {
+  if (!text) {
+    return null;
+  }
   const tokens = parser.parseInline(text);
   const md = convertTokens(tokens[0].children, format);
 

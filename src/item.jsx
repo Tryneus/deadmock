@@ -7,39 +7,8 @@ import {Grid} from './grid';
 
 import './item.css';
 
-const example = {
-  category: "spirit",
-  name: "Slowing Hex",
-  cost: 1750,
-  tier: 2,
-  components: [
-    {icon: "item/enduring_spirit", name: "Enduring Spirit", color: "green"},
-  ],
-  stats: [
-    {units: "%", value: 10, stat: "Spirit Lifesteal"},
-    {value: 5, stat: "Spirit Power"},
-    {value: 75, stat: "Bonus Health"},
-  ],
-  active: {
-    cooldown: 26,
-    description: "Deals **Spirit Damage**, **Slows** targets movement and dashes.  Also **Silences their movement-based items and abilities.**\n_Does not affect target's stamina usage._",
-    grid: [
-      [
-        {type: "spirit_damage", value: 80},
-        {type: "conditional", value: 20, units: "%", stat: "Movement Slow", signed: false, icon: "movement_slow"},
-        {type: "conditional", value: -30, units: "%", stat: "Dash Distance", signed: false, icon: "movement_slow"}],
-      [{type: "values", values: [
-        {value: 29, units: 'm', stat: 'Cast Range'},
-        {value: 3, units: 's', stat: 'Duration'},
-      ]}],
-    ],
-  },
-  passive: null,
-};
-
-const Item = () => {
-  const item = example;
-  const {name, cost, tier, category, components, stats, active, passive} = item;
+const Item = ({data}) => {
+  const {name, cost, tier, category, components, stats, active, passive} = data;
   const classes = classNames("mock-item", category);
   return (
     <div className={classes}>
@@ -140,17 +109,20 @@ const Cooldown = ({seconds}) => (
   </div>
 );
 
-const Active = ({cooldown, description, grid}) => {
+const Active = ({cooldown, sections}) => {
+  const renderedSections = sections.map(({description, grid}) => (
+    <div className="mock-active-description">
+      <div><Markdown text={description} /></div>
+      <Grid data={grid} />
+    </div>
+  ));
   return (
     <div className="mock-active">
       <div className="mock-active-header">
         <div><Bold bright>Active</Bold></div>
         <Cooldown seconds={cooldown} />
       </div>
-      <div className="mock-active-description">
-        <div><Markdown text={description} /></div>
-        <Grid data={grid} />
-      </div>
+      {renderedSections}
     </div>
   );
 };

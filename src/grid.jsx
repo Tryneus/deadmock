@@ -6,6 +6,38 @@ import {SpiritScaling} from './spiritScaling';
 
 import './grid.css';
 
+
+// Partition the cells such that:
+// A 'values' cell goes on its own row at the end unless there is only one other cell
+// The other cells are arranged so that no row has less than two or more than three cells
+// There is probably a simpler way of doing this
+const partitionCells = (cells, values) => {
+  const rows = [];
+
+  let idx = 0;
+  while (idx < cells.length) {
+    const remainder = cells.length - idx;
+    if (remainder < 4) {
+      rows.push(cells.slice(idx, cells.length));
+    } else if (remainder === 4) {
+      rows.push(cells.slice(idx, idx + 2));
+    } else {
+      rows.push(cells.slice(idx, idx + 3));
+    }
+    idx += rows[rows.length - 1].length;
+  }
+
+  if (values) {
+    const valuesCell = {type: 'values', values};
+    if (cells.length === 1) {
+      rows[0].push(valuesCell);
+    } else {
+      rows.push([valuesCell]);
+    }
+  }
+  return rows;
+};
+
 const Grid = ({data}) => {
   const cellContents = (x) => {
     if (x.type === 'values') {
@@ -23,17 +55,17 @@ const Grid = ({data}) => {
     }
   };
 
-  const rows = data.map((x) => (
+  const cells = partitionCells(data.cells, data.values).map((row) => (
     <div className="mock-grid-row">
-      {x.map((x) => {
+      {row.map((cell) => {
         const classes = classNames('mock-grid-cell', {
-          'mock-grid-cell-spirit-scaling': x.spiritScaling,
-          'mock-grid-cell-values': x.type === 'values',
+          'mock-grid-cell-spirit-scaling': cell.spiritScaling,
+          'mock-grid-cell-values': cell.type === 'values',
         });
         return (
           <div className={classes}>
-            {x.spiritScaling ? <SpiritScaling detailed value={x.spiritScaling} /> : null}
-            {cellContents(x)}
+            {cell.spiritScaling ? <SpiritScaling detailed value={cell.spiritScaling} /> : null}
+            {cellContents(cell)}
           </div>
         );
       })}
@@ -42,7 +74,7 @@ const Grid = ({data}) => {
 
   return (
     <div className="mock-grid">
-      {rows}
+      {cells}
     </div>
   );
 };
