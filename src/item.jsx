@@ -109,26 +109,35 @@ const Cooldown = ({seconds}) => (
   </div>
 );
 
-const Active = ({cooldown, sections}) => {
+const ItemAbility = ({cooldown, sections, children}) => {
   const renderedSections = sections.map(({description, grid}) => (
-    <div className="mock-active-description">
+    <div className="mock-item-ability-description">
       <div><Markdown text={description} /></div>
       <Grid data={grid} />
     </div>
   ));
   return (
-    <div className="mock-active">
-      <div className="mock-active-header">
-        <div><Bold bright>Active</Bold></div>
-        <Cooldown seconds={cooldown} />
+    <div className="mock-item-ability">
+      <div className="mock-item-ability-header">
+        {children}
+        {cooldown && <Cooldown seconds={cooldown} />}
       </div>
       {renderedSections}
     </div>
   );
 };
 
-const Passive = () => {
-};
+const Active = (props) => (
+  <ItemAbility {...props}>
+    <Bold bright>Active</Bold>
+  </ItemAbility>
+);
+
+const Passive = (props) => (
+  <ItemAbility {...props}>
+    <SemiBold italic>Passive</SemiBold>
+  </ItemAbility>
+);
 
 export {Item};
 export default Item;

@@ -41,16 +41,8 @@
     flex-basis: 50%;
 }
 
-.mock-ability-header-spacer {
-    flex-basis: 50%;
-}
-
 .mock-ability-header-stat-group {
     display: flex;
-}
-
-.mock-ability-header-stat-group:nth-child(2n + 1 of .mock-ability-header-stat-group) {
-    justify-content: flex-end;
 }
 
 .mock-ability-header-stat {
@@ -68,6 +60,7 @@
 .mock-ability-body {
     background: linear-gradient(45deg, #181818, #3b3b3b), url("/noise3.svg");
     background-blend-mode: multiply;
+    font-size: 19px;
 }
 
 .mock-ability-description {
@@ -127,6 +120,10 @@
 .mock-ability .mock-grid-cell-spirit-scaling {
     border: 2px solid #5a3875;
     background: radial-gradient(transparent 20%, rgba(88, 56, 117, 0.5) 100%);
+}
+
+.mock-ability .mock-spirit-scaling {
+    right: -2px; /* to account for the border added above */
 }
 
 .mock-ability-upgrade.mock-ability-upgrade-inactive {

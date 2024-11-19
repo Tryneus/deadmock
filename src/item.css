@@ -17,7 +17,7 @@
     background-color: #5c3778;
 }
 
-.spirit .mock-components, .spirit .mock-active-header {
+.spirit .mock-components, .spirit .mock-item-ability-header {
     background-color: #3b2250; 
 }
 
@@ -25,7 +25,7 @@
     background-color: #2a1938;
 }
 
-.spirit .mock-stats, .spirit .mock-active {
+.spirit .mock-stats, .spirit .mock-item-ability {
     background-color: #623585;
 }
 
@@ -45,14 +45,14 @@
     background-color: #885102;
 }
 
-.weapon .mock-components, .weapon .mock-active-header {
+.weapon .mock-components, .weapon .mock-item-ability-header {
     background-color: #583b0e; 
 }
 
 .weapon .mock-components-badge {
 }
 
-.weapon .mock-stats, .weapon .mock-active {
+.weapon .mock-stats, .weapon .mock-item-ability {
     background-color: #7d530f;
 }
 
@@ -72,14 +72,14 @@
     background-color: #41650c;
 }
 
-.vitality .mock-components, .vitality .mock-active-header {
+.vitality .mock-components, .vitality .mock-item-ability-header {
     background-color: #2f4510; 
 }
 
 .weapon .mock-components-badge {
 }
 
-.vitality .mock-stats, .vitality .mock-active {
+.vitality .mock-stats, .vitality .mock-item-ability {
     background-color: #4d7214;
 }
 
@@ -193,35 +193,34 @@
     padding: 5px 15px;
 }
 
-.mock-active-header {
+.mock-item-ability-header {
     font-size: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.mock-active-header > div {
+.mock-item-ability-header > * {
     padding: 3px 15px;
     display: flex;
     align-items: center;
 }
 
-.mock-active-header > div:last-child {
+.mock-item-ability-header > div:last-child {
     /*padding: 3px 15px;*/
     background-color: #0c1414;
 }
 
-.mock-active-header .mock-icon {
+.mock-item-ability-header .mock-icon {
     margin-right: 5px;
 }
 
-.mock-active-description {
+.mock-item-ability-description {
     padding: 6px 15px;
     font-size: 17px;
 }
 
-.mock-passive {
-}
-
-.mock-passive-header {
+.mock-item .mock-grid-cell-values span:last-child {
+    color: #c8c6ca;
+    font-weight: 600;
 }

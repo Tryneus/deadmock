@@ -29,18 +29,13 @@
     margin-top: 0px;
 }
 
-.mock-grid-row > div {
-    flex-grow: 1;
-}
-
-.mock-grid-cell-values:nth-child(2) {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    padding-left: 1.5em;
-}
-
 .mock-grid-cell {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.mock-grid-cell:not(.mock-grid-cell-spirit-scaling), .mock-grid-cell-spirit-scaling > .mock-grid-cell-spirit-scaling-inner {
     align-content: center;
     justify-content: center;
     display: flex;
@@ -56,7 +51,13 @@
     line-height: 95%;
 }
 
-.mock-grid-cell-values {
+.mock-grid-cell-values:nth-child(2) {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding-left: 1.5em;
+}
+
+.mock-grid-cell-values:not(:nth-child(2)) {
     flex-direction: row;
     flex-wrap: wrap;
     padding-top: 10px;

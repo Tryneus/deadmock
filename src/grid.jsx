@@ -42,30 +42,36 @@ const Grid = ({data}) => {
   const cellContents = (x) => {
     if (x.type === 'values') {
       return <GridCellValues values={x.values} />;
-    } else if (x.type === 'value') {
-      return <GridCellValue {...x} />;
-    } else if (x.type === 'spirit_damage') {
-      return <GridCellSpiritDamage value={x.value} />;
-    } else if (x.type === 'weapon_damage') {
-      return <GridCellWeaponDamage value={x.value} />;
-    } else if (x.type === 'conditional') {
-      return <GridCellConditional {...x} />;
     } else {
-      return 'undefined';
+      return <GridCellValue {...x} />;
     }
+  };
+
+  const wrapSpiritScaling = (spiritScaling, cell) => {
+    if (spiritScaling === undefined) {
+      return cell;
+    }
+
+    return (
+      <>
+        <SpiritScaling detailed value={spiritScaling} />
+        <div className="mock-grid-cell-spirit-scaling-inner">
+          {cell}
+        </div>
+      </>
+    );
   };
 
   const cells = partitionCells(data.cells, data.values).map((row) => (
     <div className="mock-grid-row">
       {row.map((cell) => {
         const classes = classNames('mock-grid-cell', {
-          'mock-grid-cell-spirit-scaling': cell.spiritScaling,
           'mock-grid-cell-values': cell.type === 'values',
+          'mock-grid-cell-spirit-scaling': cell.spiritScaling,
         });
         return (
           <div className={classes}>
-            {cell.spiritScaling ? <SpiritScaling detailed value={cell.spiritScaling} /> : null}
-            {cellContents(cell)}
+            {wrapSpiritScaling(cell.spiritScaling, cellContents(cell))}
           </div>
         );
       })}
@@ -79,13 +85,14 @@ const Grid = ({data}) => {
   );
 };
 
-const renderIcon = (icon) => {
-  if (!icon) {
+const renderIcon = (iconProps) => {
+  const props = {color: 'grey', ...iconProps};
+  if (!iconProps) {
     return null;
   }
   return (
     <>
-      <Icon size={18} icon={icon} color="grey" />
+      <Icon size={18} {...props} />
       &nbsp;
     </>
   );
@@ -106,56 +113,23 @@ const GridCellValues = ({values}) => {
   );
 };
 
-const GridCellValue = ({icon, value, units, stat, signed}) => (
-  <>
-    <div className="mock-grid-cell-line">
-      {renderIcon(icon)}
-      <Value signed={signed} value={value} units={units} />
-    </div>
-    <div className="mock-grid-cell-line">
-      <SemiBold bright size={15}>{stat}</SemiBold>
-    </div>
-  </>
-);
+const colors = {
+  purple: '#c78bf7',
+  orange: '#d49f50',
+};
 
-const GridCellSpiritDamage = ({value}) => (
-  <>
-    <div className="mock-grid-cell-line">
-      <Icon size={18} icon="spirit_damage" color="purple" />
-      <Bold bright size={22}>{value}</Bold>
-    </div>
-    <div className="mock-grid-cell-line">
-      <Bold color="#c78bf7" size={15}>Damage</Bold>
-    </div>
-  </>
-);
-
-const GridCellWeaponDamage = ({value}) => (
-  <>
-    <div className="mock-grid-cell-line">
-      <Icon size={18} icon="weapon_damage" color="orange" />
-      <Bold bright size={22}>{value}</Bold>
-    </div>
-    <div className="mock-grid-cell-line">
-      <Bold color="#d49f50" size={15}>Damage</Bold>
-    </div>
-  </>
-);
-
-const GridCellConditional = ({icon, value, units, stat, signed}) => (
-  <>
-    <div className="mock-grid-cell-line">
-      {renderIcon(icon)}
-      <Value signed={signed} value={value} units={units} />
-    </div>
-    <div className="mock-grid-cell-line">
-      <SemiBold bright size={15}>{stat}</SemiBold>
-    </div>
-    <div className="mock-grid-cell-line">
-      <SemiBold italic muted size={15}>Conditional</SemiBold>
-    </div>
-  </>
-);
+const GridCellValue = ({icon, value, units, stat, signed, conditional, color}) => {
+  return (
+    <>
+      <div className="mock-grid-cell-line">
+        {renderIcon(icon)}
+        <Value size={22} signed={signed} value={value} units={units} />
+      </div>
+      <SemiBold bright color={colors[color]} size={15}>{stat}</SemiBold>
+      {conditional ? <SemiBold italic muted size={15}>Conditional</SemiBold>: null}
+    </>
+  );
+};
 
 export {Grid};
 export default Grid;
