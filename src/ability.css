@@ -9,6 +9,10 @@
     flex-wrap: wrap;
 }
 
+.mock-ability-header-misc-stats {
+    display: flex;
+}
+
 .mock-ability-header-misc-stats .mock-ability-header-stat {
     margin-top: 10px;
     margin-right: 10px;

@@ -37,6 +37,7 @@ const exampleAbility = {
   duration: 0.75,
   chargeCooldown: 4,
   charges: 3,
+  aoe: 10,
   description: "Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.",
   grid: {
     cells: [
