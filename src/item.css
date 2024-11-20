@@ -166,17 +166,17 @@
 
 .mock-components-badge.mock-components-badge-green .mock-icon {
     background-size: 90%;
-    background-color: #7cbb1e;
+    background-color: var(--mock-green);
 }
 
 .mock-components-badge.mock-components-badge-purple .mock-icon {
     background-size: 90%;
-    background-color: #ce91ff;
+    background-color: var(--mock-purple);
 }
 
 .mock-components-badge.mock-components-badge-orange .mock-icon {
     background-size: 90%;
-    background-color: #dd9642;
+    background-color: var(--mock-orange);
 }
 
 .mock-components-badge .mock-components-badge-name {
@@ -187,6 +187,7 @@
 .mock-stats {
     font-size: 15px;
     padding: 6px;
+    line-height: 120%;
 }
 
 .mock-stats > div {
@@ -223,4 +224,13 @@
 .mock-item .mock-grid-cell-values span:last-child {
     color: #c8c6ca;
     font-weight: 600;
+}
+
+.mock-item .mock-grid-cell {
+    padding: 5px 5px;
+    line-height: 120%;
+}
+
+.mock-item .mock-grid-cell.mock-grid-cell-values {
+    padding: 10px 15px;
 }

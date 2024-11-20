@@ -63,6 +63,10 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+
+    --mock-green: #7cbb1e;
+    --mock-purple: #ce91ff;
+    --mock-orange: #dd9642;
 }
 
 body {

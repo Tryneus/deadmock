@@ -33,6 +33,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    flex-basis: 0;
 }
 
 .mock-grid-cell:not(.mock-grid-cell-spirit-scaling), .mock-grid-cell-spirit-scaling > .mock-grid-cell-spirit-scaling-inner {
@@ -41,14 +42,12 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 15px 15px;
 }
 
 .mock-grid-cell-line {
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 95%;
 }
 
 .mock-grid-cell-values:nth-child(2) {

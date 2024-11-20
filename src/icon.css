@@ -4,6 +4,7 @@
     display: inline-block;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .mock-icon.mock-icon-small {
@@ -11,14 +12,19 @@
     width: 0.9lh;
 }
 
+
+/* Filters calculated using:
+ * https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/
+ */
+
 /* approximation of #999999 */
 .mock-icon.mock-icon-grey {
     filter: invert(40%);
 }
 
-/* approximation of #be7b24 (#bc7d24) */
+/* approximation of #dd9642 (#de9742) */
 .mock-icon.mock-icon-orange {
-filter: invert(51%) sepia(98%) saturate(365%) hue-rotate(354deg) brightness(83%) contrast(93%);
+    filter: invert(39%) sepia(81%) saturate(363%) hue-rotate(351deg) brightness(90%) contrast(92%);
 }
 
 /* only used for the healing icon? */

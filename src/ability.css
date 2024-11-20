@@ -93,6 +93,10 @@
     font-size: 20px;
 }
 
+.mock-ability-upgrade-cost > .mock-text {
+    margin-bottom: 4px;
+}
+
 .mock-ability-upgrade-text {
     padding: 20px 10px;
     background: #8b56b4;
@@ -137,4 +141,12 @@
 
 .mock-ability-upgrade-inactive .mock-ability-upgrade-text {
     background: rgba(96, 96, 96, 0.2);
+}
+
+.mock-ability .mock-grid-cell {
+    padding: 10px 5px;
+}
+
+.mock-ability .mock-grid-cell.mock-grid-cell-values {
+    padding: 10px 15px;
 }

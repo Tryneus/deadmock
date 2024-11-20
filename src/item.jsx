@@ -15,8 +15,8 @@ const Item = ({data}) => {
       <Header {...{name, cost, tier, category}} />
       <Components data={components} />
       <Stats data={stats} />
-      <Active {...active} />
       <Passive {...passive} />
+      <Active {...active} />
     </div>
   );
 };
@@ -92,7 +92,9 @@ const Components = ({data}) => {
 const Stats = ({data}) => {
   const lines = data.map((x) => (
     <div key={x.stat}>
-      <Value value={x.value} units={x.units} signed/><Medium> {x.stat}</Medium>
+      <Value value={x.value} units={x.units} signed />
+      &nbsp;&nbsp;
+      <SemiBold>{x.stat}</SemiBold>
     </div>
   ));
   return (

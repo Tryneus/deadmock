@@ -123,7 +123,7 @@ const GridCellValue = ({icon, value, units, stat, signed, conditional, color}) =
     <>
       <div className="mock-grid-cell-line">
         {renderIcon(icon)}
-        <Value size={22} signed={signed} value={value} units={units} />
+        <Value size={20} signed={signed} value={value} units={units} />
       </div>
       <SemiBold bright color={colors[color]} size={15}>{stat}</SemiBold>
       {conditional ? <SemiBold italic muted size={15}>Conditional</SemiBold>: null}

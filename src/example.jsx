@@ -36,7 +36,7 @@ const exampleItem = {
         cells: [
           {icon: {icon: "spirit_damage", color: "purple"}, value: 34, signed: true, stat: "Imbued Ability Spirit Power", color: "purple"},
           {icon: {icon: "fire_rate", color: "orange"}, value: 10, signed: false, units: "%", stat: "Fire Rate Bonus", conditional: true},
-          {value: 3, signed: true, units: " m/s", stat: "Move Speed", conditional: true},
+          {value: 3, signed: true, units: "m/s", stat: "Move Speed", conditional: true},
         ],
         values: [
           {value: 6, units: 's', stat: 'Move Speed Duration'},
