@@ -8,35 +8,48 @@
     margin-top: 3px;
 }
 
-.mock-grid-row:first-child > .mock-grid-cell:first-child, .mock-grid-row.mock-grid-cell:first-child {
-    border-top-left-radius: 6px;
+.mock-grid-row:first-child {
+    > *:first-child .mock-grid-cell, > .mock-grid-cell:first-child {
+        border-top-left-radius: 6px;
+    }
+
+    > *:last-child .mock-grid-cell, > .mock-grid-cell:last-child {
+        border-top-right-radius: 6px;
+    }
 }
 
-.mock-grid-row:first-child > .mock-grid-cell:last-child, .mock-grid-row.mock-grid-cell:first-child {
-    border-top-right-radius: 6px;
+.mock-grid-row:last-child {
+    > *:first-child .mock-grid-cell, > .mock-grid-cell:first-child {
+        border-bottom-left-radius: 6px;
+    }
+
+    > *:last-child .mock-grid-cell, > .mock-grid-cell:last-child {
+        border-bottom-right-radius: 6px;
+    }
 }
 
-.mock-grid-row:last-child > .mock-grid-cell:first-child, .mock-grid-row.mock-grid-cell:last-child {
-    border-bottom-left-radius: 6px;
+
+.mock-grid-row > * {
+    flex-basis: 0;
+    flex-grow: 1;
 }
 
-.mock-grid-row:last-child > .mock-grid-cell:last-child, .mock-grid-row.mock-grid-cell:last-child {
-    border-bottom-right-radius: 6px;
-}
-
-.mock-grid-row > .mock-grid-cell:not(:first-child) {
+.mock-grid-row > *:not(:first-child) {
     margin-left: 3px;
     margin-top: 0px;
 }
 
-.mock-grid-cell {
-    flex-grow: 1;
+.mock-grid-row > div:has(.mock-spirit-scaling) {
     display: flex;
     flex-direction: column;
-    flex-basis: 0;
 }
 
-.mock-grid-cell:not(.mock-grid-cell-spirit-scaling), .mock-grid-cell-spirit-scaling > .mock-grid-cell-spirit-scaling-inner {
+.mock-grid-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.mock-grid-cell {
     align-content: center;
     justify-content: center;
     display: flex;

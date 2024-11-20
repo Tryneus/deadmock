@@ -47,18 +47,15 @@ const Grid = ({data}) => {
     }
   };
 
-  const wrapSpiritScaling = (spiritScaling, cell) => {
+  const renderSpiritScaling = (spiritScaling, children) => {
     if (spiritScaling === undefined) {
-      return cell;
+      return children;
     }
-
     return (
-      <>
+      <div>
         <SpiritScaling detailed value={spiritScaling} />
-        <div className="mock-grid-cell-spirit-scaling-inner">
-          {cell}
-        </div>
-      </>
+        {children}
+      </div>
     );
   };
 
@@ -69,11 +66,12 @@ const Grid = ({data}) => {
           'mock-grid-cell-values': cell.type === 'values',
           'mock-grid-cell-spirit-scaling': cell.spiritScaling,
         });
-        return (
+        const renderedCell = (
           <div className={classes}>
-            {wrapSpiritScaling(cell.spiritScaling, cellContents(cell))}
+            {cellContents(cell)}
           </div>
         );
+        return renderSpiritScaling(cell.spiritScaling, renderedCell);
       })}
     </div>
   ));

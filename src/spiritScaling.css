@@ -1,5 +1,5 @@
 .mock-spirit-scaling {
-    position: relative;
+    z-index: 1;
     align-self: flex-end;
     line-height: 100%;
     height: 0px;
@@ -22,4 +22,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.mock-spirit-scaling + .mock-grid-cell {
+    border: 2px solid #5a3875;
+    background: radial-gradient(transparent 20%, rgba(88, 56, 117, 0.5) 100%) !important; /* TODO: add another div for stacking backgrounds? */
 }

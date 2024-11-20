@@ -121,15 +121,6 @@
     font-size: 18px;
 }
 
-.mock-ability .mock-grid-cell-spirit-scaling {
-    border: 2px solid #5a3875;
-    background: radial-gradient(transparent 20%, rgba(88, 56, 117, 0.5) 100%);
-}
-
-.mock-ability .mock-spirit-scaling {
-    right: -2px; /* to account for the border added above */
-}
-
 .mock-ability-upgrade.mock-ability-upgrade-inactive {
     border: 3px solid #202020;
     border-radius: 5px;
