@@ -1,10 +1,12 @@
+import {AbilityState, ItemState} from './state';
+
 const exampleItem = {
   category: "spirit",
   name: "Slowing Hex",
   cost: 1750,
   tier: 2,
   components: [
-    {icon: "item/enduring_spirit", name: "Enduring Spirit", color: "green"},
+    {image: "item/enduring_spirit", name: "Enduring Spirit", color: "green"},
   ],
   stats: [
     {units: "%", value: 10, stat: "Spirit Lifesteal"},
@@ -17,9 +19,9 @@ const exampleItem = {
       description: "Deals **Spirit Damage**, **Slows** targets movement and dashes.  Also **Silences their movement-based items and abilities.**\n_Does not affect target's stamina usage._",
       grid: {
         cells: [
-          {icon: {icon: "spirit_damage", color: "purple", size: 22}, value: 80, signed: false, stat: "Damage", color: "purple"},
-          {value: 20, units: "%", stat: "Movement Slow", signed: false, icon: {icon: "movement_slow"}, conditional: true},
-          {value: -30, units: "%", stat: "Dash Distance", signed: true, icon: {icon: "movement_slow"}, conditional: true},
+          {icon: {image: "spirit_damage", color: "purple", size: 22}, value: 80, signed: false, stat: "Damage", color: "purple"},
+          {value: 20, units: "%", stat: "Movement Slow", signed: false, icon: {image: "movement_slow"}, conditional: true},
+          {value: -30, units: "%", stat: "Dash Distance", signed: true, icon: {image: "movement_slow"}, conditional: true},
         ],
         values: [
           {value: 29, units: 'm', stat: 'Cast Range'},
@@ -34,8 +36,8 @@ const exampleItem = {
       description: "Imbue an ability with **permanent Spirit Power**.  When that ability is used, gain bonus **Movement Speed**.",
       grid: {
         cells: [
-          {icon: {icon: "spirit_damage", color: "purple"}, value: 34, signed: true, stat: "Imbued Ability Spirit Power", color: "purple"},
-          {icon: {icon: "fire_rate", color: "orange"}, value: 10, signed: false, units: "%", stat: "Fire Rate Bonus", conditional: true},
+          {icon: {image: "spirit_damage", color: "purple"}, value: 34, signed: true, stat: "Imbued Ability Spirit Power", color: "purple"},
+          {icon: {image: "fire_rate", color: "orange"}, value: 10, signed: false, units: "%", stat: "Fire Rate Bonus", conditional: true},
           {value: 3, signed: true, units: "m/s", stat: "Move Speed", conditional: true},
         ],
         values: [
@@ -46,7 +48,7 @@ const exampleItem = {
   },
 };
 
-const exampleAbility = {
+const exampleAbility = new AbilityState({
   name: "Tornado",
   cooldown: 32,
   duration: 0.75,
@@ -56,15 +58,15 @@ const exampleAbility = {
   description: "Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.",
   grid: {
     cells: [
-      {icon: {icon: "spirit_damage", color: "purple"}, value: 70, stat: "Damage", signed: false, spiritScaling: 0.7},
-      {value: 1.5, units: "s", stat: "Lift Duration", signed: false, icon: {icon: "duration"}},
-      {value: 30, units: "%", stat: "Bullet Evasion Chance", signed: false, icon: {icon: 'placeholder'}},
+      {icon: {image: "spirit_damage", color: "purple"}, value: 70, stat: "Damage", signed: false, spiritScaling: 0.7},
+      {value: 1.5, units: "s", stat: "Lift Duration", signed: false, icon: {image: "duration"}},
+      {value: 30, units: "%", stat: "Bullet Evasion Chance", signed: false, icon: {image: 'placeholder'}},
     ],
     values: [
-      {value: 3.5, units: 's', stat: 'Bullet Evasion Duration', icon: {icon: 'placeholder'}},
-      {value: 3.5, units: 'm', stat: 'Radius', icon: {icon: 'aoe'}},
-      {value: 5, units: 's', stat: 'Launch Window', icon: {icon: 'duration'}},
-      {value: 25, units: '%', stat: 'Heal vs Non-Heroes', icon: {icon: 'healing'}},
+      {value: 3.5, units: 's', stat: 'Bullet Evasion Duration', icon: {image: 'placeholder'}},
+      {value: 3.5, units: 'm', stat: 'Radius', icon: {image: 'aoe'}},
+      {value: 5, units: 's', stat: 'Launch Window', icon: {image: 'duration'}},
+      {value: 25, units: '%', stat: 'Heal vs Non-Heroes', icon: {image: 'healing'}},
     ],
   },
   upgrades: [
@@ -72,6 +74,6 @@ const exampleAbility = {
     '**-14s**\nCooldown',
     '**+20%**\nBullet Evasion Chance',
   ],
-};
+});
 
 export {exampleItem, exampleAbility};

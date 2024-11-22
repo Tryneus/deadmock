@@ -10,6 +10,7 @@
 		"classnames": "^2.5.1",
 		"json-edit-react": "^1.17.1",
 		"markdown-it": "^14.1.0",
+		"mobx-react-lite": "^4.0.7",
 		"preact": "^10.22.1",
 		"prop-types": "^15.8.1",
 		"react-json-editor-ajrm": "^2.5.14"

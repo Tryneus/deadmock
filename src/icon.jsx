@@ -11,9 +11,9 @@ const colorClasses = {
 
 const colorToClassName = (color) => color && colorClasses[color];
 
-const Icon = ({icon = 'placeholder', small, size, color}) => {
-  const classes = classNames('mock-icon', colorToClassName(color), {'mock-icon-small': small});
-  const filename = `/icon/${icon}.png`;
+const Icon = ({image = 'placeholder', size, color}) => {
+  const classes = classNames('mock-icon', colorToClassName(color));
+  const filename = `/icon/${image}.png`;
   const style = {};
   if (size) {
     style.lineHeight = `${size}px`;

@@ -7,12 +7,6 @@
     background-position: center;
 }
 
-.mock-icon.mock-icon-small {
-    height: 0.9lh;
-    width: 0.9lh;
-}
-
-
 /* Filters calculated using:
  * https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/
  */

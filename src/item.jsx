@@ -4,6 +4,7 @@ import {Markdown} from './markdown';
 import {Text, Medium, SemiBold, Bold} from './text';
 import {Value} from './value';
 import {Grid} from './grid';
+import {EditableText, EditableMarkdown} from './EditableText';
 
 import './item.css';
 
@@ -25,19 +26,19 @@ const categoryBonuses = {
   spirit: {
     tier: [0, 4, 8, 12, 16],
     stat: "Spirit Power",
-    icon: "spirit",
+    image: "spirit",
   },
   weapon: {
     units: "%",
     tier: [0, 6, 10, 14, 18],
     stat: "Weapon Damage",
-    icon: "weapon",
+    image: "weapon",
   },
   vitality: {
     units: "%",
     tier: [0, 11, 14, 17, 20],
     stat: "Base Health",
-    icon: "vitality",
+    image: "vitality",
   },
 };
 
@@ -53,13 +54,13 @@ const Header = ({name, cost, tier, category}) => {
   return (
     <div className="mock-header">
       <div>
-        <div className="item-name">{name}</div>
-        <div className="item-cost"><Icon icon="soul" />{soulsFormatter.format(cost)}</div>
+        <div className="item-name"><EditableText text={name} size={30} weight={700} /></div>
+        <div className="item-cost"><Icon image="soul" />{soulsFormatter.format(cost)}</div>
       </div>
       <div>
         <div className="item-bonus-value">
           <Value value={bonus.tier[tier]} units={bonus.units} signed />
-          <Icon small icon={bonus.icon} />
+          <Icon size={15} image={bonus.image} />
         </div>
         <div className="item-bonus-stat">{bonus.stat}</div>
       </div>
@@ -76,7 +77,7 @@ const Components = ({data}) => {
     });
     return (
       <div className={classes} key={x.name}>
-        <Icon icon={x.icon} />
+        <Icon image={x.image} />
         <div className="mock-components-badge-name"><Bold>{x.name}</Bold></div>
       </div>
     );
@@ -106,7 +107,7 @@ const Stats = ({data}) => {
 
 const Cooldown = ({seconds}) => (
   <div>
-    <Icon small icon="cooldown" />
+    <Icon size={15} image="cooldown" />
     <Bold bright>{seconds}s</Bold>
   </div>
 );
@@ -114,7 +115,7 @@ const Cooldown = ({seconds}) => (
 const ItemAbility = ({cooldown, sections, children}) => {
   const renderedSections = sections.map(({description, grid}) => (
     <div className="mock-item-ability-description">
-      <div><Markdown text={description} /></div>
+      <div><EditableMarkdown text={description} /></div>
       <Grid data={grid} />
     </div>
   ));
