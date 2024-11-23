@@ -1,48 +1,48 @@
 @font-face {
     font-family: "Deadlock";
-    src: url("/font/retaildemo-regular.otf") format("opentype");
+    src: url("/deadmock/font/retaildemo-regular.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: "Deadlock";
-    src: url("/font/retaildemo-medium.otf") format("opentype");
+    src: url("/deadmock/font/retaildemo-medium.otf") format("opentype");
     font-weight: 500;
     font-style: normal;
 }
 @font-face {
     font-family: "Deadlock";
-    src: url("/font/retaildemo-semibold.otf") format("opentype");
+    src: url("/deadmock/font/retaildemo-semibold.otf") format("opentype");
     font-weight: 600;
     font-style: normal;
 }
 @font-face {
     font-family: "Deadlock";
-    src: url("/font/retaildemo-bold.otf") format("opentype");
+    src: url("/deadmock/font/retaildemo-bold.otf") format("opentype");
     font-weight: 700;
     font-style: normal;
 }
 @font-face {
     font-family: "Deadlock";
-    src: url("/font/retaildemo-italic.otf") format("opentype");
+    src: url("/deadmock/font/retaildemo-italic.otf") format("opentype");
     font-weight: 400;
     font-style: italic;
 }
 @font-face {
     font-family: "Deadlock";
-    src: url("/font/retaildemo-mediumitalic.otf") format("opentype");
+    src: url("/deadmock/font/retaildemo-mediumitalic.otf") format("opentype");
     font-weight: 500;
     font-style: italic;
 }
 @font-face {
     font-family: "Deadlock";
-    src: url("/font/retaildemo-semibolditalic.otf") format("opentype");
+    src: url("/deadmock/font/retaildemo-semibolditalic.otf") format("opentype");
     font-weight: 600;
     font-style: italic;
 }
 @font-face {
     font-family: "Deadlock";
-    src: url("/font/retaildemo-bolditalic.otf") format("opentype");
+    src: url("/deadmock/font/retaildemo-bolditalic.otf") format("opentype");
     font-weight: 700;
     font-style: italic;
 }

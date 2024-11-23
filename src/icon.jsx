@@ -13,7 +13,7 @@ const colorToClassName = (color) => color && colorClasses[color];
 
 const Icon = ({image, size, color}) => {
   const classes = classNames('mock-icon', colorToClassName(color));
-  const filename = `/icon/${image}.png`;
+  const filename = `/deadmock/icon/${image}.png`;
   const style = {};
   if (size) {
     style.lineHeight = `${size}px`;

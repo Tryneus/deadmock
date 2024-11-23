@@ -64,7 +64,7 @@
 
 
     .mock-ability-body {
-        background: linear-gradient(45deg, #181818, #3b3b3b), url("/noise3.svg");
+        background: linear-gradient(45deg, #181818, #3b3b3b), url("/deadmock/noise.svg");
         background-blend-mode: multiply;
         font-size: 19px;
     }
