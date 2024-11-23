@@ -11,7 +11,7 @@ const colorClasses = {
 
 const colorToClassName = (color) => color && colorClasses[color];
 
-const Icon = ({image = 'placeholder', size, color}) => {
+const Icon = ({image, size, color}) => {
   const classes = classNames('mock-icon', colorToClassName(color));
   const filename = `/icon/${image}.png`;
   const style = {};

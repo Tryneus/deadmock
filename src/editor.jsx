@@ -11,9 +11,7 @@ const Editor = () => {
 
   return (
     <div className="mock-editor">
-      <button onClick={onClick}>+</button>
-      <Ability data={exampleAbility} />
-      <Item data={exampleItem} />
+      <Ability model={exampleAbility} />
     </div>
   );
 };

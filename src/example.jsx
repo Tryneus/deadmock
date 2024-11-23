@@ -50,11 +50,14 @@ const exampleItem = {
 
 const exampleAbility = new AbilityState({
   name: "Tornado",
-  cooldown: 32,
-  duration: 0.75,
-  chargeCooldown: 4,
-  charges: 3,
-  aoe: 10,
+  headerStats: [
+    {icon: {image: 'charge'}, value: 3, signed: false, stat: 'charges'},
+    {icon: {image: 'charge_cooldown'}, value: 4, units: 's', signed: false, stat: 'chargeCooldown'},
+    {icon: {image: 'cooldown'}, value: 32, units: "s", signed: false, stat: 'cooldown'},
+    {icon: {image: 'duration'}, value: 0.75, units: "s", signed: false},
+    {icon: {image: 'aoe'}, value: 10, units: 'm', signed: false},
+    {icon: {image: 'range'}, value: 25, units: 'm', signed: false},
+  ],
   description: "Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.",
   grid: {
     cells: [

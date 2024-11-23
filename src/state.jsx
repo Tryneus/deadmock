@@ -173,6 +173,30 @@ class Value {
     }
     makeAutoObservable(this);
   }
+
+  set value(x) {
+    this.value = x;
+  }
+
+  set signed(x) {
+    this.signed = x;
+  }
+
+  set units(x) {
+    this.units = x;
+  }
+
+  set stat(x) {
+    this.stat = x;
+  }
+
+  set conditional(x) {
+    this.conditional = x;
+  }
+
+  set color(x) {
+    this.color = x;
+  }
 }
 
 class GridData {
@@ -321,76 +345,49 @@ class ItemState {
   }
 }
 
+class AbilityUpgrade {
+  description = '';
+  constructor (raw) {
+    this.description = raw;
+    makeAutoObservable(this);
+  }
+
+  set description(x) {
+    this.description = x;
+  }
+}
+
 class AbilityState {
   name = '';
-  cooldown = null;
-  duration = null;
-  charges = null;
-  chargeCooldown = null;
-  aoe = null;
+  headerStats = [];
   description = '';
   grid;
-  upgrades = ['', '', ''];
+  upgrades = [];
 
   constructor(raw) {
+    this.upgrades = ['', '', ''].map((x) => new AbilityUpgrade(x));
     if (raw) {
       this.name = raw.name;
-      this.cooldown = raw.cooldown;
-      this.duration = raw.duration;
-      this.charges = raw.charges;
-      this.chargeCooldown = raw.chargeCooldown;
-      this.aoe = raw.aoe;
+      if (raw.headerStats) {
+        this.headerStats = raw.headerStats.map((x) => new Value(x));
+      }
       this.description = raw.description;
       this.grid = new GridData(raw.grid);
-      this.upgrades = deepCopy(raw.upgrades);
+      if (raw.upgrades) {
+        this.upgrades = raw.upgrades.map((x) => new AbilityUpgrade(x));
+      }
     } else {
       this.grid = new GridData();
     }
     makeAutoObservable(this);
   }
 
-  removeCooldown() {
-    this.cooldown = null;
+  addStat() {
+    this.stats.push(new Value());
   }
 
-  removeDuration() {
-    this.duration = null;
-  }
-
-  removeCharges() {
-    this.charges = null;
-  }
-
-  removeChargeCooldown() {
-    this.chargeCooldown = null;
-  }
-
-  removeAoe() {
-    this.aoe = null;
-  }
-
-  setUpgradeText(tier, text) {
-    this.upgrades[tier - 1] = text;
-  }
-
-  set charges(num) {
-    this.charges = clampInteger(num);
-  }
-
-  set chargeCooldown(num) {
-    this.chargeCooldown = clampNumber(num);
-  }
-
-  set aoe(num) {
-    this.aoe = clampNumber(num);
-  }
-
-  set range(num) {
-    this.range = clampNumber(num);
-  }
-
-  set duration(num) {
-    this.duration = clampNumber(num);
+  removeStat(i) {
+    this.stats.splice(i, 1);
   }
 }
 

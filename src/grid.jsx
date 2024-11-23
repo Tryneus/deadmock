@@ -1,8 +1,12 @@
 import classNames from 'classnames';
+import {action} from 'mobx';
+import {useCallback} from 'preact/hooks';
+import {observer} from 'mobx-react-lite';
 import {Icon} from './icon';
 import {Text, Medium, SemiBold, Bold} from './text';
 import {Value} from './value';
 import {SpiritScaling} from './spiritScaling';
+import {EditableText, EditableIcon} from './EditableText';
 
 import './grid.css';
 
@@ -38,12 +42,12 @@ const partitionCells = (cells, values) => {
   return rows;
 };
 
-const Grid = ({data}) => {
+const Grid = observer(({data}) => {
   const cellContents = (x) => {
     if (x.type === 'values') {
-      return <GridCellValues values={x.values} />;
+      return <>{x.values.map((model) => <GridCellValuesItem model={model} />)}</>
     } else {
-      return <GridCellValue {...x} />;
+      return <GridCellValue model={x} />;
     }
   };
 
@@ -81,53 +85,45 @@ const Grid = ({data}) => {
       {cells}
     </div>
   );
-};
+});
 
-const renderIcon = (iconProps) => {
-  const props = {color: 'grey', ...iconProps};
-  if (!iconProps) {
-    return null;
-  }
-  return (
-    <>
-      <Icon size={18} {...props} />
-      &nbsp;
-    </>
-  );
-};
+const GridCellValuesItem = observer(({model}) => {
+  const onChange = useCallback(action((x) => model.stat = x));
 
-const GridCellValues = ({values}) => {
+  console.log('grid cell values item', model.icon);
+
   return (
-    <>
-      {values.map(({icon, value, units, stat, signed}) => (
-        <div className="mock-grid-cell-values-item">
-          {renderIcon(icon)}
-          <Value signed={signed} value={value} units={units} />
-          &nbsp;&nbsp;
-          <Medium bright size={15}>{stat}</Medium>
-        </div>
-      ))}
-    </>
+    <div className="mock-grid-cell-values-item">
+      <EditableIcon model={model.icon} />
+      <Value model={model} />
+      &nbsp;&nbsp;
+      <EditableText size={15} onChange={onChange}>
+        <Text bright>{model.stat}</Text>
+      </EditableText>
+    </div>
   );
-};
+});
 
 const colors = {
   purple: '#c78bf7',
   orange: '#d49f50',
 };
 
-const GridCellValue = ({icon, value, units, stat, signed, conditional, color}) => {
+const GridCellValue = observer(({model}) => {
+  const onChange = useCallback(action((x) => model.stat = x));
   return (
     <>
       <div className="mock-grid-cell-line">
-        {renderIcon(icon)}
-        <Value size={20} signed={signed} value={value} units={units} />
+        <EditableIcon model={model.icon} />
+        <Value model={model} />
       </div>
-      <SemiBold bright color={colors[color]} size={15}>{stat}</SemiBold>
-      {conditional ? <SemiBold italic muted size={15}>Conditional</SemiBold>: null}
+      <EditableText color={colors[model.color || 'bright']} size={15} onChange={onChange}>
+        {model.stat}
+      </EditableText>
+      {model.conditional ? <SemiBold italic muted size={15}>Conditional</SemiBold>: null}
     </>
   );
-};
+});
 
 export {Grid};
 export default Grid;
