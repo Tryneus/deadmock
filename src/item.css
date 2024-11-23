@@ -79,7 +79,7 @@
                 border-radius: 100px;
                 height: 1.2lh;
 
-                &.mock-components-badge-green {
+                &.mock-components-badge-vitality {
                     background-color: var(--mock-green);
 
                     /* #203500 */
@@ -89,7 +89,7 @@
 
                 }
 
-                &.mock-components-badge-purple {
+                &.mock-components-badge-spirit {
                     background-color: var(--mock-purple);
 
                     /* #372248 */
@@ -98,7 +98,7 @@
                     }
                 }
 
-                &.mock-components-badge-orange {
+                &.mock-components-badge-weapon {
                     background-color: var(--mock-orange);
 
                     /* #312406 */

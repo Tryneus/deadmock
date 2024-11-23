@@ -80,21 +80,18 @@ const Header = ({model}) => {
   );
 };
 
-const Components = ({model}) => {
-  if (!model.components) {
+const Components = observer(({model}) => {
+  if (model.components.length === 0) {
     return null;
   }
 
-  const lines = model.components.map((x) => {
-    const classes = classNames('mock-components-badge-icon', {
-      'mock-components-badge-green': x.color === 'green',
-      'mock-components-badge-purple': x.color === 'purple',
-      'mock-components-badge-orange': x.color === 'orange',
-    });
+  const lines = model.componentInfo.map((x) => {
+    console.log(x);
+    const classes = classNames('mock-components-badge-icon', `mock-components-badge-${x.category}`);
     return (
       <div className="mock-components-badge" key={x.name}>
         <div className={classes}>
-          <Icon image={x.image} />
+          <Icon image={x.icon} />
         </div>
         <div className="mock-components-badge-name"><Bold>{x.name}</Bold></div>
       </div>
@@ -106,7 +103,7 @@ const Components = ({model}) => {
       {lines}
     </div>
   );
-};
+});
 
 const StatLine = observer(({model}) => {
   const onChangeStat = useCallback(action((x) => model.stat = x));

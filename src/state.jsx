@@ -177,30 +177,6 @@ class Value {
     }
     makeAutoObservable(this);
   }
-
-  set value(x) {
-    this.value = x;
-  }
-
-  set signed(x) {
-    this.signed = x;
-  }
-
-  set units(x) {
-    this.units = x;
-  }
-
-  set stat(x) {
-    this.stat = x;
-  }
-
-  set conditional(x) {
-    this.conditional = x;
-  }
-
-  set color(x) {
-    this.color = x;
-  }
 }
 
 class GridData {
@@ -257,23 +233,17 @@ class ItemEffectSection {
 }
 
 class ItemEffect {
-  type = 'passive'
-  cooldown = 0
-  sections = []
+  active = false;
+  cooldown = 0;
+  sections = [];
 
   constructor(raw) {
     if (raw) {
-      this.type = raw.type;
+      this.active = raw.active;
       this.cooldown = raw.cooldown;
       this.sections = raw.sections.map((x) => new ItemEffectSection(x));
     }
     makeAutoObservable(this);
-  }
-
-  set type(t) {
-    if (['passive', 'active'].contains(t)) {
-      this.type = t;
-    }
   }
 
   addMarkdownSection(t) {
@@ -290,12 +260,12 @@ class ItemEffect {
 }
 
 class ItemState {
-  category = 'weapon'
-  name = ''
-  tier = 1
-  components = []
-  stats = []
-  effects = []
+  category = 'weapon';
+  name = '';
+  tier = 1;
+  components = [];
+  stats = [];
+  effects = [];
 
   constructor(raw) {
     if (raw) {
@@ -317,17 +287,11 @@ class ItemState {
   }
 
   get cost() {
-    return tierCosts[this.tier] + this.components.map((name) => items[name]?.cost || 0);
+    return tierCosts[this.tier] + this.components.reduce((acc, name) => acc + items[name]?.cost, 0);
   }
 
-  set category(s) {
-    if (categories.has(s)) {
-      this.category = s;
-    }
-  }
-
-  set tier(num) {
-    this.tier = clampInteger(num, 1, 4);
+  get componentInfo() {
+    return this.components.map((name) => ({name, ...items[name]}));
   }
 
   addComponent() {
@@ -360,10 +324,6 @@ class AbilityUpgrade {
   constructor (raw) {
     this.description = raw;
     makeAutoObservable(this);
-  }
-
-  set description(x) {
-    this.description = x;
   }
 }
 

@@ -6,7 +6,7 @@ const exampleItem = new ItemState({
   cost: 1750,
   tier: 2,
   components: [
-    {image: "item/enduring_spirit", name: "Enduring Spirit", color: "green"},
+    "Enduring Spirit",
   ],
   stats: [
     {units: "%", value: 10, stat: "Spirit Lifesteal", signed: true},
