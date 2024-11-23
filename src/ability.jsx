@@ -46,8 +46,6 @@ const HeaderStat = ({model}) => {
     return null;
   }
 
-  console.log('header stat', toJS(model));
-
   return (
     <div className="mock-ability-header-stat">
       <EditableIcon model={model.icon} />

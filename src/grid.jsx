@@ -42,6 +42,28 @@ const partitionCells = (cells, values) => {
   return rows;
 };
 
+const SpiritScalingContainer = observer(({model, children}) => {
+  const onChange = useCallback(action((x) => {
+    const newValue = parseFloat(x);
+    if (isNaN(newValue)) {
+      console.error('failed to parse', x);
+    } else {
+      model.spiritScaling = newValue;
+    }
+  }));
+
+  if (!model.spiritScaling) {
+    return children;
+  }
+
+  return (
+    <div>
+      <SpiritScaling detailed value={model.spiritScaling} onChange={onChange} />
+      {children}
+    </div>
+  );
+});
+
 const Grid = observer(({data}) => {
   const cellContents = (x) => {
     if (x.type === 'values') {
@@ -51,31 +73,19 @@ const Grid = observer(({data}) => {
     }
   };
 
-  const renderSpiritScaling = (spiritScaling, children) => {
-    if (spiritScaling === undefined) {
-      return children;
-    }
-    return (
-      <div>
-        <SpiritScaling detailed value={spiritScaling} />
-        {children}
-      </div>
-    );
-  };
-
   const cells = partitionCells(data.cells, data.values).map((row) => (
     <div className="mock-grid-row">
       {row.map((cell) => {
         const classes = classNames('mock-grid-cell', {
           'mock-grid-cell-values': cell.type === 'values',
-          'mock-grid-cell-spirit-scaling': cell.spiritScaling,
         });
-        const renderedCell = (
-          <div className={classes}>
-            {cellContents(cell)}
-          </div>
+        return (
+          <SpiritScalingContainer model={cell}>
+            <div className={classes}>
+              {cellContents(cell)}
+            </div>
+          </SpiritScalingContainer>
         );
-        return renderSpiritScaling(cell.spiritScaling, renderedCell);
       })}
     </div>
   ));
@@ -89,8 +99,6 @@ const Grid = observer(({data}) => {
 
 const GridCellValuesItem = observer(({model}) => {
   const onChange = useCallback(action((x) => model.stat = x));
-
-  console.log('grid cell values item', model.icon);
 
   return (
     <div className="mock-grid-cell-values-item">

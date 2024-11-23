@@ -2,13 +2,13 @@
     resize: none;
     color: #ffefd7;
     cursor: pointer;
-    min-width: 10px;
+    min-width: 0.8em;
 }
 
 [contenteditable] {
-  outline: 0px solid transparent;
+    outline: 0 solid transparent;
 }
 
 [contenteditable]:focus {
-  background: rgba(255, 0, 0, 0.4);
+    background: rgba(255, 0, 0, 0.4);
 }

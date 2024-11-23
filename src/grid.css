@@ -9,22 +9,22 @@
 }
 
 .mock-grid-row:first-child {
-    > *:first-child .mock-grid-cell, > .mock-grid-cell:first-child {
-        border-top-left-radius: 6px;
+    > *:first-child .mock-grid-cell, > *:first-child {
+        border-top-left-radius: 0.5em
     }
 
-    > *:last-child .mock-grid-cell, > .mock-grid-cell:last-child {
-        border-top-right-radius: 6px;
+    > *:last-child .mock-grid-cell, > *:last-child {
+        border-top-right-radius: 0.5em
     }
 }
 
 .mock-grid-row:last-child {
-    > *:first-child .mock-grid-cell, > .mock-grid-cell:first-child {
-        border-bottom-left-radius: 6px;
+    > *:first-child .mock-grid-cell, > *:first-child {
+        border-bottom-left-radius: 0.5em
     }
 
-    > *:last-child .mock-grid-cell, > .mock-grid-cell:last-child {
-        border-bottom-right-radius: 6px;
+    > *:last-child .mock-grid-cell, > *:last-child {
+        border-bottom-right-radius: 0.5em
     }
 }
 
@@ -35,8 +35,8 @@
 }
 
 .mock-grid-row > *:not(:first-child) {
-    margin-left: 3px;
-    margin-top: 0px;
+    margin-left: 0.2em;
+    margin-top: 0;
 }
 
 .mock-grid-row > div:has(.mock-spirit-scaling) {
@@ -72,8 +72,8 @@
 .mock-grid-cell-values:not(:nth-child(2)) {
     flex-direction: row;
     flex-wrap: wrap;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .mock-grid-cell-values-item {
@@ -84,5 +84,5 @@
 }
 
 .mock-grid-cell-values-item:nth-child(n+3) {
-    margin-top: 8px;
+    margin-top: 0.5em;
 }

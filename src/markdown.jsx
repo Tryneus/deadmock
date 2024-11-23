@@ -48,7 +48,7 @@ const convertTokens = (tokens, format) => {
   });
 
   if (stack.length != 1) {
-    console.log('invalid markdown stack:', stack, tokens);
+    console.error('invalid markdown stack:', stack, tokens);
   }
 
   const {Component, props} = format.text;

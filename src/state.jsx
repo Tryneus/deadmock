@@ -158,6 +158,7 @@ class Value {
   icon;
   color = null;
   conditional = false;
+  spiritScaling = null;
 
   constructor(raw) {
     if (raw) {
@@ -168,6 +169,9 @@ class Value {
       this.icon = new Icon(raw.icon);
       this.color = raw.color;
       this.conditional = raw.conditional;
+      if (raw.spiritScaling) {
+        this.spiritScaling = raw.spiritScaling;
+      }
     } else {
       this.Icon = new Icon()
     }
