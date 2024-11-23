@@ -16,6 +16,7 @@ const EditableText = observer(({color, size, weight, onChange, children}) => {
     setText(ref.current.innerText);
     // For some reason this does nothing without an immediate timeout
     setTimeout(() => {
+      ref.current.contentEditable = "true";
       ref.current.focus();
       window.getSelection().selectAllChildren(ref.current);
     }, 0);
@@ -25,6 +26,7 @@ const EditableText = observer(({color, size, weight, onChange, children}) => {
     setEditing(false);
     onChange(e.target.innerText);
     e.target.innerText = ""; // react seems to have trouble with the DOM changing due to user editing?
+    e.target.contentEditable = "false";
     window.getSelection().removeAllRanges();
   });
 
@@ -33,7 +35,6 @@ const EditableText = observer(({color, size, weight, onChange, children}) => {
 
   return (
     <span
-      contenteditable
       className='mock-editable-text'
       spellcheck={false}
       onMouseDown={editing ? null : editingOn}
@@ -61,6 +62,7 @@ const EditableMarkdown = observer(({text, format, onChange, color, size, weight}
     setEditing(true);
     // For some reason this does nothing without an immediate timeout
     setTimeout(() => {
+      ref.current.contentEditable = "true";
       ref.current.focus();
       window.getSelection().selectAllChildren(ref.current);
     }, 0);
@@ -70,6 +72,8 @@ const EditableMarkdown = observer(({text, format, onChange, color, size, weight}
     setEditing(false);
     onChange(e.target.innerText);
     e.target.innerText = ""; // react seems to have trouble with the DOM changing due to user editing?
+    e.target.contentEditable = "false";
+    window.getSelection().removeAllRanges();
   });
 
   const style = {color, fontSize: size, fontWeight: weight};
