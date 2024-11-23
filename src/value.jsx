@@ -1,13 +1,13 @@
 import {observer} from 'mobx-react-lite';
-import {action} from 'mobx';
-import {useCallback} from 'preact/hooks';
-import {Text, SemiBold, Bold} from './text';
+import PropTypes from 'prop-types';
 import {EditableText} from './EditableText';
+import {useAction} from './common';
+import {Bold, SemiBold} from './text';
 
-const parseRegex = /^(([+-]?)\d*(?:.\d+)?)(.*)$/
+const parseRegex = /^(([+-]?)\d*(?:.\d+)?)(.*)$/;
 
 const Value = observer(({model}) => {
-  const onChange = useCallback(action((x) => {
+  const onChange = useAction((x) => {
     const matches = x.match(parseRegex);
     const newValue = matches && parseFloat(matches[1]);
     if (!matches || isNaN(newValue)) {
@@ -19,7 +19,7 @@ const Value = observer(({model}) => {
       model.value = parseFloat(matches[1]);
       model.units = matches[3];
     }
-  }));
+  });
 
   const renderSign = (signed, value) => {
     if (!signed && value >= 0) {
@@ -38,13 +38,17 @@ const Value = observer(({model}) => {
 
 
   return (
-    <EditableText size={model.size} onChange={onChange}>
+    <EditableText onChange={onChange} size={model.size}>
       {renderSign(model.signed, model.value)}
       <Bold bright size={model.size}>{Math.abs(model.value)}</Bold>
       {renderUnits(model.units)}
     </EditableText>
   );
 });
+
+Value.propTypes = {
+  model: PropTypes.object.isRequired,
+};
 
 export {Value};
 export default Value;

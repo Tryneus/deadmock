@@ -1,21 +1,18 @@
-import {useCallback} from 'preact/hooks';
 import {observer} from 'mobx-react-lite';
-import {Item} from './item';
 import {Ability} from './ability';
-import {exampleItem, exampleAbility} from './example';
+import {exampleAbility, exampleItem} from './example';
+import {Item} from './item';
 
 import './editor.css';
 
-const Editor = () => {
-  const onClick = useCallback(() => exampleAbility.grid.addCell(), [exampleAbility]);
-
+const Editor = observer(() => {
   return (
     <div className="mock-editor">
       <Ability model={exampleAbility} />
       <Item model={exampleItem} />
     </div>
   );
-};
+});
 
 export {Editor};
 export default Editor;

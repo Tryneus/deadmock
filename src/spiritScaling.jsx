@@ -1,7 +1,6 @@
-import {useCallback} from 'preact/hooks';
-import {action} from 'mobx';
-import {Icon} from './icon';
+import PropTypes from 'prop-types';
 import {EditableText} from './EditableText';
+import {Icon} from './icon';
 
 import './spiritScaling.css';
 
@@ -20,13 +19,19 @@ const renderValue = (detailed, value, onChange) => {
   );
 };
 
-const SpiritScaling = ({detailed, value, onChange}) => {
+const SpiritScaling = ({value, detailed, onChange}) => {
   return (
     <div className="mock-spirit-scaling">
       <Icon image="spirit_scaling" />
       {renderValue(detailed, value, onChange)}
     </div>
   );
+};
+
+SpiritScaling.propTypes = {
+  value:    PropTypes.number.isRequired,
+  detailed: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 
 export {SpiritScaling};

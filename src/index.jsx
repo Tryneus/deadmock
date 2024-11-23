@@ -3,8 +3,9 @@ import {Editor} from './editor';
 
 import './style.css';
 
-render((
+render(
   <div style={{display: 'flex'}}>
     <Editor />
-  </div>
-), document.getElementById('app'));
+  </div>,
+  document.getElementById('app'),
+);

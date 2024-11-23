@@ -1,16 +1,10 @@
-import {makeAutoObservable, action, computed} from 'mobx';
-
+import {makeAutoObservable} from 'mobx';
 
 const deepCopy = (x) => JSON.parse(JSON.stringify(x));
-
-const clampInteger = (val, min = 0, max = Infinity) => min(max(0, Math.floor(val)), max);
-const clampNumber = (val, min = 0, max = Infinity) => min(max(0, val), max);
 
 const WEAPON_CATEGORY = 'weapon';
 const VITALITY_CATEGORY = 'vitality';
 const SPIRIT_CATEGORY = 'spirit';
-
-const ItemCategories = new Set([WEAPON_CATEGORY, VITALITY_CATEGORY, SPIRIT_CATEGORY]);
 
 const items = {
   'Basic Magazine':         {cost:  500, category: WEAPON_CATEGORY, icon: 'item/basic_magazine'},
@@ -173,15 +167,15 @@ class Value {
         this.spiritScaling = raw.spiritScaling;
       }
     } else {
-      this.Icon = new Icon()
+      this.Icon = new Icon();
     }
     makeAutoObservable(this);
   }
 }
 
 class GridData {
-  cells = []
-  values = []
+  cells = [];
+  values = [];
 
   constructor(raw) {
     if (raw) {
@@ -246,11 +240,11 @@ class ItemEffect {
     makeAutoObservable(this);
   }
 
-  addMarkdownSection(t) {
+  addMarkdownSection() {
     this.sections.push(new ItemEffectSection({type: 'markdown'}));
   }
 
-  addGridSection(t) {
+  addGridSection() {
     this.sections.push(new ItemEffectSection({type: 'grid'}));
   }
 
@@ -321,7 +315,8 @@ class ItemState {
 
 class AbilityUpgrade {
   description = '';
-  constructor (raw) {
+
+  constructor(raw) {
     this.description = raw;
     makeAutoObservable(this);
   }
@@ -361,4 +356,4 @@ class AbilityState {
   }
 }
 
-export {ItemState, AbilityState};
+export {AbilityState, ItemState};

@@ -1,45 +1,48 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
-import {useCallback} from 'preact/hooks';
-import {action} from 'mobx';
-import {Icon} from './icon';
-import {Markdown} from './markdown';
-import {Text, Medium, SemiBold, Bold} from './text';
-import {Value} from './value';
+import PropTypes from 'prop-types';
+import {EditableMarkdown, EditableText} from './EditableText';
+import {useAction} from './common';
 import {Grid} from './grid';
-import {EditableText, EditableMarkdown} from './EditableText';
+import {Icon} from './icon';
+import {Bold, SemiBold} from './text';
+import {Value} from './value';
 
 import './item.css';
 
 const Item = ({model}) => {
-  const classes = classNames("mock-item", `mock-item-${model.category}`);
+  const classes = classNames('mock-item', `mock-item-${model.category}`);
   return (
     <div className={classes}>
       <Header model={model} />
       <Components model={model} />
       <Stats model={model} />
-      {model.effects.map((x) => <ItemEffect model={x} />)}
+      {model.effects.map((x, i) => <ItemEffect key={i} model={x} />)}
     </div>
   );
 };
 
+Item.propTypes = {
+  model: PropTypes.object.isRequired,
+};
+
 const categoryBonuses = {
   spirit: {
-    tier: [0, 4, 8, 12, 16],
-    stat: "Spirit Power",
-    image: "spirit",
+    tier:  [0, 4, 8, 12, 16],
+    stat:  'Spirit Power',
+    image: 'spirit',
   },
   weapon: {
-    units: "%",
-    tier: [0, 6, 10, 14, 18],
-    stat: "Weapon Damage",
-    image: "weapon",
+    units:  '%',
+    tier:  [0, 6, 10, 14, 18],
+    stat:  'Weapon Damage',
+    image: 'weapon',
   },
   vitality: {
-    units: "%",
-    tier: [0, 11, 14, 17, 20],
-    stat: "Base Health",
-    image: "vitality",
+    units: '%',
+    tier:  [0, 11, 14, 17, 20],
+    stat:  'Base Health',
+    image: 'vitality',
   },
 };
 
@@ -47,13 +50,11 @@ const soulsFormatOptions = {};
 const soulsFormatter = new Intl.NumberFormat('en-US', soulsFormatOptions);
 
 const Header = ({model}) => {
-  const onChangeName = useCallback(action((x) => model.name = x));
-  const onChangeCost = useCallback(action((x) => {
-  }));
+  const onChangeName = useAction((x) => model.name = x, [model]);
 
   const bonus = categoryBonuses[model.category];
   if (!bonus) {
-    throw new Error(`invalid category: ${model.category}`)
+    throw new Error(`invalid category: ${model.category}`);
   }
 
   return (
@@ -64,20 +65,26 @@ const Header = ({model}) => {
         </div>
         <div className="item-cost">
           <Icon image="soul" />
-          <EditableText onChange={onChangeCost}>{soulsFormatter.format(model.cost)}</EditableText>
+          <span>{soulsFormatter.format(model.cost)}</span>
         </div>
       </div>
       <div>
         <div className="item-bonus-value">
           <SemiBold>
-            +<Bold bright>{bonus.tier[model.tier]}</Bold>{bonus.units}
+            +
+            <Bold bright>{bonus.tier[model.tier]}</Bold>
+            {bonus.units}
           </SemiBold>
-          <Icon size={15} image={bonus.image} />
+          <Icon image={bonus.image} size={15} />
         </div>
         <div className="item-bonus-stat">{bonus.stat}</div>
       </div>
     </div>
   );
+};
+
+Header.propTypes = {
+  model: PropTypes.object.isRequired,
 };
 
 const Components = observer(({model}) => {
@@ -86,7 +93,6 @@ const Components = observer(({model}) => {
   }
 
   const lines = model.componentInfo.map((x) => {
-    console.log(x);
     const classes = classNames('mock-components-badge-icon', `mock-components-badge-${x.category}`);
     return (
       <div className="mock-components-badge" key={x.name}>
@@ -105,8 +111,12 @@ const Components = observer(({model}) => {
   );
 });
 
+Components.propTypes = {
+  model: PropTypes.object.isRequired,
+};
+
 const StatLine = observer(({model}) => {
-  const onChangeStat = useCallback(action((x) => model.stat = x));
+  const onChangeStat = useAction((x) => model.stat = x, [model]);
   return (
     <div>
       <Value model={model} />
@@ -116,35 +126,47 @@ const StatLine = observer(({model}) => {
   );
 });
 
+StatLine.propTypes = {
+  model: PropTypes.object.isRequired,
+};
+
 const Stats = ({model}) => {
   return (
     <div className="mock-stats">
-      {model.stats.map((x) => <StatLine model={x} key={model.stat} />)}
+      {model.stats.map((x) => <StatLine key={model.stat} model={x} />)}
     </div>
   );
 };
 
+Stats.propTypes = {
+  model: PropTypes.object.isRequired,
+};
+
 const ItemEffectSection = observer(({model}) => {
   // onChange is only used for markdown sections, as the grid is given its own model for updating
-  const onChange = useCallback(action((x) => model.data = x));
+  const onChange = useAction((x) => model.data = x, [model]);
 
   if (model.type === 'markdown') {
-    return <EditableMarkdown text={model.data} onChange={onChange} />;
+    return <EditableMarkdown onChange={onChange} text={model.data} />;
   } else if (model.type === 'grid') {
     return <Grid data={model.data} />;
   }
   return null;
 });
 
+ItemEffectSection.propTypes = {
+  model: PropTypes.object.isRequired,
+};
+
 const ItemEffect = ({model}) => {
-  const onChangeCooldown = useCallback(action((x) => {
+  const onChangeCooldown = useAction((x) => {
     const newValue = parseFloat(x);
     if (isNaN(newValue)) {
       console.error('failed to parse', x);
     } else {
       model.cooldown = newValue;
     }
-  }));
+  }, [model]);
 
   const effectType = model.active ?
     <Bold bright>Active</Bold> :
@@ -157,7 +179,7 @@ const ItemEffect = ({model}) => {
 
     return (
       <div>
-        <Icon size={15} image="cooldown" />
+        <Icon image="cooldown" size={15} />
         <Bold bright>
           <EditableText onChange={onChangeCooldown}>
             {model.cooldown}
@@ -175,10 +197,14 @@ const ItemEffect = ({model}) => {
         {renderCooldown()}
       </div>
       <div className="mock-item-effect-body">
-        {model.sections.map((x) => <ItemEffectSection model={x} />)}
+        {model.sections.map((x, i) => <ItemEffectSection key={i} model={x} />)}
       </div>
     </div>
   );
+};
+
+ItemEffect.propTypes = {
+  model: PropTypes.object.isRequired,
 };
 
 export {Item};

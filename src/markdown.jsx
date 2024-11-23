@@ -1,4 +1,5 @@
 import markdownit from 'markdown-it';
+import PropTypes from 'prop-types';
 import {Text} from './text';
 
 const parser = new markdownit('zero', {breaks: true});
@@ -7,15 +8,15 @@ parser.enable(['emphasis', 'newline']);
 const defaultFormat = {
   text: {
     Component: Text,
-    props: {variant: 'medium'},
+    props:     {variant: 'medium'},
   },
   strong: {
     Component: Text,
-    props: {variant: 'semibold', bright: true},
+    props:     {variant: 'semibold', bright: true},
   },
   emphasis: {
     Component: Text,
-    props: {variant: 'medium', italic: true, muted: true},
+    props:     {variant: 'medium', italic: true, muted: true},
   },
 };
 
@@ -66,6 +67,10 @@ const Markdown = ({text, format = defaultFormat}) => {
   return <>{md}</>;
 };
 
+Markdown.propTypes = {
+  text:   PropTypes.string.required,
+  format: PropTypes.object,
+};
 
 export {Markdown};
 export default Markdown;

@@ -1,12 +1,10 @@
 import classNames from 'classnames';
-import {action} from 'mobx';
-import {useCallback} from 'preact/hooks';
 import {observer} from 'mobx-react-lite';
-import {Icon} from './icon';
-import {Text, Medium, SemiBold, Bold} from './text';
-import {Value} from './value';
+import {EditableIcon, EditableText} from './EditableText';
+import {useAction} from './common';
 import {SpiritScaling} from './spiritScaling';
-import {EditableText, EditableIcon} from './EditableText';
+import {SemiBold, Text} from './text';
+import {Value} from './value';
 
 import './grid.css';
 
@@ -43,14 +41,14 @@ const partitionCells = (cells, values) => {
 };
 
 const SpiritScalingContainer = observer(({model, children}) => {
-  const onChange = useCallback(action((x) => {
+  const onChange = useAction((x) => {
     const newValue = parseFloat(x);
     if (isNaN(newValue)) {
       console.error('failed to parse', x);
     } else {
       model.spiritScaling = newValue;
     }
-  }));
+  }, [model]);
 
   if (!model.spiritScaling) {
     return children;
@@ -58,7 +56,7 @@ const SpiritScalingContainer = observer(({model, children}) => {
 
   return (
     <div>
-      <SpiritScaling detailed value={model.spiritScaling} onChange={onChange} />
+      <SpiritScaling detailed onChange={onChange} value={model.spiritScaling} />
       {children}
     </div>
   );
@@ -67,20 +65,19 @@ const SpiritScalingContainer = observer(({model, children}) => {
 const Grid = observer(({data}) => {
   const cellContents = (x) => {
     if (x.type === 'values') {
-      return <>{x.values.map((model) => <GridCellValuesItem model={model} />)}</>
-    } else {
-      return <GridCellValue model={x} />;
+      return <>{x.values.map((model, i) => <GridCellValuesItem key={i} model={model} />)}</>;
     }
+    return <GridCellValue model={x} />;
   };
 
-  const cells = partitionCells(data.cells, data.values).map((row) => (
-    <div className="mock-grid-row">
-      {row.map((cell) => {
+  const cells = partitionCells(data.cells, data.values).map((row, i) => (
+    <div className="mock-grid-row" key={i}>
+      {row.map((cell, j) => {
         const classes = classNames('mock-grid-cell', {
           'mock-grid-cell-values': cell.type === 'values',
         });
         return (
-          <SpiritScalingContainer model={cell}>
+          <SpiritScalingContainer key={j} model={cell}>
             <div className={classes}>
               {cellContents(cell)}
             </div>
@@ -98,14 +95,14 @@ const Grid = observer(({data}) => {
 });
 
 const GridCellValuesItem = observer(({model}) => {
-  const onChange = useCallback(action((x) => model.stat = x));
+  const onChange = useAction((x) => model.stat = x, [model]);
 
   return (
     <div className="mock-grid-cell-values-item">
       <EditableIcon model={model.icon} />
       <Value model={model} />
       &nbsp;&nbsp;
-      <EditableText size={15} onChange={onChange}>
+      <EditableText onChange={onChange} size={15}>
         <Text bright>{model.stat}</Text>
       </EditableText>
     </div>
@@ -118,17 +115,17 @@ const colors = {
 };
 
 const GridCellValue = observer(({model}) => {
-  const onChange = useCallback(action((x) => model.stat = x));
+  const onChange = useAction((x) => model.stat = x, [model]);
   return (
     <>
       <div className="mock-grid-cell-line">
         <EditableIcon model={model.icon} />
         <Value model={model} />
       </div>
-      <EditableText color={colors[model.color || 'bright']} size={15} onChange={onChange}>
+      <EditableText color={colors[model.color || 'bright']} onChange={onChange} size={15}>
         {model.stat}
       </EditableText>
-      {model.conditional ? <SemiBold italic muted size={15}>Conditional</SemiBold>: null}
+      {model.conditional ? <SemiBold italic muted size={15}>Conditional</SemiBold> : null}
     </>
   );
 });
