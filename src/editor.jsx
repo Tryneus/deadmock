@@ -12,6 +12,7 @@ const Editor = () => {
   return (
     <div className="mock-editor">
       <Ability model={exampleAbility} />
+      <Item model={exampleItem} />
     </div>
   );
 };

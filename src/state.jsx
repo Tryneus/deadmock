@@ -302,16 +302,22 @@ class ItemState {
       this.category = raw.category;
       this.name = raw.name;
       this.tier = raw.tier;
-      this.components = deepCopy(raw.components);
-      this.stats = raw.stats.map((x) => new Value(x));
-      this.effects = raw.effects.map((x) => new ItemEffect(x));
+      if (raw.components) {
+        this.components = deepCopy(raw.components);
+      }
+      if (raw.stats) {
+        this.stats = raw.stats.map((x) => new Value(x));
+      }
+      if (raw.effects) {
+        this.effects = raw.effects.map((x) => new ItemEffect(x));
+      }
     }
 
     makeAutoObservable(this);
   }
 
   get cost() {
-    return tierCosts[this.tier] + this.components.map((name) => items[name].cost);
+    return tierCosts[this.tier] + this.components.map((name) => items[name]?.cost || 0);
   }
 
   set category(s) {
