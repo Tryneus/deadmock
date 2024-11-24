@@ -38,7 +38,7 @@ const Value = observer(({model}) => {
 
 
   return (
-    <EditableText onChange={onChange} size={model.size}>
+    <EditableText size={model.size} onChange={onChange}>
       {renderSign(model.signed, model.value)}
       <Bold bright size={model.size}>{Math.abs(model.value)}</Bold>
       {renderUnits(model.units)}

@@ -4,6 +4,23 @@ import {Icon} from './icon';
 import {Markdown} from './markdown';
 import './EditableText.css';
 
+// React discards the newlines otherwise, so shove in some line-break elements
+const preserveNewlines = (text) => (
+  <>
+    {text.split('\n').reduce((acc, x) => {
+      if (acc === null) {
+        return x;
+      }
+      return (
+        <>
+          {acc}
+          <br />
+          {x}
+        </>
+      );
+    })}
+  </>);
+
 // TODO: try to unify this with the markdown version
 const EditableText = observer(({color, size, weight, onChange, children}) => {
   const ref = useRef(null);
@@ -34,30 +51,17 @@ const EditableText = observer(({color, size, weight, onChange, children}) => {
 
   return (
     <span
-      className="mock-editable-text"
-      onBlur={editingOff}
-      onMouseDown={editing ? null : editingOn}
       ref={ref}
+      className="mock-editable-text"
       spellCheck={false}
       style={style}
+      onBlur={editingOff}
+      onMouseDown={editing ? null : editingOn}
     >
       {inner}
     </span>
   );
 });
-
-// React discards the newlines otherwise, so shove in some line-break elements
-const preserveNewlines = (text) => (
-  <>
-    {text.split('\n').reduce((acc, x) => (acc === null ?
-      x :
-      <>
-        {acc}
-        <br />
-        {x}
-      </>
-    ))}
-  </>);
 
 const EditableMarkdown = observer(({text, format, onChange, color, size, weight}) => {
   const ref = useRef(null);
@@ -86,12 +90,12 @@ const EditableMarkdown = observer(({text, format, onChange, color, size, weight}
 
   return (
     <span
-      className="mock-editable-text"
-      onBlur={editingOff}
-      onMouseDown={editing ? null : editingOn}
       ref={ref}
+      className="mock-editable-text"
       spellCheck={false}
       style={style}
+      onBlur={editingOff}
+      onMouseDown={editing ? null : editingOn}
     >
       {inner}
     </span>

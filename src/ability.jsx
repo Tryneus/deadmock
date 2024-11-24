@@ -70,7 +70,7 @@ const partitionHeaderStats = (stats) => stats.reduce((acc, x) => {
 // This doesn't appear to be totally consistent across abilities, so we'll go with:
 // 'charges' and 'cooldown' on the right, everything else on the left
 const Header = observer(({model}) => {
-  const onNameChange = useAction((x) => model.name = x, [model]);
+  const onNameChange = useAction((x) => (model.name = x), [model]);
   const {charges, chargeCooldown, cooldown, remainder} = partitionHeaderStats(model.headerStats);
 
   return (
@@ -105,7 +105,7 @@ const Upgrade = observer(({active, model, tier}) => {
     'mock-ability-upgrade-inactive': !active,
   });
 
-  const onChange = useAction((x) => model.description = x, [model]);
+  const onChange = useAction((x) => (model.description = x), [model]);
 
   return (
     <div className={classes}>
@@ -115,7 +115,7 @@ const Upgrade = observer(({active, model, tier}) => {
         <Bold>{tierCosts[tier]}</Bold>
       </div>
       <div className="mock-ability-upgrade-text">
-        <EditableMarkdown format={upgradeMarkdownFormat} onChange={onChange} text={model.description} />
+        <EditableMarkdown format={upgradeMarkdownFormat} text={model.description} onChange={onChange} />
       </div>
     </div>
   );
@@ -127,13 +127,13 @@ Upgrade.propTypes = {
 
 
 const Ability = observer(({model}) => {
-  const onChange = useAction((x) => model.description = x, [model]);
+  const onChange = useAction((x) => (model.description = x), [model]);
   return (
     <div className="mock-ability">
       <Header model={model} />
       <div className="mock-ability-body">
         <div className="mock-ability-description">
-          <EditableMarkdown format={descriptionMarkdownFormat} onChange={onChange} text={model.description} />
+          <EditableMarkdown format={descriptionMarkdownFormat} text={model.description} onChange={onChange} />
           <Grid data={model.grid} />
         </div>
         <div className="mock-ability-upgrades">

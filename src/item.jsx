@@ -50,7 +50,7 @@ const soulsFormatOptions = {};
 const soulsFormatter = new Intl.NumberFormat('en-US', soulsFormatOptions);
 
 const Header = ({model}) => {
-  const onChangeName = useAction((x) => model.name = x, [model]);
+  const onChangeName = useAction((x) => (model.name = x), [model]);
 
   const bonus = categoryBonuses[model.category];
   if (!bonus) {
@@ -95,7 +95,7 @@ const Components = observer(({model}) => {
   const lines = model.componentInfo.map((x) => {
     const classes = classNames('mock-components-badge-icon', `mock-components-badge-${x.category}`);
     return (
-      <div className="mock-components-badge" key={x.name}>
+      <div key={x.name} className="mock-components-badge">
         <div className={classes}>
           <Icon image={x.icon} />
         </div>
@@ -116,7 +116,7 @@ Components.propTypes = {
 };
 
 const StatLine = observer(({model}) => {
-  const onChangeStat = useAction((x) => model.stat = x, [model]);
+  const onChangeStat = useAction((x) => (model.stat = x), [model]);
   return (
     <div>
       <Value model={model} />
@@ -144,10 +144,10 @@ Stats.propTypes = {
 
 const ItemEffectSection = observer(({model}) => {
   // onChange is only used for markdown sections, as the grid is given its own model for updating
-  const onChange = useAction((x) => model.data = x, [model]);
+  const onChange = useAction((x) => (model.data = x), [model]);
 
   if (model.type === 'markdown') {
-    return <EditableMarkdown onChange={onChange} text={model.data} />;
+    return <EditableMarkdown text={model.data} onChange={onChange} />;
   } else if (model.type === 'grid') {
     return <Grid data={model.data} />;
   }

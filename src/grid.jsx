@@ -56,7 +56,7 @@ const SpiritScalingContainer = observer(({model, children}) => {
 
   return (
     <div>
-      <SpiritScaling detailed onChange={onChange} value={model.spiritScaling} />
+      <SpiritScaling detailed value={model.spiritScaling} onChange={onChange} />
       {children}
     </div>
   );
@@ -71,7 +71,7 @@ const Grid = observer(({data}) => {
   };
 
   const cells = partitionCells(data.cells, data.values).map((row, i) => (
-    <div className="mock-grid-row" key={i}>
+    <div key={i} className="mock-grid-row">
       {row.map((cell, j) => {
         const classes = classNames('mock-grid-cell', {
           'mock-grid-cell-values': cell.type === 'values',
@@ -95,14 +95,14 @@ const Grid = observer(({data}) => {
 });
 
 const GridCellValuesItem = observer(({model}) => {
-  const onChange = useAction((x) => model.stat = x, [model]);
+  const onChange = useAction((x) => (model.stat = x), [model]);
 
   return (
     <div className="mock-grid-cell-values-item">
       <EditableIcon model={model.icon} />
       <Value model={model} />
       &nbsp;&nbsp;
-      <EditableText onChange={onChange} size={15}>
+      <EditableText size={15} onChange={onChange}>
         <Text bright>{model.stat}</Text>
       </EditableText>
     </div>
@@ -115,14 +115,14 @@ const colors = {
 };
 
 const GridCellValue = observer(({model}) => {
-  const onChange = useAction((x) => model.stat = x, [model]);
+  const onChange = useAction((x) => (model.stat = x), [model]);
   return (
     <>
       <div className="mock-grid-cell-line">
         <EditableIcon model={model.icon} />
         <Value model={model} />
       </div>
-      <EditableText color={colors[model.color || 'bright']} onChange={onChange} size={15}>
+      <EditableText color={colors[model.color || 'bright']} size={15} onChange={onChange}>
         {model.stat}
       </EditableText>
       {model.conditional ? <SemiBold italic muted size={15}>Conditional</SemiBold> : null}
