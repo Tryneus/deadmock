@@ -179,7 +179,8 @@ const ItemEffect = ({model}) => {
 
     return (
       <div>
-        <Icon image="cooldown" size={15} />
+        <Icon image="stat/cooldown" size={15} />
+        &nbsp;
         <Bold bright>
           <EditableText onChange={onChangeCooldown}>
             {model.cooldown}

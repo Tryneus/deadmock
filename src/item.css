@@ -108,9 +108,8 @@
                 }
 
                 .mock-icon {
-                    background-size: 70%;
+                    background-size: 70% !important;
                     border-radius: 100px;
-                    background-position: center;
                 }
             }
 
@@ -148,10 +147,6 @@
             /*padding: 3px 15px;*/
             background-color: #0c1414;
         }
-
-        .mock-icon {
-            margin-right: 5px;
-        }
     }
 
     .mock-item-effect-body {
@@ -175,10 +170,6 @@
 
     .mock-grid-cell-values .mock-icon {
         display: none;
-    }
-
-    .mock-grid-cell .mock-icon {
-        margin-right: 0.3em;
     }
 
     &.mock-item-spirit {

@@ -100,6 +100,7 @@ const GridCellValuesItem = observer(({model}) => {
   return (
     <div className="mock-grid-cell-values-item">
       <EditableIcon model={model.icon} />
+      &nbsp;
       <Value model={model} />
       &nbsp;&nbsp;
       <EditableText size={15} onChange={onChange}>
@@ -120,6 +121,7 @@ const GridCellValue = observer(({model}) => {
     <>
       <div className="mock-grid-cell-line">
         <EditableIcon model={model.icon} />
+        &nbsp;
         <Value model={model} />
       </div>
       <EditableText color={colors[model.color || 'bright']} size={15} onChange={onChange}>

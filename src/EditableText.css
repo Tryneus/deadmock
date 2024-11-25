@@ -11,3 +11,51 @@
 [contenteditable]:focus {
     background: rgba(255, 0, 0, 0.4);
 }
+
+.mock-tooltip-container {
+
+    &.mock-tooltip-above {
+    }
+
+    &.mock-tooltip-below {
+    }
+
+    &:hover .mock-tooltip {
+    }
+
+    .mock-tooltip {
+        height: 0;
+        width: 0;
+        position: absolute;
+        z-index: 10;
+
+        .mock-tooltip-arrow {
+            width: 0;
+            height: 0;
+            border-width: 10px;
+            border-color: transparent transparent black transparent;
+            border-style: solid;
+        }
+
+        > *:not(.mock-tooltip-arrow) {
+            position: relative;
+        }
+    }
+}
+
+.mock-icon-selector {
+    background: #222222;
+    width: 200px;
+    border: 2px solid black;
+    padding: 5px;
+
+    .mock-icon-selector-button {
+        display: inline-block;
+        padding: 2px;
+
+        &:hover {
+            border: 2px solid orange;
+            padding: 0px;
+        }
+    }
+}

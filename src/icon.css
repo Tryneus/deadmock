@@ -2,9 +2,7 @@
     height: 1.2lh;
     width: 1.2lh;
     display: inline-block;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: white;
 }
 
 /* Filters calculated using:
