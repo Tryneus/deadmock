@@ -54,7 +54,7 @@ const EditableText = observer(({color, size, weight, onChange, children}) => {
   return (
     <span
       ref={ref}
-      className="mock-editable-text"
+      className="mock-editable-text mock-text"
       spellCheck={false}
       style={style}
       onBlur={editingOff}
@@ -93,7 +93,7 @@ const EditableMarkdown = observer(({text, format, onChange, color, size, weight}
   return (
     <span
       ref={ref}
-      className="mock-editable-text"
+      className="mock-editable-text mock-text"
       spellCheck={false}
       style={style}
       onBlur={editingOff}

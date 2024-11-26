@@ -10,7 +10,7 @@ import {Value} from './value';
 
 import './item.css';
 
-const Item = ({model}) => {
+const Item = observer(({model}) => {
   const classes = classNames('mock-item', `mock-item-${model.category}`);
   return (
     <div className={classes}>
@@ -20,7 +20,7 @@ const Item = ({model}) => {
       {model.effects.map((x, i) => <ItemEffect key={i} model={x} />)}
     </div>
   );
-};
+});
 
 Item.propTypes = {
   model: PropTypes.object.isRequired,
@@ -31,26 +31,36 @@ const categoryBonuses = {
     tier:  [0, 4, 8, 12, 16],
     stat:  'Spirit Power',
     image: 'spirit',
+    color: 'purple',
   },
   weapon: {
     units:  '%',
     tier:  [0, 6, 10, 14, 18],
     stat:  'Weapon Damage',
     image: 'weapon',
+    color: 'orange',
   },
   vitality: {
     units: '%',
     tier:  [0, 11, 14, 17, 20],
     stat:  'Base Health',
     image: 'vitality',
+    color: 'green',
   },
 };
+
+const categories = Object.keys(categoryBonuses);
 
 const soulsFormatOptions = {};
 const soulsFormatter = new Intl.NumberFormat('en-US', soulsFormatOptions);
 
-const Header = ({model}) => {
+const Header = observer(({model}) => {
   const onChangeName = useAction((x) => (model.name = x), [model]);
+  const onChangeTier = useAction(() => (model.tier = (model.tier % 4) + 1), [model]);
+  const onChangeCategory = useAction(() => {
+    const idx = categories.indexOf(model.category) + 1;
+    model.category = categories[idx % categories.length];
+  }, [model]);
 
   const bonus = categoryBonuses[model.category];
   if (!bonus) {
@@ -64,24 +74,24 @@ const Header = ({model}) => {
           <EditableText onChange={onChangeName}>{model.name}</EditableText>
         </div>
         <div className="item-cost">
-          <Icon image="soul" />
+          <Icon color="cyan" image="soul" />
           <span>{soulsFormatter.format(model.cost)}</span>
         </div>
       </div>
       <div>
-        <div className="item-bonus-value">
+        <div className="item-bonus-value" onClick={onChangeTier}>
           <SemiBold>
             +
             <Bold bright>{bonus.tier[model.tier]}</Bold>
             {bonus.units}
           </SemiBold>
-          <Icon image={bonus.image} size={15} />
+          <Icon color={bonus.color} image={bonus.image} size={15} />
         </div>
-        <div className="item-bonus-stat">{bonus.stat}</div>
+        <div className="item-bonus-stat" onClick={onChangeCategory}>{bonus.stat}</div>
       </div>
     </div>
   );
-};
+});
 
 Header.propTypes = {
   model: PropTypes.object.isRequired,
@@ -130,13 +140,13 @@ StatLine.propTypes = {
   model: PropTypes.object.isRequired,
 };
 
-const Stats = ({model}) => {
+const Stats = observer(({model}) => {
   return (
     <div className="mock-stats">
       {model.stats.map((x) => <StatLine key={model.stat} model={x} />)}
     </div>
   );
-};
+});
 
 Stats.propTypes = {
   model: PropTypes.object.isRequired,
@@ -158,7 +168,7 @@ ItemEffectSection.propTypes = {
   model: PropTypes.object.isRequired,
 };
 
-const ItemEffect = ({model}) => {
+const ItemEffect = observer(({model}) => {
   const onChangeCooldown = useAction((x) => {
     const newValue = parseFloat(x);
     if (isNaN(newValue)) {
@@ -167,6 +177,8 @@ const ItemEffect = ({model}) => {
       model.cooldown = newValue;
     }
   }, [model]);
+
+  const onChangeActive = useAction(() => (model.active = !model.active), [model]);
 
   const effectType = model.active ?
     <Bold bright>Active</Bold> :
@@ -194,7 +206,9 @@ const ItemEffect = ({model}) => {
   return (
     <div className="mock-item-effect">
       <div className="mock-item-effect-header">
-        {effectType}
+        <span onClick={onChangeActive}>
+          {effectType}
+        </span>
         {renderCooldown()}
       </div>
       <div className="mock-item-effect-body">
@@ -202,7 +216,7 @@ const ItemEffect = ({model}) => {
       </div>
     </div>
   );
-};
+});
 
 ItemEffect.propTypes = {
   model: PropTypes.object.isRequired,

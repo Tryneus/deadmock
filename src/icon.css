@@ -9,6 +9,9 @@
  * https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/
  */
 
+.mock-icon.mock-icon-white {
+}
+
 /* approximation of #999999 */
 .mock-icon.mock-icon-grey {
     filter: invert(40%);
@@ -19,13 +22,36 @@
     filter: invert(39%) sepia(81%) saturate(363%) hue-rotate(351deg) brightness(90%) contrast(92%);
 }
 
-/* only used for the healing icon? */
-/* approximation of #00ff9a */
+/* approximation of #7fbc26 (#7ebf28) */
 .mock-icon.mock-icon-green {
-    filter: invert(73%) sepia(89%) saturate(767%) hue-rotate(92deg) brightness(100%) contrast(103%);
+    filter: invert(34%) sepia(43%) saturate(739%) hue-rotate(42deg) brightness(93%) contrast(86%);
 }
 
 /* approximation of #ce91ff (#cd92ff) */
 .mock-icon.mock-icon-purple {
     filter: invert(52%) sepia(92%) saturate(528%) hue-rotate(217deg) brightness(108%) contrast(101%);
+}
+
+/* only used for the healing icon? */
+/* approximation of #00ff9a */
+.mock-icon.mock-icon-aqua {
+    filter: invert(27%) sepia(89%) saturate(767%) hue-rotate(92deg) brightness(100%) contrast(103%);
+}
+
+/* only used for the damage amplification icon? */
+/* approximation of #ff410d (#ff3f0d) */
+.mock-icon.mock-icon-red {
+    filter: invert(59%) sepia(76%) saturate(5630%) hue-rotate(355deg) brightness(103%) contrast(101%);
+}
+
+/* only used for stun? */
+/* approximation of #f3c733 (#f3c733) */
+.mock-icon.mock-icon-yellow {
+    filter: invert(22%) sepia(93%) saturate(1342%) hue-rotate(332deg) brightness(102%) contrast(91%);
+}
+
+/* only used for souls? */
+/* approximation of #9bffd6 (#9cffd4) */
+.mock-icon.mock-icon-cyan {
+    filter: invert(16%) sepia(56%) saturate(275%) hue-rotate(85deg) brightness(101%) contrast(102%);
 }

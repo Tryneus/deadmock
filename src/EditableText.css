@@ -45,13 +45,14 @@
 
 .mock-icon-selector {
     background: #222222;
-    width: 200px;
+    width: 256px;
     border: 2px solid black;
     padding: 5px;
 
     .mock-icon-selector-button {
         display: inline-block;
         padding: 2px;
+        line-height: 14px;
 
         &:hover {
             border: 2px solid orange;

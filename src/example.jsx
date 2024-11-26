@@ -28,8 +28,8 @@ const exampleItem = new ItemState({
           data: {
             cells: [
               {icon: {image: 'stat/spirit_damage', color: 'purple', size: 22}, value: 80, signed: false, stat: 'Damage', color: 'purple'},
-              {value: 20, units: '%', stat: 'Movement Slow', signed: false, icon: {image: 'stat/movement_slow'}, conditional: true},
-              {value: -30, units: '%', stat: 'Dash Distance', signed: true, icon: {image: 'stat/movement_slow'}, conditional: true},
+              {value: 20, units: '%', stat: 'Movement Slow', signed: false, icon: {image: 'stat/move_slow'}, conditional: true},
+              {value: -30, units: '%', stat: 'Dash Distance', signed: true, icon: {image: 'stat/move_slow'}, conditional: true},
             ],
             values: [
               {value: 29, units: 'm', stat: 'Cast Range'},

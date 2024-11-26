@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './icon.css';
 
-const iconColors = ['grey', 'orange', 'green', 'purple'];
+const iconColors = ['white', 'grey', 'orange', 'green', 'purple', 'aqua', 'red', 'yellow', 'cyan'];
 
 const Icon = ({image, size, color}) => {
   const colorClass = `mock-icon-${color}`;
@@ -28,7 +28,7 @@ const Icon = ({image, size, color}) => {
 };
 
 Icon.propTypes = {
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   size:  PropTypes.number,
   color: PropTypes.oneOf(iconColors),
 };

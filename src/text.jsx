@@ -30,7 +30,10 @@ Text.propTypes = {
   variant:  PropTypes.string,
   color:    PropTypes.string,
   size:     PropTypes.number,
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+  ]),
 };
 
 const Medium = (props) => <Text {...props} variant="medium" />;

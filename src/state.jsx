@@ -177,7 +177,20 @@ class ItemState {
   }
 
   addEffect() {
-    this.effects.push(new ItemEffect());
+    this.effects.push(new ItemEffect({
+      active: false,
+      cooldown: 6,
+      sections: [
+        {type: 'markdown', data: 'Insert **markdown** here.'},
+        {
+          type: 'grid',
+          data: {
+            cells: [{icon: {image: 'stat/placeholder'}, value: 0, signed: false, stat: 'stat'}],
+            values: [{value: 0, units: 'm', stat: 'stat'}],
+          },
+        },
+      ],
+    }));
   }
 
   removeEffect(i) {
