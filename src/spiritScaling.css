@@ -29,7 +29,7 @@
     font-style: italic;
 }
 
-.mock-spirit-scaling + .mock-grid-cell {
+.mock-spirit-scaling + * .mock-grid-cell {
     border: 0.1em solid #5a3875;
 }
 

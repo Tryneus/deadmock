@@ -8,15 +8,15 @@ parser.enable(['emphasis', 'newline']);
 const defaultFormat = {
   text: {
     Component: Text,
-    props:     {variant: 'medium'},
+    props:     {weight: 500},
   },
   strong: {
     Component: Text,
-    props:     {variant: 'semibold', bright: true},
+    props:     {weight: 600, bright: true},
   },
   emphasis: {
     Component: Text,
-    props:     {variant: 'medium', italic: true, muted: true},
+    props:     {weight: 500, italic: true, muted: true},
   },
 };
 

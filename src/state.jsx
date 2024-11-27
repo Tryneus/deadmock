@@ -21,6 +21,7 @@ class Value {
   signed = true;
   units = 'm';
   stat = 'stat';
+  weight = 400;
   icon;
   color = null;
   conditional = false;

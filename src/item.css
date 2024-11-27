@@ -127,7 +127,22 @@
         line-height: 120%;
 
         > div {
-            padding: 5px 15px;
+            padding: 3px 15px 3px 15px;
+            display: flex;
+            align-items: center;
+            line-height: 1;
+
+            .mock-item-stat-hover-buttons {
+                visibility: hidden;
+                display: inline-block;
+                margin-left: 10px;
+            }
+
+            &:hover {
+                .mock-item-stat-hover-buttons {
+                    visibility: visible;
+                }
+            }
         }
     }
 
@@ -170,6 +185,10 @@
 
     .mock-grid-cell-values .mock-icon {
         display: none;
+    }
+
+    .mock-grid-cell-values .mock-grid-cell-values-item-delete .mock-icon {
+        display: inherit;
     }
 
     &.mock-item-spirit {

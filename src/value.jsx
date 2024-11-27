@@ -25,7 +25,7 @@ const Value = observer(({model}) => {
     if (!signed && value >= 0) {
       return null;
     }
-    const sign = value > 0 ? '+' : '-';
+    const sign = value >= 0 ? '+' : '-';
     return <SemiBold bright={value < 0}>{sign}</SemiBold>;
   };
 

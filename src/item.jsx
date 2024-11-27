@@ -125,13 +125,26 @@ Components.propTypes = {
   model: PropTypes.object.isRequired,
 };
 
-const StatLine = observer(({model}) => {
-  const onChangeStat = useAction((x) => (model.stat = x), [model]);
+
+const StatLineHoverButton = observer(({model, index}) => {
+  const onDelete = useAction(() => model.removeStat(index), [model, index]);
+  return (
+    <div className="mock-item-stat-hover-buttons">
+      <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+    </div>
+  );
+});
+
+
+const StatLine = observer(({model, index}) => {
+  const onChangeStat = useAction((x) => (model.stats[index].stat = x), [model, index]);
+
   return (
     <div>
-      <Value model={model} />
+      <Value model={model.stats[index]} />
       &nbsp;&nbsp;
-      <EditableText onChange={onChangeStat}>{model.stat}</EditableText>
+      <EditableText onChange={onChangeStat}>{model.stats[index].stat}</EditableText>
+      <StatLineHoverButton index={index} model={model}/>
     </div>
   );
 });
@@ -143,7 +156,7 @@ StatLine.propTypes = {
 const Stats = observer(({model}) => {
   return (
     <div className="mock-stats">
-      {model.stats.map((x) => <StatLine key={model.stat} model={x} />)}
+      {model.stats.map((x, i) => <StatLine key={i} index={i} model={model} />)}
     </div>
   );
 });

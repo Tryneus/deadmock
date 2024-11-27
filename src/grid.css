@@ -44,17 +44,43 @@
     flex-direction: column;
 }
 
-.mock-grid-cell {
+.mock-grid-cell-container {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+
+    .mock-grid-cell-hover-buttons {
+        height: 0;
+        z-index: 1;
+        visibility: hidden;
+        line-height: 1;
+
+        > * {
+            margin-top: 3px;
+            margin-left: 3px;
+        }
+
+        .mock-tooltip {
+            visibility: visible;
+        }
+    }
+
+    &:hover .mock-grid-cell-hover-buttons {
+        visibility: visible;
+    }
+
+    .mock-grid-cell-hover-buttons > * {
+        display: inline-block;
+    }
 }
 
 .mock-grid-cell {
-    align-content: center;
-    justify-content: center;
     display: flex;
     flex-direction: column;
+    align-content: center;
+    justify-content: center;
     text-align: center;
+    flex-grow: 1;
 }
 
 .mock-grid-cell-line {
@@ -63,17 +89,24 @@
     justify-content: center;
 }
 
-.mock-grid-cell-values:nth-child(2) {
+.mock-grid-cell-container:nth-child(2) .mock-grid-cell-values {
     flex-direction: column;
     flex-wrap: nowrap;
-    padding-left: 1.5em;
+
+    .mock-grid-cell-values-item:not(:first-child) {
+        margin-top: 0.2em;
+    }
 }
 
-.mock-grid-cell-values:not(:nth-child(2)) {
+.mock-grid-cell-container:not(:nth-child(2)) .mock-grid-cell-values {
     flex-direction: row;
     flex-wrap: wrap;
     padding-top: 1em;
     padding-bottom: 1em;
+
+    .mock-grid-cell-values-item:nth-child(n+3) {
+        margin-top: 0.5em;
+    }
 }
 
 .mock-grid-cell-values-item {
@@ -81,8 +114,13 @@
     align-items: center;
     flex-grow: 1;
     flex-basis: 50%;
-}
 
-.mock-grid-cell-values-item:nth-child(n+3) {
-    margin-top: 0.5em;
+    .mock-grid-cell-values-item-delete {
+        visibility: hidden;
+    }
+
+    &:hover .mock-grid-cell-values-item-delete {
+        margin-left: 5px;
+        visibility: visible;
+    }
 }

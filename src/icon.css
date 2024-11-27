@@ -5,6 +5,10 @@
     background: white;
 }
 
+.mock-icon-clickable {
+    cursor: pointer;
+}
+
 /* Filters calculated using:
  * https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/
  */

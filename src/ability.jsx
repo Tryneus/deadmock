@@ -13,15 +13,15 @@ import './ability.css';
 const upgradeMarkdownFormat = {
   text: {
     Component: Text,
-    props:     {variant: 'semibold', size: 17},
+    props:     {weight: 600, size: 17},
   },
   strong: {
     Component: Text,
-    props:     {variant: 'bold', bright: true, size: 22},
+    props:     {weight: 700, bright: true, size: 22},
   },
   emphasis: {
     Component: Text,
-    props:     {variant: 'medium', italic: true, muted: true},
+    props:     {weight: 500, italic: true, muted: true},
   },
 };
 
@@ -32,11 +32,11 @@ const descriptionMarkdownFormat = {
   },
   strong: {
     Component: Text,
-    props:     {variant: 'bold', bright: true},
+    props:     {weight: 700, bright: true},
   },
   emphasis: {
     Component: Text,
-    props:     {variant: 'medium', italic: true, muted: true},
+    props:     {weight: 500, italic: true, muted: true},
   },
 };
 

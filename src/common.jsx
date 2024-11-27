@@ -226,41 +226,49 @@ const abilityIcons = [
   'hero/warden/binding_word',
 ];
 
-// TODO: autogenerate these, move into a subdirectory
-const statIcons = [
-  'stat/ability_point',
-  'stat/ammo',
-  'stat/aoe',
-  'stat/bullet',
-  'stat/bullet_armor',
-  'stat/bullet_resist_reduction',
-  'stat/bullet_shield',
-  'stat/charge',
-  'stat/charge_cooldown',
-  'stat/cooldown',
-  'stat/damage_amplification',
-  'stat/duration',
-  'stat/fire_rate',
-  'stat/healing',
-  'stat/health',
-  'stat/invisible',
-  'stat/melee',
-  'stat/move_debuff',
-  'stat/move_slow',
-  'stat/move_speed',
-  'stat/placeholder',
-  'stat/range',
-  'stat/reload',
-  'stat/silence',
-  'stat/spirit_armor',
-  'stat/spirit_damage',
-  'stat/spirit_resist_reduction',
-  'stat/spirit_shield',
-  'stat/stamina',
-  'stat/stun',
-  'stat/weapon_damage',
+const groupedStatIcons = [
+  [
+    'stat/cooldown',
+    'stat/charge',
+    'stat/charge_cooldown',
+    'stat/duration',
+    'stat/range',
+    'stat/aoe',
+  ], [
+    'stat/weapon_damage',
+    'stat/spirit_damage',
+    'stat/melee',
+    'stat/bullet',
+    'stat/fire_rate',
+    'stat/ammo',
+    'stat/reload',
+  ], [
+    'stat/bullet_armor',
+    'stat/bullet_resist_reduction',
+    'stat/spirit_armor',
+    'stat/spirit_resist_reduction',
+    'stat/bullet_shield',
+    'stat/spirit_shield',
+  ], [
+    'stat/move_speed',
+    'stat/stamina',
+    'stat/move_slow',
+    'stat/move_debuff',
+    'stat/stun',
+    'stat/invisible',
+  ], [
+    'stat/health',
+    'stat/healing',
+    'stat/damage_amplification',
+  ], [
+    'stat/placeholder',
+    'stat/ability_point',
+    'stat/silence',
+  ],
 ];
+
+const statIcons = groupedStatIcons.flat();
 
 const tierCosts = [0, 500, 1250, 3000, 6200];
 
-export {abilityIcons, deepCopy, items, statIcons, tierCosts, useAction};
+export {abilityIcons, deepCopy, items, statIcons, groupedStatIcons, tierCosts, useAction};

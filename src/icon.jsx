@@ -5,10 +5,11 @@ import './icon.css';
 
 const iconColors = ['white', 'grey', 'orange', 'green', 'purple', 'aqua', 'red', 'yellow', 'cyan'];
 
-const Icon = ({image, size, color}) => {
+const Icon = ({image, size, color, onClick}) => {
   const colorClass = `mock-icon-${color}`;
   const classes = classNames('mock-icon', {
     [colorClass]: Boolean(color),
+    'mock-icon-clickable': Boolean(onClick),
   });
 
   const style = {};
@@ -24,13 +25,14 @@ const Icon = ({image, size, color}) => {
     style.backgroundPosition = 'center';
   }
 
-  return <span className={classes} style={style} />;
+  return <span className={classes} style={style} onClick={onClick} />;
 };
 
 Icon.propTypes = {
   image: PropTypes.string,
   size:  PropTypes.number,
   color: PropTypes.oneOf(iconColors),
+  onClick: PropTypes.func,
 };
 
 export {Icon, iconColors};
