@@ -116,11 +116,11 @@
     flex-basis: 50%;
 
     .mock-grid-cell-values-item-delete {
+        margin-left: 5px;
         visibility: hidden;
     }
 
     &:hover .mock-grid-cell-values-item-delete {
-        margin-left: 5px;
         visibility: visible;
     }
 }
