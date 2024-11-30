@@ -44,6 +44,7 @@
         margin-top: 10px;
         display: flex;
         align-items: center;
+        user-select: none;
     }
 
     .mock-header .item-bonus-value {
@@ -51,6 +52,7 @@
         justify-content: center;
         align-items: center;
         font-size: 17px;
+        user-select: none;
     }
 
     .mock-header .item-bonus-value .mock-icon {
@@ -64,11 +66,13 @@
         padding: 0 10px;
         font-weight: 300;
         color: #e8d7c9;
+        user-select: none;
     }
 
     .mock-components {
         font-size: 12px;
         padding: 1px 15px 5px 15px;
+        user-select: none;
 
         .mock-components-badge {
             font-size: 14px;

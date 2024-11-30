@@ -1,3 +1,41 @@
 .mock-editor {
-    display: flex;
+    .mock-editor-type-selector {
+        padding: 10px 0;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        .mock-editor-type-option {
+            display: inline-block;
+            background: #222222;
+            font-weight: 600;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+
+            &:first-child {
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+
+            &:not(:first-child) {
+                border-left: 2px solid #bbbbbb;
+            }
+
+            &:last-child {
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+
+            &.mock-editor-type-option-inactive {
+                filter: saturate(20%) brightness(60%) contrast(60%);
+            }
+        }
+    }
+
+    .mock-editor-content {
+        display: flex;
+    }
 }
