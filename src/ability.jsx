@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import PropTypes from 'prop-types';
 import {EditableIcon, EditableMarkdown, EditableText} from './EditableText';
+import {SidebarButtons, SidebarButton} from './SidebarButtons';
 import {useAction} from './common';
 import {Grid} from './grid';
 import {Icon} from './icon';
@@ -17,26 +18,26 @@ const upgradeMarkdownFormat = {
   },
   strong: {
     Component: Text,
-    props:     {weight: 700, bright: true, size: 22},
+    props:     {weight: 700, size: 22, color: 'bright'},
   },
   emphasis: {
     Component: Text,
-    props:     {weight: 500, italic: true, muted: true},
+    props:     {weight: 500, italic: true, color: 'muted'},
   },
 };
 
 const descriptionMarkdownFormat = {
   text: {
     Component: Text,
-    props:     {bright: true},
+    props:     {color: 'bright'},
   },
   strong: {
     Component: Text,
-    props:     {weight: 700, bright: true},
+    props:     {weight: 700, color: 'bright'},
   },
   emphasis: {
     Component: Text,
-    props:     {weight: 500, italic: true, muted: true},
+    props:     {weight: 500, italic: true, color: 'muted'},
   },
 };
 
@@ -71,26 +72,41 @@ const partitionHeaderStats = (stats) => stats.reduce((acc, x) => {
 // 'charges' and 'cooldown' on the right, everything else on the left
 const Header = observer(({model}) => {
   const onNameChange = useAction((x) => (model.name = x), [model]);
+  const onAddHeaderStat = useAction(() => model.addStat(), [model]);
+  const onAddCooldown = useAction(() => model.addStat(), [model]);
+  const onAddCharges = useAction(() => model.addStat(), [model]);
   const {charges, chargeCooldown, cooldown, remainder} = partitionHeaderStats(model.headerStats);
 
+  const renderHeaderButtons = () => {
+    return (
+      <>
+        <SidebarButton label="Stat" onClick={onAddHeaderStat} />
+        {cooldown ? null : <SidebarButton label="Cooldown" onClick={onAddCooldown} />}
+        {charges ? null : <SidebarButton label="Charges" onClick={onAddCharges} />}
+      </>
+    );
+  };
+
   return (
-    <div className="mock-ability-header">
-      <div className="mock-ability-header-left">
-        <div className="mock-ability-header-title">
-          <EditableText onChange={onNameChange}>{model.name}</EditableText>
+    <SidebarButtons renderButtons={renderHeaderButtons}>
+      <div className="mock-ability-header">
+        <div className="mock-ability-header-left">
+          <div className="mock-ability-header-title">
+            <EditableText onChange={onNameChange}>{model.name}</EditableText>
+          </div>
+          <div className="mock-ability-header-misc-stats">
+            {remainder.map((x, i) => <HeaderStat key={i} model={x} />)}
+          </div>
         </div>
-        <div className="mock-ability-header-misc-stats">
-          {remainder.map((x, i) => <HeaderStat key={i} model={x} />)}
+        <div className="mock-ability-header-right">
+          <div className="mock-ability-header-stat-group">
+            <HeaderStat model={charges} />
+            <HeaderStat model={chargeCooldown} />
+          </div>
+          <HeaderStat model={cooldown} />
         </div>
       </div>
-      <div className="mock-ability-header-right">
-        <div className="mock-ability-header-stat-group">
-          <HeaderStat model={charges} />
-          <HeaderStat model={chargeCooldown} />
-        </div>
-        <HeaderStat model={cooldown} />
-      </div>
-    </div>
+    </SidebarButtons>
   );
 });
 

@@ -26,7 +26,8 @@ const Value = observer(({model}) => {
       return null;
     }
     const sign = value >= 0 ? '+' : '-';
-    return <SemiBold bright={value < 0}>{sign}</SemiBold>;
+    const color = value >= 0 ? 'normal' : 'bright';
+    return <SemiBold color={color}>{sign}</SemiBold>;
   };
 
   const renderUnits = (units) => {
@@ -40,7 +41,7 @@ const Value = observer(({model}) => {
   return (
     <EditableText size={model.size} onChange={onChange}>
       {renderSign(model.signed, model.value)}
-      <Bold bright size={model.size}>{Math.abs(model.value)}</Bold>
+      <Bold color="bright" size={model.size}>{Math.abs(model.value)}</Bold>
       {renderUnits(model.units)}
     </EditableText>
   );

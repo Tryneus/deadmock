@@ -1,5 +1,7 @@
 .mock-ability {
     width: 600px;
+    flex-shrink: 0;
+    flex-grow: 0;
 
     .mock-ability-header {
         background-color: #121212;

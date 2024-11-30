@@ -7,6 +7,7 @@ import {Icon} from './icon';
 import {SpiritScaling} from './spiritScaling';
 import {SemiBold, Text} from './text';
 import {Value} from './value';
+import {SidebarButtons, SidebarButton} from './SidebarButtons';
 
 import './grid.css';
 
@@ -65,6 +66,16 @@ const SpiritScalingContainer = observer(({model, children}) => {
 });
 
 const Grid = observer(({data}) => {
+  const onAddCell = useAction(() => data.addCell(), [data]);
+  const onAddValue = useAction(() => data.addValue(), [data]);
+
+  const renderSidebarButtons = () => (
+    <>
+      <SidebarButton label="Cell" onClick={onAddCell} />
+      <SidebarButton label="Value" onClick={onAddValue} />
+    </>
+  );
+
   const cellContents = (x) => {
     if (x.type === 'values') {
       return <>{x.values.map((model, i) => <GridCellValuesItem key={i} model={data} index={i} />)}</>;
@@ -93,9 +104,11 @@ const Grid = observer(({data}) => {
   ));
 
   return (
-    <div className="mock-grid">
-      {cells}
-    </div>
+    <SidebarButtons renderButtons={renderSidebarButtons}>
+      <div className="mock-grid">
+        {cells}
+      </div>
+    </SidebarButtons>
   );
 });
 
@@ -125,11 +138,13 @@ const GridCellHoverButtons = observer(({data, cell}) => {
 
   return (
     <div className="mock-grid-cell-hover-buttons">
-      <Icon color="red" image="cancel" size={12} onClick={onDelete} />
-      <TooltipContainer click direction="up" renderTooltip={renderStylePicker}>
-        <Icon color="grey" image="text_style" size={12} />
-      </TooltipContainer>
-      <Icon color="purple" image="spirit" size={12} onClick={onSpiritScaling} />
+      <div>
+        <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+        <TooltipContainer click direction="up" renderTooltip={renderStylePicker}>
+          <Icon color="grey" image="text_style" size={12} />
+        </TooltipContainer>
+        <Icon color="purple" image="spirit" size={12} onClick={onSpiritScaling} />
+      </div>
     </div>
   );
 });
@@ -146,7 +161,7 @@ const GridCellValuesItem = observer(({model, index}) => {
       <Value model={value} />
       &nbsp;&nbsp;
       <EditableText size={15} onChange={onChange}>
-        <Text bright>{value.stat}</Text>
+        <Text color="bright">{value.stat}</Text>
       </EditableText>
       <div className="mock-grid-cell-values-item-delete">
         <Icon color="red" image="cancel" size={12} onClick={onDelete} />
@@ -154,14 +169,6 @@ const GridCellValuesItem = observer(({model, index}) => {
     </div>
   );
 });
-
-const colors = {
-  bright: '#ffefd7',
-  normal: '#c8c6ca',
-  muted:  '#968291',
-  purple: '#c78bf7',
-  orange: '#d49f50',
-};
 
 const GridCellValue = observer(({model}) => {
   const onChange = useAction((x) => (model.stat = x), [model]);
@@ -172,10 +179,10 @@ const GridCellValue = observer(({model}) => {
         &nbsp;
         <Value model={model} />
       </div>
-      <EditableText color={colors[model.color || 'bright']} weight={model.weight} size={15} onChange={onChange}>
+      <EditableText color={model.color || 'bright'} weight={model.weight} size={15} onChange={onChange}>
         {model.stat}
       </EditableText>
-      {model.conditional ? <SemiBold italic muted size={15}>Conditional</SemiBold> : null}
+      {model.conditional ? <SemiBold italic color="muted" size={15}>Conditional</SemiBold> : null}
     </>
   );
 });

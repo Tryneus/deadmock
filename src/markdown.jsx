@@ -12,11 +12,11 @@ const defaultFormat = {
   },
   strong: {
     Component: Text,
-    props:     {weight: 600, bright: true},
+    props:     {weight: 600, color: 'bright'},
   },
   emphasis: {
     Component: Text,
-    props:     {weight: 500, italic: true, muted: true},
+    props:     {weight: 500, italic: true, color: 'muted'},
   },
 };
 

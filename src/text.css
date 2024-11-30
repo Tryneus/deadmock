@@ -4,14 +4,6 @@
     margin-bottom: 0.25em;
 }
 
-.mock-text.mock-text-bright {
-    color: #ffefd7;
-}
-
-.mock-text.mock-text-muted {
-    color: #968291;
-}
-
 .mock-text.mock-text-medium {
     font-weight: 500;
 }

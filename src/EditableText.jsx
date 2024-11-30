@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {groupedStatIcons, useAction} from './common';
 import {Icon, iconColors} from './icon';
 import {Markdown} from './markdown';
+import {textColors} from './text';
 import './EditableText.css';
 
 // React discards the newlines otherwise, so shove in some line-break elements
@@ -49,7 +50,7 @@ const EditableText = observer(({color, size, weight, onChange, children}) => {
     window.getSelection().removeAllRanges();
   }, [setEditing, onChange]);
 
-  const style = {color, fontSize: size, fontWeight: weight};
+  const style = {color: textColors[color], fontSize: size, fontWeight: weight};
   const inner = editing ? preserveNewlines(text) : children;
 
   return (
@@ -227,14 +228,6 @@ const EditableIcon = observer(({model}) => {
 
 EditableIcon.propTypes = {
   model: PropTypes.object.isRequired,
-};
-
-const textColors = {
-  bright: '#ffefd7',
-  normal: '#c8c6ca',
-  muted:  '#968291',
-  purple: '#c78bf7',
-  orange: '#d49f50',
 };
 
 const StylePickerColor = observer(({model, color}) => {

@@ -3,18 +3,24 @@ import PropTypes from 'prop-types';
 
 import './text.css';
 
-const Text = ({bright, muted, italic, weight, color, size, children}) => {
+const textColors = {
+  bright: '#ffefd7',
+  normal: '#c8c6ca',
+  muted:  '#968291',
+  purple: '#c78bf7',
+  orange: '#d49f50',
+};
+
+const Text = ({italic, weight, color, size, children}) => {
   const classes = classNames(
     'mock-text',
     {
-      'mock-text-bright':   bright,
-      'mock-text-muted':    muted,
       'mock-text-italic':   italic,
     },
   );
   const style = {};
-  if (color) {
-    style.color = color;
+  if (textColors[color]) {
+    style.color = textColors[color];
   }
   if (size) {
     style.fontSize = `${size}px`;
@@ -30,8 +36,6 @@ const Text = ({bright, muted, italic, weight, color, size, children}) => {
 };
 
 Text.propTypes = {
-  bright:   PropTypes.bool,
-  muted:    PropTypes.bool,
   italic:   PropTypes.bool,
   weight:   PropTypes.number,
   color:    PropTypes.string,
@@ -46,4 +50,4 @@ const Medium = (props) => <Text {...props} weight={500} />;
 const SemiBold = (props) => <Text {...props} weight={600} />;
 const Bold = (props) => <Text {...props} weight={700} />;
 
-export {Bold, Medium, SemiBold, Text};
+export {Bold, Medium, SemiBold, Text, textColors};

@@ -58,6 +58,10 @@
         > * {
             margin-top: 3px;
             margin-left: 3px;
+            padding: 2px;
+            border-radius: 8px;
+            border: 2px solid rgba(10, 10, 10, 0.1);
+            background-color: rgba(40, 40, 40, 0.8);
         }
 
         .mock-tooltip {

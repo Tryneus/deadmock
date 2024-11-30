@@ -71,7 +71,7 @@ const Header = observer(({model}) => {
     <div className="mock-header">
       <div>
         <div className="item-name">
-          <EditableText onChange={onChangeName}>{model.name}</EditableText>
+          <EditableText color="bright" onChange={onChangeName}>{model.name}</EditableText>
         </div>
         <div className="item-cost">
           <Icon color="cyan" image="soul" />
@@ -82,7 +82,7 @@ const Header = observer(({model}) => {
         <div className="item-bonus-value" onClick={onChangeTier}>
           <SemiBold>
             +
-            <Bold bright>{bonus.tier[model.tier]}</Bold>
+            <Bold color="bright">{bonus.tier[model.tier]}</Bold>
             {bonus.units}
           </SemiBold>
           <Icon color={bonus.color} image={bonus.image} size={15} />
@@ -194,7 +194,7 @@ const ItemEffect = observer(({model}) => {
   const onChangeActive = useAction(() => (model.active = !model.active), [model]);
 
   const effectType = model.active ?
-    <Bold bright>Active</Bold> :
+    <Bold color="bright">Active</Bold> :
     <SemiBold italic>Passive</SemiBold>;
 
   const renderCooldown = () => {
@@ -206,7 +206,7 @@ const ItemEffect = observer(({model}) => {
       <div>
         <Icon image="stat/cooldown" size={15} />
         &nbsp;
-        <Bold bright>
+        <Bold color="bright">
           <EditableText onChange={onChangeCooldown}>
             {model.cooldown}
           </EditableText>

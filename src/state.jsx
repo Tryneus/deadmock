@@ -40,7 +40,7 @@ class Value {
         this.spiritScaling = raw.spiritScaling;
       }
     } else {
-      this.Icon = new Icon();
+      this.icon = new Icon();
     }
     makeAutoObservable(this);
   }
@@ -233,12 +233,12 @@ class AbilityState {
     makeAutoObservable(this);
   }
 
-  addStat() {
-    this.stats.push(new Value());
+  addStat(raw) {
+    this.headerStats.push(new Value(raw));
   }
 
   removeStat(i) {
-    this.stats.splice(i, 1);
+    this.headerStats.splice(i, 1);
   }
 }
 
