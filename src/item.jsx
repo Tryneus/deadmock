@@ -1,15 +1,14 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
-import {toJS} from 'mobx';
 import {useCallback} from 'preact/hooks';
 import PropTypes from 'prop-types';
-import {EditableMarkdown, EditableText, TooltipContainer, ItemPicker} from './EditableText';
+import {EditableMarkdown, EditableText, ItemPicker, TooltipContainer} from './EditableText';
+import {SidebarButton, SidebarButtons} from './SidebarButtons';
 import {useAction} from './common';
 import {Grid} from './grid';
 import {Icon} from './icon';
 import {Bold, SemiBold} from './text';
 import {Value} from './value';
-import {SidebarButtons, SidebarButton} from './SidebarButtons';
 
 import './item.css';
 
@@ -59,7 +58,7 @@ const soulsFormatter = new Intl.NumberFormat('en-US', soulsFormatOptions);
 
 const Header = observer(({model}) => {
   const onChangeName = useAction((x) => (model.name = x), [model]);
-  const onChangeTier = useAction(() => (model.tier = (model.tier % 4) + 1), [model]);
+  const onChangeTier = useAction(() => (model.tier = model.tier % 4 + 1), [model]);
   const onChangeCategory = useAction(() => {
     const idx = categories.indexOf(model.category) + 1;
     model.category = categories[idx % categories.length];
@@ -71,7 +70,7 @@ const Header = observer(({model}) => {
       <SidebarButton label="Component" onClick={onAddComponent} />
       <SidebarButton label="Effect" onClick={onAddEffect} />
     </>
-  ));
+  ), [onAddComponent, onAddEffect]);
 
   const bonus = categoryBonuses[model.category];
   if (!bonus) {
@@ -112,12 +111,12 @@ Header.propTypes = {
 
 const ItemComponent = observer(({model, index}) => {
   const onDelete = useAction(() => model.removeComponent(index));
-  const onChange = useAction((x) => model.components[index] = x.name);
+  const onChange = useAction((x) => (model.components[index] = x.name));
 
   const item = model.componentInfo[index];
   const classes = classNames('mock-item-component-badge-icon', `mock-item-component-badge-${item.category}`);
 
-  const renderItemPicker = () => <ItemPicker onChange={onChange} />;
+  const renderItemPicker = useCallback(() => <ItemPicker onChange={onChange} />, [onChange]);
 
   return (
     <div className="mock-item-component">
@@ -144,7 +143,7 @@ const ItemComponents = observer(({model}) => {
   return (
     <div className="mock-components">
       <div><Bold>COMPONENTS:</Bold></div>
-      {model.components.map((_, i) => <ItemComponent model={model} index={i} />)}
+      {model.components.map((_, i) => <ItemComponent key={i} index={i} model={model} />)}
     </div>
   );
 });
@@ -172,7 +171,7 @@ const StatLine = observer(({model, index}) => {
       <Value model={model.stats[index]} />
       &nbsp;&nbsp;
       <EditableText onChange={onChangeStat}>{model.stats[index].stat}</EditableText>
-      <StatLineHoverButton index={index} model={model}/>
+      <StatLineHoverButton index={index} model={model} />
     </div>
   );
 });
@@ -187,7 +186,7 @@ const Stats = observer(({model}) => {
     <>
       <SidebarButton label="Stat" onClick={onAddStat} />
     </>
-  ));
+  ), [onAddStat]);
 
   return (
     <SidebarButtons renderButtons={renderSidebarButtons}>
@@ -206,7 +205,7 @@ const ItemEffectSection = observer(({model, index}) => {
   // onChange is only used for markdown sections, as the grid is given its own model for updating
   const section = model.sections[index];
   const onChange = useAction((x) => (section.data = x), [section]);
-  const onEmptyGrid = useAction((x) => model.removeSection(index), [model, index]);
+  const onEmptyGrid = useAction(() => model.removeSection(index), [model, index]);
 
   if (section.type === 'markdown') {
     return (
@@ -266,7 +265,7 @@ const ItemEffect = observer(({model}) => {
       <SidebarButton label="Markdown" onClick={onAddMarkdown} />
       <SidebarButton label="Grid" onClick={onAddGrid} />
     </>
-  ));
+  ), [onAddGrid, onAddMarkdown]);
 
   return (
     <SidebarButtons renderButtons={renderSidebarButtons}>
@@ -278,7 +277,7 @@ const ItemEffect = observer(({model}) => {
           {renderCooldown()}
         </div>
         <div className="mock-item-effect-body">
-          {model.sections.map((x, i) => <ItemEffectSection key={i} model={model} index={i} />)}
+          {model.sections.map((x, i) => <ItemEffectSection key={i} index={i} model={model} />)}
         </div>
       </div>
     </SidebarButtons>

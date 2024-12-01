@@ -26,7 +26,7 @@ const allColors = iconColors.concat(hiddenColors);
 const Icon = ({image, size, color, onClick}) => {
   const colorClass = `mock-icon-${color}`;
   const classes = classNames('mock-icon', {
-    [colorClass]: Boolean(color),
+    [colorClass]:          Boolean(color),
     'mock-icon-clickable': Boolean(onClick),
   });
 
@@ -47,9 +47,9 @@ const Icon = ({image, size, color, onClick}) => {
 };
 
 Icon.propTypes = {
-  image: PropTypes.string,
-  size:  PropTypes.number,
-  color: PropTypes.oneOf(allColors),
+  image:   PropTypes.string,
+  size:    PropTypes.number,
+  color:   PropTypes.oneOf(allColors),
   onClick: PropTypes.func,
 };
 

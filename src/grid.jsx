@@ -2,12 +2,12 @@ import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 import {EditableIcon, EditableText, StylePicker, TooltipContainer} from './EditableText';
+import {SidebarButton, SidebarButtons} from './SidebarButtons';
 import {useAction} from './common';
 import {Icon} from './icon';
 import {SpiritScaling} from './spiritScaling';
 import {SemiBold, Text} from './text';
 import {Value} from './value';
-import {SidebarButtons, SidebarButton} from './SidebarButtons';
 
 import './grid.css';
 
@@ -78,7 +78,7 @@ const Grid = observer(({data, onEmpty}) => {
 
   const cellContents = (x) => {
     if (x.type === 'values') {
-      return <>{x.values.map((model, i) => <GridCellValuesItem key={i} model={data} index={i} onEmpty={onEmpty} />)}</>;
+      return <>{x.values.map((model, i) => <GridCellValuesItem key={i} index={i} model={data} onEmpty={onEmpty} />)}</>;
     }
     return <GridCellValue model={x} />;
   };
@@ -95,7 +95,7 @@ const Grid = observer(({data, onEmpty}) => {
               <div className={classes}>
                 {cellContents(cell)}
               </div>
-              <GridCellHoverButtons data={data} cell={cell} onEmpty={onEmpty} />
+              <GridCellHoverButtons cell={cell} data={data} onEmpty={onEmpty} />
             </div>
           </SpiritScalingContainer>
         );
@@ -137,9 +137,9 @@ const GridCellHoverButtons = observer(({data, cell, onEmpty}) => {
     }
   });
 
-  const onConditional = useAction(() => (cell.conditional = !cell.conditional));
+  const onConditional = useAction(() => (cell.conditional = !cell.conditional), [cell]);
 
-  const renderStylePicker = useCallback(() => <StylePicker model={cell} />);
+  const renderStylePicker = useCallback(() => <StylePicker model={cell} />, [cell]);
 
   return (
     <div className="mock-grid-cell-hover-buttons">
@@ -190,7 +190,7 @@ const GridCellValue = observer(({model}) => {
         &nbsp;
         <Value model={model} />
       </div>
-      <EditableText color={model.color || 'bright'} weight={model.weight} size={15} onChange={onChange}>
+      <EditableText color={model.color || 'bright'} size={15} weight={model.weight} onChange={onChange}>
         {model.stat}
       </EditableText>
       {model.conditional ? <SemiBold italic color="muted" size={15}>Conditional</SemiBold> : null}

@@ -273,4 +273,4 @@ const statIcons = groupedStatIcons.flat();
 
 const tierCosts = [0, 500, 1250, 3000, 6200];
 
-export {abilityIcons, deepCopy, allItems, itemsByName, statIcons, groupedStatIcons, tierCosts, useAction};
+export {abilityIcons, allItems, deepCopy, groupedStatIcons, itemsByName, statIcons, tierCosts, useAction};

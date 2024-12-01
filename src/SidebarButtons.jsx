@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {Icon} from './icon';
 import {SemiBold} from './text';
 import './SidebarButtons.css';
@@ -15,13 +16,26 @@ const SidebarButtons = ({renderButtons, children}) => {
   );
 };
 
+SidebarButtons.propTypes = {
+  renderButtons: PropTypes.func,
+  children:      PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+};
+
 const SidebarButton = ({label, onClick}) => {
   return (
     <div className="mock-sidebar-button" onClick={onClick}>
       <SemiBold size={14}>{label}</SemiBold>
-      <Icon image="plus" size={8} color="green" />
+      <Icon color="green" image="plus" size={8} />
     </div>
   );
 };
 
-export {SidebarButtons, SidebarButton};
+SidebarButton.propTypes = {
+  label:   PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+export {SidebarButton, SidebarButtons};

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import PropTypes from 'prop-types';
 import {EditableIcon, EditableMarkdown, EditableText} from './EditableText';
-import {SidebarButtons, SidebarButton} from './SidebarButtons';
+import {SidebarButton, SidebarButtons} from './SidebarButtons';
 import {useAction} from './common';
 import {Grid} from './grid';
 import {Icon} from './icon';
@@ -46,7 +46,7 @@ const AbilityStat = ({model, value}) => {
   const onDelete = useAction(() => {
     const idx = model.stats.indexOf(value);
     if (idx === -1) {
-      console.log('could not find stat', value, model.stats);
+      console.error('could not find stat', value, model.stats);
     } else {
       model.removeStat(idx);
     }

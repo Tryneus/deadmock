@@ -6,7 +6,7 @@ const placeholderMarkdownSection = {type: 'markdown', data: 'Insert **markdown**
 const placeholderGridSection = {
   type: 'grid',
   data: {
-    cells: [{icon: {image: 'stat/placeholder'}, value: 0, signed: false, stat: 'stat'}],
+    cells:  [{icon: {image: 'stat/placeholder'}, value: 0, signed: false, stat: 'stat'}],
     values: [{value: 0, units: 'm', stat: 'stat'}],
   },
 };
@@ -129,7 +129,7 @@ class ItemEffect {
   }
 
   addGridSection() {
-    this.sections.push(new ItemEffectSection(placeholderGridSection))
+    this.sections.push(new ItemEffectSection(placeholderGridSection));
   }
 
   removeSection(i) {
@@ -190,7 +190,7 @@ class ItemState {
 
   addEffect() {
     this.effects.push(new ItemEffect({
-      active: false,
+      active:   false,
       cooldown: 6,
       sections: [placeholderMarkdownSection, placeholderGridSection],
     }));

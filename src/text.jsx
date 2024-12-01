@@ -41,8 +41,8 @@ Text.propTypes = {
   color:    PropTypes.string,
   size:     PropTypes.number,
   children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
   ]),
 };
 
