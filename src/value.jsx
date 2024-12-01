@@ -11,11 +11,9 @@ const Value = observer(({model}) => {
     const matches = x.match(parseRegex);
     const newValue = matches && parseFloat(matches[1]);
     if (!matches || isNaN(newValue)) {
-      console.error('value parse failed', matches);
+      console.error('value parse failed', matches, x);
     } else {
-      if (matches[2].length > 0) {
-        model.signed = true;
-      }
+      model.signed = matches[2].length > 0;
       model.value = parseFloat(matches[1]);
       model.units = matches[3];
     }

@@ -1,5 +1,4 @@
 .mock-grid {
-    padding: 15px 0px 5px 0px;
 }
 
 .mock-grid-row {
@@ -46,22 +45,30 @@
 
 .mock-grid-cell-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-grow: 1;
 
     .mock-grid-cell-hover-buttons {
+        width: 0;
         height: 0;
         z-index: 1;
         visibility: hidden;
         line-height: 1;
 
         > * {
-            margin-top: 3px;
-            margin-left: 3px;
+            position: relative;
+            right: 25px; /* ugh */
+            margin-top: 2px;
             padding: 2px;
             border-radius: 8px;
-            border: 2px solid rgba(10, 10, 10, 0.1);
+            border: 2px solid rgba(10, 10, 10, 0.5);
             background-color: rgba(40, 40, 40, 0.8);
+            display: inline-flex;
+            flex-direction: column;
+
+            .mock-icon:not(:first-child) {
+                margin-top: 2px;
+            }
         }
 
         .mock-tooltip {
@@ -71,10 +78,6 @@
 
     &:hover .mock-grid-cell-hover-buttons {
         visibility: visible;
-    }
-
-    .mock-grid-cell-hover-buttons > * {
-        display: inline-block;
     }
 }
 

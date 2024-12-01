@@ -1,5 +1,15 @@
 import {makeAutoObservable} from 'mobx';
-import {deepCopy, items, tierCosts} from './common';
+import {deepCopy, itemsByName, tierCosts} from './common';
+
+
+const placeholderMarkdownSection = {type: 'markdown', data: 'Insert **markdown** here.'};
+const placeholderGridSection = {
+  type: 'grid',
+  data: {
+    cells: [{icon: {image: 'stat/placeholder'}, value: 0, signed: false, stat: 'stat'}],
+    values: [{value: 0, units: 'm', stat: 'stat'}],
+  },
+};
 
 class Icon {
   image = 'stat/placeholder';
@@ -17,28 +27,29 @@ class Icon {
 }
 
 class Value {
-  value = 0;
-  signed = true;
-  units = 'm';
-  stat = 'stat';
-  weight = 400;
   icon;
-  color = null;
+  signed = false;
   conditional = false;
+  value = 0;
+  units = '%';
+  stat = 'Stat';
+  weight = 400;
+  color = null;
   spiritScaling = null;
 
   constructor(raw) {
     if (raw) {
-      this.value = raw.value;
-      this.signed = raw.signed;
-      this.units = raw.units;
-      this.stat = raw.stat;
       this.icon = new Icon(raw.icon);
+      this.signed = Boolean(raw.signed);
+      this.conditional = Boolean(raw.conditional);
+
+      this.value = raw.value ?? this.value;
+      this.units = raw.units ?? this.units;
+      this.stat = raw.stat ?? this.stat;
+      this.weight = raw.weight ?? this.weight;
+
       this.color = raw.color;
-      this.conditional = raw.conditional;
-      if (raw.spiritScaling) {
-        this.spiritScaling = raw.spiritScaling;
-      }
+      this.spiritScaling = raw.spiritScaling;
     } else {
       this.icon = new Icon();
     }
@@ -114,11 +125,11 @@ class ItemEffect {
   }
 
   addMarkdownSection() {
-    this.sections.push(new ItemEffectSection({type: 'markdown'}));
+    this.sections.push(new ItemEffectSection(placeholderMarkdownSection));
   }
 
   addGridSection() {
-    this.sections.push(new ItemEffectSection({type: 'grid'}));
+    this.sections.push(new ItemEffectSection(placeholderGridSection))
   }
 
   removeSection(i) {
@@ -154,11 +165,11 @@ class ItemState {
   }
 
   get cost() {
-    return tierCosts[this.tier] + this.components.reduce((acc, name) => acc + items[name]?.cost, 0);
+    return tierCosts[this.tier] + this.components.reduce((acc, name) => acc + itemsByName[name]?.cost, 0);
   }
 
   get componentInfo() {
-    return this.components.map((name) => ({name, ...items[name]}));
+    return this.components.map((name) => ({name, ...itemsByName[name]}));
   }
 
   addComponent() {
@@ -181,16 +192,7 @@ class ItemState {
     this.effects.push(new ItemEffect({
       active: false,
       cooldown: 6,
-      sections: [
-        {type: 'markdown', data: 'Insert **markdown** here.'},
-        {
-          type: 'grid',
-          data: {
-            cells: [{icon: {image: 'stat/placeholder'}, value: 0, signed: false, stat: 'stat'}],
-            values: [{value: 0, units: 'm', stat: 'stat'}],
-          },
-        },
-      ],
+      sections: [placeholderMarkdownSection, placeholderGridSection],
     }));
   }
 
@@ -210,7 +212,7 @@ class AbilityUpgrade {
 
 class AbilityState {
   name = '';
-  headerStats = [];
+  stats = [];
   description = '';
   grid;
   upgrades = [];
@@ -219,8 +221,8 @@ class AbilityState {
     this.upgrades = ['', '', ''].map((x) => new AbilityUpgrade(x));
     if (raw) {
       this.name = raw.name;
-      if (raw.headerStats) {
-        this.headerStats = raw.headerStats.map((x) => new Value(x));
+      if (raw.stats) {
+        this.stats = raw.stats.map((x) => new Value(x));
       }
       this.description = raw.description;
       this.grid = new GridData(raw.grid);
@@ -234,11 +236,11 @@ class AbilityState {
   }
 
   addStat(raw) {
-    this.headerStats.push(new Value(raw));
+    this.stats.push(new Value(raw));
   }
 
   removeStat(i) {
-    this.headerStats.splice(i, 1);
+    this.stats.splice(i, 1);
   }
 }
 

@@ -41,25 +41,41 @@ const descriptionMarkdownFormat = {
   },
 };
 
-const HeaderStat = ({model}) => {
-  if (!model) {
+
+const AbilityStat = ({model, value}) => {
+  const onDelete = useAction(() => {
+    const idx = model.stats.indexOf(value);
+    if (idx === -1) {
+      console.log('could not find stat', value, model.stats);
+    } else {
+      model.removeStat(idx);
+    }
+  });
+
+  if (!value) {
     return null;
   }
 
   return (
-    <div className="mock-ability-header-stat">
-      <EditableIcon model={model.icon} />
+    <div className="mock-ability-stat">
+      <EditableIcon model={value.icon} />
       &nbsp;
-      <Value model={model} />
+      <Value model={value} />
+      <div className="mock-ability-stat-hover-button">
+        <div>
+          <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+        </div>
+      </div>
     </div>
   );
 };
 
-HeaderStat.propTypes = {
+AbilityStat.propTypes = {
   model: PropTypes.object.isRequired,
+  value: PropTypes.object,
 };
 
-const partitionHeaderStats = (stats) => stats.reduce((acc, x) => {
+const partitionStats = (stats) => stats.reduce((acc, x) => {
   if (['charges', 'chargeCooldown', 'cooldown'].includes(x.stat)) {
     acc[x.stat] = x;
   } else {
@@ -72,18 +88,36 @@ const partitionHeaderStats = (stats) => stats.reduce((acc, x) => {
 // 'charges' and 'cooldown' on the right, everything else on the left
 const Header = observer(({model}) => {
   const onNameChange = useAction((x) => (model.name = x), [model]);
-  const onAddHeaderStat = useAction(() => model.addStat(), [model]);
-  const onAddCooldown = useAction(() => model.addStat(), [model]);
-  const onAddCharges = useAction(() => model.addStat(), [model]);
-  const {charges, chargeCooldown, cooldown, remainder} = partitionHeaderStats(model.headerStats);
+  const onAddStat = useAction(() => model.addStat(), [model]);
+  const onAddCooldown = useAction(() => {
+    model.addStat({icon: {image: 'stat/cooldown'}, value: 1, units: 's', signed: false, stat: 'cooldown'});
+  }, [model]);
+  const onAddCharges = useAction(() => {
+    model.addStat({icon: {image: 'stat/charge'}, value: 1, units: '', signed: false, stat: 'charges'});
+    model.addStat({icon: {image: 'stat/charge_cooldown'}, value: 1, units: 's', signed: false, stat: 'chargeCooldown'});
+  }, [model]);
+  const {charges, chargeCooldown, cooldown, remainder} = partitionStats(model.stats);
 
   const renderHeaderButtons = () => {
     return (
       <>
-        <SidebarButton label="Stat" onClick={onAddHeaderStat} />
+        <SidebarButton label="Stat" onClick={onAddStat} />
         {cooldown ? null : <SidebarButton label="Cooldown" onClick={onAddCooldown} />}
         {charges ? null : <SidebarButton label="Charges" onClick={onAddCharges} />}
       </>
+    );
+  };
+
+  const renderCharges = () => {
+    if (!charges && !chargeCooldown) {
+      return null;
+    }
+
+    return (
+      <div className="mock-ability-stat-group">
+        <AbilityStat model={model} value={charges} />
+        <AbilityStat model={model} value={chargeCooldown} />
+      </div>
     );
   };
 
@@ -95,15 +129,12 @@ const Header = observer(({model}) => {
             <EditableText onChange={onNameChange}>{model.name}</EditableText>
           </div>
           <div className="mock-ability-header-misc-stats">
-            {remainder.map((x, i) => <HeaderStat key={i} model={x} />)}
+            {remainder.map((x, i) => <AbilityStat key={i} model={model} value={x} />)}
           </div>
         </div>
         <div className="mock-ability-header-right">
-          <div className="mock-ability-header-stat-group">
-            <HeaderStat model={charges} />
-            <HeaderStat model={chargeCooldown} />
-          </div>
-          <HeaderStat model={cooldown} />
+          {renderCharges()}
+          <AbilityStat model={model} value={cooldown} />
         </div>
       </div>
     </SidebarButtons>
@@ -148,10 +179,10 @@ const Ability = observer(({model}) => {
     <div className="mock-ability">
       <Header model={model} />
       <div className="mock-ability-body">
-        <div className="mock-ability-description">
+        <div className="mock-ability-markdown">
           <EditableMarkdown format={descriptionMarkdownFormat} text={model.description} onChange={onChange} />
-          <Grid data={model.grid} />
         </div>
+        <Grid data={model.grid} />
         <div className="mock-ability-upgrades">
           {model.upgrades.map((x, i) => <Upgrade key={i} model={x} tier={i} />)}
         </div>

@@ -59,3 +59,21 @@
 .mock-icon.mock-icon-cyan {
     filter: invert(16%) sepia(56%) saturate(275%) hue-rotate(85deg) brightness(101%) contrast(102%);
 }
+
+/* used for vitality item icons */
+/* approximation of #203500 (#223500) */
+.mock-icon.mock-icon-item-vitality {
+    filter: invert(83%) sepia(14%) saturate(4628%) hue-rotate(49deg) brightness(95%) contrast(102%);
+}
+
+/* used for spirit item icons */
+/* approximation of #372248 (#362248) */
+.mock-icon.mock-icon-item-spirit {
+    filter: invert(87%) sepia(19%) saturate(2242%) hue-rotate(232deg) brightness(92%) contrast(91%);
+}
+
+/* used for weapon item icons */
+/* approximation of #312406 (#322206) */
+.mock-icon.mock-icon-item-weapon {
+    filter: invert(86%) sepia(68%) saturate(476%) hue-rotate(4deg) brightness(92%) contrast(101%);
+}

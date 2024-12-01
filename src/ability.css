@@ -7,7 +7,7 @@
         background-color: #121212;
         padding: 20px 30px 15px 30px;
         display: flex;
-        flex-wrap: wrap;
+        line-height: 1;
 
         .mock-icon {
             line-height: 16px;
@@ -18,10 +18,15 @@
             flex-direction: column;
             justify-content: space-between;
 
+            .mock-ability-header-title {
+                margin-bottom: 0.3em;
+            }
+
             .mock-ability-header-misc-stats {
                 display: flex;
+                flex-wrap: wrap;
 
-                .mock-ability-header-stat {
+                .mock-ability-stat {
                     margin-top: 0.5em;
                     margin-right: 0.5em;
                 }
@@ -35,7 +40,7 @@
             align-items: end;
             justify-content: space-between;
 
-            > .mock-ability-header-stat:not(:first-child) {
+            > .mock-ability-stat:not(:first-child) {
                 margin-top: 10px;
             }
         }
@@ -47,37 +52,53 @@
             flex-basis: 50%;
         }
 
-        .mock-ability-header-stat-group {
+        .mock-ability-stat-group {
             display: flex;
         }
 
-        .mock-ability-header-stat {
+        .mock-ability-stat {
             display: flex;
             align-items: center;
             background-color: #2c2c2c;
             width: fit-content;
-            padding: 0.3em 0.6em;
+            padding: 0.2em 0.4em;
+
+            .mock-ability-stat-hover-button {
+                height: 100%;
+                width: 0;
+                visibility: hidden;
+            }
+
+            &:hover .mock-ability-stat-hover-button {
+                visibility: visible;
+            }
         }
 
-        .mock-ability-header-stat:nth-child(2n) {
+        .mock-ability-stat:nth-child(2n) {
             background-color: #242424;
         }
     }
-
 
     .mock-ability-body {
         background: linear-gradient(45deg, #181818, #3b3b3b), url("/deadmock/noise.svg");
         background-blend-mode: multiply;
         font-size: 19px;
-    }
+        padding-top: 0.7em;
 
-    .mock-ability-description {
-        padding: 0.8em 1.3em 0.8em 1.3em;
-        line-height: 135%;
+        > *:not(:first-child) {
+            margin-top: 1.2em;
+        }
+
+        .mock-ability-markdown {
+            line-height: 135%;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
 
         .mock-grid {
-            padding-top: 1.1em;
             line-height: 110%;
+            padding-left: 25px;
+            padding-right: 25px;
         }
     }
 

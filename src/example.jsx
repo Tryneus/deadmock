@@ -27,7 +27,7 @@ const exampleItem = new ItemState({
           type: 'grid',
           data: {
             cells: [
-              {icon: {image: 'stat/spirit_damage', color: 'purple', size: 22}, value: 80, signed: false, stat: 'Damage', color: 'purple'},
+              {icon: {image: 'stat/spirit_damage', color: 'purple', size: 22}, value: 80, weight: 600, signed: false, stat: 'Damage', color: 'purple'},
               {value: 20, units: '%', stat: 'Movement Slow', signed: false, icon: {image: 'stat/move_slow'}, conditional: true},
               {value: -30, units: '%', stat: 'Dash Distance', signed: true, icon: {image: 'stat/move_slow'}, conditional: true},
             ],
@@ -50,7 +50,7 @@ const exampleItem = new ItemState({
           type: 'grid',
           data: {
             cells: [
-              {icon: {image: 'stat/spirit_damage', color: 'purple'}, value: 34, signed: true, stat: 'Imbued Ability Spirit Power', color: 'purple'},
+              {icon: {image: 'stat/spirit_damage', color: 'purple'}, value: 34, weight: 600, signed: true, stat: 'Imbued Ability Spirit Power', color: 'purple'},
               {icon: {image: 'stat/fire_rate', color: 'orange'}, value: 10, signed: false, units: '%', stat: 'Fire Rate Bonus', conditional: true},
               {icon: {image: 'stat/move_speed'}, value: 3, signed: true, units: 'm/s', stat: 'Move Speed', conditional: true},
             ],
@@ -66,8 +66,8 @@ const exampleAbility = new AbilityState({
   name:        'Tornado',
   description: 'Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.',
 
-  headerStats: [
-    {icon: {image: 'stat/charge'}, value: 3, signed: false, stat: 'charges'},
+  stats: [
+    {icon: {image: 'stat/charge'}, value: 3, units: '', signed: false, stat: 'charges'},
     {icon: {image: 'stat/charge_cooldown'}, value: 4, units: 's', signed: false, stat: 'chargeCooldown'},
     {icon: {image: 'stat/cooldown'}, value: 32, units: 's', signed: false, stat: 'cooldown'},
     {icon: {image: 'stat/duration'}, value: 0.75, units: 's', signed: false},

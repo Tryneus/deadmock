@@ -2,7 +2,7 @@ import {observer} from 'mobx-react-lite';
 import classNames from 'classnames';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 import PropTypes from 'prop-types';
-import {groupedStatIcons, useAction} from './common';
+import {allItems, groupedStatIcons, useAction} from './common';
 import {Icon, iconColors} from './icon';
 import {Markdown} from './markdown';
 import {textColors} from './text';
@@ -90,7 +90,7 @@ const EditableMarkdown = observer(({text, format, onChange, color, size, weight}
   }, [setEditing, onChange]);
 
   const style = {color, fontSize: size, fontWeight: weight};
-  const inner = editing ? preserveNewlines(text) : <Markdown {...{text, format}} />;
+  const inner = editing ? preserveNewlines(text) : <Markdown text={text} format={format} />;
 
   return (
     <span
@@ -176,8 +176,12 @@ const TooltipContainer = observer(({renderTooltip, direction, click, children}) 
   const cbProps = {};
   if (click) {
     cbProps.onClick = useCallback(() => {
-      setTooltip(addArrow(renderTooltip()));
-    }, [renderTooltip]);
+      if (tooltip) {
+        setTooltip(null);
+      } else {
+        setTooltip(addArrow(renderTooltip()));
+      }
+    }, [tooltip, renderTooltip]);
 
     useEffect(() => {
       const handleClick = (e) => {
@@ -261,5 +265,43 @@ const StylePicker = observer(({model}) => {
   );
 });
 
-export {EditableIcon, EditableMarkdown, EditableText, StylePicker, TooltipContainer};
+const ItemPickerItem = ({item, onChange}) => {
+  const onClick = useCallback(() => onChange(item));
+  const classes = classNames(`mock-item-picker-icon-${item.category}`);
+  const iconColor = `item-${item.category}`;
+
+  return (
+    <div className={classes} onClick={onClick} >
+      <Icon image={item.icon} color={iconColor} />
+    </div>
+  );
+};
+
+const ItemPicker = ({onChange}) => {
+  const byCategory = Object.groupBy(allItems, (x) => x.category);
+  const groups = Object.fromEntries(Object.entries(byCategory).map(([c, list]) => [c, Object.groupBy(list, (x) => x.tier)]));
+  const tiers = [1, 2, 3, 4];
+
+  const renderTier = (items) => (
+    <div className="mock-item-picker-tier">
+      {items.map((x) => <ItemPickerItem item={x} onChange={onChange} />)}
+    </div>
+  );
+
+  return (
+    <div className="mock-item-picker">
+      <div className="mock-item-picker-weapon-group">
+        {tiers.map((tier) => renderTier(groups.weapon[tier]))}
+      </div>
+      <div className="mock-item-picker-vitality-group">
+        {tiers.map((tier) => renderTier(groups.vitality[tier]))}
+      </div>
+      <div className="mock-item-picker-spirit-group">
+        {tiers.map((tier) => renderTier(groups.spirit[tier]))}
+      </div>
+    </div>
+  );
+};
+
+export {EditableIcon, EditableMarkdown, EditableText, StylePicker, TooltipContainer, ItemPicker};
 export default EditableText;

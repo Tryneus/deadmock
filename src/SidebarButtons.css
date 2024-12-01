@@ -12,15 +12,8 @@
 }
 
 .mock-sidebar-button {
-    &:not(:first-child) {
-        margin-top: 10px;
-    }
-
-    .mock-icon {
-        margin-left: 4px;
-    }
-
     cursor: pointer;
+    user-select: none;
     flex-grow: 0;
     flex-shrink: 0;
     padding: 2px 5px;
@@ -31,4 +24,12 @@
     border: 2px solid #222222;
     border-radius: 5px;
     line-height: 1;
+
+    &:not(:first-child) {
+        margin-top: 10px;
+    }
+
+    .mock-icon {
+        margin-left: 4px;
+    }
 }

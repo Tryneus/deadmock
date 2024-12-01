@@ -36,8 +36,10 @@ const Editor = observer(() => {
   return (
     <div className="mock-editor">
       <div className="mock-editor-type-selector">
-        <EditorTypeOption active={type === 'ability'} onClick={setAbility} label="Ability" color={colors.ability} />
-        <EditorTypeOption active={type === 'item'} onClick={setItem} label="Item" color={colors[exampleItem.category]} />
+        <div>
+          <EditorTypeOption active={type === 'ability'} onClick={setAbility} label="Ability" color={colors.ability} />
+          <EditorTypeOption active={type === 'item'} onClick={setItem} label="Item" color={colors[exampleItem.category]} />
+        </div>
       </div>
       <div className="mock-editor-content">
         {type === 'ability' ? <Ability model={exampleAbility} /> : null}

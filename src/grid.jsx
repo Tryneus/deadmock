@@ -65,7 +65,7 @@ const SpiritScalingContainer = observer(({model, children}) => {
   );
 });
 
-const Grid = observer(({data}) => {
+const Grid = observer(({data, onEmpty}) => {
   const onAddCell = useAction(() => data.addCell(), [data]);
   const onAddValue = useAction(() => data.addValue(), [data]);
 
@@ -78,7 +78,7 @@ const Grid = observer(({data}) => {
 
   const cellContents = (x) => {
     if (x.type === 'values') {
-      return <>{x.values.map((model, i) => <GridCellValuesItem key={i} model={data} index={i} />)}</>;
+      return <>{x.values.map((model, i) => <GridCellValuesItem key={i} model={data} index={i} onEmpty={onEmpty} />)}</>;
     }
     return <GridCellValue model={x} />;
   };
@@ -92,10 +92,10 @@ const Grid = observer(({data}) => {
         return (
           <SpiritScalingContainer key={j} model={cell}>
             <div className="mock-grid-cell-container">
-              <GridCellHoverButtons data={data} cell={cell} />
               <div className={classes}>
                 {cellContents(cell)}
               </div>
+              <GridCellHoverButtons data={data} cell={cell} onEmpty={onEmpty} />
             </div>
           </SpiritScalingContainer>
         );
@@ -112,7 +112,7 @@ const Grid = observer(({data}) => {
   );
 });
 
-const GridCellHoverButtons = observer(({data, cell}) => {
+const GridCellHoverButtons = observer(({data, cell, onEmpty}) => {
   if (cell.type === 'values') {
     return null;
   }
@@ -123,8 +123,11 @@ const GridCellHoverButtons = observer(({data, cell}) => {
       console.error('grid cell not found', cell);
     } else {
       data.removeCell(index);
+      if (onEmpty && data.cells.length === 0 && data.values.length === 0) {
+        onEmpty();
+      }
     }
-  });
+  }, [data, cell, onEmpty]);
 
   const onSpiritScaling = useAction(() => {
     if (cell.spiritScaling === null || cell.spiritScaling === undefined) {
@@ -133,6 +136,8 @@ const GridCellHoverButtons = observer(({data, cell}) => {
       cell.spiritScaling = null;
     }
   });
+
+  const onConditional = useAction(() => (cell.conditional = !cell.conditional));
 
   const renderStylePicker = useCallback(() => <StylePicker model={cell} />);
 
@@ -144,15 +149,21 @@ const GridCellHoverButtons = observer(({data, cell}) => {
           <Icon color="grey" image="text_style" size={12} />
         </TooltipContainer>
         <Icon color="purple" image="spirit" size={12} onClick={onSpiritScaling} />
+        <Icon color="grey" image="therefore" size={12} onClick={onConditional} />
       </div>
     </div>
   );
 });
 
-const GridCellValuesItem = observer(({model, index}) => {
+const GridCellValuesItem = observer(({model, index, onEmpty}) => {
   const value = model.values[index];
   const onChange = useAction((x) => (value.stat = x), [value]);
-  const onDelete = useAction(() => model.removeValue(index), [model, index]);
+  const onDelete = useAction(() => {
+    model.removeValue(index), [model, index];
+    if (model.cells.length === 0 && model.values.length === 0) {
+      onEmpty();
+    }
+  });
 
   return (
     <div className="mock-grid-cell-values-item">
