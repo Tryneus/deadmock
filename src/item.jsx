@@ -19,7 +19,7 @@ const Item = observer(({model}) => {
       <Header model={model} />
       <ItemComponents model={model} />
       <Stats model={model} />
-      {model.effects.map((x, i) => <ItemEffect key={i} model={x} />)}
+      {model.effects.map((x, i) => <ItemEffect key={i} item={model} model={x} />)}
     </div>
   );
 });
@@ -152,26 +152,18 @@ ItemComponents.propTypes = {
   model: PropTypes.object.isRequired,
 };
 
-
-const StatLineHoverButton = observer(({model, index}) => {
-  const onDelete = useAction(() => model.removeStat(index), [model, index]);
-  return (
-    <div className="mock-item-stat-hover-buttons">
-      <Icon color="red" image="cancel" size={12} onClick={onDelete} />
-    </div>
-  );
-});
-
-
 const StatLine = observer(({model, index}) => {
   const onChangeStat = useAction((x) => (model.stats[index].stat = x), [model, index]);
+  const onDelete = useAction(() => model.removeStat(index), [model, index]);
 
   return (
     <div>
       <Value model={model.stats[index]} />
       &nbsp;&nbsp;
       <EditableText onChange={onChangeStat}>{model.stats[index].stat}</EditableText>
-      <StatLineHoverButton index={index} model={model} />
+      <div className="mock-item-stat-hover-buttons">
+        <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+      </div>
     </div>
   );
 });
@@ -223,7 +215,7 @@ ItemEffectSection.propTypes = {
   model: PropTypes.object.isRequired,
 };
 
-const ItemEffect = observer(({model}) => {
+const ItemEffect = observer(({item, model}) => {
   const onChangeCooldown = useAction((x) => {
     const newValue = parseFloat(x);
     if (isNaN(newValue)) {
@@ -236,6 +228,14 @@ const ItemEffect = observer(({model}) => {
   const onChangeActive = useAction(() => (model.active = !model.active), [model]);
   const onAddMarkdown = useAction(() => model.addMarkdownSection());
   const onAddGrid = useAction(() => model.addGridSection());
+  const onDelete = useAction(() => {
+    const index = item.effects.indexOf(model);
+    if (index === -1) {
+      console.error('item effect not found', model);
+    } else {
+      item.removeEffect(index);
+    }
+  });
 
   const effectType = model.active ?
     <Bold color="bright">Active</Bold> :
@@ -271,9 +271,14 @@ const ItemEffect = observer(({model}) => {
     <SidebarButtons renderButtons={renderSidebarButtons}>
       <div className="mock-item-effect">
         <div className="mock-item-effect-header">
-          <span onClick={onChangeActive}>
-            {effectType}
-          </span>
+          <div>
+            <span onClick={onChangeActive}>
+              {effectType}
+            </span>
+            <div className="mock-item-effect-header-hover-buttons">
+              <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+            </div>
+          </div>
           {renderCooldown()}
         </div>
         <div className="mock-item-effect-body">
@@ -285,6 +290,7 @@ const ItemEffect = observer(({model}) => {
 });
 
 ItemEffect.propTypes = {
+  item: PropTypes.object.isRequired,
   model: PropTypes.object.isRequired,
 };
 

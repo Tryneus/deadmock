@@ -184,6 +184,15 @@
             padding: 3px 15px;
             display: flex;
             align-items: center;
+
+            .mock-item-effect-header-hover-buttons {
+                visibility: hidden;
+                margin-left: 10px;
+            }
+
+            &:hover .mock-item-effect-header-hover-buttons {
+                visibility: visible;
+            }
         }
 
         > div:last-child {
