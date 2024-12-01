@@ -1,6 +1,8 @@
 import classNames from 'classnames';
+import domtoimage from 'dom-to-image';
+import {toJS} from 'mobx';
 import {observer} from 'mobx-react-lite';
-import {useCallback, useState} from 'preact/hooks';
+import {useCallback, useRef, useState} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
 import {Ability} from './ability';
@@ -35,10 +37,33 @@ EditorTypeOption.propTypes = {
   onClick: PropTypes.func,
 };
 
+const copyClassBlacklist = [
+  'mock-sidebar-buttons',
+  'mock-tooltip',
+];
+
+const copyFilter = (node) => {
+  console.log(node);
+  return !copyClassBlacklist.some((x) => node.classList && node.classList.contains(x));
+};
+
 const Editor = observer(() => {
+  const contentRef = useRef(null);
   const [type, setType] = useState('ability');
   const setAbility = useCallback(() => setType('ability'), [setType]);
   const setItem = useCallback(() => setType('item'), [setType]);
+
+  const onCopyImage = useCallback(() => {
+    domtoimage.toBlob(contentRef.current, {filter: copyFilter})
+      .then((blob) => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]))
+      .catch((error) => console.error('failed to generate image', error));
+  }, [contentRef]);
+
+  const onCopyJSON = useCallback(() => {
+    const obj = type === 'ability' ? exampleAbility : exampleItem;
+    navigator.clipboard.write([new ClipboardItem({'text/plain': JSON.stringify(toJS(obj))})])
+      .catch((error) => console.error('failed to copy json', error));
+  }, [type, exampleAbility, exampleItem]);
 
   return (
     <div className="mock-editor">
@@ -48,7 +73,15 @@ const Editor = observer(() => {
           <EditorTypeOption active={type === 'item'} color={colors[exampleItem.category]} label="Item" onClick={setItem} />
         </div>
       </div>
-      <div className="mock-editor-content">
+      <div className="mock-editor-buttons">
+        <div className="mock-editor-button" onClick={onCopyImage}>
+          Copy Image
+        </div>
+        <div className="mock-editor-button" onClick={onCopyJSON}>
+          Copy JSON
+        </div>
+      </div>
+      <div className="mock-editor-content" ref={contentRef}>
         {type === 'ability' ? <Ability model={exampleAbility} /> : null}
         {type === 'item' ? <Item model={exampleItem} /> : null}
       </div>

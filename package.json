@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"classnames": "^2.5.1",
+		"dom-to-image": "^2.6.0",
 		"json-edit-react": "^1.17.1",
 		"markdown-it": "^14.1.0",
 		"mobx-react-lite": "^4.0.7",

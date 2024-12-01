@@ -1,9 +1,17 @@
 .mock-editor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     .mock-editor-type-selector {
         padding: 10px 0;
         display: flex;
         flex-wrap: nowrap;
         justify-content: center;
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 20px;
 
         > div {
             background-color: #777777;
@@ -16,9 +24,6 @@
             font-weight: 600;
             padding: 6px 12px;
             cursor: pointer;
-            font-family: "Roboto", sans-serif;
-            font-weight: 700;
-            font-style: normal;
 
             &:first-child {
                 border-top-left-radius: 10px;
@@ -40,7 +45,33 @@
         }
     }
 
+    .mock-editor-buttons {
+        display: flex;
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 12px;
+
+        .mock-editor-button {
+            background: #777777;
+            border-radius: 5px;
+            padding: 2px 5px;
+            cursor: pointer;
+
+            &:hover {
+                background: #666699;
+                border: 2px solid #8888aa;
+                padding: 0 3px;
+            }
+
+            &:not(:first-child) {
+                margin-left: 10px;
+            }
+        }
+    }
+
     .mock-editor-content {
         display: flex;
+        margin-top: 20px;
     }
 }
