@@ -2,15 +2,16 @@ import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 import PropTypes from 'prop-types';
-import {EditableMarkdown, EditableText, ItemPicker, TooltipContainer} from './EditableText';
-import {SidebarButton, SidebarButtons} from './SidebarButtons';
-import {useAction} from './common';
-import {Grid} from './grid';
-import {Icon} from './icon';
-import {Bold, SemiBold} from './text';
-import {Value} from './value';
 
-import './item.css';
+import {useAction} from '../Common';
+import {EditableMarkdown, EditableText, ItemPicker, TooltipContainer} from '../Editable';
+import {Grid} from '../Grid';
+import {Icon} from '../Icon';
+import {SidebarButton, SidebarButtons} from '../SidebarButtons';
+import {Bold, SemiBold} from '../Text';
+import {Value} from '../Value';
+
+import './Item.css';
 
 const Item = observer(({model}) => {
   const classes = classNames('mock-item', `mock-item-${model.category}`);
@@ -285,4 +286,3 @@ ItemEffect.propTypes = {
 };
 
 export {Item};
-export default Item;

@@ -1,0 +1,33 @@
+.mock-tooltip-container {
+    cursor: pointer;
+    position: relative;
+
+    .mock-tooltip {
+        max-width: 266px;
+        position: absolute;
+        z-index: 10;
+
+        &.mock-tooltip-up {
+            bottom: 75%;
+        }
+
+        &.mock-tooltip-down {
+        }
+
+        .mock-tooltip-arrow-up {
+            width: 0;
+            height: 0;
+            border-width: 10px;
+            border-color: #999999 transparent transparent transparent;
+            border-style: solid;
+        }
+
+        .mock-tooltip-arrow-down {
+            width: 0;
+            height: 0;
+            border-width: 10px;
+            border-color: transparent transparent #999999 transparent;
+            border-style: solid;
+        }
+    }
+}

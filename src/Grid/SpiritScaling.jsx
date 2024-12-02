@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import {EditableText} from './EditableText';
-import {Icon} from './icon';
 
-import './spiritScaling.css';
+import {EditableText} from '../Editable';
+import {Icon} from '../Icon';
+
+import './SpiritScaling.css';
 
 const renderValue = (detailed, value, onChange) => {
   if (!detailed) {
@@ -35,4 +36,3 @@ SpiritScaling.propTypes = {
 };
 
 export {SpiritScaling};
-export default SpiritScaling;

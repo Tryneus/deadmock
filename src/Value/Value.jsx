@@ -1,8 +1,9 @@
 import {observer} from 'mobx-react-lite';
 import PropTypes from 'prop-types';
-import {EditableText} from './EditableText';
-import {useAction} from './common';
-import {Bold, SemiBold} from './text';
+
+import {useAction} from '../Common';
+import {EditableText} from '../Editable';
+import {Bold, SemiBold} from '../Text';
 
 const parseRegex = /^(([+-]?)\d*(?:.\d+)?)(.*)$/;
 
@@ -50,4 +51,3 @@ Value.propTypes = {
 };
 
 export {Value};
-export default Value;

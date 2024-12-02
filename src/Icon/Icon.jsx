@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import './icon.css';
+import './Icon.css';
 
 const iconColors = [
   'white',
@@ -54,4 +54,3 @@ Icon.propTypes = {
 };
 
 export {Icon, iconColors};
-export default Icon;

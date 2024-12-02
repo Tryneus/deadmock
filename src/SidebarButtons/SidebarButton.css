@@ -1,17 +1,3 @@
-.mock-sidebar-buttons {
-    height: 0;
-    width: 0;
-    position: absolute;
-
-    > div {
-        position: absolute;
-        right: 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-}
-
 .mock-sidebar-button {
     cursor: pointer;
     user-select: none;

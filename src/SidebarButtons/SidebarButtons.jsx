@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import {Icon} from './icon';
-import {SemiBold} from './text';
+
 import './SidebarButtons.css';
 
 const SidebarButtons = ({renderButtons, children}) => {
@@ -24,18 +23,4 @@ SidebarButtons.propTypes = {
   ]),
 };
 
-const SidebarButton = ({label, onClick}) => {
-  return (
-    <div className="mock-sidebar-button" onClick={onClick}>
-      <SemiBold size={14}>{label}</SemiBold>
-      <Icon color="green" image="plus" size={8} />
-    </div>
-  );
-};
-
-SidebarButton.propTypes = {
-  label:   PropTypes.string,
-  onClick: PropTypes.func,
-};
-
-export {SidebarButton, SidebarButtons};
+export {SidebarButtons};

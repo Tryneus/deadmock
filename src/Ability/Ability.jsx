@@ -1,15 +1,16 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import PropTypes from 'prop-types';
-import {EditableIcon, EditableMarkdown, EditableText} from './EditableText';
-import {SidebarButton, SidebarButtons} from './SidebarButtons';
-import {useAction} from './common';
-import {Grid} from './grid';
-import {Icon} from './icon';
-import {Bold, Text} from './text';
-import {Value} from './value';
 
-import './ability.css';
+import {EditableIcon, EditableMarkdown, EditableText} from '../Editable';
+import {SidebarButton, SidebarButtons} from '../SidebarButtons';
+import {useAction} from '../Common';
+import {Grid} from '../Grid';
+import {Icon} from '../Icon';
+import {Bold, Text} from '../Text';
+import {Value} from '../Value';
+
+import './Ability.css';
 
 const upgradeMarkdownFormat = {
   text: {
@@ -196,4 +197,3 @@ Ability.propTypes = {
 };
 
 export {Ability};
-export default Ability;

@@ -1,15 +1,16 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
-import {EditableIcon, EditableText, StylePicker, TooltipContainer} from './EditableText';
-import {SidebarButton, SidebarButtons} from './SidebarButtons';
-import {useAction} from './common';
-import {Icon} from './icon';
-import {SpiritScaling} from './spiritScaling';
-import {SemiBold, Text} from './text';
-import {Value} from './value';
 
-import './grid.css';
+import {useAction} from '../Common';
+import {EditableIcon, EditableText, StylePicker, TooltipContainer} from '../Editable';
+import {Icon} from '../Icon';
+import {SidebarButton, SidebarButtons} from '../SidebarButtons';
+import {SpiritScaling} from './SpiritScaling';
+import {SemiBold, Text} from '../Text';
+import {Value} from '../Value';
+
+import './Grid.css';
 
 
 // Partition the cells such that:
@@ -199,4 +200,3 @@ const GridCellValue = observer(({model}) => {
 });
 
 export {Grid};
-export default Grid;

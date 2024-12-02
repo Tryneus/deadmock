@@ -1,6 +1,5 @@
 import {makeAutoObservable} from 'mobx';
-import {deepCopy, itemsByName, tierCosts} from './common';
-
+import {deepCopy, itemsByName, tierCosts} from './Common';
 
 const placeholderMarkdownSection = {type: 'markdown', data: 'Insert **markdown** here.'};
 const placeholderGridSection = {

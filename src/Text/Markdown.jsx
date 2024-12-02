@@ -1,6 +1,7 @@
 import markdownit from 'markdown-it';
 import PropTypes from 'prop-types';
-import {Text} from './text';
+
+import {Text} from './Text';
 
 const parser = new markdownit('zero', {breaks: true});
 parser.enable(['emphasis', 'newline']);
@@ -73,4 +74,3 @@ Markdown.propTypes = {
 };
 
 export {Markdown};
-export default Markdown;

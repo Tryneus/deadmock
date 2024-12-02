@@ -1,0 +1,15 @@
+.mock-editable-text {
+    resize: none;
+    cursor: pointer;
+    min-width: 0.5em;
+}
+
+[contenteditable] {
+    outline: 0 solid transparent;
+}
+
+[contenteditable]:focus {
+    background: rgba(255, 0, 0, 0.4);
+}
+
+

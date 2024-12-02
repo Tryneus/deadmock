@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import './text.css';
+import './Text.css';
 
 const textColors = {
   bright: '#ffefd7',

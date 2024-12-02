@@ -12,6 +12,7 @@
         font-weight: 700;
         font-style: normal;
         font-size: 20px;
+        user-select: none;
 
         > div {
             background-color: #777777;
@@ -51,6 +52,7 @@
         font-weight: 700;
         font-style: normal;
         font-size: 12px;
+        user-select: none;
 
         .mock-editor-button {
             background: #777777;

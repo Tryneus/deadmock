@@ -5,11 +5,11 @@ import {observer} from 'mobx-react-lite';
 import {useCallback, useRef, useState} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
-import {Ability} from './ability';
-import {exampleAbility, exampleItem} from './example';
-import {Item} from './item';
+import {Ability} from '../Ability';
+import {Item} from '../Item';
+import {exampleAbility, exampleItem} from '../example';
 
-import './editor.css';
+import './Editor.css';
 
 const colors = {
   ability:  '#3399f3',
@@ -91,5 +91,3 @@ const Editor = observer(() => {
 Editor.propTypes = {};
 
 export {Editor};
-export default Editor;
-
