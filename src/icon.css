@@ -21,9 +21,9 @@
     filter: invert(40%);
 }
 
-/* approximation of #dd9642 (#de9742) */
+/* approximation of #ed961e (#ed9620) */
 .mock-icon.mock-icon-orange {
-    filter: invert(39%) sepia(81%) saturate(363%) hue-rotate(351deg) brightness(90%) contrast(92%);
+    filter: invert(42%) sepia(69%) saturate(551%) hue-rotate(353deg) brightness(96%) contrast(93%);
 }
 
 /* approximation of #7fbc26 (#7ebf28) */

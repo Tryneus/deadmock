@@ -105,7 +105,7 @@ const EditableMarkdown = observer(({text, format, onChange, color, size, weight}
   const inner = editing ? preserveNewlines(text) : <Markdown format={format} text={text} />;
 
   return (
-    <span
+    <div
       ref={ref}
       className="mock-editable-text mock-text"
       spellCheck={false}
@@ -114,7 +114,7 @@ const EditableMarkdown = observer(({text, format, onChange, color, size, weight}
       onMouseDown={editing ? null : editingOn}
     >
       {inner}
-    </span>
+    </div>
   );
 });
 

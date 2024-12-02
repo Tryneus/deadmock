@@ -206,6 +206,7 @@ export default [
       '@stylistic/js/array-bracket-newline': ['error', 'consistent'],
       '@stylistic/js/array-element-newline': ['error', 'consistent'],
       '@stylistic/js/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/js/dot-location': ['error', 'property'],
       '@stylistic/js/function-call-spacing': 'error',
       '@stylistic/js/function-call-argument-newline': ['error', 'consistent'],
       '@stylistic/js/function-paren-newline': ['error', 'consistent'],

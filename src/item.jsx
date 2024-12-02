@@ -63,14 +63,18 @@ const Header = observer(({model}) => {
     const idx = categories.indexOf(model.category) + 1;
     model.category = categories[idx % categories.length];
   }, [model]);
+
   const onAddComponent = useAction(() => model.addComponent());
   const onAddEffect = useAction(() => model.addEffect());
+  const onAddStat = useAction(() => model.addStat({signed: true}));
+
   const renderSidebarButtons = useCallback(() => (
     <>
       <SidebarButton label="Component" onClick={onAddComponent} />
       <SidebarButton label="Effect" onClick={onAddEffect} />
+      <SidebarButton label="Stat" onClick={onAddStat} />
     </>
-  ), [onAddComponent, onAddEffect]);
+  ), [onAddComponent, onAddEffect, onAddStat]);
 
   const bonus = categoryBonuses[model.category];
   if (!bonus) {
@@ -172,22 +176,11 @@ StatLine.propTypes = {
   model: PropTypes.object.isRequired,
 };
 
-const Stats = observer(({model}) => {
-  const onAddStat = useAction(() => model.addStat({signed: true}));
-  const renderSidebarButtons = useCallback(() => (
-    <>
-      <SidebarButton label="Stat" onClick={onAddStat} />
-    </>
-  ), [onAddStat]);
-
-  return (
-    <SidebarButtons renderButtons={renderSidebarButtons}>
-      <div className="mock-stats">
-        {model.stats.map((x, i) => <StatLine key={i} index={i} model={model} />)}
-      </div>
-    </SidebarButtons>
-  );
-});
+const Stats = observer(({model}) => (
+  <div className="mock-item-stats">
+    {model.stats.map((x, i) => <StatLine key={i} index={i} model={model} />)}
+  </div>
+));
 
 Stats.propTypes = {
   model: PropTypes.object.isRequired,
@@ -242,16 +235,13 @@ const ItemEffect = observer(({item, model}) => {
     <SemiBold italic>Passive</SemiBold>;
 
   const renderCooldown = () => {
-    if (!model.cooldown) {
-      return null;
-    }
-
+    const classes = classNames({'mock-item-effect-no-cooldown': !model.cooldown});
     return (
-      <div>
+      <div className={classes}>
         <Icon image="stat/cooldown" size={15} />
         &nbsp;
         <EditableText color="bright" weight={700} onChange={onChangeCooldown}>
-          {model.cooldown}
+          {model.cooldown || 0}
         </EditableText>
         <Bold color="bright">
           s
@@ -290,7 +280,7 @@ const ItemEffect = observer(({item, model}) => {
 });
 
 ItemEffect.propTypes = {
-  item: PropTypes.object.isRequired,
+  item:  PropTypes.object.isRequired,
   model: PropTypes.object.isRequired,
 };
 

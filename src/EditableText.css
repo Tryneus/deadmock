@@ -1,7 +1,7 @@
 .mock-editable-text {
     resize: none;
     cursor: pointer;
-    min-width: 0.8em;
+    min-width: 0.5em;
 }
 
 [contenteditable] {

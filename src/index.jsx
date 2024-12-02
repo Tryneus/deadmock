@@ -3,9 +3,4 @@ import {Editor} from './editor';
 
 import './style.css';
 
-render(
-  <div style={{display: 'flex'}}>
-    <Editor />
-  </div>,
-  document.getElementById('app'),
-);
+render(<Editor />, document.getElementById('app'));

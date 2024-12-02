@@ -8,7 +8,7 @@ const textColors = {
   normal: '#c8c6ca',
   muted:  '#968291',
   purple: '#c78bf7',
-  orange: '#d49f50',
+  orange: '#ed961e',
 };
 
 const Text = ({italic, weight, color, size, children}) => {

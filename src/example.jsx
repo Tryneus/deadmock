@@ -1,9 +1,61 @@
 import {AbilityState, ItemState} from './state';
 
-const exampleItem = new ItemState({
+const HeroicAura = new ItemState({
+  category:   'weapon',
+  name:       'Heroic Aura',
+  tier:       3,
+  components: [],
+
+  stats: [
+    {value: 20, units: '%', signed: true, stat: 'Bullet Lifesteal'},
+    {value: 150, units: '', signed: true, stat: 'Bonus Health'},
+    {value: 1, units: ' m/s', signed: true, stat: 'Move Speed'},
+  ],
+
+  effects: [
+    {
+      active:   false,
+      sections: [
+        {
+          type: 'markdown',
+          data: 'Provides **Fire Rate** to nearby player minions.',
+        }, {
+          type: 'grid',
+          data: {
+            cells:  [{icon: {image: 'stat/fire_rate', color: 'orange'}, value: 40, units: '%', stat: 'Minions Fire Rate', signed: true, weight: 600, conditional: true}],
+            values: [{value: 20, units: 'm', signed: false, stat: 'Radius'}],
+          },
+        },
+      ],
+    }, {
+      active:   true,
+      cooldown: 32,
+      sections: [
+        {
+          type: 'markdown',
+          data: 'Provides bonus **Movement Speed** and **Fire Rate** to you and nearby allies.',
+        }, {
+          type: 'grid',
+          data: {
+            cells: [
+              {icon: {image: 'stat/move_speed', color: 'grey'}, value: 2, units: 'm/s', stat: 'Movement Speed', signed: true, weight: 600, conditional: true},
+              {icon: {image: 'stat/fire_rate', color: 'orange'}, value: 25, units: '%', stat: 'Fire Rate', signed: true, weight: 600, conditional: true},
+            ],
+            values: [
+              {value: 30, units: 'm', signed: false, stat: 'Active Radius'},
+              {value: 6, units: 's', signed: false, stat: 'Duration'},
+            ],
+          },
+        },
+      ],
+    },
+  ],
+});
+
+
+const SlowingHex = new ItemState({
   category: 'spirit',
   name:     'Slowing Hex',
-  cost:     1750,
   tier:     2,
 
   components: ['Enduring Spirit'],
@@ -18,7 +70,6 @@ const exampleItem = new ItemState({
     {
       active:   true,
       cooldown: 26,
-
       sections: [
         {
           type: 'markdown',
@@ -28,8 +79,8 @@ const exampleItem = new ItemState({
           data: {
             cells: [
               {icon: {image: 'stat/spirit_damage', color: 'purple', size: 22}, value: 80, units: '', weight: 600, signed: false, stat: 'Damage', color: 'purple'},
-              {value: 20, units: '%', stat: 'Movement Slow', signed: false, icon: {image: 'stat/move_slow'}, conditional: true},
-              {value: -30, units: '%', stat: 'Dash Distance', signed: true, icon: {image: 'stat/move_slow'}, conditional: true},
+              {value: 20, units: '%', stat: 'Movement Slow', signed: false, weight: 600, icon: {image: 'stat/move_slow'}, conditional: true},
+              {value: -30, units: '%', stat: 'Dash Distance', signed: true, weight: 600, icon: {image: 'stat/move_slow'}, conditional: true},
             ],
             values: [
               {value: 29, units: 'm', stat: 'Cast Range'},
@@ -38,23 +89,37 @@ const exampleItem = new ItemState({
           },
         },
       ],
-    }, {
-      active:   false,
-      cooldown: 10.5,
+    },
+  ],
+});
 
+const ReturnFire = new ItemState({
+  category: 'vitality',
+  name:     'Return Fire',
+  tier:     2,
+
+  stats: [
+    {value: 125, units: '', stat: 'Bonus Health', signed: true},
+    {value: 9, units: '', stat: 'Spirit Power', signed: true},
+  ],
+
+  effects: [
+    {
+      active:   true,
+      cooldown: 25,
       sections: [
         {
           type: 'markdown',
-          data: 'Imbue an ability with **permanent Spirit Power**.  When that ability is used, gain bonus **Movement Speed**.',
+          data: 'Automatically **fire a bullet**, towards any attacker who damages you with their abilities or weapon.',
         }, {
           type: 'grid',
           data: {
             cells: [
-              {icon: {image: 'stat/spirit_damage', color: 'purple'}, value: 34, units: '', weight: 600, signed: true, stat: 'Imbued Ability Spirit Power', color: 'purple'},
-              {icon: {image: 'stat/fire_rate', color: 'orange'}, value: 10, signed: false, units: '%', stat: 'Fire Rate Bonus', conditional: true},
-              {icon: {image: 'stat/move_speed'}, value: 3, signed: true, units: 'm/s', stat: 'Move Speed', conditional: true},
+              {icon: {image: 'stat/weapon_damage', color: 'orange', size: 22}, value: 60, units: '%', weight: 600, signed: false, stat: 'Bullet Damage Returned', color: 'orange'},
+              {icon: {image: 'stat/spirit_damage', color: 'purple', size: 22}, value: 30, units: '%', weight: 600, signed: false, stat: 'Spirit Damage Returned', color: 'purple'},
+              {icon: {image: 'stat/bullet_shield', color: 'orange'}, value: 25, units: '%', stat: 'Bullet Resist', signed: true, weight: 600, conditional: true},
             ],
-            values: [{value: 6, units: 's', stat: 'Move Speed Duration'}],
+            values: [{value: 7, units: 's', stat: 'Duration'}],
           },
         },
       ],
@@ -62,7 +127,7 @@ const exampleItem = new ItemState({
   ],
 });
 
-const exampleAbility = new AbilityState({
+const TornadoAbility = new AbilityState({
   name:        'Tornado',
   description: 'Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.',
 
@@ -96,4 +161,12 @@ const exampleAbility = new AbilityState({
   ],
 });
 
-export {exampleAbility, exampleItem};
+const examples = {
+  items:     [HeroicAura, ReturnFire, SlowingHex],
+  abilities: [TornadoAbility],
+};
+
+const exampleItem = ReturnFire;
+const exampleAbility = TornadoAbility;
+
+export {exampleAbility, exampleItem, examples};

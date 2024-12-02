@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import domtoimage from 'dom-to-image';
+import {toBlob} from 'html-to-image';
 import {toJS} from 'mobx';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useRef, useState} from 'preact/hooks';
@@ -43,7 +43,6 @@ const copyClassBlacklist = [
 ];
 
 const copyFilter = (node) => {
-  console.log(node);
   return !copyClassBlacklist.some((x) => node.classList && node.classList.contains(x));
 };
 
@@ -54,7 +53,7 @@ const Editor = observer(() => {
   const setItem = useCallback(() => setType('item'), [setType]);
 
   const onCopyImage = useCallback(() => {
-    domtoimage.toBlob(contentRef.current, {filter: copyFilter})
+    toBlob(contentRef.current, {filter: copyFilter, width: 600})
       .then((blob) => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]))
       .catch((error) => console.error('failed to generate image', error));
   }, [contentRef]);
@@ -63,7 +62,7 @@ const Editor = observer(() => {
     const obj = type === 'ability' ? exampleAbility : exampleItem;
     navigator.clipboard.write([new ClipboardItem({'text/plain': JSON.stringify(toJS(obj))})])
       .catch((error) => console.error('failed to copy json', error));
-  }, [type, exampleAbility, exampleItem]);
+  }, [type]);
 
   return (
     <div className="mock-editor">
@@ -81,7 +80,7 @@ const Editor = observer(() => {
           Copy JSON
         </div>
       </div>
-      <div className="mock-editor-content" ref={contentRef}>
+      <div ref={contentRef} className="mock-editor-content">
         {type === 'ability' ? <Ability model={exampleAbility} /> : null}
         {type === 'item' ? <Item model={exampleItem} /> : null}
       </div>

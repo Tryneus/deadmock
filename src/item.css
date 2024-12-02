@@ -12,7 +12,10 @@
     }
 
     > div:last-child {
-        border-radius: 0 0 10px 10px;
+        &.mock-item-stats, .mock-item-effect {
+            padding-bottom: 8px;
+            border-radius: 0 0 10px 10px;
+        }
     }
 
     .mock-header {
@@ -149,7 +152,7 @@
     }
 
 
-    .mock-stats {
+    .mock-item-stats {
         font-size: 15px;
         padding: 6px;
         line-height: 120%;
@@ -198,6 +201,17 @@
         > div:last-child {
             /*padding: 3px 15px;*/
             background-color: #0c1414;
+        }
+
+        .mock-item-effect-no-cooldown {
+            opacity: 0;
+
+            &:hover {
+                opacity: 1;
+            }
+            &:has(*[contenteditable="true"]) {
+                opacity: 1;
+            }
         }
     }
 
@@ -257,7 +271,7 @@
             background-color: #2a1938;
         }
 
-        .mock-stats, .mock-item-effect {
+        .mock-item-stats, .mock-item-effect {
             background-color: #623585;
         }
 
@@ -287,7 +301,7 @@
             /* TODO */
         }
 
-        .mock-stats, .mock-item-effect {
+        .mock-item-stats, .mock-item-effect {
             background-color: #7d530f;
         }
 
@@ -317,7 +331,7 @@
             /* TODO */
         }
 
-        .mock-stats, .mock-item-effect {
+        .mock-item-stats, .mock-item-effect {
             background-color: #4d7214;
         }
 
