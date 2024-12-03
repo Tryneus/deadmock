@@ -1,6 +1,8 @@
 import {render} from 'preact';
 import {Editor} from './Editor';
+import {State} from './State';
 
 import './style.css';
 
-render(<Editor />, document.getElementById('app'));
+const state = new State();
+render(<Editor state={state} />, document.getElementById('app'));

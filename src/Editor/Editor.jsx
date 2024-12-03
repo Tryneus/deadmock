@@ -5,6 +5,7 @@ import {useCallback, useRef, useState} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
 import {Ability} from '../Ability';
+import {useAction} from '../Common';
 import {Item} from '../Item';
 import {exampleAbility, exampleItem} from '../example';
 
@@ -45,11 +46,10 @@ const copyFilter = (node) => {
   return !copyClassBlacklist.some((x) => node.classList && node.classList.contains(x));
 };
 
-const Editor = observer(() => {
+const Editor = observer(({state}) => {
   const contentRef = useRef(null);
-  const [type, setType] = useState('ability');
-  const setAbility = useCallback(() => setType('ability'), [setType]);
-  const setItem = useCallback(() => setType('item'), [setType]);
+  const setAbility = useAction(() => state.setMode('ability'), [state]);
+  const setItem = useAction(() => state.setMode('item'), [state]);
 
   const onCopyImage = useCallback(() => {
     toBlob(contentRef.current, {filter: copyFilter, width: 600})
@@ -58,17 +58,17 @@ const Editor = observer(() => {
   }, [contentRef]);
 
   const onCopyJSON = useCallback(() => {
-    const obj = type === 'ability' ? exampleAbility : exampleItem;
+    const obj = state.mode === 'ability' ? state.ability : state.item;
     navigator.clipboard.write([new ClipboardItem({'text/plain': JSON.stringify(obj)})])
       .catch((error) => console.error('failed to copy json', error));
-  }, [type]);
+  }, [state]);
 
   return (
     <div className="mock-editor">
       <div className="mock-editor-type-selector">
         <div>
-          <EditorTypeOption active={type === 'ability'} color={colors.ability} label="Ability" onClick={setAbility} />
-          <EditorTypeOption active={type === 'item'} color={colors[exampleItem.category]} label="Item" onClick={setItem} />
+          <EditorTypeOption active={state.mode === 'ability'} color={colors.ability} label="Ability" onClick={setAbility} />
+          <EditorTypeOption active={state.mode === 'item'} color={colors[exampleItem.category]} label="Item" onClick={setItem} />
         </div>
       </div>
       <div className="mock-editor-buttons">
@@ -80,8 +80,8 @@ const Editor = observer(() => {
         </div>
       </div>
       <div ref={contentRef} className="mock-editor-content">
-        {type === 'ability' ? <Ability model={exampleAbility} /> : null}
-        {type === 'item' ? <Item model={exampleItem} /> : null}
+        {state.mode === 'ability' ? <Ability model={state.ability} /> : null}
+        {state.mode === 'item' ? <Item model={state.item} /> : null}
       </div>
     </div>
   );

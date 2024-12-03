@@ -153,7 +153,7 @@ const Upgrade = observer(({active, model, tier}) => {
     'mock-ability-upgrade-inactive': !active,
   });
 
-  const onChange = useAction((x) => (model.description = x), [model]);
+  const onChange = useAction((x) => (model.upgrades[tier] = x), [model, tier]);
 
   return (
     <div className={classes}>
@@ -163,7 +163,7 @@ const Upgrade = observer(({active, model, tier}) => {
         <Bold>{tierCosts[tier]}</Bold>
       </div>
       <div className="mock-ability-upgrade-text">
-        <EditableMarkdown format={upgradeMarkdownFormat} text={model.description} onChange={onChange} />
+        <EditableMarkdown format={upgradeMarkdownFormat} text={model.upgrades[tier]} onChange={onChange} />
       </div>
     </div>
   );
@@ -185,7 +185,7 @@ const Ability = observer(({model}) => {
         </div>
         <Grid data={model.grid} />
         <div className="mock-ability-upgrades">
-          {model.upgrades.map((x, i) => <Upgrade key={i} model={x} tier={i} />)}
+          {model.upgrades.map((x, i) => <Upgrade key={i} model={model} tier={i} />)}
         </div>
       </div>
     </div>

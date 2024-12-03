@@ -61,6 +61,7 @@ class ItemEffect {
 }
 
 class ItemModel {
+  id;
   category = 'weapon';
   name = '';
   tier = 1;
@@ -69,6 +70,7 @@ class ItemModel {
   effects = [];
 
   constructor(raw) {
+    this.id = raw && raw.id || crypto.randomUUID();
     if (raw) {
       this.category = raw.category;
       this.name = raw.name;

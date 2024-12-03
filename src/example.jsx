@@ -1,7 +1,4 @@
-import {AbilityModel} from './Ability';
-import {ItemModel} from './Item';
-
-const HeroicAura = new ItemModel({
+const HeroicAura = {
   category:   'weapon',
   name:       'Heroic Aura',
   tier:       3,
@@ -51,10 +48,10 @@ const HeroicAura = new ItemModel({
       ],
     },
   ],
-});
+};
 
 
-const SlowingHex = new ItemModel({
+const SlowingHex = {
   category: 'spirit',
   name:     'Slowing Hex',
   tier:     2,
@@ -92,9 +89,9 @@ const SlowingHex = new ItemModel({
       ],
     },
   ],
-});
+};
 
-const ReturnFire = new ItemModel({
+const ReturnFire = {
   category: 'vitality',
   name:     'Return Fire',
   tier:     2,
@@ -126,9 +123,9 @@ const ReturnFire = new ItemModel({
       ],
     },
   ],
-});
+};
 
-const TornadoAbility = new AbilityModel({
+const TornadoAbility = {
   name:        'Tornado',
   description: 'Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.',
 
@@ -160,7 +157,7 @@ const TornadoAbility = new AbilityModel({
     '**-14s**\nCooldown',
     '**+20%**\nBullet Evasion Chance',
   ],
-});
+};
 
 const examples = {
   items:     [HeroicAura, ReturnFire, SlowingHex],

@@ -3,24 +3,16 @@ import {makeAutoObservable} from 'mobx';
 import {GridModel} from '../Grid';
 import {ValueModel} from '../Value';
 
-class AbilityUpgrade {
-  description = '';
-
-  constructor(raw) {
-    this.description = raw;
-    makeAutoObservable(this);
-  }
-}
-
 class AbilityModel {
+  id;
   name = '';
   stats = [];
   description = '';
   grid;
-  upgrades = [];
+  upgrades = ['', '', ''];
 
   constructor(raw) {
-    this.upgrades = ['', '', ''].map((x) => new AbilityUpgrade(x));
+    this.id = raw.id ?? crypto.randomUUID();
     if (raw) {
       this.name = raw.name;
       if (raw.stats) {
@@ -28,9 +20,7 @@ class AbilityModel {
       }
       this.description = raw.description;
       this.grid = new GridModel(raw.grid);
-      if (raw.upgrades) {
-        this.upgrades = raw.upgrades.map((x) => new AbilityUpgrade(x));
-      }
+      this.upgrades = raw.upgrades || this.upgrades;
     } else {
       this.grid = new GridModel();
     }
