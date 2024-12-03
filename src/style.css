@@ -47,6 +47,79 @@
     font-style: italic;
 }
 
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-thin-italic.ttf") format("truetype");
+    font-weight: 100;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-light-italic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-regular-italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-medium-italic.ttf") format("truetype");
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-bold-italic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/deadmock/font/roboto/roboto-black-italic.ttf") format("truetype");
+    font-weight: 900;
+    font-style: italic;
+}
+
 :root {
     font-family: "Deadlock", sans-serif;
     font-optical-sizing: auto;
