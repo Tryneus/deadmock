@@ -4,7 +4,6 @@
     align-items: center;
 
     .mock-editor-type-selector {
-        padding: 10px 0;
         display: flex;
         flex-wrap: nowrap;
         justify-content: center;
@@ -13,6 +12,7 @@
         font-style: normal;
         font-size: 20px;
         user-select: none;
+        margin-top: 20px;
 
         > div {
             background-color: #777777;
@@ -53,6 +53,8 @@
         font-style: normal;
         font-size: 12px;
         user-select: none;
+        margin-top: 12px;
+        margin-bottom: 12px;
 
         .mock-editor-button {
             background: #777777;
@@ -74,6 +76,5 @@
 
     .mock-editor-content {
         display: flex;
-        margin-top: 20px;
     }
 }
