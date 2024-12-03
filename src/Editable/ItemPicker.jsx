@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import {useCallback} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
-import {Icon} from '../Icon';
 import {allItems} from '../Common';
+import {Icon} from '../Icon';
 
 import './ItemPicker.css';
 
@@ -29,26 +29,22 @@ const byCategory = Object.groupBy(allItems, (x) => x.category);
 const groups =
   Object.fromEntries(
     Object.entries(byCategory)
-      .map(([c, list]) =>
-        [c, Object.groupBy(list, (x) => x.tier)]
-      )
+      .map(([c, list]) => [c, Object.groupBy(list, (x) => x.tier)]),
   );
 
 // Sort tiers as they are in the game, inactive before active, then alphabetically
-Object.values(groups).forEach((group) => Object.values(group).forEach((tier) =>
-  tier.sort((a, b) => {
-    if (a.active < b.active) {
-      return -1;
-    } else if (a.active > b.active) {
-      return 1;
-    } else if (a.name < b.name) {
-      return -1;
-    } else if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
-  }),
-));
+Object.values(groups).forEach((group) => Object.values(group).forEach((tier) => tier.sort((a, b) => {
+  if (a.active < b.active) {
+    return -1;
+  } else if (a.active > b.active) {
+    return 1;
+  } else if (a.name < b.name) {
+    return -1;
+  } else if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+})));
 
 const ItemPicker = ({onChange}) => {
   const renderTier = (items) => (

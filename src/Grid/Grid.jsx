@@ -6,9 +6,9 @@ import {useAction} from '../Common';
 import {EditableIcon, EditableText, StylePicker, TooltipContainer} from '../Editable';
 import {Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {SpiritScaling} from './SpiritScaling';
 import {SemiBold, Text} from '../Text';
 import {Value} from '../Value';
+import {SpiritScaling} from './SpiritScaling';
 
 import './Grid.css';
 

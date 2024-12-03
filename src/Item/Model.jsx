@@ -1,8 +1,8 @@
 import {makeAutoObservable} from 'mobx';
 import {deepCopy, itemsByName, tierCosts} from '../Common';
 
-import {ValueModel} from '../Value';
 import {GridModel} from '../Grid';
+import {ValueModel} from '../Value';
 
 const placeholderMarkdownSection = {type: 'markdown', data: 'Insert **markdown** here.'};
 const placeholderGridSection = {

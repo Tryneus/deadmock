@@ -2,7 +2,7 @@ import {observer} from 'mobx-react-lite';
 import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
-import {Markdown, textColors} from '../Text';
+import {textColors} from '../Text';
 
 import './StylePicker.css';
 

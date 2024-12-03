@@ -1,8 +1,8 @@
-import {makeAutoObservable, reaction, runInAction, autorun} from 'mobx';
+import {autorun, makeAutoObservable, reaction, runInAction} from 'mobx';
 
 import {AbilityModel} from './Ability';
 import {ItemModel} from './Item';
-import {exampleItem, exampleAbility} from './example';
+import {exampleAbility, exampleItem} from './example';
 
 const versionKey = 'version';
 const modeKey = 'mode';
@@ -19,6 +19,51 @@ const version = 'v1';
 // mode: string ('ability' | 'item')
 
 const storage = window.localStorage;
+
+const loadHistory = (key) => {
+  const raw = storage.getItem(key);
+  return raw && JSON.parse(raw) || [];
+};
+
+const pushHistory = (model) => {
+  if (model instanceof ItemModel) {
+    const history = loadHistory(itemHistoryKey);
+    const idx = history.findIndex((x) => x.id === model.id);
+    if (idx >= 0) {
+      history.splice(idx, 1);
+    }
+    history.unshift({id: model.id, category: model.category, name: model.name, timestamp: Date.now()});
+    history.splice(historyLimit);
+    storage.setItem(itemHistoryKey, JSON.stringify(history));
+  } else if (model instanceof AbilityModel) {
+    const history = loadHistory(abilityHistoryKey);
+    const idx = history.findIndex((x) => x.id === model.id);
+    if (idx >= 0) {
+      history.splice(idx, 1);
+    }
+    history.unshift({id: model.id, name: model.name, timestamp: Date.now()});
+    history.splice(historyLimit);
+    storage.setItem(abilityHistoryKey, JSON.stringify(history));
+  } else {
+    console.error('unrecognized model type', model);
+  }
+};
+
+const pruneStorage = () => {
+  const whitelist = new Set([
+    ...loadHistory(itemHistoryKey).map((x) => x.id),
+    ...loadHistory(abilityHistoryKey).map((x) => x.id),
+    ...reservedKeys,
+  ]);
+
+  const count = storage.length;
+  for (let i = 0; i < count; i++) {
+    const key = storage.key(i);
+    if (!whitelist.has(key)) {
+      storage.removeItem(key);
+    }
+  }
+};
 
 class State {
   mode = 'ability';
@@ -124,50 +169,6 @@ class State {
       this.ability = model;
     });
   }
-};
-
-const loadHistory = (key) => {
-  const raw = storage.getItem(key);
-  return raw && JSON.parse(raw) || [];
-};
-
-const pushHistory = (model) => {
-  if (model instanceof ItemModel) {
-    const history = loadHistory(itemHistoryKey);
-    const idx = history.findIndex((x) => x.id === model.id);
-    if (idx >= 0) {
-      history.splice(idx, 1);
-    }
-    history.unshift({id: model.id, category: model.category, name: model.name, timestamp: Date.now()});
-    storage.setItem(itemHistoryKey, JSON.stringify(history));
-  } else if (model instanceof AbilityModel) {
-    const history = loadHistory(abilityHistoryKey);
-    const idx = history.findIndex((x) => x.id === model.id);
-    if (idx >= 0) {
-      history.splice(idx, 1);
-    }
-    history.unshift({id: model.id, name: model.name, timestamp: Date.now()});
-    storage.setItem(abilityHistoryKey, JSON.stringify(history));
-  } else {
-    console.error('unrecognized model type', model);
-  }
-};
-
-const pruneStorage = () => {
-  const whitelist = new Set([
-    ...loadHistory(itemHistoryKey).map((x) => x.id),
-    ...loadHistory(abilityHistoryKey).map((x) => x.id),
-    ...reservedKeys,
-  ]);
-
-  const count = storage.length;
-  for (let i = 0; i < count; i++) {
-    const key = storage.key(i);
-    if (!whitelist.has(key)) {
-      console.log('removing old model from localStorage', key);
-      storage.removeItem(key);
-    }
-  }
-};
+}
 
 export {State};

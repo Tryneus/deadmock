@@ -1,13 +1,12 @@
 import classNames from 'classnames';
 import {toBlob} from 'html-to-image';
 import {observer} from 'mobx-react-lite';
-import {useCallback, useRef, useState} from 'preact/hooks';
+import {useCallback, useRef} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
 import {Ability} from '../Ability';
 import {useAction} from '../Common';
 import {Item} from '../Item';
-import {exampleAbility, exampleItem} from '../example';
 
 import './Editor.css';
 
@@ -68,7 +67,7 @@ const Editor = observer(({state}) => {
       <div className="mock-editor-type-selector">
         <div>
           <EditorTypeOption active={state.mode === 'ability'} color={colors.ability} label="Ability" onClick={setAbility} />
-          <EditorTypeOption active={state.mode === 'item'} color={colors[exampleItem.category]} label="Item" onClick={setItem} />
+          <EditorTypeOption active={state.mode === 'item'} color={colors[state.item.category]} label="Item" onClick={setItem} />
         </div>
       </div>
       <div className="mock-editor-buttons">

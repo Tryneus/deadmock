@@ -1,11 +1,11 @@
-.mock-icon-selector {
+.mock-icon-picker {
     background: #222222;
     border: 2px solid #999999;
     padding: 5px;
     white-space: nowrap;
     font-size: 24px;
 
-    .mock-icon-selector-button {
+    .mock-icon-picker-button {
         display: inline-block;
         margin: 2px;
         line-height: 14px;

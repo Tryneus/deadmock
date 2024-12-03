@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import {SemiBold} from '../Text';
 import {Icon} from '../Icon';
+import {SemiBold} from '../Text';
 
 import './SidebarButton.css';
 
