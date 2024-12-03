@@ -17,6 +17,11 @@
         margin-top: 10px;
     }
 
+    &:hover {
+        background: #666699;
+        border: 2px solid #8888aa;
+    }
+
     .mock-icon {
         margin-left: 4px;
     }

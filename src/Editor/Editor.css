@@ -40,7 +40,7 @@
                 border-bottom-right-radius: 10px;
             }
 
-            &.mock-editor-type-option-inactive {
+            &.mock-editor-type-option-inactive:not(:hover) {
                 filter: saturate(20%) brightness(60%) contrast(60%);
             }
         }
@@ -59,13 +59,13 @@
         .mock-editor-button {
             background: #777777;
             border-radius: 5px;
-            padding: 2px 5px;
+            padding: 0 3px;
             cursor: pointer;
+            border: 2px solid #222222;
 
             &:hover {
                 background: #666699;
                 border: 2px solid #8888aa;
-                padding: 0 3px;
             }
 
             &:not(:first-child) {

@@ -114,6 +114,7 @@
             align-self: stretch;
             display: flex;
             flex-direction: column;
+            border-radius: 0.6em;
         }
 
         .mock-ability-upgrade.mock-ability-upgrade-inactive {

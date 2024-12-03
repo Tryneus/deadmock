@@ -130,6 +130,7 @@
 
     color: #ffefd7;
 	background-color: #ffffff;
+    overflow-y: scroll;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;

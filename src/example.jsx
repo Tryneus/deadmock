@@ -110,7 +110,7 @@ const ReturnFire = new ItemState({
       sections: [
         {
           type: 'markdown',
-          data: 'Automatically **fire a bullet**, towards any attacker who damages you with their abilities or weapon.',
+          data: 'Automatically **fire a bullet** towards any attacker who damages you with their abilities or weapon.',
         }, {
           type: 'grid',
           data: {
