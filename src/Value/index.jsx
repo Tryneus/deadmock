@@ -1,3 +1,4 @@
 import {Value} from './Value';
+import {ValueModel} from './Model';
 
-export {Value};
+export {Value, ValueModel};
