@@ -18,7 +18,7 @@ const Value = observer(({model}) => {
       model.value = parseFloat(matches[1]);
       model.units = matches[3];
     }
-  });
+  }, [model]);
 
   const renderSign = (signed, value) => {
     if (!signed && value >= 0) {

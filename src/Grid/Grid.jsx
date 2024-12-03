@@ -136,7 +136,7 @@ const GridCellHoverButtons = observer(({data, cell, onEmpty}) => {
     } else {
       cell.spiritScaling = null;
     }
-  });
+  }, [cell]);
 
   const onConditional = useAction(() => (cell.conditional = !cell.conditional), [cell]);
 
@@ -160,11 +160,11 @@ const GridCellValuesItem = observer(({model, index, onEmpty}) => {
   const value = model.values[index];
   const onChange = useAction((x) => (value.stat = x), [value]);
   const onDelete = useAction(() => {
-    model.removeValue(index), [model, index];
+    model.removeValue(index);
     if (model.cells.length === 0 && model.values.length === 0) {
       onEmpty();
     }
-  });
+  }, [index, model, onEmpty]);
 
   return (
     <div className="mock-grid-cell-values-item">

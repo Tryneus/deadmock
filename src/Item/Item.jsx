@@ -65,9 +65,9 @@ const Header = observer(({model}) => {
     model.category = categories[idx % categories.length];
   }, [model]);
 
-  const onAddComponent = useAction(() => model.addComponent());
-  const onAddEffect = useAction(() => model.addEffect());
-  const onAddStat = useAction(() => model.addStat({signed: true}));
+  const onAddComponent = useAction(() => model.addComponent(), [model]);
+  const onAddEffect = useAction(() => model.addEffect(), [model]);
+  const onAddStat = useAction(() => model.addStat({signed: true}), [model]);
 
   const renderSidebarButtons = useCallback(() => (
     <>
@@ -115,8 +115,8 @@ Header.propTypes = {
 };
 
 const ItemComponent = observer(({model, index}) => {
-  const onDelete = useAction(() => model.removeComponent(index));
-  const onChange = useAction((x) => (model.components[index] = x.name));
+  const onDelete = useAction(() => model.removeComponent(index), [index, model]);
+  const onChange = useAction((x) => (model.components[index] = x.name), [index, model]);
 
   const item = model.componentInfo[index];
   const classes = classNames('mock-item-component-badge-icon', `mock-item-component-badge-${item.category}`);
@@ -158,8 +158,8 @@ ItemComponents.propTypes = {
 };
 
 const StatLine = observer(({model, index}) => {
-  const onChangeStat = useAction((x) => (model.stats[index].stat = x), [model, index]);
-  const onDelete = useAction(() => model.removeStat(index), [model, index]);
+  const onChangeStat = useAction((x) => (model.stats[index].stat = x), [index, model]);
+  const onDelete = useAction(() => model.removeStat(index), [index, model]);
 
   return (
     <div>
@@ -191,7 +191,7 @@ const ItemEffectSection = observer(({model, index}) => {
   // onChange is only used for markdown sections, as the grid is given its own model for updating
   const section = model.sections[index];
   const onChange = useAction((x) => (section.data = x), [section]);
-  const onEmptyGrid = useAction(() => model.removeSection(index), [model, index]);
+  const onEmptyGrid = useAction(() => model.removeSection(index), [index, model]);
 
   if (section.type === 'markdown') {
     return (
@@ -220,8 +220,8 @@ const ItemEffect = observer(({item, model}) => {
   }, [model]);
 
   const onChangeActive = useAction(() => (model.active = !model.active), [model]);
-  const onAddMarkdown = useAction(() => model.addMarkdownSection());
-  const onAddGrid = useAction(() => model.addGridSection());
+  const onAddMarkdown = useAction(() => model.addMarkdownSection(), [model]);
+  const onAddGrid = useAction(() => model.addGridSection(), [model]);
   const onDelete = useAction(() => {
     const index = item.effects.indexOf(model);
     if (index === -1) {
@@ -229,7 +229,7 @@ const ItemEffect = observer(({item, model}) => {
     } else {
       item.removeEffect(index);
     }
-  });
+  }, [item, model]);
 
   const effectType = model.active ?
     <Bold color="bright">Active</Bold> :

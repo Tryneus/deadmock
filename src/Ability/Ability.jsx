@@ -51,7 +51,7 @@ const AbilityStat = ({model, value}) => {
     } else {
       model.removeStat(idx);
     }
-  });
+  }, [value, model]);
 
   if (!value) {
     return null;
@@ -104,7 +104,7 @@ const Header = observer(({model}) => {
       <>
         <SidebarButton label="Stat" onClick={onAddStat} />
         {cooldown ? null : <SidebarButton label="Cooldown" onClick={onAddCooldown} />}
-        {charges ? null : <SidebarButton label="Charges" onClick={onAddCharges} />}
+        {charges && chargeCooldown ? null : <SidebarButton label="Charges" onClick={onAddCharges} />}
       </>
     );
   };

@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import {toBlob} from 'html-to-image';
-import {toJS} from 'mobx';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useRef, useState} from 'preact/hooks';
 import PropTypes from 'prop-types';
@@ -60,7 +59,7 @@ const Editor = observer(() => {
 
   const onCopyJSON = useCallback(() => {
     const obj = type === 'ability' ? exampleAbility : exampleItem;
-    navigator.clipboard.write([new ClipboardItem({'text/plain': JSON.stringify(toJS(obj))})])
+    navigator.clipboard.write([new ClipboardItem({'text/plain': JSON.stringify(obj)})])
       .catch((error) => console.error('failed to copy json', error));
   }, [type]);
 

@@ -180,7 +180,7 @@ class ItemState {
   }
 
   addStat() {
-    this.stats.push(new Value());
+    this.stats.push(new Value({signed: true}));
   }
 
   removeStat(i) {
