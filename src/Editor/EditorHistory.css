@@ -1,0 +1,69 @@
+.mock-editor-history {
+    display: flex;
+    background-color: #222222;
+    border: 2px solid black;
+    border-radius: 3px;
+
+    .mock-icon {
+        height: 1lh;
+        width: 1lh;
+        border-right: 2px solid black;
+    }
+
+    .mock-editor-history-dropdown {
+        position: relative;
+        width: 0;
+
+        > div {
+            position: absolute;
+            top: 100%;
+            left: -2px;
+            width: min-content;
+            z-index: 10;
+
+            border: 2px solid black;
+        }
+
+        .mock-editor-history-entry, .mock-editor-history-template {
+            &:hover {
+                filter: brightness(120%) saturate(120%);
+                border: 1px solid black;
+                padding: 0 9px;
+            }
+        }
+    }
+
+    .mock-editor-history-entry, .mock-editor-history-template {
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+        white-space: nowrap;
+        padding: 1px 10px;
+        cursor: pointer;
+
+        > span:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &.mock-editor-history-entry-ability {
+            background-color: #3399f3;
+        }
+
+        &.mock-editor-history-entry-weapon {
+            background-color: #c87a02;
+        }
+
+        &.mock-editor-history-entry-vitality {
+            background-color: #659818;
+        }
+
+        &.mock-editor-history-entry-spirit {
+            background-color: #8b56b4;
+        }
+    }
+
+    .mock-editor-history-template {
+        filter: brightness(80%) saturate(70%);
+    }
+}

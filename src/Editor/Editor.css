@@ -68,10 +68,11 @@
                 background: #666699;
                 border: 2px solid #8888aa;
             }
+        }
 
-            &:not(:first-child) {
-                margin-left: 10px;
-            }
+
+        > *:not(:first-child) {
+            margin-left: 10px;
         }
     }
 

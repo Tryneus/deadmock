@@ -125,7 +125,8 @@ const ReturnFire = {
   ],
 };
 
-const TornadoAbility = {
+const Tornado = {
+  category:    'ability',
   name:        'Tornado',
   description: 'Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.',
 
@@ -159,12 +160,8 @@ const TornadoAbility = {
   ],
 };
 
-const examples = {
-  items:     [HeroicAura, ReturnFire, SlowingHex],
-  abilities: [TornadoAbility],
-};
+const examples = [Tornado, HeroicAura, ReturnFire, SlowingHex];
+const defaultItem = ReturnFire;
+const defaultAbility = Tornado;
 
-const exampleItem = ReturnFire;
-const exampleAbility = TornadoAbility;
-
-export {exampleAbility, exampleItem, examples};
+export {defaultAbility, defaultItem, examples};

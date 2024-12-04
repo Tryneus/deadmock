@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import {Ability} from '../Ability';
 import {useAction} from '../Common';
 import {Item} from '../Item';
+import {EditorHistory} from './EditorHistory';
 
 import './Editor.css';
 
@@ -77,6 +78,7 @@ const Editor = observer(({state}) => {
         <div className="mock-editor-button" onClick={onCopyJSON}>
           Copy JSON
         </div>
+        <EditorHistory state={state} />
       </div>
       <div ref={contentRef} className="mock-editor-content">
         {state.mode === 'ability' ? <Ability model={state.ability} /> : null}

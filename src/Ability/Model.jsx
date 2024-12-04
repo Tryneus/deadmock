@@ -5,6 +5,7 @@ import {ValueModel} from '../Value';
 
 class AbilityModel {
   id;
+  category = 'ability';
   name = '';
   stats = [];
   description = '';

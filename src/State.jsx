@@ -2,7 +2,7 @@ import {autorun, makeAutoObservable, reaction, runInAction} from 'mobx';
 
 import {AbilityModel} from './Ability';
 import {ItemModel} from './Item';
-import {exampleAbility, exampleItem} from './example';
+import {defaultAbility, defaultItem} from './example';
 
 const versionKey = 'version';
 const modeKey = 'mode';
@@ -10,12 +10,12 @@ const itemHistoryKey = 'item-history';
 const abilityHistoryKey = 'ability-history';
 const reservedKeys = [versionKey, modeKey, itemHistoryKey, abilityHistoryKey];
 
-const historyLimit = 20;
+const historyLimit = 10;
 
 const version = 'v1';
 // activeItem: string (uuid key),
 // activeAbility: string (uuid key),
-// history: [{type: string, name: string, timestamp: number, key: string}...] (max length = historyLimit)
+// history: [{category: string, name: string, timestamp: number, key: string}...] (max length = historyLimit)
 // mode: string ('ability' | 'item')
 
 const storage = window.localStorage;
@@ -25,28 +25,39 @@ const loadHistory = (key) => {
   return raw && JSON.parse(raw) || [];
 };
 
-const pushHistory = (model) => {
+const loadAllHistory = () => {
+  return [
+    ...loadHistory(itemHistoryKey),
+    ...loadHistory(abilityHistoryKey),
+  ].sort((a, b) => {
+    if (a.timestamp < b.timestamp) {
+      return 1;
+    } else if (b.timestamp < a.timestamp) {
+      return -1;
+    }
+    return 0;
+  });
+};
+
+const modelHistoryKey = (model) => {
   if (model instanceof ItemModel) {
-    const history = loadHistory(itemHistoryKey);
-    const idx = history.findIndex((x) => x.id === model.id);
-    if (idx >= 0) {
-      history.splice(idx, 1);
-    }
-    history.unshift({id: model.id, category: model.category, name: model.name, timestamp: Date.now()});
-    history.splice(historyLimit);
-    storage.setItem(itemHistoryKey, JSON.stringify(history));
+    return itemHistoryKey;
   } else if (model instanceof AbilityModel) {
-    const history = loadHistory(abilityHistoryKey);
-    const idx = history.findIndex((x) => x.id === model.id);
-    if (idx >= 0) {
-      history.splice(idx, 1);
-    }
-    history.unshift({id: model.id, name: model.name, timestamp: Date.now()});
-    history.splice(historyLimit);
-    storage.setItem(abilityHistoryKey, JSON.stringify(history));
-  } else {
-    console.error('unrecognized model type', model);
+    return abilityHistoryKey;
   }
+  console.error('unrecognized model type', model);
+};
+
+const pushHistory = (model) => {
+  const historyKey = modelHistoryKey(model);
+  const history = loadHistory(historyKey);
+  const idx = history.findIndex((x) => x.id === model.id);
+  if (idx >= 0) {
+    history.splice(idx, 1);
+  }
+  history.unshift({id: model.id, category: model.category, name: model.name, timestamp: Date.now()});
+  history.splice(historyLimit);
+  storage.setItem(historyKey, JSON.stringify(history));
 };
 
 const pruneStorage = () => {
@@ -81,16 +92,16 @@ class State {
 
     const activeItem = loadHistory(itemHistoryKey)?.[0]?.id;
     if (activeItem) {
-      this.loadItem(activeItem);
+      this.loadRecord(activeItem);
     } else {
-      this.useTemplateItem(exampleItem);
+      this.loadRaw(defaultItem);
     }
 
     const activeAbility = loadHistory(abilityHistoryKey)?.[0]?.id;
     if (activeAbility) {
-      this.loadAbility(activeAbility);
+      this.loadRecord(activeAbility);
     } else {
-      this.useTemplateAbility(exampleAbility);
+      this.loadRaw(defaultAbility);
     }
 
     this.mode = storage.getItem(modeKey) || this.mode;
@@ -99,12 +110,19 @@ class State {
     // auto-sync mode to storage
     reaction(
       () => this.mode,
-      () => storage.setItem(modeKey, this.mode),
+      () => {
+        storage.setItem(modeKey, this.mode);
+        if (this.mode === 'item') {
+          pushHistory(this.item);
+        } else if (this.mode === 'ability') {
+          pushHistory(this.ability);
+        }
+      },
       {delay: 100},
     );
     autorun(
       () => {
-        if (this.item) {
+        if (this.item && this.mode === 'item') {
           storage.setItem(this.item.id, JSON.stringify(this.item));
           pushHistory(this.item); // updates timestamp and snapshotted props
         }
@@ -113,7 +131,7 @@ class State {
     );
     autorun(
       () => {
-        if (this.ability) {
+        if (this.ability && this.mode === 'ability') {
           storage.setItem(this.ability.id, JSON.stringify(this.ability));
           pushHistory(this.ability);
         }
@@ -122,29 +140,20 @@ class State {
     );
   }
 
-  useTemplateItem(raw) {
-    this._setItem(new ItemModel(raw));
-  }
-
-  useTemplateAbility(raw) {
-    this._setAbility(new AbilityModel(raw));
-  }
-
-  loadItem(key) {
-    const itemData = storage.getItem(key);
-    if (itemData) {
-      this._setItem(new ItemModel(JSON.parse(itemData)));
+  loadRaw(raw) {
+    if (raw.category === 'ability') {
+      this._setAbility(new AbilityModel(raw));
     } else {
-      console.error('failed to load item', key);
+      this._setItem(new ItemModel(raw));
     }
   }
 
-  loadAbility(key) {
-    const abilityData = storage.getItem(key);
-    if (abilityData) {
-      this._setAbility(new AbilityModel(JSON.parse(abilityData)));
+  loadRecord(key) {
+    const str = storage.getItem(key);
+    if (str) {
+      this.loadRaw(JSON.parse(str));
     } else {
-      console.error('failed to load ability', key);
+      console.error('failed to load record from localStorage', key);
     }
   }
 
@@ -171,4 +180,4 @@ class State {
   }
 }
 
-export {State};
+export {State, loadAllHistory};
