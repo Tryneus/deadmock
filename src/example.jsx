@@ -160,7 +160,7 @@ const Tornado = {
   ],
 };
 
-const examples = [Tornado, HeroicAura, ReturnFire, SlowingHex];
+const examples = [HeroicAura, ReturnFire, SlowingHex, Tornado];
 const defaultItem = ReturnFire;
 const defaultAbility = Tornado;
 

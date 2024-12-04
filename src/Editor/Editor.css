@@ -4,49 +4,6 @@
     align-items: center;
     padding-bottom: 450px; /* safety margin so tooltips don't change the page height */
 
-    .mock-editor-type-selector {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: center;
-        font-family: "Roboto", sans-serif;
-        font-weight: 700;
-        font-style: normal;
-        font-size: 20px;
-        user-select: none;
-        margin-top: 20px;
-
-        > div {
-            background-color: #777777;
-            border-radius: 10px;
-        }
-
-        .mock-editor-type-option {
-            display: inline-block;
-            background: #222222;
-            font-weight: 600;
-            padding: 6px 12px;
-            cursor: pointer;
-
-            &:first-child {
-                border-top-left-radius: 10px;
-                border-bottom-left-radius: 10px;
-            }
-
-            &:not(:first-child) {
-                margin-left: 2px;
-            }
-
-            &:last-child {
-                border-top-right-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
-
-            &.mock-editor-type-option-inactive:not(:hover) {
-                filter: saturate(20%) brightness(60%) contrast(60%);
-            }
-        }
-    }
-
     .mock-editor-buttons {
         display: flex;
         font-family: "Roboto", sans-serif;
@@ -54,7 +11,7 @@
         font-style: normal;
         font-size: 12px;
         user-select: none;
-        margin-top: 12px;
+        margin-top: 20px;
         margin-bottom: 12px;
 
         .mock-editor-button {

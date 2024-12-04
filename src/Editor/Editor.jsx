@@ -4,9 +4,9 @@ import {observer} from 'mobx-react-lite';
 import {useCallback, useRef} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
-import {Ability} from '../Ability';
+import {Ability, AbilityModel} from '../Ability';
 import {useAction} from '../Common';
-import {Item} from '../Item';
+import {Item, ItemModel} from '../Item';
 import {EditorHistory} from './EditorHistory';
 
 import './Editor.css';
@@ -58,19 +58,21 @@ const Editor = observer(({state}) => {
   }, [contentRef]);
 
   const onCopyJSON = useCallback(() => {
-    const obj = state.mode === 'ability' ? state.ability : state.item;
-    navigator.clipboard.write([new ClipboardItem({'text/plain': JSON.stringify(obj)})])
+    navigator.clipboard.write([new ClipboardItem({'text/plain': JSON.stringify(state.activeModel)})])
       .catch((error) => console.error('failed to copy json', error));
   }, [state]);
 
+  const renderActive = () => {
+    if (state.activeModel instanceof AbilityModel) {
+      return <Ability model={state.activeModel} />;
+    } else if (state.activeModel instanceof ItemModel) {
+      return <Item model={state.activeModel} />;
+    }
+    console.error('unknown model', state.activeModel);
+  };
+
   return (
     <div className="mock-editor">
-      <div className="mock-editor-type-selector">
-        <div>
-          <EditorTypeOption active={state.mode === 'ability'} color={colors.ability} label="Ability" onClick={setAbility} />
-          <EditorTypeOption active={state.mode === 'item'} color={colors[state.item.category]} label="Item" onClick={setItem} />
-        </div>
-      </div>
       <div className="mock-editor-buttons">
         <div className="mock-editor-button" onClick={onCopyImage}>
           Copy Image
@@ -81,8 +83,7 @@ const Editor = observer(({state}) => {
         <EditorHistory state={state} />
       </div>
       <div ref={contentRef} className="mock-editor-content">
-        {state.mode === 'ability' ? <Ability model={state.ability} /> : null}
-        {state.mode === 'item' ? <Item model={state.item} /> : null}
+        {renderActive()};
       </div>
     </div>
   );

@@ -2,13 +2,11 @@ import {autorun, makeAutoObservable, reaction, runInAction} from 'mobx';
 
 import {AbilityModel} from './Ability';
 import {ItemModel} from './Item';
-import {defaultAbility, defaultItem} from './example';
+import {examples} from './example';
 
 const versionKey = 'version';
-const modeKey = 'mode';
-const itemHistoryKey = 'item-history';
-const abilityHistoryKey = 'ability-history';
-const reservedKeys = [versionKey, modeKey, itemHistoryKey, abilityHistoryKey];
+const historyKey = 'history';
+const reservedKeys = [versionKey, historyKey];
 
 const historyLimit = 10;
 
@@ -16,40 +14,16 @@ const version = 'v1';
 // activeItem: string (uuid key),
 // activeAbility: string (uuid key),
 // history: [{category: string, name: string, timestamp: number, key: string}...] (max length = historyLimit)
-// mode: string ('ability' | 'item')
 
 const storage = window.localStorage;
 
-const loadHistory = (key) => {
-  const raw = storage.getItem(key);
+const loadHistory = () => {
+  const raw = storage.getItem(historyKey);
   return raw && JSON.parse(raw) || [];
 };
 
-const loadAllHistory = () => {
-  return [
-    ...loadHistory(itemHistoryKey),
-    ...loadHistory(abilityHistoryKey),
-  ].sort((a, b) => {
-    if (a.timestamp < b.timestamp) {
-      return 1;
-    } else if (b.timestamp < a.timestamp) {
-      return -1;
-    }
-    return 0;
-  });
-};
-
-const modelHistoryKey = (model) => {
-  if (model instanceof ItemModel) {
-    return itemHistoryKey;
-  } else if (model instanceof AbilityModel) {
-    return abilityHistoryKey;
-  }
-  console.error('unrecognized model type', model);
-};
-
 const pushHistory = (model) => {
-  const historyKey = modelHistoryKey(model);
+  console.log('pushHistory', model);
   const history = loadHistory(historyKey);
   const idx = history.findIndex((x) => x.id === model.id);
   if (idx >= 0) {
@@ -62,8 +36,7 @@ const pushHistory = (model) => {
 
 const pruneStorage = () => {
   const whitelist = new Set([
-    ...loadHistory(itemHistoryKey).map((x) => x.id),
-    ...loadHistory(abilityHistoryKey).map((x) => x.id),
+    ...loadHistory().map((x) => x.id),
     ...reservedKeys,
   ]);
 
@@ -77,9 +50,7 @@ const pruneStorage = () => {
 };
 
 class State {
-  mode = 'ability';
-  item = null;
-  ability = null;
+  activeModel = null;
 
   constructor() {
     // No migrations are currently handled
@@ -90,50 +61,21 @@ class State {
       console.error('unsupported stored data version in localStorage', {expected: version, found: foundVersion});
     }
 
-    const activeItem = loadHistory(itemHistoryKey)?.[0]?.id;
-    if (activeItem) {
-      this.loadRecord(activeItem);
+    const activeModel = loadHistory()?.[0]?.id;
+    if (activeModel) {
+      this.loadRecord(activeModel);
     } else {
-      this.loadRaw(defaultItem);
+      this.loadRaw(examples[0]);
     }
 
-    const activeAbility = loadHistory(abilityHistoryKey)?.[0]?.id;
-    if (activeAbility) {
-      this.loadRecord(activeAbility);
-    } else {
-      this.loadRaw(defaultAbility);
-    }
-
-    this.mode = storage.getItem(modeKey) || this.mode;
     makeAutoObservable(this);
 
-    // auto-sync mode to storage
-    reaction(
-      () => this.mode,
-      () => {
-        storage.setItem(modeKey, this.mode);
-        if (this.mode === 'item') {
-          pushHistory(this.item);
-        } else if (this.mode === 'ability') {
-          pushHistory(this.ability);
-        }
-      },
-      {delay: 100},
-    );
     autorun(
       () => {
-        if (this.item && this.mode === 'item') {
-          storage.setItem(this.item.id, JSON.stringify(this.item));
-          pushHistory(this.item); // updates timestamp and snapshotted props
-        }
-      },
-      {delay: 100},
-    );
-    autorun(
-      () => {
-        if (this.ability && this.mode === 'ability') {
-          storage.setItem(this.ability.id, JSON.stringify(this.ability));
-          pushHistory(this.ability);
+        if (this.activeModel) {
+          storage.setItem(this.activeModel.id, JSON.stringify(this.activeModel));
+          pushHistory(this.activeModel); // updates timestamp and snapshotted props
+          pruneStorage();
         }
       },
       {delay: 100},
@@ -142,9 +84,9 @@ class State {
 
   loadRaw(raw) {
     if (raw.category === 'ability') {
-      this._setAbility(new AbilityModel(raw));
+      this._setActive(new AbilityModel(raw));
     } else {
-      this._setItem(new ItemModel(raw));
+      this._setActive(new ItemModel(raw));
     }
   }
 
@@ -157,27 +99,11 @@ class State {
     }
   }
 
-  setMode(mode) {
-    if (['item', 'ability'].includes(mode)) {
-      this.mode = mode;
-    } else {
-      console.error('unknown mode', mode);
-    }
-  }
-
-  _setItem(model) {
+  _setActive(model) {
     runInAction(() => {
-      this.mode = 'item';
-      this.item = model;
-    });
-  }
-
-  _setAbility(model) {
-    runInAction(() => {
-      this.mode = 'ability';
-      this.ability = model;
+      this.activeModel = model;
     });
   }
 }
 
-export {State, loadAllHistory};
+export {State, loadHistory};

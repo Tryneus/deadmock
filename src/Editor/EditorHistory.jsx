@@ -4,7 +4,7 @@ import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
 import {Icon} from '../Icon';
-import {loadAllHistory} from '../State';
+import {loadHistory} from '../State';
 import {Text} from '../Text';
 import {examples} from '../example';
 import './EditorHistory.css';
@@ -94,9 +94,10 @@ const EditorHistoryDropdown = ({state, onClose}) => {
   const ref = useRef(null);
   const [history, setHistory] = useState([]);
   useEffect(() => {
-    const allHistory = loadAllHistory();
-    allHistory.splice(0, 1); // Remove latest record
-    setHistory(allHistory);
+    const h = loadHistory();
+    console.log('history', h);
+    h.splice(0, 1); // Remove latest (currently active) record
+    setHistory(h);
   }, [setHistory]);
 
   // Dismiss dropdown if user clicks outside of it
@@ -127,12 +128,8 @@ EditorHistoryDropdown.propTypes = {
 };
 
 const getActiveInfo = (state) => {
-  if (state.mode === 'item') {
-    return {category: state.item.category, name: state.item.name};
-  } else if (state.mode === 'ability') {
-    return {category: 'ability', name: state.ability.name};
-  }
-  console.error('invalid editor mode', state.mode);
+  const {category, name} = state.activeModel;
+  return {category, name};
 };
 
 const EditorHistory = observer(({state}) => {
@@ -146,7 +143,7 @@ const EditorHistory = observer(({state}) => {
       <Icon image="dropdown" onClick={onToggle} />
       {open && <EditorHistoryDropdown state={state} onClose={onClose} />}
       <div onClick={onToggle}>
-        <EditorHistoryEntry data={getActiveInfo(state)} />
+        <EditorHistoryEntry data={getActiveInfo(state)} state={state} />
       </div>
     </div>
   );
