@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 450px; /* safety margin so tooltips don't change the page height */
 
     .mock-editor-type-selector {
         display: flex;
