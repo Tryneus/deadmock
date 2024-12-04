@@ -12,12 +12,11 @@ const HeroicAura = {
 
   effects: [
     {
-      active:   false,
+      active:      false,
+      description: 'Provides **Fire Rate** to nearby player minions.',
+
       sections: [
         {
-          type: 'markdown',
-          data: 'Provides **Fire Rate** to nearby player minions.',
-        }, {
           type: 'grid',
           data: {
             cells:  [{icon: {image: 'stat/fire_rate', color: 'orange'}, value: 40, units: '%', stat: 'Minions Fire Rate', signed: true, weight: 600, conditional: true}],
@@ -26,13 +25,12 @@ const HeroicAura = {
         },
       ],
     }, {
-      active:   true,
-      cooldown: 32,
+      active:      true,
+      cooldown:    32,
+      description: 'Provides bonus **Movement Speed** and **Fire Rate** to you and nearby allies.',
+
       sections: [
         {
-          type: 'markdown',
-          data: 'Provides bonus **Movement Speed** and **Fire Rate** to you and nearby allies.',
-        }, {
           type: 'grid',
           data: {
             cells: [
@@ -66,13 +64,12 @@ const SlowingHex = {
 
   effects: [
     {
-      active:   true,
-      cooldown: 26,
+      active:      true,
+      cooldown:    26,
+      description: 'Deals **Spirit Damage**, **Slows** targets movement and dashes.  Also **Silences their movement-based items and abilities.**\n_Does not affect target\'s stamina usage._',
+
       sections: [
         {
-          type: 'markdown',
-          data: 'Deals **Spirit Damage**, **Slows** targets movement and dashes.  Also **Silences their movement-based items and abilities.**\n_Does not affect target\'s stamina usage._',
-        }, {
           type: 'grid',
           data: {
             cells: [
@@ -103,13 +100,12 @@ const ReturnFire = {
 
   effects: [
     {
-      active:   true,
-      cooldown: 25,
+      active:      true,
+      cooldown:    25,
+      description: 'Automatically **fire a bullet** towards any attacker who damages you with their abilities or weapon.',
+
       sections: [
         {
-          type: 'markdown',
-          data: 'Automatically **fire a bullet** towards any attacker who damages you with their abilities or weapon.',
-        }, {
           type: 'grid',
           data: {
             cells: [
@@ -139,19 +135,24 @@ const Tornado = {
     {icon: {image: 'stat/range'}, value: 25, units: 'm', signed: false},
   ],
 
-  grid: {
-    cells: [
-      {icon: {image: 'stat/spirit_damage', color: 'purple'}, value: 70, units: '', stat: 'Damage', signed: false, spiritScaling: 0.7},
-      {value: 1.5, units: 's', stat: 'Lift Duration', signed: false, icon: {image: 'stat/duration'}},
-      {value: 30, units: '%', stat: 'Bullet Evasion Chance', signed: false, icon: {image: 'stat/placeholder'}},
-    ],
-    values: [
-      {value: 3.5, units: 's', stat: 'Bullet Evasion Duration', icon: {image: 'stat/placeholder'}},
-      {value: 3.5, units: 'm', stat: 'Radius', icon: {image: 'stat/aoe'}},
-      {value: 5, units: 's', stat: 'Launch Window', icon: {image: 'stat/duration'}},
-      {value: 25, units: '%', stat: 'Heal vs Non-Heroes', icon: {image: 'stat/healing'}},
-    ],
-  },
+  sections: [
+    {
+      type: 'grid',
+      data: {
+        cells: [
+          {icon: {image: 'stat/spirit_damage', color: 'purple'}, value: 70, units: '', stat: 'Damage', signed: false, spiritScaling: 0.7},
+          {value: 1.5, units: 's', stat: 'Lift Duration', signed: false, icon: {image: 'stat/duration'}},
+          {value: 30, units: '%', stat: 'Bullet Evasion Chance', signed: false, icon: {image: 'stat/placeholder'}},
+        ],
+        values: [
+          {value: 3.5, units: 's', stat: 'Bullet Evasion Duration', icon: {image: 'stat/placeholder'}},
+          {value: 3.5, units: 'm', stat: 'Radius', icon: {image: 'stat/aoe'}},
+          {value: 5, units: 's', stat: 'Launch Window', icon: {image: 'stat/duration'}},
+          {value: 25, units: '%', stat: 'Heal vs Non-Heroes', icon: {image: 'stat/healing'}},
+        ],
+      },
+    },
+  ],
 
   upgrades: [
     '**+0.5s**\nLift Duration',
@@ -161,7 +162,4 @@ const Tornado = {
 };
 
 const examples = [HeroicAura, ReturnFire, SlowingHex, Tornado];
-const defaultItem = ReturnFire;
-const defaultAbility = Tornado;
-
-export {defaultAbility, defaultItem, examples};
+export {examples};

@@ -17,6 +17,16 @@ const version = 'v1';
 
 const storage = window.localStorage;
 
+// No migrations are currently handled
+const writeVersion = () => {
+  const foundVersion = storage.getItem(versionKey);
+  if (!foundVersion) {
+    storage.setItem(versionKey, version);
+  } else if (foundVersion !== version) {
+    console.error('unsupported stored data version in localStorage', {expected: version, found: foundVersion});
+  }
+};
+
 const loadHistory = () => {
   const raw = storage.getItem(historyKey);
   return raw && JSON.parse(raw) || [];
@@ -33,32 +43,31 @@ const pushHistory = (model) => {
   storage.setItem(historyKey, JSON.stringify(history));
 };
 
-const pruneStorage = () => {
-  const whitelist = new Set([
-    ...loadHistory().map((x) => x.id),
-    ...reservedKeys,
-  ]);
-
+const clearHistory = (whitelist) => {
+  const toDelete = [];
   const count = storage.length;
   for (let i = 0; i < count; i++) {
     const key = storage.key(i);
     if (!whitelist.has(key)) {
-      storage.removeItem(key);
+      toDelete.push(key);
     }
   }
+
+  toDelete.forEach((key) => storage.removeItem(key));
+};
+
+const pruneStorage = () => {
+  clearHistory(new Set([
+    ...loadHistory().map((x) => x.id),
+    ...reservedKeys,
+  ]));
 };
 
 class State {
   activeModel = null;
 
   constructor() {
-    // No migrations are currently handled
-    const foundVersion = storage.getItem(versionKey);
-    if (!foundVersion) {
-      storage.setItem(versionKey, version);
-    } else if (foundVersion !== version) {
-      console.error('unsupported stored data version in localStorage', {expected: version, found: foundVersion});
-    }
+    writeVersion();
 
     const activeModel = loadHistory()?.[0]?.id;
     if (activeModel) {
@@ -96,6 +105,11 @@ class State {
     } else {
       console.error('failed to load record from localStorage', key);
     }
+  }
+
+  clearData() {
+    clearHistory(new Set([versionKey]));
+    this.loadRaw(examples[0]);
   }
 
   _setActive(model) {

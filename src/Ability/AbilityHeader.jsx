@@ -6,6 +6,8 @@ import {EditableText} from '../Editable';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
 import {AbilityStat} from './AbilityStat';
 
+// This doesn't appear to be totally consistent across abilities, so we'll go with:
+// 'charges' and 'cooldown' on the right, everything else on the left
 const partitionStats = (stats) => stats.reduce((acc, x) => {
   if (['charges', 'chargeCooldown', 'cooldown'].includes(x.stat)) {
     acc[x.stat] = x;
@@ -15,8 +17,6 @@ const partitionStats = (stats) => stats.reduce((acc, x) => {
   return acc;
 }, {remainder: []});
 
-// This doesn't appear to be totally consistent across abilities, so we'll go with:
-// 'charges' and 'cooldown' on the right, everything else on the left
 const AbilityHeader = observer(({model}) => {
   const onNameChange = useAction((x) => (model.name = x), [model]);
   const onAddStat = useAction(() => model.addStat(), [model]);
@@ -27,6 +27,9 @@ const AbilityHeader = observer(({model}) => {
     model.addStat({icon: {image: 'stat/charge'}, value: 1, units: '', signed: false, stat: 'charges'});
     model.addStat({icon: {image: 'stat/charge_cooldown'}, value: 1, units: 's', signed: false, stat: 'chargeCooldown'});
   }, [model]);
+  const onAddMarkdown = useAction(() => model.addMarkdownSection());
+  const onAddGrid = useAction(() => model.addGridSection());
+
   const {charges, chargeCooldown, cooldown, remainder} = partitionStats(model.stats);
 
   const renderHeaderButtons = () => {
@@ -35,6 +38,8 @@ const AbilityHeader = observer(({model}) => {
         <SidebarButton label="Stat" onClick={onAddStat} />
         {cooldown ? null : <SidebarButton label="Cooldown" onClick={onAddCooldown} />}
         {charges && chargeCooldown ? null : <SidebarButton label="Charges" onClick={onAddCharges} />}
+        <SidebarButton label="Markdown" onClick={onAddMarkdown} />
+        <SidebarButton label="Grid" onClick={onAddGrid} />
       </>
     );
   };

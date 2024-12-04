@@ -12,10 +12,8 @@ import './EditorHistory.css';
 const EditorHistoryTemplate = ({state, data, onClose}) => {
   const classes = classNames('mock-editor-history-template', `mock-editor-history-entry-${data.category}`);
   const onClick = useCallback(() => {
-    if (onClose) {
-      state.loadRaw(data);
-      onClose();
-    }
+    state.loadRaw(data);
+    onClose();
   }, [onClose, state, data]);
 
   return (
@@ -29,7 +27,7 @@ const EditorHistoryTemplate = ({state, data, onClose}) => {
 EditorHistoryTemplate.propTypes = {
   state:   PropTypes.object.isRequired,
   data:    PropTypes.object.isRequired,
-  onClose: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
 };
 
 const prettyTimeDelta = (timestamp, now) => {
@@ -90,6 +88,25 @@ EditorHistoryEntry.propTypes = {
   onClose: PropTypes.func,
 };
 
+const EditorHistoryClear = ({state, onClose}) => {
+  const classes = classNames('mock-editor-history-entry', `mock-editor-history-entry-clear`);
+  const onClick = useCallback(() => {
+    state.clearData();
+    onClose();
+  }, [state, onClose]);
+
+  return (
+    <div className={classes} onClick={onClick}>
+      <span>Clear Data</span>
+    </div>
+  );
+};
+
+EditorHistoryClear.propTypes = {
+  state:   PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
+
 const EditorHistoryDropdown = ({state, onClose}) => {
   const ref = useRef(null);
   const [history, setHistory] = useState([]);
@@ -116,6 +133,7 @@ const EditorHistoryDropdown = ({state, onClose}) => {
       <div>
         {history.map((x, i) => <EditorHistoryEntry key={i} data={x} state={state} onClose={onClose} />)}
         {examples.map((x) => <EditorHistoryTemplate key={x.name} data={x} state={state} onClose={onClose} />)}
+        <EditorHistoryClear state={state} onClose={onClose} />
       </div>
     </div>
   );

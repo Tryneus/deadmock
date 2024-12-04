@@ -10,27 +10,34 @@ import {Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
 import {Bold, SemiBold} from '../Text';
 
-
+// TODO: almost identical to AbilitySection, any way to abstract these?
 const ItemEffectSection = observer(({model, index}) => {
   // onChange is only used for markdown sections, as the grid is given its own model for updating
   const section = model.sections[index];
-  const onChange = useAction((x) => (section.data = x), [section]);
-  const onEmptyGrid = useAction(() => model.removeSection(index), [index, model]);
+  const onDelete = useAction(() => model.removeSection(index), [index, model]);
+  const onChangeMarkdown = useAction((x) => {
+    if (x.length === 0) {
+      onDelete();
+    } else {
+      section.data;
+    }
+  }, [section, onDelete]);
 
   if (section.type === 'markdown') {
     return (
       <div className="mock-item-effect-markdown">
-        <EditableMarkdown text={section.data} onChange={onChange} />
+        <EditableMarkdown text={section.data} onChange={onChangeMarkdown} />
       </div>
     );
   } else if (section.type === 'grid') {
-    return <Grid data={section.data} onEmpty={onEmptyGrid} />;
+    return <Grid data={section.data} onEmpty={onDelete} />;
   }
   return null;
 });
 
 ItemEffectSection.propTypes = {
   model: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 const ItemEffect = observer(({item, model}) => {
@@ -44,8 +51,11 @@ const ItemEffect = observer(({item, model}) => {
   }, [model]);
 
   const onChangeActive = useAction(() => (model.active = !model.active), [model]);
+  const onChangeDescription = useAction((x) => (model.description = x), [model]);
+
   const onAddMarkdown = useAction(() => model.addMarkdownSection(), [model]);
   const onAddGrid = useAction(() => model.addGridSection(), [model]);
+
   const onDelete = useAction(() => {
     const index = item.effects.indexOf(model);
     if (index === -1) {
@@ -97,6 +107,9 @@ const ItemEffect = observer(({item, model}) => {
           {renderCooldown()}
         </div>
         <div className="mock-item-effect-body">
+          <div className="mock-item-effect-markdown">
+            <EditableMarkdown text={model.description} onChange={onChangeDescription} />
+          </div>
           {model.sections.map((x, i) => <ItemEffectSection key={i} index={i} model={model} />)}
         </div>
       </div>

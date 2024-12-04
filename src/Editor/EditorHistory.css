@@ -61,6 +61,10 @@
         &.mock-editor-history-entry-spirit {
             background-color: #8b56b4;
         }
+
+        &.mock-editor-history-entry-clear {
+            background-color: #444444;
+        }
     }
 
     .mock-editor-history-template {

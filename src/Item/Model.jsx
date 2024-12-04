@@ -1,17 +1,8 @@
 import {makeAutoObservable} from 'mobx';
-import {deepCopy, itemsByName, tierCosts} from '../Common';
 
+import {deepCopy, itemsByName, placeholderGridSection, placeholderMarkdownSection, tierCosts} from '../Common';
 import {GridModel} from '../Grid';
 import {ValueModel} from '../Value';
-
-const placeholderMarkdownSection = {type: 'markdown', data: 'Insert **markdown** here.'};
-const placeholderGridSection = {
-  type: 'grid',
-  data: {
-    cells:  [{icon: {image: 'stat/placeholder'}, value: 0, signed: false, stat: 'stat'}],
-    values: [{value: 0, units: 'm', stat: 'stat'}],
-  },
-};
 
 class ItemEffectSection {
   type = '';
@@ -36,12 +27,14 @@ class ItemEffectSection {
 class ItemEffect {
   active = false;
   cooldown = 0;
+  description = '';
   sections = [];
 
   constructor(raw) {
     if (raw) {
       this.active = raw.active;
       this.cooldown = raw.cooldown;
+      this.description = raw.description || this.description;
       this.sections = raw.sections.map((x) => new ItemEffectSection(x));
     }
     makeAutoObservable(this);

@@ -2,6 +2,7 @@
     resize: none;
     cursor: pointer;
     min-width: 0.5em;
+    min-height: 1lh;
 }
 
 [contenteditable] {

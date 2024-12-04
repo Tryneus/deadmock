@@ -92,7 +92,7 @@ const EditableMarkdown = observer(({text, format, onChange, color, size, weight}
 
   const editingOff = useCallback((e) => {
     setEditing(false);
-    onChange(e.target.innerText);
+    onChange(e.target.innerText.trim());
     e.target.innerText = ''; // react seems to have trouble with the DOM changing due to user editing?
     e.target.contentEditable = 'false';
     window.getSelection().removeAllRanges();

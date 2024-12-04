@@ -273,4 +273,25 @@ const statIcons = groupedStatIcons.flat();
 
 const tierCosts = [0, 500, 1250, 3000, 6200];
 
-export {abilityIcons, allItems, deepCopy, groupedStatIcons, itemsByName, statIcons, tierCosts, useAction};
+const placeholderMarkdownSection = {type: 'markdown', data: 'Insert **markdown** here.'};
+
+const placeholderGridSection = {
+  type: 'grid',
+  data: {
+    cells:  [{icon: {image: 'stat/placeholder'}, value: 0, signed: false, stat: 'stat'}],
+    values: [{value: 0, units: 'm', stat: 'stat'}],
+  },
+};
+
+export {
+  abilityIcons,
+  allItems,
+  deepCopy,
+  groupedStatIcons,
+  itemsByName,
+  placeholderGridSection,
+  placeholderMarkdownSection,
+  statIcons,
+  tierCosts,
+  useAction,
+};

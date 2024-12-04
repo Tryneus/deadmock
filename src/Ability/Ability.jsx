@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {EditableMarkdown} from '../Editable';
-import {Grid} from '../Grid';
 import {Text} from '../Text';
 import {AbilityHeader} from './AbilityHeader';
+import {AbilitySection} from './AbilitySection';
 import {AbilityUpgrade} from './AbilityUpgrade';
 
 import './Ability.css';
@@ -34,7 +34,7 @@ const Ability = observer(({model}) => {
         <div className="mock-ability-markdown">
           <EditableMarkdown format={descriptionMarkdownFormat} text={model.description} onChange={onChange} />
         </div>
-        <Grid data={model.grid} />
+        {model.sections.map((x, i) => <AbilitySection key={i} index={i} model={model} />)}
         <div className="mock-ability-upgrades">
           {model.upgrades.map((x, i) => <AbilityUpgrade key={i} model={model} tier={i} />)}
         </div>
