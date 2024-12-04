@@ -1,4 +1,4 @@
-import {autorun, makeAutoObservable, reaction, runInAction} from 'mobx';
+import {autorun, makeAutoObservable, runInAction} from 'mobx';
 
 import {AbilityModel} from './Ability';
 import {ItemModel} from './Item';
@@ -23,7 +23,6 @@ const loadHistory = () => {
 };
 
 const pushHistory = (model) => {
-  console.log('pushHistory', model);
   const history = loadHistory(historyKey);
   const idx = history.findIndex((x) => x.id === model.id);
   if (idx >= 0) {

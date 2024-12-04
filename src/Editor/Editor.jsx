@@ -5,18 +5,10 @@ import {useCallback, useRef} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
 import {Ability, AbilityModel} from '../Ability';
-import {useAction} from '../Common';
 import {Item, ItemModel} from '../Item';
 import {EditorHistory} from './EditorHistory';
 
 import './Editor.css';
-
-const colors = {
-  ability:  '#3399f3',
-  weapon:   '#c87a02',
-  vitality: '#659818',
-  spirit:   '#8b56b4',
-};
 
 const EditorTypeOption = ({active, color, label, onClick}) => {
   const classes = classNames('mock-editor-type-option', {
@@ -48,8 +40,6 @@ const copyFilter = (node) => {
 
 const Editor = observer(({state}) => {
   const contentRef = useRef(null);
-  const setAbility = useAction(() => state.setMode('ability'), [state]);
-  const setItem = useAction(() => state.setMode('item'), [state]);
 
   const onCopyImage = useCallback(() => {
     toBlob(contentRef.current, {filter: copyFilter, width: 600})
@@ -83,7 +73,7 @@ const Editor = observer(({state}) => {
         <EditorHistory state={state} />
       </div>
       <div ref={contentRef} className="mock-editor-content">
-        {renderActive()};
+        {renderActive()}
       </div>
     </div>
   );

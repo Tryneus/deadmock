@@ -95,7 +95,6 @@ const EditorHistoryDropdown = ({state, onClose}) => {
   const [history, setHistory] = useState([]);
   useEffect(() => {
     const h = loadHistory();
-    console.log('history', h);
     h.splice(0, 1); // Remove latest (currently active) record
     setHistory(h);
   }, [setHistory]);
