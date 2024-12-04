@@ -22,6 +22,7 @@
     .mock-item-picker-tier {
 
         > * {
+            cursor: pointer;
             display: inline-block;
             white-space: nowrap;
             margin: 2px;

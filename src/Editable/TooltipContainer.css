@@ -3,31 +3,36 @@
     position: relative;
 
     .mock-tooltip {
+        cursor: auto;
         max-width: 266px;
         position: absolute;
         z-index: 10;
+        text-align: start;
 
         &.mock-tooltip-up {
             bottom: 75%;
+
+            &::after {
+                display: block;
+                width: 0;
+                height: 0;
+                border-width: 10px;
+                border-color: #999999 transparent transparent transparent;
+                border-style: solid;
+                content: "";
+            }
         }
 
         &.mock-tooltip-down {
-        }
-
-        .mock-tooltip-arrow-up {
-            width: 0;
-            height: 0;
-            border-width: 10px;
-            border-color: #999999 transparent transparent transparent;
-            border-style: solid;
-        }
-
-        .mock-tooltip-arrow-down {
-            width: 0;
-            height: 0;
-            border-width: 10px;
-            border-color: transparent transparent #999999 transparent;
-            border-style: solid;
+            &::before {
+                display: block;
+                width: 0;
+                height: 0;
+                border-width: 10px;
+                border-color: transparent transparent #999999 transparent;
+                border-style: solid;
+                content: "";
+            }
         }
     }
 }

@@ -5,6 +5,7 @@
     white-space: nowrap;
 
     .mock-style-picker-color {
+        cursor: pointer;
         display: inline-block;
         width: 20px;
         height: 20px;
@@ -17,6 +18,7 @@
     }
 
     .mock-style-picker-weight {
+        cursor: pointer;
         display: inline-block;
         width: 20px;
         height: 20px;
@@ -25,7 +27,6 @@
         background-color: #333333;
         text-align: center;
         align-content: center;
-
 
         &:hover {
             border: 2px solid orange;

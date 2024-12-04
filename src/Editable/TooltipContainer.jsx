@@ -10,33 +10,22 @@ const TooltipContainer = observer(({renderTooltip, direction, click, children}) 
   const [tooltip, setTooltip] = useState(null);
   const down = direction === 'down';
 
-  const arrowClasses = classNames({
-    'mock-tooltip-arrow-up':   !down,
-    'mock-tooltip-arrow-down': down,
-  });
-
   const tooltipClasses = classNames('mock-tooltip', {
     'mock-tooltip-up':   !down,
     'mock-tooltip-down': down,
   });
 
-  const addArrow = useCallback((elem) => (
-    <>
-      {!down && elem}
-      <div className={arrowClasses} />
-      {down && elem}
-    </>
-  ), [down, arrowClasses]);
+  const stopBubble = useCallback((e) => e.stopPropagation());
 
   const cbProps = {};
   if (click) {
-    cbProps.onClick = useCallback(() => {
+    cbProps.onClick = useCallback((e) => {
       if (tooltip) {
         setTooltip(null);
       } else {
-        setTooltip(addArrow(renderTooltip()));
+        setTooltip(renderTooltip());
       }
-    }, [tooltip, renderTooltip, addArrow]);
+    }, [tooltip, renderTooltip]);
 
     useEffect(() => {
       const handleClick = (e) => {
@@ -50,20 +39,25 @@ const TooltipContainer = observer(({renderTooltip, direction, click, children}) 
     }, [tooltip, setTooltip, ref]);
   } else {
     cbProps.onMouseEnter = useCallback(() => {
-      setTooltip(addArrow(renderTooltip()));
-    }, [addArrow, renderTooltip, setTooltip]);
+      setTooltip(renderTooltip());
+    }, [renderTooltip, setTooltip]);
 
     cbProps.onMouseLeave = useCallback(() => {
       setTooltip(null);
     }, [setTooltip]);
   }
 
+  const renderedTooltip = tooltip ? (
+    <div className={tooltipClasses} onClick={stopBubble}>
+      {tooltip}
+    </div>
+  ) : null;
+
+
   return (
     <div ref={ref} className="mock-tooltip-container" {...cbProps} >
       {down && children}
-      <div className={tooltipClasses}>
-        {tooltip}
-      </div>
+      {renderedTooltip}
       {!down && children}
     </div>
   );
