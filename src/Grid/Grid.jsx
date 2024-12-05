@@ -145,12 +145,12 @@ const GridCellHoverButtons = observer(({data, cell, onEmpty}) => {
   return (
     <div className="mock-grid-cell-hover-buttons">
       <div>
-        <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+        <Icon color="red" image="cancel" onClick={onDelete} />
         <TooltipContainer click direction="up" renderTooltip={renderStylePicker}>
-          <Icon color="grey" image="text_style" size={12} />
+          <Icon color="grey" image="text_style" />
         </TooltipContainer>
-        <Icon color="purple" image="spirit" size={12} onClick={onSpiritScaling} />
-        <Icon color="grey" image="therefore" size={12} onClick={onConditional} />
+        <Icon color="purple" image="spirit" onClick={onSpiritScaling} />
+        <Icon color="grey" image="therefore" onClick={onConditional} />
       </div>
     </div>
   );
@@ -172,11 +172,11 @@ const GridCellValuesItem = observer(({model, index, onEmpty}) => {
       &nbsp;
       <Value model={value} />
       &nbsp;&nbsp;
-      <EditableText size={15} onChange={onChange}>
-        <Text color="bright">{value.stat}</Text>
+      <EditableText onChange={onChange}>
+        <Text>{value.stat}</Text>
       </EditableText>
       <div className="mock-grid-cell-values-item-delete">
-        <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+        <Icon color="red" image="cancel" onClick={onDelete} />
       </div>
     </div>
   );
@@ -186,15 +186,15 @@ const GridCellValue = observer(({model}) => {
   const onChange = useAction((x) => (model.stat = x), [model]);
   return (
     <>
-      <div className="mock-grid-cell-line">
+      <div className="mock-grid-cell-value">
         <EditableIcon model={model.icon} />
         &nbsp;
         <Value model={model} />
       </div>
-      <EditableText color={model.color || 'bright'} size={15} weight={model.weight} onChange={onChange}>
+      <EditableText color={model.color || 'bright'} weight={model.weight} onChange={onChange}>
         {model.stat}
       </EditableText>
-      {model.conditional ? <SemiBold italic color="muted" size={15}>Conditional</SemiBold> : null}
+      {model.conditional ? <SemiBold italic color="muted">Conditional</SemiBold> : null}
     </>
   );
 });

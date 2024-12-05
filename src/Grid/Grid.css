@@ -4,26 +4,26 @@
 .mock-grid-row {
     display: flex;
     justify-content: stretch;
-    margin-top: 3px;
+    margin-top: 0.2rem;
 }
 
 .mock-grid-row:first-child {
     > *:first-child .mock-grid-cell, > *:first-child {
-        border-top-left-radius: 0.5em
+        border-top-left-radius: 0.5rem
     }
 
     > *:last-child .mock-grid-cell, > *:last-child {
-        border-top-right-radius: 0.5em
+        border-top-right-radius: 0.5rem
     }
 }
 
 .mock-grid-row:last-child {
     > *:first-child .mock-grid-cell, > *:first-child {
-        border-bottom-left-radius: 0.5em
+        border-bottom-left-radius: 0.5rem
     }
 
     > *:last-child .mock-grid-cell, > *:last-child {
-        border-bottom-right-radius: 0.5em
+        border-bottom-right-radius: 0.5rem
     }
 }
 
@@ -34,7 +34,7 @@
 }
 
 .mock-grid-row > *:not(:first-child) {
-    margin-left: 0.2em;
+    margin-left: 0.2rem;
     margin-top: 0;
 }
 
@@ -54,20 +54,21 @@
         z-index: 5;
         visibility: hidden;
         line-height: 1;
+        font-size: 0.8rem;
 
         > * {
             position: relative;
-            right: 25px; /* ugh */
-            margin-top: 2px;
-            padding: 2px;
-            border-radius: 8px;
-            border: 2px solid rgba(10, 10, 10, 0.5);
+            right: 1.3rem; /* ugh */
+            margin-top: 0.1rem;
+            padding: 0.1rem;
+            border-radius: 0.4rem;
+            border: 0.1rem solid rgba(10, 10, 10, 0.5);
             background-color: rgba(40, 40, 40, 0.8);
             display: inline-flex;
             flex-direction: column;
 
             .mock-icon:not(:first-child) {
-                margin-top: 2px;
+                margin-top: 0.1rem;
             }
         }
 
@@ -90,7 +91,7 @@
     flex-grow: 1;
 }
 
-.mock-grid-cell-line {
+.mock-grid-cell-value {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -101,18 +102,18 @@
     flex-wrap: nowrap;
 
     .mock-grid-cell-values-item:not(:first-child) {
-        margin-top: 0.2em;
+        margin-top: 0.2rem;
     }
 }
 
 .mock-grid-cell-container:not(:nth-child(2)) .mock-grid-cell-values {
     flex-direction: row;
     flex-wrap: wrap;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 
     .mock-grid-cell-values-item:nth-child(n+3) {
-        margin-top: 0.5em;
+        margin-top: 0.5rem;
     }
 }
 
@@ -123,7 +124,7 @@
     flex-basis: 50%;
 
     .mock-grid-cell-values-item-delete {
-        margin-left: 5px;
+        margin-left: 0.3rem;
         visibility: hidden;
     }
 

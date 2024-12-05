@@ -81,7 +81,7 @@ const ItemHeader = observer(({model}) => {
               <Bold color="bright">{bonus.tier[model.tier]}</Bold>
               {bonus.units}
             </SemiBold>
-            <Icon color={bonus.color} image={bonus.image} size={15} />
+            <Icon color={bonus.color} image={bonus.image} />
           </div>
           <div className="item-bonus-stat" onClick={onChangeCategory}>{bonus.stat}</div>
         </div>

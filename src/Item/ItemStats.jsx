@@ -16,7 +16,7 @@ const ItemStatLine = observer(({model, index}) => {
       &nbsp;&nbsp;
       <EditableText onChange={onChangeStat}>{model.stats[index].stat}</EditableText>
       <div className="mock-item-stat-hover-buttons">
-        <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+        <Icon color="red" image="cancel" onClick={onDelete} />
       </div>
     </div>
   );

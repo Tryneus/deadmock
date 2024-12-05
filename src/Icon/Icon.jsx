@@ -32,7 +32,7 @@ const Icon = ({image, size, color, onClick}) => {
 
   const style = {};
   if (size) {
-    style.lineHeight = `${size}px`;
+    style.fontSize = `${size / 20}rem`;
   }
   if (image) {
     const filename = `/deadmock/icon/${image}.png`;

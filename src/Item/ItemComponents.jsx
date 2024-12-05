@@ -28,7 +28,7 @@ const ItemComponent = observer(({model, index}) => {
         <div className="mock-item-component-badge-name"><Bold>{item.name}</Bold></div>
       </div>
       <div className="mock-item-component-hover-buttons">
-        <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+        <Icon color="red" image="cancel" onClick={onDelete} />
       </div>
     </div>
   );

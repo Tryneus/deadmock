@@ -1,6 +1,6 @@
 .mock-icon {
-    height: 1.2lh;
-    width: 1.2lh;
+    height: 1em;
+    width: 1em;
     display: inline-block;
     background: white;
 }
@@ -77,3 +77,21 @@
 .mock-icon.mock-icon-item-weapon {
     filter: invert(86%) sepia(68%) saturate(476%) hue-rotate(4deg) brightness(92%) contrast(101%);
 }
+
+
+/* Icon colors:
+ * Souls: #9affd6
+ * Spirit and Ability Points: #ce91ff
+ * Weapon: #ec981a
+ * Item Cooldown: #ffffff
+ * Healing: #00ff9a
+ * Grey: #999999
+ * Weapon Item: #5e3e09
+ * Weapon Item Background: #ec981a
+ * Vitality Item: #424845
+ * Vitality Item Background: #ce91ff
+ * Spirit Item: #583b6f
+ * Spirit Item Background: #7cbb1e
+ * Stun: TODO
+ * Damage Amp: TODO 
+ */

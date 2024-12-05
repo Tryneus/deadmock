@@ -1,11 +1,11 @@
 .mock-editor-history {
     display: flex;
     background-color: #222222;
-    border: 2px solid black;
-    border-radius: 3px;
+    border: 0.1rem solid black;
+    border-radius: 0.2rem;
 
     > div:last-child {
-        border-left: 2px solid black;
+        border-left: 0.1rem solid black;
     }
 
     .mock-icon {
@@ -20,28 +20,28 @@
         > div {
             position: absolute;
             top: 100%;
-            left: -2px;
+            left: -0.1rem;
             width: min-content;
             z-index: 10;
 
-            border: 2px solid black;
+            border: 0.1rem solid black;
         }
 
         .mock-editor-history-entry, .mock-editor-history-template {
             &:hover {
                 filter: brightness(120%) saturate(120%);
-                border: 1px solid black;
-                padding: 0 9px;
+                border: 0.05rem solid black;
+                padding: 0 0.45rem;
             }
         }
     }
 
     .mock-editor-history-entry, .mock-editor-history-template {
-        width: 200px;
+        width: 10rem;
         display: flex;
         justify-content: space-between;
         white-space: nowrap;
-        padding: 1px 10px;
+        padding: 0.05rem 0.5rem;
         cursor: pointer;
 
         > span:first-child {

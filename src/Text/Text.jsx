@@ -23,7 +23,7 @@ const Text = ({italic, weight, color, size, children}) => {
     style.color = textColors[color];
   }
   if (size) {
-    style.fontSize = `${size}px`;
+    style.fontSize = `${size / 20}rem`;
   }
   if (weight) {
     style.fontWeight = weight;

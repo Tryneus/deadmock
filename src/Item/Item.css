@@ -1,90 +1,91 @@
 
 .mock-item {
     font-style: normal;
-    font-size: 20px;
+    font-size: 1rem;
     color: #feeed2;
-    width: 450px;
+    width: 23rem;
     flex-shrink: 0;
     flex-grow: 0;
 
     > div:first-child {
-        border-radius: 10px 10px 0 0;
+        border-radius: 0.5rem 0.5rem 0 0;
     }
 
     > div:last-child {
         &.mock-item-stats, .mock-item-effect {
-            padding-bottom: 8px;
-            border-radius: 0 0 10px 10px;
+            padding-bottom: 0.4rem;
+            border-radius: 0 0 0.5rem 0.5rem;
         }
     }
 
     .mock-header {
-        border-radius: 10px 10px 0 0;
+        border-radius: 0.5rem 0.5rem 0 0;
         display: flex;
         justify-content: space-between;
 
         > div:first-child {
             align-content: center;
-            margin: 15px;
+            margin: 1.1rem 0.7rem 1rem 0.7rem;
         }
 
         > div:last-child {
-            margin: 20px;
+            margin: 0.8rem;
         }
 
         .item-name {
-            font-size: 30px;
+            font-size: 1.5rem;
             font-weight: 700;
-            text-shadow: 1px 1px 4px #00000094;
-            padding: 5px;
+            text-shadow: 0.1rem 0.1rem 0.2rem #00000094;
+            margin-left: 0.2rem;
         }
 
         .item-cost {
             color: #9affd6;
-            font-size: 20px;
+            font-size: 1rem;
             font-weight: 700;
-            margin-top: 10px;
+            margin-top: 0.8rem;
             display: flex;
             align-items: center;
             user-select: none;
         }
 
         .item-bonus {
-            min-width: 100px;
+            min-width: 4.5rem;
             max-width: min-content;
             display: flex;
             flex-direction: column;
             justify-content: center;
 
             .item-bonus-value {
-                padding: 0 15px;
+                padding: 0 0.5rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 17px;
+                font-size: 0.9rem;
                 user-select: none;
 
                 .mock-icon {
-                    margin-left: 5px;
+                    margin-left: 0.2rem;
+                    font-size: 0.8rem;
                 }
             }
 
             .item-bonus-stat {
                 text-align: center;
-                font-size: 12px;
-                padding: 2px 15px 5px 15px;
+                font-size: 0.6rem;
+                padding: 0.1rem 0.5rem 0.3rem 0.5rem;
                 font-weight: 600;
                 color: #e8d7c9;
                 user-select: none;
-                line-height: 110%;
+                line-height: 120%;
             }
         }
     }
 
 
     .mock-components {
-        font-size: 12px;
-        padding: 1px 15px 5px 15px;
+        font-size: 0.6rem;
+        padding: 0.1rem 0.8rem 0.3rem 0.8rem;
         user-select: none;
 
         .mock-item-component {
@@ -92,21 +93,32 @@
             align-items: center;
 
             &:not(:first-child) {
-                margin-top: 5px;
+                margin-top: 0.3rem;
             }
 
             .mock-item-component-badge {
-                font-size: 14px;
+                font-size: 0.7rem;
                 display: flex;
                 width: fit-content;
-                border-radius: 100px;
+                border-radius: 5rem;
+
+
+/*
+ * Weapon Item: #5e3e09
+ * Vitality Item: #424845
+ * Spirit Item: #583b6f
+ */
 
                 .mock-item-component-badge-icon {
-                    border-radius: 100px;
+                    border-radius: 5rem;
                     height: 1.2lh;
 
+                    .mock-icon {
+                        font-size: 1.2rem;
+                    }
+
                     &.mock-item-component-badge-vitality {
-                        background-color: var(--mock-green);
+                        background-color: #7cbb1e;
 
                         /* #203500 */
                         .mock-icon {
@@ -116,7 +128,7 @@
                     }
 
                     &.mock-item-component-badge-spirit {
-                        background-color: var(--mock-purple);
+                        background-color: #ce91ff;
 
                         /* #372248 */
                         .mock-icon {
@@ -125,7 +137,7 @@
                     }
 
                     &.mock-item-component-badge-weapon {
-                        background-color: var(--mock-orange);
+                        background-color: #ec981a;
 
                         /* #312406 */
                         .mock-icon {
@@ -135,12 +147,12 @@
 
                     .mock-icon {
                         background-size: 70% !important;
-                        border-radius: 100px;
+                        border-radius: 5rem;
                     }
                 }
 
                 .mock-item-component-badge-name {
-                    padding: 0 15px 0 10px;
+                    padding: 0 0.8rem 0 0.5rem;
                     align-content: center;
                 }
             }
@@ -151,7 +163,7 @@
                 visibility: hidden;
 
                 > * {
-                    margin-left: 5px;
+                    margin-left: 0.3rem;
                 }
             }
 
@@ -163,20 +175,25 @@
 
 
     .mock-item-stats {
-        font-size: 15px;
-        padding: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
         line-height: 120%;
+        padding: 0.7rem 0;
 
         > div {
-            padding: 3px 15px 3px 15px;
+            padding: 0 0.8rem;
             display: flex;
             align-items: center;
             line-height: 1;
 
+            &:not(:first-child) {
+                margin-top: 0.4rem;
+            }
+
             .mock-item-stat-hover-buttons {
                 visibility: hidden;
                 display: inline-block;
-                margin-left: 10px;
+                margin-left: 0.5rem;
             }
 
             &:hover {
@@ -188,19 +205,19 @@
     }
 
     .mock-item-effect-header {
-        font-size: 15px;
+        font-size: 0.9rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         > * {
-            padding: 3px 15px;
+            padding: 0.2rem 0.8rem 0.3rem 0.8rem;
             display: flex;
             align-items: center;
 
             .mock-item-effect-header-hover-buttons {
                 visibility: hidden;
-                margin-left: 10px;
+                margin-left: 0.5rem;
             }
 
             &:hover .mock-item-effect-header-hover-buttons {
@@ -208,9 +225,14 @@
             }
         }
 
-        > div:last-child {
-            /*padding: 3px 15px;*/
+        .mock-item-effect-cooldown {
             background-color: #0c1414;
+            padding: 0.2rem 1rem 0.3rem 1rem;
+            font-weight: 700;
+
+            .mock-icon {
+                font-size: 1.1rem;
+            }
         }
 
         .mock-item-effect-no-cooldown {
@@ -226,30 +248,33 @@
     }
 
     .mock-item-effect-body {
-        padding: 5px 0;
-        font-size: 17px;
+        padding: 0.6rem 0;
+        font-size: 0.9rem;
+        line-height: 125%;
 
         .mock-grid, .mock-item-effect-markdown {
-            padding: 0 15px;
+            padding: 0 0.8rem;
 
             &:not(:first-child) {
-                margin-top: 10px;
+                margin-top: 1rem;
             }
         }
     }
 
-    .mock-grid-cell-values span:last-child {
-        color: #c8c6ca;
-        font-weight: 600;
-    }
-
     .mock-grid-cell {
-        padding: 5px 5px;
-        line-height: 120%;
+        padding: 0.3rem 0.3rem;
+        line-height: 110%;
+        font-size: 0.8rem;
+
+        .mock-grid-cell-value {
+            font-size: 1.1rem;
+        }
     }
 
     .mock-grid-cell.mock-grid-cell-values {
-        padding: 10px 15px;
+        padding: 0.5rem 0.3rem 0.5rem 0.8rem;
+        font-size: 0.85rem;
+        font-weight: 600;
     }
 
     .mock-grid-cell-values .mock-icon {

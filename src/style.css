@@ -125,7 +125,7 @@
     font-optical-sizing: auto;
     font-style: normal;
     font-size: 20px;
-    line-height: 120%;
+    line-height: 100%;
     font-weight: 400;
 
     color: #ffefd7;
@@ -169,7 +169,7 @@ body {
     background-image: url("/deadmock/background.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(7px) saturate(60%) contrast(80%);
+    filter: blur(0.3rem) saturate(60%) contrast(80%);
     transform: scale(1.1);
 
     @media (min-aspect-ratio: 16/9) {
@@ -186,12 +186,12 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: 50px;
-    height: 50px;
+    width: 2.5rem;
+    height: 2.5rem;
     z-index: 2;
     position: fixed;
-    top: calc(100% - 70px);
-    margin: 10px;
+    top: calc(100% - 3.5rem);
+    margin: 0.5rem;
 
     &:hover {
         filter: invert(30%) sepia(100%) saturate(300%) hue-rotate(339deg) brightness(95%);

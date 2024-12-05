@@ -70,12 +70,12 @@ const ItemEffect = observer(({item, model}) => {
     <SemiBold italic>Passive</SemiBold>;
 
   const renderCooldown = () => {
-    const classes = classNames({'mock-item-effect-no-cooldown': !model.cooldown});
+    const classes = classNames('mock-item-effect-cooldown', {'mock-item-effect-no-cooldown': !model.cooldown});
     return (
       <div className={classes}>
-        <Icon image="stat/cooldown" size={15} />
+        <Icon image="stat/cooldown" />
         &nbsp;
-        <EditableText color="bright" weight={700} onChange={onChangeCooldown}>
+        <EditableText color="bright" onChange={onChangeCooldown}>
           {model.cooldown || 0}
         </EditableText>
         <Bold color="bright">
@@ -101,7 +101,7 @@ const ItemEffect = observer(({item, model}) => {
               {effectType}
             </span>
             <div className="mock-item-effect-header-hover-buttons">
-              <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+              <Icon color="red" image="cancel" onClick={onDelete} />
             </div>
           </div>
           {renderCooldown()}

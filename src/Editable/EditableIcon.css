@@ -1,19 +1,18 @@
 .mock-icon-picker {
     background: #222222;
-    border: 2px solid #999999;
-    padding: 5px;
+    border: 0.1rem solid #999999;
+    padding: 0.2rem;
     white-space: nowrap;
-    font-size: 24px;
+    font-size: 1.2rem;
 
     .mock-icon-picker-button {
         cursor: pointer;
         display: inline-block;
-        margin: 2px;
-        line-height: 14px;
+        margin: 0.1rem;
 
         &:hover {
-            border: 2px solid orange;
-            margin: 0px;
+            border: 0.1rem solid orange;
+            margin: 0;
         }
     }
 }

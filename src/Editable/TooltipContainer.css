@@ -4,7 +4,7 @@
 
     .mock-tooltip {
         cursor: auto;
-        max-width: 266px;
+        max-width: 13rem;
         position: absolute;
         z-index: 10;
         text-align: start;
@@ -16,7 +16,7 @@
                 display: block;
                 width: 0;
                 height: 0;
-                border-width: 10px;
+                border-width: 0.5rem;
                 border-color: #999999 transparent transparent transparent;
                 border-style: solid;
                 content: "";
@@ -28,7 +28,7 @@
                 display: block;
                 width: 0;
                 height: 0;
-                border-width: 10px;
+                border-width: 0.5rem;
                 border-color: transparent transparent #999999 transparent;
                 border-style: solid;
                 content: "";

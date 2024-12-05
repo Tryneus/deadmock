@@ -18,11 +18,11 @@
 .mock-spirit-scaling .mock-spirit-scaling-box {
     background-color: #65358a;
     height: 0.7lh;
-    padding: 0.1em 0.5em 0.3em 1em;
+    padding: 0.1rem 0.5rem 0.3rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 12px;
+    font-size: 0.6rem;
     white-space: no-wrap;
     color: #cdcdcd;
     font-weight: 600;
@@ -30,7 +30,7 @@
 }
 
 .mock-spirit-scaling + * .mock-grid-cell {
-    border: 0.1em solid #5a3875;
+    border: 0.1rem solid #5a3875;
 }
 
 div:has(> .mock-spirit-scaling) {

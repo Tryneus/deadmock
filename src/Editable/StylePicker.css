@@ -1,36 +1,36 @@
 .mock-style-picker {
     background: #222222;
-    border: 2px solid #999999;
-    padding: 5px;
+    border: 0.1rem solid #999999;
+    padding: 0.3rem;
     white-space: nowrap;
 
     .mock-style-picker-color {
         cursor: pointer;
         display: inline-block;
-        width: 20px;
-        height: 20px;
-        margin: 2px;
+        width: 1rem;
+        height: 1rem;
+        margin: 0.1rem;
 
         &:hover {
-            border: 2px solid orange;
-            margin: 0px;
+            border: 0.1rem solid orange;
+            margin: 0;
         }
     }
 
     .mock-style-picker-weight {
         cursor: pointer;
         display: inline-block;
-        width: 20px;
-        height: 20px;
-        margin: 2px;
-        font-size: 15px;
+        width: 1rem;
+        height: 1rem;
+        margin: 0.1rem;
+        font-size: 0.8rem;
         background-color: #333333;
         text-align: center;
         align-content: center;
 
         &:hover {
-            border: 2px solid orange;
-            margin: 0px;
+            border: 0.1rem solid orange;
+            margin: 0;
         }
     };
 }
