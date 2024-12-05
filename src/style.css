@@ -125,18 +125,18 @@
     font-optical-sizing: auto;
     font-style: normal;
     font-size: 20px;
-	line-height: 120%;
-	font-weight: 400;
+    line-height: 120%;
+    font-weight: 400;
 
     color: #ffefd7;
-	background-color: #ffffff;
+    background-color: #ffffff;
     overflow-y: scroll;
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
 
     --mock-green: #7cbb1e;
     --mock-purple: #ce91ff;
@@ -144,10 +144,31 @@
 }
 
 body {
-	margin: 0;
-	display: flex;
+    margin: 0;
+    display: flex;
     flex-direction: column;
-	align-items: center;
+    align-items: center;
     justify-content: flex-start;
-	min-height: 100vh;
+    min-height: 100vh;
+}
+
+.background {
+    z-index: -1;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #3d322e;
+    background-image: url("/deadmock/public/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(7px) saturate(60%) contrast(80%);
+    transform: scale(1.1);
+
+    @media (min-aspect-ratio: 16/9) {
+        background-size: 100% auto;
+    }
+
+    @media (max-aspect-ratio: 16/9) {
+        background-size: auto 100%;
+    }
 }

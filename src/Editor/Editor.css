@@ -2,7 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 450px; /* safety margin so tooltips don't change the page height */
+    margin-bottom: 400px; /* safety margin so tooltips don't change the page height */
+    padding: 0px 30px 30px 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-top: none;
+    border-radius: 0 0 30px 30px;
 
     .mock-editor-buttons {
         display: flex;
@@ -35,5 +40,10 @@
 
     .mock-editor-content {
         display: flex;
+        border: 1px solid black;
+
+        &:has(.mock-item) {
+            border-radius: 10px;
+        }
     }
 }

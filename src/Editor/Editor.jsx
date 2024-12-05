@@ -42,7 +42,7 @@ const Editor = observer(({state}) => {
   const contentRef = useRef(null);
 
   const onCopyImage = useCallback(() => {
-    toBlob(contentRef.current, {filter: copyFilter, width: 600})
+    toBlob(contentRef.current, {filter: copyFilter})
       .then((blob) => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]))
       .catch((error) => console.error('failed to generate image', error));
   }, [contentRef]);
