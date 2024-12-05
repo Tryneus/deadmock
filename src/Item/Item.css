@@ -22,55 +22,65 @@
         border-radius: 10px 10px 0 0;
         display: flex;
         justify-content: space-between;
+
+        > div:first-child {
+            align-content: center;
+            margin: 15px;
+        }
+
+        > div:last-child {
+            margin: 20px;
+        }
+
+        .item-name {
+            font-size: 30px;
+            font-weight: 700;
+            text-shadow: 1px 1px 4px #00000094;
+            padding: 5px;
+        }
+
+        .item-cost {
+            color: #9affd6;
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            user-select: none;
+        }
+
+        .item-bonus {
+            min-width: 100px;
+            max-width: min-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .item-bonus-value {
+                padding: 0 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 17px;
+                user-select: none;
+
+                .mock-icon {
+                    margin-left: 5px;
+                }
+            }
+
+            .item-bonus-stat {
+                text-align: center;
+                font-size: 12px;
+                padding: 2px 15px 5px 15px;
+                font-weight: 600;
+                color: #e8d7c9;
+                user-select: none;
+                line-height: 110%;
+            }
+        }
     }
 
-    .mock-header > div:first-child {
-        align-content: center;
-        margin: 15px;
-    }
-
-    .mock-header > div:last-child {
-        margin: 20px;
-    }
-
-    .mock-header .item-name {
-        font-size: 30px;
-        font-weight: 700;
-        text-shadow: 1px 1px 4px #00000094;
-        padding: 5px;
-    }
-
-    .mock-header .item-cost {
-        color: #9affd6;
-        font-size: 20px;
-        font-weight: 700;
-        margin-top: 10px;
-        display: flex;
-        align-items: center;
-        user-select: none;
-    }
-
-    .mock-header .item-bonus-value {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 17px;
-        user-select: none;
-    }
-
-    .mock-header .item-bonus-value .mock-icon {
-        margin-left: 5px;
-    }
-
-    .mock-header .item-bonus-stat {
-        display: flex;
-        justify-content: center;
-        font-size: 12px;
-        padding: 0 10px;
-        font-weight: 300;
-        color: #e8d7c9;
-        user-select: none;
-    }
 
     .mock-components {
         font-size: 12px;

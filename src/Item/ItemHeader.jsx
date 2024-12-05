@@ -74,7 +74,7 @@ const ItemHeader = observer(({model}) => {
             <span>{soulsFormatter.format(model.cost)}</span>
           </div>
         </div>
-        <div>
+        <div className="item-bonus">
           <div className="item-bonus-value" onClick={onChangeTier}>
             <SemiBold>
               +

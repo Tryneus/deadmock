@@ -4,10 +4,13 @@
     border: 2px solid black;
     border-radius: 3px;
 
+    > div:last-child {
+        border-left: 2px solid black;
+    }
+
     .mock-icon {
         height: 1lh;
         width: 1lh;
-        border-right: 2px solid black;
     }
 
     .mock-editor-history-dropdown {

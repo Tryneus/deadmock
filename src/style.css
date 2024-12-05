@@ -145,11 +145,19 @@
 
 body {
     margin: 0;
+}
+
+.app-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
+
+    #app {
+        position: relative;
+        z-index: 3;
+    }
 }
 
 .background {
@@ -170,5 +178,22 @@ body {
 
     @media (max-aspect-ratio: 16/9) {
         background-size: auto 100%;
+    }
+}
+
+.github-link {
+    background-image: url("/deadmock/github-mark-white.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+    position: fixed;
+    top: calc(100% - 70px);
+    margin: 10px;
+
+    &:hover {
+        filter: invert(30%) sepia(100%) saturate(300%) hue-rotate(339deg) brightness(95%);
     }
 }
