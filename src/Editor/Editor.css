@@ -40,10 +40,42 @@
 
     .mock-editor-content {
         display: flex;
+        flex-direction: column-reverse;
+        align-items: end;
         border: 0.05rem solid black;
 
         &:has(.mock-item) {
-            border-radius: 0.5rem;
+            border-radius: 0.6rem;
+        }
+
+        .mock-editor-watermark {
+            height: 0;
+            position: absolute;
+
+            > span {
+                position: relative;
+                top: -1.05rem;
+                right: 0.3rem;
+                font-weight: 700;
+                font-size: 1rem;
+                background-color: #000;
+                background-clip: text;
+                color: transparent;
+                text-shadow: rgba(245,245,245,0.2) 0.025rem 0.05rem 0.012rem;
+                opacity: 0.4;
+                user-select: none;
+            }
         }
     }
+}
+
+.mock-editor-warning {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.6rem;
+    background-color: #601414;
+    border: 2px solid #cc4444;
+    width: 15rem;
+    padding: 0.3rem;
 }

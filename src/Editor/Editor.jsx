@@ -1,10 +1,13 @@
 import classNames from 'classnames';
-import {toBlob} from 'html-to-image';
+import {saveAs} from 'file-saver';
+import {toBlob, toCanvas} from 'html-to-image';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useRef} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
 import {Ability, AbilityModel} from '../Ability';
+import {isFirefox} from '../Common';
+import {TooltipContainer} from '../Editable';
 import {Item, ItemModel} from '../Item';
 import {EditorHistory} from './EditorHistory';
 
@@ -38,14 +41,54 @@ const copyFilter = (node) => {
   return !copyClassBlacklist.some((x) => node.classList && node.classList.contains(x));
 };
 
+const fileName = (name) => {
+  return `${name.replace(/[^A-z0-9]+/,'-')}-${Math.floor(Date.now() / 1000)}`;
+};
+
+// Copying image data to the clipboard on firefox is buggy:
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1431518
+// Provide the user a warning tooltip.
+const renderCopyImageButton = (onClick) => {
+  const button = (
+    <div className="mock-editor-button" onClick={onClick}>
+      Copy Image
+    </div>
+  );
+
+  if (isFirefox) {
+    const renderTooltip = () => (
+      <div className="mock-editor-warning">
+        Copying image data to the clipboard is buggy on Firefox and may slightly alter colors.
+        <b> Take a screenshot </b>
+        or
+        <b> save as an image </b>
+        to avoid this problem.
+      </div>
+    );
+    return (
+      <TooltipContainer direction="down" renderTooltip={renderTooltip}>
+        {button}
+      </TooltipContainer>
+    );
+  }
+
+  return button;
+};
+
 const Editor = observer(({state}) => {
   const contentRef = useRef(null);
 
   const onCopyImage = useCallback(() => {
-    toBlob(contentRef.current, {filter: copyFilter})
+    toBlob(contentRef.current, {filter: copyFilter, pixelRatio: 2})
       .then((blob) => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]))
       .catch((error) => console.error('failed to generate image', error));
   }, [contentRef]);
+
+  const onSaveImage = useCallback(() => {
+    toBlob(contentRef.current, {filter: copyFilter, pixelRatio: 2})
+      .then((blob) => saveAs(blob, `${fileName(state.activeModel.name)}.png`))
+      .catch((error) => console.error('failed to generate image', error));
+  }, []);
 
   const onCopyJSON = useCallback(() => {
     navigator.clipboard.write([new ClipboardItem({'text/plain': JSON.stringify(state.activeModel)})])
@@ -64,8 +107,9 @@ const Editor = observer(({state}) => {
   return (
     <div className="mock-editor">
       <div className="mock-editor-buttons">
-        <div className="mock-editor-button" onClick={onCopyImage}>
-          Copy Image
+        {renderCopyImageButton(onCopyImage)}
+        <div className="mock-editor-button" onClick={onSaveImage}>
+          Save Image
         </div>
         <div className="mock-editor-button" onClick={onCopyJSON}>
           Copy JSON
@@ -74,6 +118,9 @@ const Editor = observer(({state}) => {
       </div>
       <div ref={contentRef} className="mock-editor-content">
         {renderActive()}
+        <div className="mock-editor-watermark">
+          <span>deadmock</span>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+import {isFirefox} from '../Common';
 import './Icon.css';
 
 const iconColors = [
@@ -25,9 +26,7 @@ const hiddenColors = [
 // other browsers but since they're mostly webkit-based, use the chrome settings
 // as default.  Also, results can be confusing because different browsers may
 // use different color profiles, so good luck.
-const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
 const filterType = isFirefox ? 'firefox' : 'default';
-
 
 const allColors = iconColors.concat(hiddenColors);
 

@@ -283,11 +283,14 @@ const placeholderGridSection = {
   },
 };
 
+const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
 export {
   abilityIcons,
   allItems,
   deepCopy,
   groupedStatIcons,
+  isFirefox,
   itemsByName,
   placeholderGridSection,
   placeholderMarkdownSection,
