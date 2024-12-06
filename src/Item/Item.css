@@ -2,7 +2,7 @@
 .mock-item {
     font-style: normal;
     font-size: 1rem;
-    color: #feeed2;
+    color: #cdcdcd;
     width: 23rem;
     flex-shrink: 0;
     flex-grow: 0;
@@ -102,13 +102,6 @@
                 width: fit-content;
                 border-radius: 5rem;
 
-
-/*
- * Weapon Item: #5e3e09
- * Vitality Item: #424845
- * Spirit Item: #583b6f
- */
-
                 .mock-item-component-badge-icon {
                     border-radius: 5rem;
                     height: 1.2lh;
@@ -119,30 +112,14 @@
 
                     &.mock-item-component-badge-vitality {
                         background-color: #7cbb1e;
-
-                        /* #203500 */
-                        .mock-icon {
-                            filter: invert(83%) sepia(14%) saturate(4628%) hue-rotate(49deg) brightness(95%) contrast(102%); /* #223500 */
-                        }
-
                     }
 
                     &.mock-item-component-badge-spirit {
                         background-color: #ce91ff;
-
-                        /* #372248 */
-                        .mock-icon {
-                            filter: invert(87%) sepia(19%) saturate(2242%) hue-rotate(232deg) brightness(92%) contrast(91%); /* 362248 */
-                        }
                     }
 
                     &.mock-item-component-badge-weapon {
                         background-color: #ec981a;
-
-                        /* #312406 */
-                        .mock-icon {
-                            filter: invert(86%) sepia(68%) saturate(476%) hue-rotate(4deg) brightness(92%) contrast(101%); /* #322206 */
-                        }
                     }
 
                     .mock-icon {
@@ -298,26 +275,32 @@
             background-color: #5c3778;
         }
 
-        .mock-components, .mock-item-effect-header {
-            background-color: #3b2250;
+        .mock-components {
+            background-color: #372248;
+            color: #d0cdc7;
+            .mock-item-component-badge { background-color: #291937; }
         }
 
-        .mock-item-component-badge {
-            background-color: #2a1938;
+        .mock-item-effect-header {
+            background-color: #43265b;
+            color: #c1b2a8;
         }
 
         .mock-item-stats, .mock-item-effect {
             background-color: #623585;
+            color: #a99db7;
         }
 
         .mock-grid .mock-grid-cell {
             background-color: #4d2869;
+            color: #a18f97;
+            .mock-grid-cell-values { color: #c2bec8; }
         }
     }
 
     &.mock-item-weapon {
         .mock-header {
-            background-color: #c87a02;
+            background-color: #c97a03
         }
 
         .item-bonus-value {
@@ -328,20 +311,26 @@
             background-color: #885102;
         }
 
-        .mock-components, .mock-item-effect-header {
-            background-color: #583b0e;
+        .mock-components {
+            background-color: #9e630c;
+            color: #dccfc6;
+            .mock-item-component-badge { background-color: #7c4d08; }
         }
 
-        .mock-item-component-badge {
-            /* TODO */
+        .mock-item-effect-header {
+            background-color: #583b0e;
+            color: #c4b49e;
         }
 
         .mock-item-stats, .mock-item-effect {
-            background-color: #7d530f;
+            background-color: #80550f;
+            color: #b5a599;
         }
 
         .mock-grid .mock-grid-cell {
-            background-color: #674308;
+            background-color: #67430a;
+            color: #aba099;
+            .mock-grid-cell-values { color: #c0b9b4; }
         }
     }
 
@@ -358,20 +347,26 @@
             background-color: #41650c;
         }
 
-        .mock-components, .mock-item-effect-header {
-            background-color: #2f4510;
+        .mock-components {
+            background-color: #203500;
+            color: #c7c9c6;
+            .mock-item-component-badge { background-color: #172801; }
         }
 
-        .mock-item-component-badge {
-            /* TODO */
+        .mock-item-effect-header {
+            background-color: #2f4510;
+            color: #bfb79f;
         }
 
         .mock-item-stats, .mock-item-effect {
             background-color: #4d7214;
+            color: #a3af99;
         }
 
         .mock-grid .mock-grid-cell {
             background-color: #3c590e;
+            color: #9fa799;
+            .mock-grid-cell-values { color: #c0c4bd; }
         }
     }
 }

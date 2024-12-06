@@ -16,13 +16,14 @@ const ItemComponent = observer(({model, index}) => {
   const classes = classNames('mock-item-component-badge-icon', `mock-item-component-badge-${item.category}`);
 
   const renderItemPicker = useCallback(() => <ItemPicker onChange={onChange} />, [onChange]);
+  const iconColor = `item-${item.category}`;
 
   return (
     <div className="mock-item-component">
       <div className="mock-item-component-badge">
         <TooltipContainer click direction="down" renderTooltip={renderItemPicker}>
           <div className={classes}>
-            <Icon image={item.icon} />
+            <Icon color={iconColor} image={item.icon} />
           </div>
         </TooltipContainer>
         <div className="mock-item-component-badge-name"><Bold>{item.name}</Bold></div>
