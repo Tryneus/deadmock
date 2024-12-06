@@ -39,31 +39,33 @@
     }
 
     .mock-editor-content {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: end;
         border: 0.05rem solid black;
 
         &:has(.mock-item) {
             border-radius: 0.6rem;
         }
 
-        .mock-editor-watermark {
-            height: 0;
-            position: absolute;
-
-            > span {
+        &.mock-to-image {
+            .mock-item, .mock-ability {
                 position: relative;
-                top: -1.05rem;
-                right: 0.3rem;
-                font-weight: 700;
-                font-size: 1rem;
-                background-color: #000;
-                background-clip: text;
-                color: transparent;
-                text-shadow: rgba(245,245,245,0.2) 0.025rem 0.05rem 0.012rem;
-                opacity: 0.4;
-                user-select: none;
+
+                &::after {
+                    position: absolute;
+                    bottom: 0.05rem;
+                    right: 0.3rem;
+                    content: "deadmock";
+                    text-align: end;
+                    text-justify: end;
+
+                    font-weight: 700;
+                    font-size: 1rem;
+                    background-color: #000;
+                    background-clip: text;
+                    color: transparent;
+                    text-shadow: rgba(245,245,245,0.2) 0.025rem 0.05rem 0.012rem;
+                    opacity: 0.4;
+                    user-select: none;
+                }
             }
         }
     }
