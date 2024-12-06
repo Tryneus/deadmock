@@ -13,85 +13,73 @@
  * https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/
  */
 
+/* #ffffff */
 .mock-icon.mock-icon-white {
 }
 
-/* approximation of #999999 */
+/* ability tooltip icons - #999999 */
 .mock-icon.mock-icon-grey {
-    filter: invert(40%);
+    -moz-filter: invert(31%) sepia(6%) saturate(4%) hue-rotate(16deg) brightness(89%) contrast(84%);
+    -webkit-filter: invert(39%) sepia(0%) saturate(1925%) hue-rotate(235deg) brightness(101%) contrast(86%);
 }
 
-/* approximation of #ed961e (#ed9620) */
+/* weapon - #ed961e */
 .mock-icon.mock-icon-orange {
-    filter: invert(42%) sepia(69%) saturate(551%) hue-rotate(353deg) brightness(96%) contrast(93%);
+    -moz-filter: invert(40%) sepia(99%) saturate(816%) hue-rotate(350deg) brightness(97%) contrast(91%);
+    -webkit-filter: invert(27%) sepia(82%) saturate(2866%) hue-rotate(353deg) brightness(99%) contrast(87%);
 }
 
-/* approximation of #7fbc26 (#7ebf28) */
+/* vitality - #659818 */
 .mock-icon.mock-icon-green {
-    filter: invert(34%) sepia(43%) saturate(739%) hue-rotate(42deg) brightness(93%) contrast(86%);
+    -moz-filter: invert(28%) sepia(69%) saturate(5329%) hue-rotate(50deg) brightness(90%) contrast(81%);
+    -webkit-filter: invert(53%) sepia(82%) saturate(437%) hue-rotate(42deg) brightness(94%) contrast(90%);
 }
 
-/* approximation of #ce91ff (#cd92ff) */
+/* spirit - #ce91ff */
 .mock-icon.mock-icon-purple {
-    filter: invert(52%) sepia(92%) saturate(528%) hue-rotate(217deg) brightness(108%) contrast(101%);
+    -moz-filter: invert(25%) sepia(32%) saturate(6667%) hue-rotate(217deg) brightness(104%) contrast(105%);
+    -webkit-filter: invert(24%) sepia(50%) saturate(4639%) hue-rotate(216deg) brightness(102%) contrast(108%);
 }
 
-/* only used for the healing icon? */
-/* approximation of #00ff9a */
+/* healing - #00ff9a */
 .mock-icon.mock-icon-aqua {
-    filter: invert(27%) sepia(89%) saturate(767%) hue-rotate(92deg) brightness(100%) contrast(103%);
+    -moz-filter: invert(24%) sepia(96%) saturate(896%) hue-rotate(87deg) brightness(99%) contrast(105%);
+    -webkit-filter: invert(25%) sepia(87%) saturate(820%) hue-rotate(90deg) brightness(99%) contrast(105%);
 }
 
-/* only used for the damage amplification icon? */
-/* approximation of #ff410d (#ff3f0d) */
+/* damage amp - #ff410d (TODO: double-check the rgb value) */
 .mock-icon.mock-icon-red {
-    filter: invert(59%) sepia(76%) saturate(5630%) hue-rotate(355deg) brightness(103%) contrast(101%);
+    -moz-filter: invert(53%) sepia(56%) saturate(7499%) hue-rotate(354deg) brightness(99%) contrast(104%);
+    -webkit-filter: invert(64%) sepia(97%) saturate(2852%) hue-rotate(351deg) brightness(97%) contrast(110%);
 }
 
-/* only used for stun? */
-/* approximation of #f3c733 (#f3c733) */
+/* stun - #f3c733 (TODO: double-check the rgb value) */
 .mock-icon.mock-icon-yellow {
-    filter: invert(22%) sepia(93%) saturate(1342%) hue-rotate(332deg) brightness(102%) contrast(91%);
+    -moz-filter: invert(19%) sepia(84%) saturate(1301%) hue-rotate(327deg) brightness(97%) contrast(97%);
+    -webkit-filter: invert(27%) sepia(79%) saturate(423%) hue-rotate(357deg) brightness(98%) contrast(94%);
 }
 
-/* only used for souls? */
-/* approximation of #9bffd6 (#9cffd4) */
+/* souls - #9affd6 */
 .mock-icon.mock-icon-cyan {
-    filter: invert(16%) sepia(56%) saturate(275%) hue-rotate(85deg) brightness(101%) contrast(102%);
+    -moz-filter: invert(6%) sepia(90%) saturate(393%) hue-rotate(73deg) brightness(98%) contrast(107%);
+    -webkit-filter: invert(12%) sepia(21%) saturate(650%) hue-rotate(91deg) brightness(103%) contrast(101%);
 }
 
-/* used for vitality item icons */
-/* approximation of #203500 (#223500) */
+/* Vitality Item - #424845 */
 .mock-icon.mock-icon-item-vitality {
-    filter: invert(83%) sepia(14%) saturate(4628%) hue-rotate(49deg) brightness(95%) contrast(102%);
+    -moz-filter: invert(73%) sepia(9%) saturate(307%) hue-rotate(98deg) brightness(92%) contrast(90%);
+    -webkit-filter: invert(72%) sepia(4%) saturate(585%) hue-rotate(97deg) brightness(94%) contrast(96%);
 }
 
-/* used for spirit item icons */
-/* approximation of #372248 (#362248) */
+/* Spirit Item - #583b6f */
 .mock-icon.mock-icon-item-spirit {
-    filter: invert(87%) sepia(19%) saturate(2242%) hue-rotate(232deg) brightness(92%) contrast(91%);
+    -moz-filter: invert(77%) sepia(47%) saturate(702%) hue-rotate(230deg) brightness(93%) contrast(85%);
+    -webkit-filter: invert(78%) sepia(12%) saturate(3292%) hue-rotate(231deg) brightness(91%) contrast(78%);
 }
 
-/* used for weapon item icons */
-/* approximation of #312406 (#322206) */
+/* Weapon Item - #5e3e09 */
 .mock-icon.mock-icon-item-weapon {
-    filter: invert(86%) sepia(68%) saturate(476%) hue-rotate(4deg) brightness(92%) contrast(101%);
+    -moz-filter: invert(82%) sepia(90%) saturate(1576%) hue-rotate(30deg) brightness(93%) contrast(93%);
+    -webkit-filter: invert(80%) sepia(40%) saturate(1948%) hue-rotate(16deg) brightness(100%) contrast(93%);
 }
 
-
-/* Icon colors:
- * Souls: #9affd6
- * Spirit and Ability Points: #ce91ff
- * Weapon: #ec981a
- * Item Cooldown: #ffffff
- * Healing: #00ff9a
- * Grey: #999999
- * Weapon Item: #5e3e09
- * Weapon Item Background: #ec981a
- * Vitality Item: #424845
- * Vitality Item Background: #ce91ff
- * Spirit Item: #583b6f
- * Spirit Item Background: #7cbb1e
- * Stun: TODO
- * Damage Amp: TODO 
- */
