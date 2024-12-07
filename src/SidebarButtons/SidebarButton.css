@@ -3,19 +3,22 @@
     user-select: none;
     flex-grow: 0;
     flex-shrink: 0;
-    padding: 0.1rem 0.3rem;
+    padding: 0.05rem 0.3rem 0 0.3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #666666;
+    background-color: #707070;
     border: 0.1rem solid #222222;
     border-radius: 0.2rem;
     line-height: 1;
     width: min-content;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    font-family: "Roboto", sans-serif;
+    font-variant: all-petite-caps;
+    color: #ffefd7;
 
     &:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 0.3rem;
     }
 
     &:hover {

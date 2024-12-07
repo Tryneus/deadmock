@@ -30,7 +30,7 @@ const fileName = (name) => {
 const renderCopyImageButton = (onClick) => {
   const button = (
     <div className="mock-editor-button" onClick={onClick}>
-      Copy Image
+      Copy
     </div>
   );
 
@@ -89,7 +89,7 @@ const Editor = observer(({state}) => {
       <div className="mock-editor-buttons">
         {renderCopyImageButton(onCopyImage)}
         <div className="mock-editor-button" onClick={onSaveImage}>
-          Save Image
+          Save
         </div>
         <EditorHistory state={state} />
       </div>

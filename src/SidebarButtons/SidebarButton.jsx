@@ -9,7 +9,7 @@ const SidebarButton = ({label, onClick}) => {
   return (
     <div className="mock-sidebar-button" onClick={onClick}>
       <SemiBold>{label}</SemiBold>
-      <Icon color="green" image="plus" />
+      <Icon color="bright-green" image="plus" />
     </div>
   );
 };

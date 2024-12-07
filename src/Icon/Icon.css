@@ -92,6 +92,14 @@
     filter: invert(6%) sepia(90%) saturate(393%) hue-rotate(73deg) brightness(98%) contrast(107%);
 }
 
+/* plus - #22c622*/
+.mock-icon.mock-icon-bright-green-default {
+    filter: invert(66%) sepia(33%) saturate(5067%) hue-rotate(73deg) brightness(117%) contrast(76%);
+}
+.mock-icon.mock-icon-bright-green-firefox {
+    filter: invert(37%) sepia(93%) saturate(3763%) hue-rotate(76deg) brightness(125%) contrast(73%);
+}
+
 /* Vitality Item - #424845 */
 .mock-icon.mock-icon-item-vitality-default {
     filter: invert(72%) sepia(4%) saturate(585%) hue-rotate(97deg) brightness(94%) contrast(96%);
