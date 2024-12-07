@@ -117,12 +117,15 @@
     }
 }
 
+.mock-grid-cell-values-item:not(:last-child), .mock-grid-cell-values-item:nth-child(even) {
+    max-width: 50%;
+}
+
 .mock-grid-cell-values-item {
     display: flex;
     align-items: center;
     flex-grow: 1;
     flex-basis: 50%;
-    max-width: 50%;
 
     > span {
         white-space: nowrap;
