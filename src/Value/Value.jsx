@@ -7,7 +7,39 @@ import {Bold, SemiBold} from '../Text';
 
 const parseRegex = /^(([+-]?)\d*(?:.\d+)?)(.*)$/;
 
-const Value = observer(({model}) => {
+const Value = observer((props) => {
+  const renderSign = (signed, value) => {
+    if (!signed && value >= 0) {
+      return null;
+    }
+    const sign = value >= 0 ? '+' : '-';
+    return <SemiBold color="muted">{sign}</SemiBold>;
+  };
+
+  const renderUnits = (units) => {
+    if (!units) {
+      return null;
+    }
+    return <Bold color="muted">{units}</Bold>;
+  };
+
+  return (
+    <>
+      {renderSign(props.signed, props.value)}
+      <Bold color="bright" size={props.size}>{Math.abs(props.value)}</Bold>
+      {renderUnits(props.units)}
+    </>
+  );
+});
+
+Value.propTypes = {
+  signed: PropTypes.bool,
+  size:   PropTypes.number,
+  units:  PropTypes.string,
+  value:  PropTypes.number,
+};
+
+const EditableValue = observer(({model}) => {
   const onChange = useAction((x) => {
     const matches = x.match(parseRegex);
     const newValue = matches && parseFloat(matches[1]);
@@ -20,33 +52,15 @@ const Value = observer(({model}) => {
     }
   }, [model]);
 
-  const renderSign = (signed, value) => {
-    if (!signed && value >= 0) {
-      return null;
-    }
-    const sign = value >= 0 ? '+' : '-';
-    return <SemiBold color="muted">{sign}</SemiBold>;
-  };
-
-  const renderUnits = (units) => {
-    if (!model.units) {
-      return null;
-    }
-    return <Bold color="muted">{units}</Bold>;
-  };
-
-
   return (
     <EditableText size={model.size} onChange={onChange}>
-      {renderSign(model.signed, model.value)}
-      <Bold color="bright" size={model.size}>{Math.abs(model.value)}</Bold>
-      {renderUnits(model.units)}
+      <Value signed={model.signed} size={model.size} units={model.units} value={model.value} />
     </EditableText>
   );
 });
 
-Value.propTypes = {
+EditableValue.propTypes = {
   model: PropTypes.object.isRequired,
 };
 
-export {Value};
+export {EditableValue, Value};

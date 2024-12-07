@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {useAction} from '../Common';
 import {EditableIcon} from '../Editable';
 import {Icon} from '../Icon';
-import {Value} from '../Value';
+import {EditableValue} from '../Value';
 
 const AbilityStat = observer(({model, value}) => {
   const onDelete = useAction(() => {
@@ -24,7 +24,7 @@ const AbilityStat = observer(({model, value}) => {
     <div className="mock-ability-stat">
       <EditableIcon model={value.icon} />
       &nbsp;
-      <Value model={value} />
+      <EditableValue model={value} />
       <div className="mock-ability-stat-hover-button">
         <div>
           <Icon color="red" image="cancel" size={12} onClick={onDelete} />

@@ -8,7 +8,7 @@ import {EditableMarkdown, EditableText} from '../Editable';
 import {Grid} from '../Grid';
 import {Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {Text, Bold, SemiBold} from '../Text';
+import {Bold, SemiBold, Text} from '../Text';
 
 // TODO: almost identical to AbilitySection, any way to abstract these?
 const ItemEffectSection = observer(({model, index}) => {

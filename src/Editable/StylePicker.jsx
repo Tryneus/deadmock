@@ -40,7 +40,6 @@ StylePickerWeight.propTypes = {
 };
 
 const StylePicker = observer(({model}) => {
-  console.log(JSON.stringify(model));
   return (
     <div className="mock-style-picker">
       <div>

@@ -6,8 +6,8 @@ import {useAction} from '../Common';
 import {EditableText} from '../Editable';
 import {Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {Bold, SemiBold} from '../Text';
-
+import {Bold, SemiBold, Text} from '../Text';
+import {Value} from '../Value';
 
 const categoryBonuses = {
   spirit: {
@@ -67,7 +67,9 @@ const ItemHeader = observer(({model}) => {
       <div className="mock-header">
         <div>
           <div className="item-name">
-            <EditableText color="bright" onChange={onChangeName}>{model.name}</EditableText>
+            <EditableText onChange={onChangeName}>
+              <Text color="bright">{model.name}</Text>
+            </EditableText>
           </div>
           <div className="item-cost">
             <Icon color="cyan" image="soul" />
@@ -76,11 +78,7 @@ const ItemHeader = observer(({model}) => {
         </div>
         <div className="item-bonus">
           <div className="item-bonus-value" onClick={onChangeTier}>
-            <SemiBold>
-              +
-              <Bold color="bright">{bonus.tier[model.tier]}</Bold>
-              {bonus.units}
-            </SemiBold>
+            <Value signed units={bonus.units} value={bonus.tier[model.tier]} />
             <Icon color={bonus.color} image={bonus.image} />
           </div>
           <div className="item-bonus-stat" onClick={onChangeCategory}>{bonus.stat}</div>

@@ -7,7 +7,7 @@ import {EditableIcon, EditableText, StylePicker, TooltipContainer} from '../Edit
 import {Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
 import {SemiBold, Text} from '../Text';
-import {Value} from '../Value';
+import {EditableValue} from '../Value';
 import {SpiritScaling} from './SpiritScaling';
 
 import './Grid.css';
@@ -170,7 +170,7 @@ const GridCellValuesItem = observer(({model, index, onEmpty}) => {
     <div className="mock-grid-cell-values-item">
       <EditableIcon model={value.icon} />
       &nbsp;
-      <Value model={value} />
+      <EditableValue model={value} />
       &nbsp;&nbsp;
       <EditableText onChange={onChange}>
         <Text>{value.stat}</Text>
@@ -189,7 +189,7 @@ const GridCellValue = observer(({model}) => {
       <div className="mock-grid-cell-value">
         <EditableIcon model={model.icon} />
         &nbsp;
-        <Value model={model} />
+        <EditableValue model={model} />
       </div>
       <EditableText onChange={onChange}>
         <Text color={model.color || 'bright'} weight={model.weight || 600}>

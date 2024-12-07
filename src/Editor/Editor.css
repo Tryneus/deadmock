@@ -32,7 +32,6 @@
             }
         }
 
-
         > *:not(:first-child) {
             margin-left: 0.5rem;
         }
@@ -45,14 +44,13 @@
             border-radius: 0.6rem;
         }
 
+        /* this class is added when we export an image, to add a watermark */
         &.mock-to-image {
             .mock-item, .mock-ability {
                 position: relative;
 
                 &::after {
                     position: absolute;
-                    bottom: 0.05rem;
-                    right: 0.3rem;
                     content: "deadmock";
                     text-align: end;
                     text-justify: end;
@@ -66,6 +64,16 @@
                     opacity: 0.4;
                     user-select: none;
                 }
+            }
+
+            .mock-item::after {
+                bottom: 0.05rem;
+                right: 0.3rem;
+            }
+
+            .mock-ability::after {
+                bottom: 0.25rem;
+                right: 0.3rem;
             }
         }
     }

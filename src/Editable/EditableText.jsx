@@ -25,7 +25,7 @@ const preserveNewlines = (text) => (
   </>);
 
 // TODO: try to unify this with the markdown version
-const EditableText = observer(({color, size, weight, onChange, children}) => {
+const EditableText = observer(({size, weight, onChange, children}) => {
   const ref = useRef(null);
   const [editing, setEditing] = useState(false);
   const [text, setText] = useState(null);
@@ -71,7 +71,6 @@ const EditableText = observer(({color, size, weight, onChange, children}) => {
 });
 
 EditableText.propTypes = {
-  color:    PropTypes.string,
   size:     PropTypes.number,
   weight:   PropTypes.oneOf([400, 500, 600, 700]),
   onChange: PropTypes.func,
@@ -81,7 +80,7 @@ EditableText.propTypes = {
   ]),
 };
 
-const EditableMarkdown = observer(({text, format, onChange, color, size, weight}) => {
+const EditableMarkdown = observer(({text, format, onChange, size, weight}) => {
   const ref = useRef(null);
   const [editing, setEditing] = useState(false);
 
@@ -107,7 +106,7 @@ const EditableMarkdown = observer(({text, format, onChange, color, size, weight}
     'mock-text-color-bright': editing,
   });
 
-  const style = {color, fontWeight: weight, fontSize: size};
+  const style = {fontWeight: weight, fontSize: size};
   const inner = editing ? preserveNewlines(text) : <Markdown format={format} text={text} />;
 
   return (
@@ -128,7 +127,6 @@ EditableMarkdown.propTypes = {
   text:     PropTypes.string,
   format:   PropTypes.object,
   onChange: PropTypes.func,
-  color:    PropTypes.string,
   size:     PropTypes.number,
   weight:   PropTypes.oneOf([400, 500, 600, 700]),
 };

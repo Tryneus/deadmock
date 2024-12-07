@@ -1,7 +1,7 @@
 import markdownit from 'markdown-it';
 import PropTypes from 'prop-types';
 
-import {Text, Bold} from './Text';
+import {Bold, Text} from './Text';
 
 const parser = new markdownit('zero', {breaks: true});
 parser.enable(['emphasis', 'newline']);
