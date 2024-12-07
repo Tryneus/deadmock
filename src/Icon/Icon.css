@@ -44,12 +44,12 @@
     filter: invert(40%) sepia(99%) saturate(816%) hue-rotate(350deg) brightness(97%) contrast(91%);
 }
 
-/* vitality - #659818 */
+/* vitality - #7cbb1e */
 .mock-icon.mock-icon-green-default {
-    filter: invert(53%) sepia(82%) saturate(437%) hue-rotate(42deg) brightness(94%) contrast(90%);
+    filter: invert(39%) sepia(62%) saturate(579%) hue-rotate(42deg) brightness(96%) contrast(83%);
 }
 .mock-icon.mock-icon-green-firefox {
-    filter: invert(28%) sepia(69%) saturate(5329%) hue-rotate(50deg) brightness(90%) contrast(81%);
+    filter: invert(40%) sepia(72%) saturate(553%) hue-rotate(41deg) brightness(98%) contrast(77%);
 }
 
 /* spirit - #ce91ff */
@@ -92,9 +92,9 @@
     filter: invert(6%) sepia(90%) saturate(393%) hue-rotate(73deg) brightness(98%) contrast(107%);
 }
 
-/* plus - #22c622*/
+/* plus - #3ed830 */
 .mock-icon.mock-icon-bright-green-default {
-    filter: invert(66%) sepia(33%) saturate(5067%) hue-rotate(73deg) brightness(117%) contrast(76%);
+    filter: invert(34%) sepia(33%) saturate(5067%) hue-rotate(73deg) brightness(117%) contrast(76%);
 }
 .mock-icon.mock-icon-bright-green-firefox {
     filter: invert(37%) sepia(93%) saturate(3763%) hue-rotate(76deg) brightness(125%) contrast(73%);

@@ -5,7 +5,7 @@
 
     .mock-ability-header {
         background-color: #121212;
-        padding: 1rem 1.5rem 0.75rem 1.5rem;
+        padding: 1.2rem 1.2rem 1.2rem 1.2rem;
         display: flex;
         line-height: 1;
 
@@ -27,7 +27,7 @@
                 flex-wrap: wrap;
 
                 .mock-ability-stat {
-                    margin-top: 0.5rem;
+                    margin-top: 0.4rem;
                     margin-right: 0.5rem;
                 }
             }
@@ -47,7 +47,7 @@
 
 
         .mock-ability-header-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
             flex-basis: 50%;
         }
@@ -61,7 +61,12 @@
             align-items: center;
             background-color: #2c2c2c;
             width: fit-content;
-            padding: 0.2rem 0.4rem;
+            padding: 0.3rem 0.5rem;
+            font-size: 0.9rem;
+
+            .mock-icon {
+                font-size: 1.15rem;
+            }
 
             .mock-ability-stat-hover-button {
                 height: 100%;
@@ -80,10 +85,11 @@
     }
 
     .mock-ability-body {
-        background: linear-gradient(45deg, #181818, #3b3b3b), url("/deadmock/noise.svg");
+        background: radial-gradient(circle 30rem at 20rem 10rem, #3b3b3b, #121212), url("/deadmock/noise.svg");
         background-blend-mode: multiply;
-        font-size: 1rem;
-        padding-top: 0.7rem;
+        font-size: 0.96rem;
+        padding-top: 0.9rem;
+        color: #d7cab7;
 
         > *:not(:first-child) {
             margin-top: 1.2rem;
@@ -91,34 +97,65 @@
 
         .mock-ability-markdown {
             line-height: 135%;
-            padding-left: 1.3rem;
-            padding-right: 1.3rem;
+            padding-left: 1.2rem;
+            padding-right: 1.2rem;
         }
 
         .mock-grid {
-            line-height: 110%;
-            padding-left: 1.3rem;
-            padding-right: 1.3rem;
+            line-height: 135%;
+            padding-left: 1.2rem;
+            padding-right: 1.2rem;
+            font-size: 0.8rem;
+
+            .mock-grid-cell {
+                padding: 1rem 0.2rem;
+
+                .mock-icon {
+                    font-size: 1.15rem;
+                }
+
+                .mock-grid-cell-value {
+                    font-size: 1.1rem;
+                }
+            }
+
+            .mock-grid-cell.mock-grid-cell-values {
+                padding: 0.5rem 0.3rem 0.5rem 0.8rem;
+                font-size: 0.8rem;
+                font-weight: 500;
+
+                .mock-grid-cell-values-value {
+                    font-size: 0.9rem;
+                    margin-right: 0.6rem;
+                }
+
+                .mock-icon {
+                    font-size: 1.1rem;
+                }
+            }
         }
     }
 
     .mock-ability-upgrades {
-        padding: 0.9rem;
+        padding: 1.3rem;
         display: flex;
         background: rgba(16, 16, 16, 0.25);
 
         .mock-ability-upgrade {
             flex-basis: 50%;
             flex-grow: 1;
-            margin: 0.3rem;
             align-self: stretch;
             display: flex;
             flex-direction: column;
-            border-radius: 0.6rem;
+            border-radius: 0.3rem;
+
+            &:not(:first-child) {
+                margin-left: 0.5rem;
+            }
         }
 
         .mock-ability-upgrade.mock-ability-upgrade-inactive {
-            border: 0.2rem solid #202020;
+            border: 0.1rem solid #202020;
         }
 
         .mock-ability-upgrade-inactive {
@@ -132,29 +169,36 @@
         }
 
         .mock-ability-upgrade-cost {
-            padding: 0.1rem;
+            padding: 0.2rem;
             background: #11140e;
-            border-radius: 0.4rem 0.4rem 0 0;
+            border-radius: 0.2rem 0.2rem 0 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1rem;
+            font-size: 1.05rem;
 
-            > .mock-text {
-                margin-bottom: 0.2rem;
+            .mock-icon {
+                font-size: 0.9rem;
             }
         }
 
         .mock-ability-upgrade-text {
             padding: 1rem 0.5rem;
             background: #8b56b4;
-            border-radius: 0 0 0.4rem 0.4rem;
+            border-radius: 0 0 0.2rem 0.2rem;
             flex-grow: 1;
+            min-height: 5.2rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            font-size: 0.9rem;
+            line-height: 145%;
+
+            .mock-text-bold {
+                font-size: 1.2rem;
+            }
         }
     }
 
@@ -166,5 +210,9 @@
     .mock-grid-cell-values {
         font-size: 0.9rem;
         padding: 0.6rem 0.9rem;
+    }
+
+    .mock-text-color-muted {
+        color: #9c9c9c;
     }
 }

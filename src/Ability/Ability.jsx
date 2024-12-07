@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {EditableMarkdown} from '../Editable';
-import {Text} from '../Text';
+import {Medium, Bold} from '../Text';
 import {AbilityHeader} from './AbilityHeader';
 import {AbilitySection} from './AbilitySection';
 import {AbilityUpgrade} from './AbilityUpgrade';
@@ -12,16 +12,16 @@ import './Ability.css';
 
 const descriptionMarkdownFormat = {
   text: {
-    Component: Text,
-    props:     {color: 'bright'},
+    Component: Medium,
+    props:     {},
   },
   strong: {
-    Component: Text,
-    props:     {weight: 700, color: 'bright'},
+    Component: Bold,
+    props:     {color: 'bright'},
   },
   emphasis: {
-    Component: Text,
-    props:     {weight: 500, italic: true, color: 'muted'},
+    Component: Medium,
+    props:     {italic: true, color: 'muted'},
   },
 };
 

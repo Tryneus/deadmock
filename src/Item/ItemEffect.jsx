@@ -92,10 +92,14 @@ const ItemEffect = observer(({item, model}) => {
     </>
   ), [onAddGrid, onAddMarkdown]);
 
+  const headerClasses = classNames('mock-item-effect-header', {
+    'mock-item-effect-header-active': model.active,
+  });
+
   return (
     <SidebarButtons renderButtons={renderSidebarButtons}>
       <div className="mock-item-effect">
-        <div className="mock-item-effect-header">
+        <div className={headerClasses}>
           <div>
             <span onClick={onChangeActive}>
               {effectType}

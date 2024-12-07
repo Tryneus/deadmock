@@ -168,10 +168,11 @@ const GridCellValuesItem = observer(({model, index, onEmpty}) => {
 
   return (
     <div className="mock-grid-cell-values-item">
-      <EditableIcon model={value.icon} />
-      &nbsp;
-      <EditableValue model={value} />
-      &nbsp;&nbsp;
+      <span className="mock-grid-cell-values-value">
+        <EditableIcon model={value.icon} />
+        &nbsp;
+        <EditableValue model={value} />
+      </span>
       <EditableText onChange={onChange}>
         <Text>{value.stat}</Text>
       </EditableText>

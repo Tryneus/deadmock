@@ -122,9 +122,24 @@
     align-items: center;
     flex-grow: 1;
     flex-basis: 50%;
+    max-width: 50%;
+
+    > span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .mock-grid-cell-values-value {
+        display: flex;
+        justify-content: center;
+        margin-right: 0.5rem;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
 
     .mock-grid-cell-values-item-delete {
-        margin-left: 0.3rem;
+        margin-left: 0.1rem;
         visibility: hidden;
     }
 
