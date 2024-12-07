@@ -24,6 +24,10 @@ const preserveNewlines = (text) => (
     })}
   </>);
 
+const cleanupInput = (text) => {
+  return text.replaceAll(/\n+/g,'\n').trim();
+};
+
 // TODO: try to unify this with the markdown version
 const EditableText = observer(({onChange, children}) => {
   const ref = useRef(null);
@@ -43,7 +47,7 @@ const EditableText = observer(({onChange, children}) => {
 
   const editingOff = useCallback((e) => {
     setEditing(false);
-    onChange(e.target.innerText);
+    onChange(cleanupInput(e.target.innerText));
     e.target.innerText = ''; // react seems to have trouble with the DOM changing due to user editing?
     e.target.contentEditable = 'false';
     window.getSelection().removeAllRanges();
@@ -92,7 +96,7 @@ const EditableMarkdown = observer(({text, format, onChange}) => {
 
   const editingOff = useCallback((e) => {
     setEditing(false);
-    onChange(e.target.innerText.trim());
+    onChange(cleanupInput(e.target.innerText));
     e.target.innerText = ''; // react seems to have trouble with the DOM changing due to user editing?
     e.target.contentEditable = 'false';
     window.getSelection().removeAllRanges();
