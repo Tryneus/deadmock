@@ -81,17 +81,17 @@ const Editor = observer(({state}) => {
   const onCopyImage = useCallback(() => {
     contentRef.current.classList.add('mock-to-image');
     toBlob(contentRef.current, {filter: copyFilter, pixelRatio: 2})
+      .finally(() => contentRef.current.classList.remove('mock-to-image'))
       .then((blob) => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]))
-      .catch((error) => console.error('failed to generate image', error))
-      .finally(() => contentRef.current.classList.remove('mock-to-image'));
+      .catch((error) => console.error('failed to generate image', error));
   }, [contentRef]);
 
   const onSaveImage = useCallback(() => {
     contentRef.current.classList.add('mock-to-image');
     toBlob(contentRef.current, {filter: copyFilter, pixelRatio: 2})
+      .finally(() => contentRef.current.classList.remove('mock-to-image'))
       .then((blob) => saveAs(blob, `${fileName(state.activeModel.name)}.png`))
-      .catch((error) => console.error('failed to generate image', error))
-      .finally(() => contentRef.current.classList.remove('mock-to-image'));
+      .catch((error) => console.error('failed to generate image', error));
   }, []);
 
   const onCopyJSON = useCallback(() => {
