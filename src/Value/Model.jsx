@@ -16,7 +16,7 @@ class ValueModel {
   constructor(raw) {
     this.stat = raw?.stat || this.stat;
     this.value = raw?.value || this.value;
-    this.units = raw?.units || this.units;
+    this.units = raw?.units ?? this.units;
     this.color = raw?.color || this.color;
     this.weight = raw?.weight || this.weight;
     this.spiritScaling = raw?.spiritScaling || this.spiritScaling;

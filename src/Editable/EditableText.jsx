@@ -25,7 +25,7 @@ const preserveNewlines = (text) => (
   </>);
 
 // TODO: try to unify this with the markdown version
-const EditableText = observer(({weight, onChange, children}) => {
+const EditableText = observer(({onChange, children}) => {
   const ref = useRef(null);
   const [editing, setEditing] = useState(false);
   const [text, setText] = useState(null);
@@ -60,7 +60,6 @@ const EditableText = observer(({weight, onChange, children}) => {
       ref={ref}
       className={classes}
       spellCheck={false}
-      style={{fontWeight: weight}}
       onBlur={editingOff}
       onMouseDown={editing ? null : editingOn}
     >
@@ -70,7 +69,6 @@ const EditableText = observer(({weight, onChange, children}) => {
 });
 
 EditableText.propTypes = {
-  weight:   PropTypes.oneOf([400, 500, 600, 700]),
   onChange: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -78,7 +76,7 @@ EditableText.propTypes = {
   ]),
 };
 
-const EditableMarkdown = observer(({text, format, onChange, weight}) => {
+const EditableMarkdown = observer(({text, format, onChange}) => {
   const ref = useRef(null);
   const [editing, setEditing] = useState(false);
 
@@ -111,7 +109,6 @@ const EditableMarkdown = observer(({text, format, onChange, weight}) => {
       ref={ref}
       className={classes}
       spellCheck={false}
-      style={{fontWeight: weight}}
       onBlur={editingOff}
       onMouseDown={editing ? null : editingOn}
     >
@@ -124,7 +121,6 @@ EditableMarkdown.propTypes = {
   text:     PropTypes.string,
   format:   PropTypes.object,
   onChange: PropTypes.func,
-  weight:   PropTypes.oneOf([400, 500, 600, 700]),
 };
 
 export {EditableMarkdown, EditableText};
