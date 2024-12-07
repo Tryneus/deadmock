@@ -5,8 +5,19 @@
     background: white;
 }
 
+.mock-icon-image {
+    background: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .mock-icon-clickable {
     cursor: pointer;
+}
+
+.mock-icon-large {
+    font-size: 1.3em;
 }
 
 /* Filters calculated using:

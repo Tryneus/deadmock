@@ -30,32 +30,25 @@ const filterType = isFirefox ? 'firefox' : 'default';
 
 const allColors = iconColors.concat(hiddenColors);
 
-const Icon = ({image, size, color, onClick}) => {
+const Icon = ({image, large, color, onClick}) => {
   const colorClass = `mock-icon-${color}-${filterType}`;
   const classes = classNames('mock-icon', {
     [colorClass]:          Boolean(color),
     'mock-icon-clickable': Boolean(onClick),
+    'mock-icon-image':     Boolean(image),
+    'mock-icon-large':     Boolean(large),
   });
 
-  const style = {};
-  if (size) {
-    style.fontSize = `${size / 20}rem`;
-  }
-  if (image) {
-    const filename = `/deadmock/icon/${image}.png`;
-    style.background = 'transparent';
-    style.backgroundImage = `url("${filename}")`;
-    style.backgroundSize = 'contain';
-    style.backgroundRepeat = 'no-repeat';
-    style.backgroundPosition = 'center';
-  }
-
-  return <span className={classes} style={style} onClick={onClick} />;
+  return <span
+    className={classes}
+    style={{backgroundImage: image && `url("/deadmock/icon/${image}.png")`}}
+    onClick={onClick}
+  />;
 };
 
 Icon.propTypes = {
   image:   PropTypes.string,
-  size:    PropTypes.number,
+  large:   PropTypes.bool,
   color:   PropTypes.oneOf(allColors),
   onClick: PropTypes.func,
 };

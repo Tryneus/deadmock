@@ -8,8 +8,8 @@ import './SidebarButton.css';
 const SidebarButton = ({label, onClick}) => {
   return (
     <div className="mock-sidebar-button" onClick={onClick}>
-      <SemiBold size={14}>{label}</SemiBold>
-      <Icon color="green" image="plus" size={8} />
+      <SemiBold>{label}</SemiBold>
+      <Icon color="green" image="plus" />
     </div>
   );
 };

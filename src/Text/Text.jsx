@@ -18,12 +18,8 @@ const Text = ({italic, weight, color, size, children}) => {
       'mock-text-bold':     weight === 700,
     },
   );
-  const style = {};
-  if (size) {
-    style.fontSize = `${size / 20}rem`;
-  }
   return (
-    <span className={classes} style={style}>
+    <span className={classes}>
       {children}
     </span>
   );
@@ -33,7 +29,6 @@ Text.propTypes = {
   italic:   PropTypes.bool,
   weight:   PropTypes.number,
   color:    PropTypes.string,
-  size:     PropTypes.number,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

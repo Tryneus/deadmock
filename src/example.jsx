@@ -73,7 +73,7 @@ const SlowingHex = {
           type: 'grid',
           data: {
             cells: [
-              {icon: {image: 'stat/spirit_damage', color: 'purple', size: 22}, value: 80, units: '', weight: 600, signed: false, stat: 'Damage', color: 'purple'},
+              {icon: {image: 'stat/spirit_damage', color: 'purple', large: true}, value: 80, units: '', weight: 600, signed: false, stat: 'Damage', color: 'purple'},
               {value: 20, units: '%', stat: 'Movement Slow', signed: false, weight: 600, icon: {image: 'stat/move_slow'}, conditional: true},
               {value: -30, units: '%', stat: 'Dash Distance', signed: true, weight: 600, icon: {image: 'stat/move_slow'}, conditional: true},
             ],
@@ -109,8 +109,8 @@ const ReturnFire = {
           type: 'grid',
           data: {
             cells: [
-              {icon: {image: 'stat/weapon_damage', color: 'orange', size: 22}, value: 60, units: '%', weight: 600, signed: false, stat: 'Bullet Damage Returned', color: 'orange'},
-              {icon: {image: 'stat/spirit_damage', color: 'purple', size: 22}, value: 30, units: '%', weight: 600, signed: false, stat: 'Spirit Damage Returned', color: 'purple'},
+              {icon: {image: 'stat/weapon_damage', color: 'orange', large: true}, value: 60, units: '%', weight: 600, signed: false, stat: 'Bullet Damage Returned', color: 'orange'},
+              {icon: {image: 'stat/spirit_damage', color: 'purple', large: true}, value: 30, units: '%', weight: 600, signed: false, stat: 'Spirit Damage Returned', color: 'purple'},
               {icon: {image: 'stat/bullet_shield', color: 'orange'}, value: 25, units: '%', stat: 'Bullet Resist', signed: true, weight: 600, conditional: true},
             ],
             values: [{value: 7, units: 's', stat: 'Duration'}],

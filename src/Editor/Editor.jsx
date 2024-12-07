@@ -13,25 +13,6 @@ import {EditorHistory} from './EditorHistory';
 
 import './Editor.css';
 
-const EditorTypeOption = ({active, color, label, onClick}) => {
-  const classes = classNames('mock-editor-type-option', {
-    'mock-editor-type-option-inactive': !active,
-  });
-  const style = {backgroundColor: color};
-  return (
-    <div className={classes} style={style} onClick={onClick}>
-      {label}
-    </div>
-  );
-};
-
-EditorTypeOption.propTypes = {
-  active:  PropTypes.bool,
-  color:   PropTypes.string,
-  label:   PropTypes.string,
-  onClick: PropTypes.func,
-};
-
 const classBlacklist = [
   'mock-sidebar-buttons',
   'mock-tooltip',
@@ -96,11 +77,6 @@ const Editor = observer(({state}) => {
     (blob) => saveAs(blob, `${fileName(state.activeModel.name)}.png`),
   ), [state, contentRef]);
 
-  const onCopyJSON = useCallback(() => {
-    navigator.clipboard.write([new ClipboardItem({'text/plain': JSON.stringify(state.activeModel)})])
-      .catch((error) => console.error('failed to copy json', error));
-  }, [state]);
-
   const renderActive = () => {
     if (state.activeModel instanceof AbilityModel) {
       return <Ability model={state.activeModel} />;
@@ -116,9 +92,6 @@ const Editor = observer(({state}) => {
         {renderCopyImageButton(onCopyImage)}
         <div className="mock-editor-button" onClick={onSaveImage}>
           Save Image
-        </div>
-        <div className="mock-editor-button" onClick={onCopyJSON}>
-          Copy JSON
         </div>
         <EditorHistory state={state} />
       </div>

@@ -26,7 +26,7 @@ const IconPickerColor = observer(({color, model}) => {
   const onClick = useAction(() => (model.color = color), [color, model]);
   return (
     <div className="mock-icon-picker-button" onClick={onClick}>
-      <Icon color={color} size={20} />
+      <Icon color={color} />
     </div>
   );
 });
@@ -62,7 +62,7 @@ const EditableIcon = observer(({model}) => {
 
   return (
     <TooltipContainer click direction="down" renderTooltip={renderTooltip}>
-      <Icon color={model.color} image={model.image} size={model.size} />
+      <Icon color={model.color} image={model.image} large={model.large} />
     </TooltipContainer>
   );
 });

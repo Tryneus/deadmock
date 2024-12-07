@@ -26,7 +26,7 @@ const Value = observer((props) => {
   return (
     <>
       {renderSign(props.signed, props.value)}
-      <Bold color="bright" size={props.size}>{Math.abs(props.value)}</Bold>
+      <Bold color="bright">{Math.abs(props.value)}</Bold>
       {renderUnits(props.units)}
     </>
   );
@@ -34,7 +34,6 @@ const Value = observer((props) => {
 
 Value.propTypes = {
   signed: PropTypes.bool,
-  size:   PropTypes.number,
   units:  PropTypes.string,
   value:  PropTypes.number,
 };
@@ -53,8 +52,8 @@ const EditableValue = observer(({model}) => {
   }, [model]);
 
   return (
-    <EditableText size={model.size} onChange={onChange}>
-      <Value signed={model.signed} size={model.size} units={model.units} value={model.value} />
+    <EditableText onChange={onChange}>
+      <Value signed={model.signed} units={model.units} value={model.value} />
     </EditableText>
   );
 });

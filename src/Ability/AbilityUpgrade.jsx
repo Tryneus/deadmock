@@ -5,22 +5,22 @@ import PropTypes from 'prop-types';
 import {useAction} from '../Common';
 import {EditableMarkdown} from '../Editable';
 import {Icon} from '../Icon';
-import {Bold, Text} from '../Text';
+import {Bold, Medium, SemiBold} from '../Text';
 
 const tierCosts = [1, 2, 5];
 
 const upgradeMarkdownFormat = {
   text: {
-    Component: Text,
-    props:     {weight: 600, size: 17},
+    Component: SemiBold,
+    props:     {},
   },
   strong: {
-    Component: Text,
-    props:     {weight: 700, size: 22, color: 'bright'},
+    Component: Bold,
+    props:     {color: 'bright'},
   },
   emphasis: {
-    Component: Text,
-    props:     {weight: 500, italic: true, color: 'muted'},
+    Component: Medium,
+    props:     {color: 'muted', italic: true},
   },
 };
 
@@ -34,7 +34,7 @@ const AbilityUpgrade = observer(({active, model, tier}) => {
   return (
     <div className={classes}>
       <div className="mock-ability-upgrade-cost">
-        <Icon color="purple" image="stat/ability_point" size={14} />
+        <Icon color="purple" image="stat/ability_point" />
         &nbsp;
         <Bold>{tierCosts[tier]}</Bold>
       </div>

@@ -10,7 +10,7 @@ import {examples} from '../example';
 import './EditorHistory.css';
 
 const EditorHistoryTemplate = ({state, data, onClose}) => {
-  const classes = classNames('mock-editor-history-template', `mock-editor-history-entry-${data.category}`);
+  const classes = classNames('mock-editor-history-template', `mock-editor-history-${data.category}`);
   const onClick = useCallback(() => {
     state.loadRaw(data);
     onClose();
@@ -19,7 +19,7 @@ const EditorHistoryTemplate = ({state, data, onClose}) => {
   return (
     <div className={classes} onClick={onClick}>
       <span>{data.name}</span>
-      <Text italic size={10} weight={400}>Template</Text>
+      <span>Template</span>
     </div>
   );
 };
@@ -57,7 +57,7 @@ const prettyTimeDelta = (timestamp, now) => {
 
 const EditorHistoryEntry = ({state, data, onClose}) => {
   const [now, setNow] = useState(null);
-  const classes = classNames('mock-editor-history-entry', `mock-editor-history-entry-${data.category}`);
+  const classes = classNames('mock-editor-history-entry', `mock-editor-history-${data.category}`);
   const onClick = useCallback(() => {
     if (onClose) {
       state.loadRecord(data.id);
@@ -72,12 +72,12 @@ const EditorHistoryEntry = ({state, data, onClose}) => {
     return () => clearInterval(id);
   }, [setNow]);
 
-  const timeDelta = prettyTimeDelta(data.timestamp, now);
+  const timeDelta = prettyTimeDelta(data.timestamp, now) || 0;
 
   return (
     <div className={classes} onClick={onClick}>
       <span>{data.name}</span>
-      {timeDelta && <Text italic size={10} weight={400}>{timeDelta}</Text>}
+      <span>{timeDelta}</span>
     </div>
   );
 };
@@ -88,8 +88,18 @@ EditorHistoryEntry.propTypes = {
   onClose: PropTypes.func,
 };
 
+const EditorHistoryCurrent = ({data}) => {
+  const classes = classNames('mock-editor-history-current', `mock-editor-history-${data.category}`);
+  return (
+    <div className={classes}>
+      <span>{data.name}</span>
+      <span></span>
+    </div>
+  );
+};
+
 const EditorHistoryClear = ({state, onClose}) => {
-  const classes = classNames('mock-editor-history-entry', `mock-editor-history-entry-clear`);
+  const classes = classNames('mock-editor-history-entry', `mock-editor-history-clear`);
   const onClick = useCallback(() => {
     state.clearData();
     onClose();
@@ -160,7 +170,7 @@ const EditorHistory = observer(({state}) => {
       <Icon image="dropdown" onClick={onToggle} />
       {open && <EditorHistoryDropdown state={state} onClose={onClose} />}
       <div onClick={onToggle}>
-        <EditorHistoryEntry data={getActiveInfo(state)} state={state} />
+        <EditorHistoryCurrent data={getActiveInfo(state)} />
       </div>
     </div>
   );

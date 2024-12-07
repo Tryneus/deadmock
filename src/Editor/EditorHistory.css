@@ -36,7 +36,7 @@
         }
     }
 
-    .mock-editor-history-entry, .mock-editor-history-template {
+    .mock-editor-history-entry, .mock-editor-history-template, .mock-editor-history-current {
         width: 10rem;
         display: flex;
         justify-content: space-between;
@@ -49,23 +49,29 @@
             text-overflow: ellipsis;
         }
 
-        &.mock-editor-history-entry-ability {
+        > span:last-child {
+            font-size: 0.5rem;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        &.mock-editor-history-ability {
             background-color: #3399f3;
         }
 
-        &.mock-editor-history-entry-weapon {
+        &.mock-editor-history-weapon {
             background-color: #c87a02;
         }
 
-        &.mock-editor-history-entry-vitality {
+        &.mock-editor-history-vitality {
             background-color: #659818;
         }
 
-        &.mock-editor-history-entry-spirit {
+        &.mock-editor-history-spirit {
             background-color: #8b56b4;
         }
 
-        &.mock-editor-history-entry-clear {
+        &.mock-editor-history-clear {
             background-color: #444444;
         }
     }

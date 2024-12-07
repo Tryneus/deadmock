@@ -28,9 +28,8 @@ const StylePickerWeight = observer(({model, weight}) => {
     [colorClass]: Boolean(model.color),
   });
   const onClick = useAction(() => (model.weight = weight), [weight, model]);
-  const style = {fontWeight: weight};
   return (
-    <div className={classes} style={style} onClick={onClick}>Aa</div>
+    <div className={classes} style={{fontWeight: weight}} onClick={onClick}>Aa</div>
   );
 });
 

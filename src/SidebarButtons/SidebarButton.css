@@ -12,6 +12,7 @@
     border-radius: 0.2rem;
     line-height: 1;
     width: min-content;
+    font-size: 0.7rem;
 
     &:not(:first-child) {
         margin-top: 0.5rem;
@@ -24,5 +25,6 @@
 
     .mock-icon {
         margin-left: 0.2rem;
+        font-size: 0.45rem;
     }
 }

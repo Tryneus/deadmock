@@ -27,7 +27,7 @@ const AbilityStat = observer(({model, value}) => {
       <EditableValue model={value} />
       <div className="mock-ability-stat-hover-button">
         <div>
-          <Icon color="red" image="cancel" size={12} onClick={onDelete} />
+          <Icon color="red" image="cancel" onClick={onDelete} />
         </div>
       </div>
     </div>
