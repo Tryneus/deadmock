@@ -242,6 +242,7 @@ const groupedStatIcons = [
     'stat/melee',
     'stat/bullet',
     'stat/fire_rate',
+    'stat/fire_rate4',
     'stat/ammo',
     'stat/reload',
   ], [

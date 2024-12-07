@@ -29,7 +29,7 @@ class AbilityModel {
   category = 'ability';
   name = '';
   stats = [];
-  description = '';
+  description = placeholderMarkdownSection.data;
   sections = [];
   upgrades = ['', '', ''];
 

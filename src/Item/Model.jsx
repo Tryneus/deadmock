@@ -27,7 +27,7 @@ class ItemEffectSection {
 class ItemEffect {
   active = false;
   cooldown = 0;
-  description = 'Insert **markdown** here.';
+  description = placeholderMarkdownSection.data;
   sections = [];
 
   constructor(raw) {
