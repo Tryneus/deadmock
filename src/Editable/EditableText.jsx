@@ -1,8 +1,9 @@
+import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useRef, useState} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
-import {Markdown, textColors} from '../Text';
+import {Markdown} from '../Text';
 
 import './EditableText.css';
 
@@ -48,13 +49,17 @@ const EditableText = observer(({color, size, weight, onChange, children}) => {
     window.getSelection().removeAllRanges();
   }, [setEditing, onChange]);
 
-  const style = {color: textColors[color], fontSize: size, fontWeight: weight};
+  const classes = classNames('mock-editable-text', 'mock-text', {
+    'mock-text-color-bright': editing,
+  });
+
+  const style = {fontSize: size, fontWeight: weight};
   const inner = editing ? preserveNewlines(text) : children;
 
   return (
     <span
       ref={ref}
-      className="mock-editable-text mock-text"
+      className={classes}
       spellCheck={false}
       style={style}
       onBlur={editingOff}
@@ -98,13 +103,17 @@ const EditableMarkdown = observer(({text, format, onChange, color, size, weight}
     window.getSelection().removeAllRanges();
   }, [setEditing, onChange]);
 
+  const classes = classNames('mock-editable-text', 'mock-text', {
+    'mock-text-color-bright': editing,
+  });
+
   const style = {color, fontWeight: weight, fontSize: size};
   const inner = editing ? preserveNewlines(text) : <Markdown format={format} text={text} />;
 
   return (
     <div
       ref={ref}
-      className="mock-editable-text mock-text"
+      className={classes}
       spellCheck={false}
       style={style}
       onBlur={editingOff}

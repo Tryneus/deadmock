@@ -3,30 +3,24 @@ import PropTypes from 'prop-types';
 
 import './Text.css';
 
-const textColors = {
-  bright: '#ffefd7',
-  normal: '#c8c6ca',
-  muted:  '#968291',
-  purple: '#c78bf7',
-  orange: '#ed961e',
-};
+const textColors = ['muted', 'normal', 'bright', 'purple', 'orange'];
 
 const Text = ({italic, weight, color, size, children}) => {
+  const colorClass = `mock-text-color-${color}`;
   const classes = classNames(
     'mock-text',
     {
       'mock-text-italic':   italic,
+      [colorClass]:         Boolean(color),
+      'mock-text-thin':     weight === 400,
+      'mock-text-medium':   weight === 500,
+      'mock-text-semibold': weight === 600,
+      'mock-text-bold':     weight === 700,
     },
   );
   const style = {};
-  if (textColors[color]) {
-    style.color = textColors[color];
-  }
   if (size) {
     style.fontSize = `${size / 20}rem`;
-  }
-  if (weight) {
-    style.fontWeight = weight;
   }
   return (
     <span className={classes} style={style}>

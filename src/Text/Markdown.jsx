@@ -1,7 +1,7 @@
 import markdownit from 'markdown-it';
 import PropTypes from 'prop-types';
 
-import {Text} from './Text';
+import {Text, Bold} from './Text';
 
 const parser = new markdownit('zero', {breaks: true});
 parser.enable(['emphasis', 'newline']);
@@ -9,15 +9,15 @@ parser.enable(['emphasis', 'newline']);
 const defaultFormat = {
   text: {
     Component: Text,
-    props:     {weight: 500},
+    props:     {},
   },
   strong: {
-    Component: Text,
-    props:     {weight: 600, color: 'bright'},
+    Component: Bold,
+    props:     {color: 'bright'},
   },
   emphasis: {
     Component: Text,
-    props:     {weight: 500, italic: true, color: 'muted'},
+    props:     {italic: true, color: 'muted'},
   },
 };
 

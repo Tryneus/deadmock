@@ -8,7 +8,7 @@ import {EditableMarkdown, EditableText} from '../Editable';
 import {Grid} from '../Grid';
 import {Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {Bold, SemiBold} from '../Text';
+import {Text, Bold, SemiBold} from '../Text';
 
 // TODO: almost identical to AbilitySection, any way to abstract these?
 const ItemEffectSection = observer(({model, index}) => {
@@ -75,10 +75,10 @@ const ItemEffect = observer(({item, model}) => {
       <div className={classes}>
         <Icon image="stat/cooldown" />
         &nbsp;
-        <EditableText color="bright" onChange={onChangeCooldown}>
-          {model.cooldown || 0}
+        <EditableText onChange={onChangeCooldown}>
+          <Text color="bright">{model.cooldown || 0}</Text>
         </EditableText>
-        <Bold color="bright">
+        <Bold>
           s
         </Bold>
       </div>

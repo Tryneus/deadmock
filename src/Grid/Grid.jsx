@@ -191,8 +191,10 @@ const GridCellValue = observer(({model}) => {
         &nbsp;
         <Value model={model} />
       </div>
-      <EditableText color={model.color || 'bright'} weight={model.weight} onChange={onChange}>
-        {model.stat}
+      <EditableText onChange={onChange}>
+        <Text color={model.color || 'bright'} weight={model.weight || 600}>
+          {model.stat}
+        </Text>
       </EditableText>
       {model.conditional ? <SemiBold italic color="muted">Conditional</SemiBold> : null}
     </>

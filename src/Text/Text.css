@@ -1,21 +1,36 @@
 .mock-text {
     font-style: normal;
-    color: #c8c6ca;
     margin-bottom: 0.25em;
 }
 
-.mock-text.mock-text-medium {
+.mock-text-thin {
+    font-weight: 400;
+}
+
+.mock-text-medium {
     font-weight: 500;
 }
 
-.mock-text.mock-text-semibold {
+.mock-text-semibold {
     font-weight: 600;
 }
 
-.mock-text.mock-text-bold {
+.mock-text-bold {
     font-weight: 700;
 }
 
-.mock-text.mock-text-italic {
+.mock-text-italic {
     font-style: italic;
+}
+
+.mock-text-color-bright {
+  color: #ffefd7;
+}
+
+.mock-text-color-orange {
+  color: #ed961e;
+}
+
+.mock-text-color-purple {
+  color: #c78bf7;
 }

@@ -10,6 +10,7 @@
         width: 1rem;
         height: 1rem;
         margin: 0.1rem;
+        background-color: currentColor;
 
         &:hover {
             border: 0.1rem solid orange;

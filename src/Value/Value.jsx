@@ -25,15 +25,14 @@ const Value = observer(({model}) => {
       return null;
     }
     const sign = value >= 0 ? '+' : '-';
-    const color = value >= 0 ? 'normal' : 'bright';
-    return <SemiBold color={color}>{sign}</SemiBold>;
+    return <SemiBold color="muted">{sign}</SemiBold>;
   };
 
   const renderUnits = (units) => {
     if (!model.units) {
       return null;
     }
-    return <Bold>{units}</Bold>;
+    return <Bold color="muted">{units}</Bold>;
   };
 
 
