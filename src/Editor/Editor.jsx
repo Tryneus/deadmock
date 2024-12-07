@@ -1,9 +1,7 @@
-import classNames from 'classnames';
 import {saveAs} from 'file-saver';
 import {toBlob} from 'html-to-image';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useRef} from 'preact/hooks';
-import PropTypes from 'prop-types';
 
 import {Ability, AbilityModel} from '../Ability';
 import {isFirefox} from '../Common';

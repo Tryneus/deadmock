@@ -6,7 +6,7 @@ import {useAction} from '../Common';
 import {EditableText} from '../Editable';
 import {Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {Bold, SemiBold, Text} from '../Text';
+import {Text} from '../Text';
 import {Value} from '../Value';
 
 const categoryBonuses = {

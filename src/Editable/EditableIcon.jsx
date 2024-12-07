@@ -12,7 +12,7 @@ const IconPickerButton = observer(({image, model}) => {
   const onClick = useAction(() => (model.image = image), [image, model]);
   return (
     <div className="mock-icon-picker-button" onClick={onClick}>
-      <Icon color={model.color} image={image} size={20} />
+      <Icon color={model.color} image={image} />
     </div>
   );
 });

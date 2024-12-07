@@ -7,13 +7,11 @@ class GridModel {
   values = [];
 
   constructor(raw) {
-    if (raw) {
-      if (raw.cells) {
-        this.cells = raw.cells.map((x) => new ValueModel(x));
-      }
-      if (raw.values) {
-        this.values = raw.values.map((x) => new ValueModel(x));
-      }
+    if (raw && raw.cells) {
+      this.cells = raw.cells.map((x) => new ValueModel(x));
+    }
+    if (raw && raw.values) {
+      this.values = raw.values.map((x) => new ValueModel(x));
     }
     makeAutoObservable(this);
   }

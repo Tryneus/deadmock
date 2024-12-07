@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import {Icon} from '../Icon';
 import {loadHistory} from '../State';
-import {Text} from '../Text';
 import {examples} from '../example';
 import './EditorHistory.css';
 
@@ -93,9 +92,13 @@ const EditorHistoryCurrent = ({data}) => {
   return (
     <div className={classes}>
       <span>{data.name}</span>
-      <span></span>
+      <span />
     </div>
   );
+};
+
+EditorHistoryCurrent.propTypes = {
+  data: PropTypes.object,
 };
 
 const EditorHistoryClear = ({state, onClose}) => {

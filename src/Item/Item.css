@@ -244,6 +244,7 @@
         padding: 0.3rem 0.3rem;
         line-height: 110%;
         font-size: 0.8rem;
+        font-weight: 600;
 
         .mock-grid-cell-value {
             font-size: 1.1rem;
@@ -253,7 +254,6 @@
     .mock-grid-cell.mock-grid-cell-values {
         padding: 0.5rem 0.3rem 0.5rem 0.8rem;
         font-size: 0.85rem;
-        font-weight: 600;
     }
 
     .mock-grid-cell-values .mock-icon {

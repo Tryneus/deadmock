@@ -3,14 +3,12 @@ import {makeAutoObservable} from 'mobx';
 class IconModel {
   image = 'stat/placeholder';
   color = 'grey';
+  large = false;
 
   constructor(raw) {
-    if (raw && raw.image) {
-      this.image = raw.image;
-    }
-    if (raw && raw.color) {
-      this.color = raw.color;
-    }
+    this.image = raw?.image || this.image;
+    this.color = raw?.color || this.color;
+    this.large = raw?.large || this.large;
     makeAutoObservable(this);
   }
 }

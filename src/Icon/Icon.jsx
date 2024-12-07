@@ -39,11 +39,13 @@ const Icon = ({image, large, color, onClick}) => {
     'mock-icon-large':     Boolean(large),
   });
 
-  return <span
-    className={classes}
-    style={{backgroundImage: image && `url("/deadmock/icon/${image}.png")`}}
-    onClick={onClick}
-  />;
+  return (
+    <span
+      className={classes}
+      style={{backgroundImage: image && `url("/deadmock/icon/${image}.png")`}}
+      onClick={onClick}
+    />
+  );
 };
 
 Icon.propTypes = {

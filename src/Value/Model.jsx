@@ -9,26 +9,21 @@ class ValueModel {
   value = 0;
   units = '%';
   stat = 'Stat';
-  weight = 400;
+  weight = null;
   color = null;
   spiritScaling = null;
 
   constructor(raw) {
-    if (raw) {
-      this.icon = new IconModel(raw.icon);
-      this.signed = Boolean(raw.signed);
-      this.conditional = Boolean(raw.conditional);
+    this.stat = raw?.stat || this.stat;
+    this.value = raw?.value || this.value;
+    this.units = raw?.units || this.units;
+    this.color = raw?.color || this.color;
+    this.weight = raw?.weight || this.weight;
+    this.spiritScaling = raw?.spiritScaling || this.spiritScaling;
+    this.signed = Boolean(raw?.signed);
+    this.conditional = Boolean(raw?.conditional);
+    this.icon = new IconModel(raw?.icon);
 
-      this.value = raw.value ?? this.value;
-      this.units = raw.units ?? this.units;
-      this.stat = raw.stat ?? this.stat;
-      this.weight = raw.weight ?? this.weight;
-
-      this.color = raw.color;
-      this.spiritScaling = raw.spiritScaling;
-    } else {
-      this.icon = new IconModel();
-    }
     makeAutoObservable(this);
   }
 }
