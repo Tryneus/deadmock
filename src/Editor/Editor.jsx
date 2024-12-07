@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import {saveAs} from 'file-saver';
-import {toBlob, toCanvas} from 'html-to-image';
+import {toBlob} from 'html-to-image';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useRef} from 'preact/hooks';
 import PropTypes from 'prop-types';
@@ -32,17 +32,17 @@ EditorTypeOption.propTypes = {
   onClick: PropTypes.func,
 };
 
-const copyClassBlacklist = [
+const classBlacklist = [
   'mock-sidebar-buttons',
   'mock-tooltip',
 ];
 
-const copyFilter = (node) => {
-  return !copyClassBlacklist.some((x) => node.classList && node.classList.contains(x));
+const filterClasses = (node) => {
+  return !classBlacklist.some((x) => node.classList && node.classList.contains(x));
 };
 
 const fileName = (name) => {
-  return `${name.replace(/[^A-z0-9]+/,'-')}-${Math.floor(Date.now() / 1000)}`;
+  return `${name.replace(/[^A-z0-9]+/, '-')}-${Math.floor(Date.now() / 1000)}`;
 };
 
 // Copying image data to the clipboard on firefox is buggy:
@@ -75,24 +75,26 @@ const renderCopyImageButton = (onClick) => {
   return button;
 };
 
+const generateBlob = (elem, cb) => {
+  elem.classList.add('mock-to-image');
+  toBlob(elem, {filter: filterClasses, pixelRatio: 2})
+    .finally(() => elem.classList.remove('mock-to-image'))
+    .then(cb)
+    .catch((error) => console.error('failed to generate image', error));
+};
+
 const Editor = observer(({state}) => {
   const contentRef = useRef(null);
 
-  const onCopyImage = useCallback(() => {
-    contentRef.current.classList.add('mock-to-image');
-    toBlob(contentRef.current, {filter: copyFilter, pixelRatio: 2})
-      .finally(() => contentRef.current.classList.remove('mock-to-image'))
-      .then((blob) => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]))
-      .catch((error) => console.error('failed to generate image', error));
-  }, [contentRef]);
+  const onCopyImage = useCallback(() => generateBlob(
+    contentRef.current,
+    (blob) => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]),
+  ), [contentRef]);
 
-  const onSaveImage = useCallback(() => {
-    contentRef.current.classList.add('mock-to-image');
-    toBlob(contentRef.current, {filter: copyFilter, pixelRatio: 2})
-      .finally(() => contentRef.current.classList.remove('mock-to-image'))
-      .then((blob) => saveAs(blob, `${fileName(state.activeModel.name)}.png`))
-      .catch((error) => console.error('failed to generate image', error));
-  }, []);
+  const onSaveImage = useCallback(() => generateBlob(
+    contentRef.current,
+    (blob) => saveAs(blob, `${fileName(state.activeModel.name)}.png`),
+  ), [state, contentRef]);
 
   const onCopyJSON = useCallback(() => {
     navigator.clipboard.write([new ClipboardItem({'text/plain': JSON.stringify(state.activeModel)})])
