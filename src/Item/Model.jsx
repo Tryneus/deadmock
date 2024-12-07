@@ -27,7 +27,7 @@ class ItemEffectSection {
 class ItemEffect {
   active = false;
   cooldown = 0;
-  description = '';
+  description = 'Insert **markdown** here.';
   sections = [];
 
   constructor(raw) {
@@ -110,7 +110,7 @@ class ItemModel {
     this.effects.push(new ItemEffect({
       active:   false,
       cooldown: 6,
-      sections: [placeholderMarkdownSection, placeholderGridSection],
+      sections: [placeholderGridSection],
       ...raw,
     }));
   }
