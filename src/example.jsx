@@ -127,12 +127,8 @@ const Tornado = {
   description: 'Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.',
 
   stats: [
-    {icon: {image: 'stat/charge'}, value: 3, units: '', stat: 'charges'},
-    {icon: {image: 'stat/charge_cooldown'}, value: 4, units: 's', stat: 'chargeCooldown'},
     {icon: {image: 'stat/cooldown'}, value: 32, units: 's', stat: 'cooldown'},
     {icon: {image: 'stat/duration'}, value: 0.75, units: 's'},
-    {icon: {image: 'stat/aoe'}, value: 10, units: 'm'},
-    {icon: {image: 'stat/range'}, value: 25, units: 'm'},
   ],
 
   sections: [
@@ -147,8 +143,6 @@ const Tornado = {
         values: [
           {value: 3.5, units: 's', stat: 'Bullet Evasion Duration', icon: {image: 'stat/placeholder'}},
           {value: 3.5, units: 'm', stat: 'Radius', icon: {image: 'stat/aoe'}},
-          {value: 5, units: 's', stat: 'Launch Window', icon: {image: 'stat/duration'}},
-          {value: 25, units: '%', stat: 'Heal vs Non-Heroes', icon: {image: 'stat/healing'}},
         ],
       },
     },
