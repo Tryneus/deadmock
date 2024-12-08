@@ -13,7 +13,7 @@ const renderValue = (detailed, value, onChange) => {
   return (
     <div className="mock-spirit-scaling-box">
       <div>
-        <span>x&nbsp;</span>
+        <span>x</span>
         <EditableText onChange={onChange}>{value}</EditableText>
       </div>
     </div>

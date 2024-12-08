@@ -170,10 +170,13 @@
                 margin-top: 0.4rem;
             }
 
+            > *:not(:first-child) {
+                margin-left: 0.5em;
+            }
+
             .mock-item-stat-hover-buttons {
                 visibility: hidden;
                 display: inline-block;
-                margin-left: 0.5rem;
             }
 
             &:hover {
@@ -217,6 +220,10 @@
 
             .mock-icon {
                 font-size: 1.1rem;
+            }
+
+            > *:nth-child(2) {
+                margin-left: 0.2em;
             }
         }
 

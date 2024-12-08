@@ -27,6 +27,11 @@
     font-size: 0.75rem;
     font-weight: 600;
     font-style: italic;
+
+    > div > span:first-child {
+        margin-right: 0.2em;
+        user-select: none;
+    }
 }
 
 .mock-spirit-scaling + * .mock-grid-cell {

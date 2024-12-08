@@ -35,7 +35,6 @@ const AbilityUpgrade = observer(({active, model, tier}) => {
     <div className={classes}>
       <div className="mock-ability-upgrade-cost">
         <Icon color="purple" image="stat/ability_point" />
-        &nbsp;
         <Bold>{tierCosts[tier]}</Bold>
       </div>
       <div className="mock-ability-upgrade-text">

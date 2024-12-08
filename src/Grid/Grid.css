@@ -95,6 +95,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    > *:not(:first-child) {
+        margin-left: 0.2em;
+    }
 }
 
 .mock-grid-cell-container:nth-child(2) .mock-grid-cell-values {
@@ -136,13 +140,17 @@
     .mock-grid-cell-values-value {
         display: flex;
         justify-content: center;
-        margin-right: 0.5rem;
+        margin-right: 0.7em;
         flex-grow: 0;
         flex-shrink: 0;
+
+        > *:not(:first-child) {
+            margin-left: 0.2em;
+        }
     }
 
     .mock-grid-cell-values-item-delete {
-        margin-left: 0.1rem;
+        margin-left: 0.1em;
         visibility: hidden;
     }
 

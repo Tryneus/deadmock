@@ -74,7 +74,6 @@ const ItemEffect = observer(({item, model}) => {
     return (
       <div className={classes}>
         <Icon image="stat/cooldown" />
-        &nbsp;
         <EditableText onChange={onChangeCooldown}>
           <Text color="bright">{model.cooldown || 0}</Text>
         </EditableText>

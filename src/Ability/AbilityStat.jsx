@@ -23,7 +23,6 @@ const AbilityStat = observer(({model, value}) => {
   return (
     <div className="mock-ability-stat">
       <EditableIcon model={value.icon} />
-      &nbsp;
       <EditableValue model={value} />
       <div className="mock-ability-stat-hover-button">
         <div>
