@@ -10,7 +10,7 @@ const reservedKeys = [versionKey, historyKey];
 
 const historyLimit = 10;
 
-const version = 'v1';
+const serializationVersion = 'v1';
 // activeItem: string (uuid key),
 // activeAbility: string (uuid key),
 // history: [{category: string, name: string, timestamp: number, key: string}...] (max length = historyLimit)
@@ -21,9 +21,9 @@ const storage = window.localStorage;
 const writeVersion = () => {
   const foundVersion = storage.getItem(versionKey);
   if (!foundVersion) {
-    storage.setItem(versionKey, version);
-  } else if (foundVersion !== version) {
-    console.error('unsupported stored data version in localStorage', {expected: version, found: foundVersion});
+    storage.setItem(versionKey, serializationVersion);
+  } else if (foundVersion !== serializationVersion) {
+    console.error('unsupported stored data version in localStorage', {expected: serializationVersion, found: foundVersion});
   }
 };
 
@@ -119,4 +119,4 @@ class State {
   }
 }
 
-export {State, loadHistory};
+export {State, loadHistory, serializationVersion};

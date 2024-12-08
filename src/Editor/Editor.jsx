@@ -7,6 +7,7 @@ import {Ability, AbilityModel} from '../Ability';
 import {isFirefox} from '../Common';
 import {TooltipContainer} from '../Editable';
 import {Item, ItemModel} from '../Item';
+import {serializationVersion} from '../State';
 import {EditorHistory} from './EditorHistory';
 
 import './Editor.css';
@@ -75,6 +76,15 @@ const Editor = observer(({state}) => {
     (blob) => saveAs(blob, `${fileName(state.activeModel.name)}.png`),
   ), [state, contentRef]);
 
+  const onCopyLink = useCallback(() => {
+    const data = JSON.parse(JSON.stringify(state.activeModel));
+    data.version = serializationVersion;
+    const serialized = window.btoa(JSON.stringify(data));
+    const url = new URL(window.location);
+    url.hash = serialized;
+    navigator.clipboard.write([new ClipboardItem({'text/plain': url.toString()})]);
+  }, [state]);
+
   const renderActive = () => {
     if (state.activeModel instanceof AbilityModel) {
       return <Ability model={state.activeModel} />;
@@ -90,6 +100,9 @@ const Editor = observer(({state}) => {
         {renderCopyImageButton(onCopyImage)}
         <div className="mock-editor-button" onClick={onSaveImage}>
           Save
+        </div>
+        <div className="mock-editor-button" onClick={onCopyLink}>
+          Link
         </div>
         <EditorHistory state={state} />
       </div>
