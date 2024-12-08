@@ -30,13 +30,16 @@ const Ability = observer(({model}) => {
   return (
     <div className="mock-ability">
       <AbilityHeader model={model} />
-      <div className="mock-ability-body">
-        <div className="mock-ability-markdown">
-          <EditableMarkdown format={descriptionMarkdownFormat} text={model.description} onChange={onChange} />
-        </div>
-        {model.sections.map((x, i) => <AbilitySection key={i} index={i} model={model} />)}
-        <div className="mock-ability-upgrades">
-          {model.upgrades.map((x, i) => <AbilityUpgrade key={i} model={model} tier={i} />)}
+      <div className="mock-ability-body-background">
+        <div className="mock-ability-body-noise" />
+        <div className="mock-ability-body">
+          <div className="mock-ability-markdown">
+            <EditableMarkdown format={descriptionMarkdownFormat} text={model.description} onChange={onChange} />
+          </div>
+          {model.sections.map((x, i) => <AbilitySection key={i} index={i} model={model} />)}
+          <div className="mock-ability-upgrades">
+            {model.upgrades.map((x, i) => <AbilityUpgrade key={i} model={model} tier={i} />)}
+          </div>
         </div>
       </div>
     </div>
