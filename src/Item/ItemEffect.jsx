@@ -101,7 +101,7 @@ const ItemEffect = observer(({item, model}) => {
       <div className="mock-item-effect">
         <div className={headerClasses}>
           <div>
-            <span onClick={onChangeActive}>
+            <span className="mock-item-effect-type" onClick={onChangeActive}>
               {effectType}
             </span>
             <div className="mock-item-effect-header-hover-buttons">
