@@ -80,6 +80,31 @@
     &:hover .mock-grid-cell-hover-buttons {
         visibility: visible;
     }
+
+
+    &:nth-child(2) .mock-grid-cell-values {
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        .mock-grid-cell-values-item:not(:first-child) {
+            margin-top: 0.2rem;
+        }
+    }
+
+    &:not(:nth-child(2)) .mock-grid-cell-values {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+
+        .mock-grid-cell-values-item:nth-child(n+3) {
+            margin-top: 0.5rem;
+        }
+
+        .mock-grid-cell-values-item:not(:last-child), .mock-grid-cell-values-item:nth-child(even) {
+            max-width: 50%;
+        }
+    }
 }
 
 .mock-grid-cell {
@@ -101,37 +126,13 @@
     }
 }
 
-.mock-grid-cell-container:nth-child(2) .mock-grid-cell-values {
-    flex-direction: column;
-    flex-wrap: nowrap;
-
-    .mock-grid-cell-values-item:not(:first-child) {
-        margin-top: 0.2rem;
-    }
-}
-
-.mock-grid-cell-container:not(:nth-child(2)) .mock-grid-cell-values {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-
-    .mock-grid-cell-values-item:nth-child(n+3) {
-        margin-top: 0.5rem;
-    }
-}
-
-.mock-grid-cell-values-item:not(:last-child), .mock-grid-cell-values-item:nth-child(even) {
-    max-width: 50%;
-}
-
 .mock-grid-cell-values-item {
     display: flex;
     align-items: center;
     flex-grow: 1;
     flex-basis: 50%;
 
-    > span {
+    .mock-editable-text {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

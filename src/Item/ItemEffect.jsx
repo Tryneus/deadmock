@@ -4,6 +4,7 @@ import {useCallback} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
+import {Deleteable} from '../Deleteable';
 import {EditableMarkdown, EditableText} from '../Editable';
 import {Grid} from '../Grid';
 import {Icon} from '../Icon';
@@ -99,14 +100,11 @@ const ItemEffect = observer(({item, model}) => {
     <SidebarButtons renderButtons={renderSidebarButtons}>
       <div className="mock-item-effect">
         <div className={headerClasses}>
-          <div>
+          <Deleteable onClick={onDelete}>
             <span className="mock-item-effect-type" onClick={onChangeActive}>
               {effectType}
             </span>
-            <div className="mock-item-effect-header-hover-buttons">
-              <Icon color="red" image="cancel" onClick={onDelete} />
-            </div>
-          </div>
+          </Deleteable>
           {renderCooldown()}
         </div>
         <div className="mock-item-effect-body">

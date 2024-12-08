@@ -4,6 +4,7 @@ import {useCallback} from 'preact/hooks';
 import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
+import {Deleteable} from '../Deleteable';
 import {ItemPicker, TooltipContainer} from '../Editable';
 import {Icon} from '../Icon';
 import {Bold} from '../Text';
@@ -20,17 +21,16 @@ const ItemComponent = observer(({model, index}) => {
 
   return (
     <div className="mock-item-component">
-      <div className="mock-item-component-badge">
-        <TooltipContainer click direction="down" renderTooltip={renderItemPicker}>
-          <div className={classes}>
-            <Icon color={iconColor} image={item.icon} />
-          </div>
-        </TooltipContainer>
-        <div className="mock-item-component-badge-name"><Bold>{item.name}</Bold></div>
-      </div>
-      <div className="mock-item-component-hover-buttons">
-        <Icon color="red" image="cancel" onClick={onDelete} />
-      </div>
+      <Deleteable onClick={onDelete}>
+        <div className="mock-item-component-badge">
+          <TooltipContainer click direction="down" renderTooltip={renderItemPicker}>
+            <div className={classes}>
+              <Icon color={iconColor} image={item.icon} />
+            </div>
+          </TooltipContainer>
+          <div className="mock-item-component-badge-name"><Bold>{item.name}</Bold></div>
+        </div>
+      </Deleteable>
     </div>
   );
 });

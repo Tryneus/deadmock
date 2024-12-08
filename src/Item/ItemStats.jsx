@@ -2,8 +2,8 @@ import {observer} from 'mobx-react-lite';
 import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
+import {Deleteable} from '../Deleteable';
 import {EditableText} from '../Editable';
-import {Icon} from '../Icon';
 import {EditableValue} from '../Value';
 
 const ItemStatLine = observer(({model, index}) => {
@@ -11,13 +11,10 @@ const ItemStatLine = observer(({model, index}) => {
   const onDelete = useAction(() => model.removeStat(index), [index, model]);
 
   return (
-    <div>
+    <Deleteable onClick={onDelete}>
       <EditableValue model={model.stats[index]} />
       <EditableText onChange={onChangeStat}>{model.stats[index].stat}</EditableText>
-      <div className="mock-item-stat-hover-buttons">
-        <Icon color="red" image="cancel" onClick={onDelete} />
-      </div>
-    </div>
+    </Deleteable>
   );
 });
 

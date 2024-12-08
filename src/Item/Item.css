@@ -132,23 +132,9 @@
                 }
 
                 .mock-item-component-badge-name {
-                    padding: 0 0.8rem 0 0.5rem;
+                    padding: 0 0.8rem 0.1rem 0.5rem;
                     align-content: center;
                 }
-            }
-
-            .mock-item-component-hover-buttons {
-                display: flex;
-                align-items: center;
-                visibility: hidden;
-
-                > * {
-                    margin-left: 0.3rem;
-                }
-            }
-
-            &:hover .mock-item-component-hover-buttons {
-                visibility: visible;
             }
         }
     }
@@ -173,17 +159,6 @@
             > *:not(:first-child) {
                 margin-left: 0.5em;
             }
-
-            .mock-item-stat-hover-buttons {
-                visibility: hidden;
-                display: inline-block;
-            }
-
-            &:hover {
-                .mock-item-stat-hover-buttons {
-                    visibility: visible;
-                }
-            }
         }
     }
 
@@ -196,21 +171,13 @@
         .mock-item-effect-type {
             cursor: pointer;
             user-select: none;
+            margin-bottom: 0.2rem;
         }
 
         > * {
             padding: 0.2rem 0.8rem 0.3rem 0.8rem;
             display: flex;
             align-items: center;
-
-            .mock-item-effect-header-hover-buttons {
-                visibility: hidden;
-                margin-left: 0.5rem;
-            }
-
-            &:hover .mock-item-effect-header-hover-buttons {
-                visibility: visible;
-            }
         }
 
         .mock-item-effect-cooldown {
@@ -270,12 +237,8 @@
         font-size: 0.85rem;
     }
 
-    .mock-grid-cell-values .mock-icon {
+    .mock-grid-cell-values-value .mock-icon {
         display: none;
-    }
-
-    .mock-grid-cell-values .mock-grid-cell-values-item-delete .mock-icon {
-        display: inherit;
     }
 
     &.mock-item-spirit {

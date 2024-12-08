@@ -222,6 +222,7 @@ export default [
         returnAssign: false,
       }],
       '@stylistic/js/no-extra-semi': 'error',
+      '@stylistic/js/no-multiple-empty-lines': ['error', {max: 1, maxEOF: 0, maxBOF: 0}],
       '@stylistic/js/object-curly-newline': ['error', {consistent: true}],
       '@stylistic/js/object-property-newline': ['error', {allowAllPropertiesOnSameLine: true}],
       '@stylistic/js/operator-linebreak': ['error', 'after'],

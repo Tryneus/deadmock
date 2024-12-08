@@ -3,6 +3,7 @@ import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
 import {useAction} from '../Common';
+import {Deleteable} from '../Deleteable';
 import {EditableIcon, EditableText, StylePicker, TooltipContainer} from '../Editable';
 import {Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
@@ -11,7 +12,6 @@ import {EditableValue} from '../Value';
 import {SpiritScaling} from './SpiritScaling';
 
 import './Grid.css';
-
 
 // Partition the cells such that:
 // A 'values' cell goes on its own row at the end unless there is only one other cell
@@ -168,16 +168,15 @@ const GridCellValuesItem = observer(({model, index, onEmpty}) => {
 
   return (
     <div className="mock-grid-cell-values-item">
-      <span className="mock-grid-cell-values-value">
-        <EditableIcon model={value.icon} />
-        <EditableValue model={value} />
-      </span>
-      <EditableText onChange={onChange}>
-        <Text>{value.stat}</Text>
-      </EditableText>
-      <div className="mock-grid-cell-values-item-delete">
-        <Icon color="red" image="cancel" onClick={onDelete} />
-      </div>
+      <Deleteable onClick={onDelete}>
+        <span className="mock-grid-cell-values-value">
+          <EditableIcon model={value.icon} />
+          <EditableValue model={value} />
+        </span>
+        <EditableText onChange={onChange}>
+          <Text>{value.stat}</Text>
+        </EditableText>
+      </Deleteable>
     </div>
   );
 });

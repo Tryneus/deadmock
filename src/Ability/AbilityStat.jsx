@@ -2,8 +2,8 @@ import {observer} from 'mobx-react-lite';
 import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
+import {Deleteable} from '../Deleteable';
 import {EditableIcon} from '../Editable';
-import {Icon} from '../Icon';
 import {EditableValue} from '../Value';
 
 const AbilityStat = observer(({model, value}) => {
@@ -21,15 +21,12 @@ const AbilityStat = observer(({model, value}) => {
   }
 
   return (
-    <div className="mock-ability-stat">
-      <EditableIcon model={value.icon} />
-      <EditableValue model={value} />
-      <div className="mock-ability-stat-hover-button">
-        <div>
-          <Icon color="red" image="cancel" onClick={onDelete} />
-        </div>
+    <Deleteable overlap onClick={onDelete}>
+      <div className="mock-ability-stat">
+        <EditableIcon model={value.icon} />
+        <EditableValue model={value} />
       </div>
-    </div>
+    </Deleteable>
   );
 });
 

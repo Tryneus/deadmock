@@ -48,7 +48,6 @@ const HeroicAura = {
   ],
 };
 
-
 const SlowingHex = {
   category: 'spirit',
   name:     'Slowing Hex',

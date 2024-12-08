@@ -26,7 +26,7 @@
                 display: flex;
                 flex-wrap: wrap;
 
-                .mock-ability-stat {
+                > * {
                     margin-top: 0.4rem;
                     margin-right: 0.5rem;
                 }
@@ -40,7 +40,7 @@
             align-items: end;
             justify-content: space-between;
 
-            > .mock-ability-stat:not(:first-child) {
+            > div:not(:first-child) {
                 margin-top: 0.5rem;
             }
         }
@@ -54,6 +54,10 @@
 
         .mock-ability-stat-group {
             display: flex;
+
+            *:nth-child(2n) .mock-ability-stat {
+                background-color: #242424;
+            }
         }
 
         .mock-ability-stat {
@@ -68,23 +72,9 @@
                 font-size: 1.15rem;
             }
 
-            .mock-ability-stat-hover-button {
-                height: 100%;
-                width: 0;
-                visibility: hidden;
-            }
-
-            &:hover .mock-ability-stat-hover-button {
-                visibility: visible;
-            }
-
-            > *:nth-child(2) {
+            .mock-editable-text {
                 margin-left: 0.3em;
             }
-        }
-
-        .mock-ability-stat:nth-child(2n) {
-            background-color: #242424;
         }
     }
 
@@ -130,12 +120,12 @@
                     background: rgba(24, 24, 24, 0.5);
                     padding: 1rem 0.2rem;
 
-                    .mock-icon {
-                        font-size: 1.15rem;
-                    }
-
                     .mock-grid-cell-value {
                         font-size: 1.1rem;
+
+                        .mock-icon {
+                            font-size: 1.15rem;
+                        }
                     }
                 }
 
@@ -147,10 +137,10 @@
                     .mock-grid-cell-values-value {
                         font-size: 0.9rem;
                         margin-right: 0.6rem;
-                    }
 
-                    .mock-icon {
-                        font-size: 1.1rem;
+                        .mock-icon {
+                            font-size: 1.1rem;
+                        }
                     }
                 }
             }
