@@ -25,7 +25,7 @@ const preserveNewlines = (text) => (
   </>);
 
 const cleanupInput = (text) => {
-  return text.replaceAll(/\n+/g,'\n').trim();
+  return text.replaceAll(/\n+/g, '\n').trim();
 };
 
 // TODO: try to unify this with the markdown version

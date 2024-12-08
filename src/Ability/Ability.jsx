@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {EditableMarkdown} from '../Editable';
-import {Medium, Bold} from '../Text';
+import {Bold, Medium} from '../Text';
 import {AbilityHeader} from './AbilityHeader';
 import {AbilitySection} from './AbilitySection';
 import {AbilityUpgrade} from './AbilityUpgrade';

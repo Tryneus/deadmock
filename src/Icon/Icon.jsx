@@ -18,10 +18,10 @@ const iconColors = [
 
 // Icon colors that users can't really put to use
 const hiddenColors = [
-  'bright-green',  // Used for sidebar button '+' icon
-  'item-spirit',   // Used for the inner color of spirit item icons
+  'bright-green', // Used for sidebar button '+' icon
+  'item-spirit', // Used for the inner color of spirit item icons
   'item-vitality', // Used for the inner color of vitality item icons
-  'item-weapon',   // Used for the inner color of weapon item icons
+  'item-weapon', // Used for the inner color of weapon item icons
 ];
 
 // Firefox implements filter css rules differently from chrome, haven't tested
