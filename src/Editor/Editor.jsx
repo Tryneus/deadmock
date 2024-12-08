@@ -46,7 +46,7 @@ const renderCopyImageButton = (onClick) => {
       </div>
     );
     return (
-      <TooltipContainer direction="down" renderTooltip={renderTooltip}>
+      <TooltipContainer warning direction="down" renderTooltip={renderTooltip}>
         {button}
       </TooltipContainer>
     );

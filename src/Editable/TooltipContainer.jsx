@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 
 import './TooltipContainer.css';
 
-const Tooltip = ({down, click, children, onClose}) => {
+const Tooltip = ({down, click, children, warning, onClose}) => {
   const ref = useRef(null);
   const classes = classNames('mock-tooltip', {
-    'mock-tooltip-up':   !down,
-    'mock-tooltip-down': down,
+    'mock-tooltip-up':      !down,
+    'mock-tooltip-down':    down,
+    'mock-tooltip-warning': warning,
   });
 
   useEffect(() => {
@@ -37,9 +38,10 @@ Tooltip.propTypes = {
   click:   PropTypes.bool,
   down:    PropTypes.bool,
   onClose: PropTypes.func,
+  warning: PropTypes.bool,
 };
 
-const TooltipContainer = ({renderTooltip, direction, click, children}) => {
+const TooltipContainer = ({renderTooltip, direction, click, children, warning}) => {
   const [open, setOpen] = useState(false);
   const down = direction === 'down';
 
@@ -67,7 +69,7 @@ const TooltipContainer = ({renderTooltip, direction, click, children}) => {
     }
 
     return (
-      <Tooltip click={click} down={down} onClose={onClose}>
+      <Tooltip click={click} down={down} warning={warning} onClose={onClose}>
         {renderTooltip()}
       </Tooltip>
     );
@@ -89,6 +91,7 @@ TooltipContainer.propTypes = {
   click:         PropTypes.bool,
   direction:     PropTypes.oneOf(['up', 'down']),
   renderTooltip: PropTypes.func.isRequired,
+  warning:       PropTypes.bool,
 };
 
 export {TooltipContainer};

@@ -171,7 +171,7 @@
         .mock-item-effect-type {
             cursor: pointer;
             user-select: none;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.1rem;
         }
 
         > * {

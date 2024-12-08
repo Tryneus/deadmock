@@ -34,5 +34,14 @@
                 content: "";
             }
         }
+
+        &.mock-tooltip-warning {
+            &.mock-tooltip-up&::after {
+                border-color: #cc4444 transparent transparent transparent;
+            }
+            &.mock-tooltip-down&::before {
+                border-color: transparent transparent #cc4444 transparent;
+            }
+        }
     }
 }
