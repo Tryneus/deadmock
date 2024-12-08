@@ -118,7 +118,12 @@
                 padding-right: 1.2rem;
                 font-size: 0.8rem;
 
+                div:has(> .mock-spirit-scaling) .mock-grid-cell {
+                    padding: 0.9rem 0.1rem;
+                }
+
                 .mock-grid-cell {
+                    background: rgba(24, 24, 24, 0.5);
                     padding: 1rem 0.2rem;
 
                     .mock-icon {
@@ -212,16 +217,6 @@
                 font-size: 1.2rem;
             }
         }
-    }
-
-    .mock-grid-cell {
-        background: rgba(24, 24, 24, 0.5);
-        padding: 0.6rem 0.3rem;
-    }
-
-    .mock-grid-cell-values {
-        font-size: 0.9rem;
-        padding: 0.6rem 0.9rem;
     }
 
     .mock-text-color-muted {

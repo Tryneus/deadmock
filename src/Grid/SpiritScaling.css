@@ -9,22 +9,22 @@
 
 /* spirit scaling icon has wonky aspect ratio */
 .mock-spirit-scaling .mock-icon {
-    height: 1.2lh;
-    width: 1.6lh;
+    font-size: 1.55rem;
+    width: 1.5em;
     position: relative;
-    left: 0.5lh;
+    left: 0.65em;
 }
 
 .mock-spirit-scaling .mock-spirit-scaling-box {
     background-color: #65358a;
     height: 0.7lh;
-    padding: 0.1rem 0.5rem 0.3rem 1rem;
+    padding: 0.15rem 0.3rem 0.3rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 0.6rem;
     white-space: no-wrap;
     color: #cdcdcd;
+    font-size: 0.75rem;
     font-weight: 600;
     font-style: italic;
 }
