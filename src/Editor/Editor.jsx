@@ -3,10 +3,10 @@ import {toBlob} from 'html-to-image';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useRef} from 'preact/hooks';
 
-import {Ability} from '../Ability';
+import {Ability, AbilityModel} from '../Ability';
 import {isFirefox} from '../Common';
 import {TooltipContainer} from '../Editable';
-import {Item} from '../Item';
+import {Item, ItemModel} from '../Item';
 import {EditorHistory} from './EditorHistory';
 
 import './Editor.css';
@@ -84,13 +84,12 @@ const Editor = observer(({state}) => {
   }, [state]);
 
   const renderActive = () => {
-    // TODO: `instanceof` stopped working here when vite refreshes the code on an open page...
-    if (state.activeModel.constructor.name === 'AbilityModel') {
+    if (state.activeModel instanceof AbilityModel) {
       return <Ability model={state.activeModel} />;
-    } else if (state.activeModel.constructor.name === 'ItemModel') {
+    } else if (state.activeModel instanceof ItemModel) {
       return <Item model={state.activeModel} />;
     }
-    console.error('unknown model', state.activeModel.constructor.name);
+    console.error('unknown model', state.activeModel);
   };
 
   return (
