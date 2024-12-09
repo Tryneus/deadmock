@@ -80,7 +80,8 @@ const Editor = observer(({state}) => {
     const hash = window.btoa(JSON.stringify(serialized));
     const url = new URL(window.location);
     url.hash = hash;
-    navigator.clipboard.write([new ClipboardItem({'text/plain': url.toString()})]);
+    const blob = new Blob([url.toString()], {type: 'text/plain'});
+    navigator.clipboard.write([new ClipboardItem({'text/plain': blob})]);
   }, [state]);
 
   const renderActive = () => {
