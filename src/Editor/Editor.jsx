@@ -54,26 +54,27 @@ const renderCopyImageButton = (onClick) => {
   return button;
 };
 
-const generateBlob = (elem, cb) => {
+const generateBlob = (elem) => {
   elem.classList.add('mock-to-image');
-  toBlob(elem, {filter: filterClasses, pixelRatio: 2})
-    .finally(() => elem.classList.remove('mock-to-image'))
-    .then(cb)
-    .catch((error) => console.error('failed to generate image', error));
+  const promise =
+    toBlob(elem, {filter: filterClasses, pixelRatio: 2})
+      .finally(() => elem.classList.remove('mock-to-image'));
+  promise.catch((error) => console.error('failed to generate image', error));
+  return promise;
 };
 
 const Editor = observer(({state}) => {
   const contentRef = useRef(null);
 
-  const onCopyImage = useCallback(() => generateBlob(
-    contentRef.current,
-    (blob) => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]),
-  ), [contentRef]);
+  const onCopyImage = useCallback(() => {
+    const blobPromise = generateBlob(contentRef.current);
+    navigator.clipboard.write([new ClipboardItem({'image/png': blobPromise})]);
+  }, [contentRef]);
 
-  const onSaveImage = useCallback(() => generateBlob(
-    contentRef.current,
-    (blob) => saveAs(blob, `${fileName(state.activeModel.name)}.png`),
-  ), [state, contentRef]);
+  const onSaveImage = useCallback(() =>
+    generateBlob(contentRef.current).then((blob) =>
+      saveAs(blob, `${fileName(state.activeModel.name)}.png`),
+    ), [state, contentRef]);
 
   const onCopyLink = useCallback(() => {
     const serialized = state.serializeActive();
