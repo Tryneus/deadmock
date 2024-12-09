@@ -275,8 +275,6 @@ const statIcons = groupedStatIcons.flat();
 const tierCosts = [0, 500, 1250, 3000, 6200];
 
 const placeholderMarkdown = 'Insert **markdown** _here_.';
-
-
 const placeholderGrid = {cells:  [{}], values: [{}]};
 
 const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');

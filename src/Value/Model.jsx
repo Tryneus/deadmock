@@ -15,7 +15,7 @@ class ValueModel {
   spiritScaling = null;
 
   constructor(raw) {
-    this.stat = raw?.stat || this.stat;
+    this.stat = raw?.stat ?? this.stat;
     this.value = raw?.value || this.value;
     this.units = raw?.units ?? this.units;
     this.color = raw?.color || this.color;
