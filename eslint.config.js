@@ -11,6 +11,7 @@ import pluginImport from 'eslint-plugin-import';
 export default [
   {files: ['**/*.{js,mjs,cjs,jsx}']},
   {languageOptions: {globals: globals.browser}},
+  {languageOptions: {globals: globals.jest}},
   {languageOptions: {globals: {'Intl': true}}},
   pluginImport.flatConfigs.recommended,
   pluginReact.configs.flat.recommended,

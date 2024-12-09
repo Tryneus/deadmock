@@ -47,4 +47,4 @@ const Icon = ({image, large, color, onClick}) => {
   );
 };
 
-export {Icon, iconColors};
+export {Icon, hiddenColors, iconColors};

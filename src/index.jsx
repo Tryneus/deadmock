@@ -1,12 +1,8 @@
 import {render} from 'preact';
 import {Editor} from './Editor';
-import {State, serializationVersion} from './State';
+import {State} from './State';
 
 import './style.css';
-
-// Check for a fragment, which may be a serialized model to load
-const loadFragment = (fragment) => {
-};
 
 const state = new State();
 if (window.location.hash) {

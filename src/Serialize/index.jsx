@@ -1,4 +1,4 @@
-const isZeroValue = (x) => (!x || x?.length === 0);
+const isZeroValue = (x) => !x || x?.length === 0;
 const coerceZero = (x) => {
   if (x === true) {
     return 1;
@@ -8,8 +8,8 @@ const coerceZero = (x) => {
   return x;
 };
 
-const doSerialize = (typename, field, x) => {
-  let result = x?.serialize?.() || x;
+const doSerialize = (typename, field, value) => {
+  let result = value?.serialize?.() || value;
 
   if (Array.isArray(result)) {
     result = result.map((x) => doSerialize(typename, `${field}[]`, x));
@@ -17,9 +17,9 @@ const doSerialize = (typename, field, x) => {
 
   // Optimizations for large zero-values
   if (typename === 'IconModel') {
-    if (field === 'image' && x === 'stat/placeholder') {
+    if (field === 'image' && value === 'stat/placeholder') {
       return 0;
-    } else if (field === 'color' && x === 'grey') {
+    } else if (field === 'color' && value === 'grey') {
       return 0;
     }
   }
@@ -48,7 +48,7 @@ const pruneResult = (x) => {
 };
 
 const serializeable = (model, fields) => {
-  model.prototype.serialize = function () {
+  model.prototype.serialize = function() {
     return pruneResult(fields.map(([field]) => {
       return doSerialize(model.name, field, this[field]);
     }));
@@ -59,7 +59,7 @@ const serializeable = (model, fields) => {
       const [name, type] = fields[i];
       return [name, doDeserialize(x, type)];
     });
-    return new model(Object.fromEntries(pairs.filter(([_, v]) => !isZeroValue(v))));
+    return new model(Object.fromEntries(pairs.filter(([, v]) => !isZeroValue(v))));
   };
 };
 

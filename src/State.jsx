@@ -124,7 +124,6 @@ class State {
     }
 
     // Category should be the first element
-    console.log(modelData);
     const category = modelData[0];
     if (category === 'ability') {
       this._setActive(AbilityModel.deserialize(modelData));
