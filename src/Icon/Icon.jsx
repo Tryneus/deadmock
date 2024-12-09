@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 
 import {isFirefox} from '../Common';
 import './Icon.css';
@@ -30,8 +29,6 @@ const hiddenColors = [
 // use different color profiles, so good luck.
 const filterType = isFirefox ? 'firefox' : 'default';
 
-const allColors = iconColors.concat(hiddenColors);
-
 const Icon = ({image, large, color, onClick}) => {
   const colorClass = `mock-icon-${color}-${filterType}`;
   const classes = classNames('mock-icon', {
@@ -48,13 +45,6 @@ const Icon = ({image, large, color, onClick}) => {
       onClick={onClick}
     />
   );
-};
-
-Icon.propTypes = {
-  image:   PropTypes.string,
-  large:   PropTypes.bool,
-  color:   PropTypes.oneOf(allColors),
-  onClick: PropTypes.func,
 };
 
 export {Icon, iconColors};

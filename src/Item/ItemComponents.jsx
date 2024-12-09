@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
-import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
@@ -47,9 +46,5 @@ const ItemComponents = observer(({model}) => {
     </div>
   );
 });
-
-ItemComponents.propTypes = {
-  model: PropTypes.object.isRequired,
-};
 
 export {ItemComponents};

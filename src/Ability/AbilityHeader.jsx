@@ -1,5 +1,4 @@
 import {observer} from 'mobx-react-lite';
-import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {EditableText} from '../Editable';
@@ -76,9 +75,5 @@ const AbilityHeader = observer(({model}) => {
     </SidebarButtons>
   );
 });
-
-AbilityHeader.propTypes = {
-  model: PropTypes.object.isRequired,
-};
 
 export {AbilityHeader};

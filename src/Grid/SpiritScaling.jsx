@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import {EditableText} from '../Editable';
 import {Icon} from '../Icon';
 
@@ -27,12 +25,6 @@ const SpiritScaling = ({value, detailed, onChange}) => {
       {renderValue(detailed, value, onChange)}
     </div>
   );
-};
-
-SpiritScaling.propTypes = {
-  value:    PropTypes.number.isRequired,
-  detailed: PropTypes.bool,
-  onChange: PropTypes.func,
 };
 
 export {SpiritScaling};

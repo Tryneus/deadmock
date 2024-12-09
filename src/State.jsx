@@ -112,6 +112,10 @@ class State {
     this.loadRaw(examples[0]);
   }
 
+  serializeActive() {
+    return [serializationVersion, this.activeModel.serialize()];
+  }
+
   _setActive(model) {
     runInAction(() => {
       this.activeModel = model;

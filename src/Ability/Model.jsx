@@ -1,53 +1,26 @@
 import {makeAutoObservable} from 'mobx';
 
-import {placeholderGridSection, placeholderMarkdownSection} from '../Common';
+import {deepCopy, isString, placeholderGrid, placeholderMarkdown} from '../Common';
 import {GridModel} from '../Grid';
+import {serializeable} from '../Serialize';
 import {ValueModel} from '../Value';
-
-class AbilitySection {
-  type = '';
-  data = null;
-
-  constructor(raw) {
-    if (raw) {
-      this.type = raw.type;
-      if (raw.data) {
-        if (this.type === 'markdown') {
-          this.data = raw.data;
-        }
-        if (this.type === 'grid') {
-          this.data = new GridModel(raw.data);
-        }
-      }
-    }
-    makeAutoObservable(this);
-  }
-}
 
 class AbilityModel {
   id;
   category = 'ability';
   name = '';
   stats = [];
-  description = placeholderMarkdownSection.data;
+  description = placeholderMarkdown;
   sections = [];
   upgrades = ['', '', ''];
 
   constructor(raw) {
-    this.id = raw.id ?? crypto.randomUUID();
-    if (raw) {
-      this.name = raw.name;
-      this.description = raw.description;
-      if (raw.stats) {
-        this.stats = raw.stats.map((x) => new ValueModel(x));
-      }
-      if (raw.sections) {
-        this.sections = raw.sections.map((x) => new AbilitySection(x));
-      }
-      this.upgrades = raw.upgrades || this.upgrades;
-    } else {
-      this.grid = new GridModel();
-    }
+    this.id = raw?.id || crypto.randomUUID();
+    this.category = raw?.category || this.category;
+    this.description = raw?.description || this.description;
+    this.stats = raw?.stats.map((x) => new ValueModel(x)) || this.stats;
+    this.sections = raw?.sections.map((x) => (isString(x) ? x : new GridModel(x))) || this.sections;
+    this.upgrades = deepCopy(raw?.upgrades || this.upgrades);
     makeAutoObservable(this);
   }
 
@@ -60,16 +33,25 @@ class AbilityModel {
   }
 
   addMarkdownSection() {
-    this.sections.push(new AbilitySection(placeholderMarkdownSection));
+    this.sections.push(placeholderMarkdown);
   }
 
   addGridSection() {
-    this.sections.push(new AbilitySection(placeholderGridSection));
+    this.sections.push(new GridModel(placeholderGrid));
   }
 
   removeSection(i) {
     this.sections.splice(i, 1);
   }
 }
+
+serializeable(AbilityModel, [
+  ['category'],
+  ['name'],
+  ['stats', [ValueModel]],
+  ['description'],
+  ['sections', [GridModel]],
+  ['upgrades'],
+]);
 
 export {AbilityModel};

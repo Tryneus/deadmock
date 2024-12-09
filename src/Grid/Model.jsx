@@ -1,5 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 
+import {serializeable} from '../Serialize';
 import {ValueModel} from '../Value';
 
 class GridModel {
@@ -7,12 +8,8 @@ class GridModel {
   values = [];
 
   constructor(raw) {
-    if (raw && raw.cells) {
-      this.cells = raw.cells.map((x) => new ValueModel(x));
-    }
-    if (raw && raw.values) {
-      this.values = raw.values.map((x) => new ValueModel(x));
-    }
+    this.cells = raw?.cells.map((x) => new ValueModel(x)) || this.cells;
+    this.values = raw?.values.map((x) => new ValueModel(x)) || this.values;
     makeAutoObservable(this);
   }
 
@@ -32,5 +29,10 @@ class GridModel {
     this.values.splice(i, 1);
   }
 }
+
+serializeable(GridModel, [
+  ['cells', [ValueModel]],
+  ['values', [ValueModel]],
+]);
 
 export {GridModel};

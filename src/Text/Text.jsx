@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 
 import './Text.css';
 
@@ -23,16 +22,6 @@ const Text = ({italic, weight, color, children}) => {
       {children}
     </span>
   );
-};
-
-Text.propTypes = {
-  italic:   PropTypes.bool,
-  weight:   PropTypes.number,
-  color:    PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
 };
 
 const Medium = (props) => <Text {...props} weight={500} />;

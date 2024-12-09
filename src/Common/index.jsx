@@ -274,17 +274,16 @@ const statIcons = groupedStatIcons.flat();
 
 const tierCosts = [0, 500, 1250, 3000, 6200];
 
-const placeholderMarkdownSection = {type: 'markdown', data: 'Insert **markdown** here.'};
+const placeholderMarkdown = {type: 'markdown', data: 'Insert **markdown** here.'};
 
-const placeholderGridSection = {
-  type: 'grid',
-  data: {
-    cells:  [{icon: {image: 'stat/placeholder'}, value: 0, signed: false, stat: 'stat'}],
-    values: [{value: 0, units: 'm', stat: 'stat'}],
-  },
+const placeholderGrid = {
+  cells:  [{icon: {image: 'stat/placeholder'}, value: 0, signed: false, stat: 'stat'}],
+  values: [{value: 0, units: 'm', stat: 'stat'}],
 };
 
 const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
+const isString = (x) => typeof x === 'string' || x instanceof String;
 
 export {
   abilityIcons,
@@ -292,9 +291,10 @@ export {
   deepCopy,
   groupedStatIcons,
   isFirefox,
+  isString,
   itemsByName,
-  placeholderGridSection,
-  placeholderMarkdownSection,
+  placeholderGrid,
+  placeholderMarkdown,
   statIcons,
   tierCosts,
   useAction,

@@ -1,6 +1,5 @@
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
-import PropTypes from 'prop-types';
 
 import {groupedStatIcons, useAction} from '../Common';
 import {Icon, iconColors} from '../Icon';
@@ -17,11 +16,6 @@ const IconPickerButton = observer(({image, model}) => {
   );
 });
 
-IconPickerButton.propTypes = {
-  model: PropTypes.object.isRequired,
-  image: PropTypes.string,
-};
-
 const IconPickerColor = observer(({color, model}) => {
   const onClick = useAction(() => (model.color = color), [color, model]);
   return (
@@ -30,11 +24,6 @@ const IconPickerColor = observer(({color, model}) => {
     </div>
   );
 });
-
-IconPickerColor.propTypes = {
-  color: PropTypes.string.isRequired,
-  model: PropTypes.object.isRequired,
-};
 
 const IconPicker = observer(({model}) => {
   return (
@@ -53,10 +42,6 @@ const IconPicker = observer(({model}) => {
   );
 });
 
-IconPicker.propTypes = {
-  model: PropTypes.object,
-};
-
 const EditableIcon = observer(({model}) => {
   const renderTooltip = useCallback(() => <IconPicker model={model} />, [model]);
 
@@ -66,9 +51,5 @@ const EditableIcon = observer(({model}) => {
     </TooltipContainer>
   );
 });
-
-EditableIcon.propTypes = {
-  model: PropTypes.object.isRequired,
-};
 
 export {EditableIcon};

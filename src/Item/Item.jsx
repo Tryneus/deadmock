@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
-import PropTypes from 'prop-types';
 
 import {ItemComponents} from './ItemComponents';
 import {ItemEffect} from './ItemEffect';
@@ -20,9 +19,5 @@ const Item = observer(({model}) => {
     </div>
   );
 });
-
-Item.propTypes = {
-  model: PropTypes.object.isRequired,
-};
 
 export {Item};

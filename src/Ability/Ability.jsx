@@ -1,5 +1,4 @@
 import {observer} from 'mobx-react-lite';
-import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {EditableMarkdown} from '../Editable';
@@ -45,9 +44,5 @@ const Ability = observer(({model}) => {
     </div>
   );
 });
-
-Ability.propTypes = {
-  model: PropTypes.object.isRequired,
-};
 
 export {Ability};

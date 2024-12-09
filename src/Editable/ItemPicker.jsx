@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import {useCallback} from 'preact/hooks';
-import PropTypes from 'prop-types';
 
 import {allItems} from '../Common';
 import {Icon} from '../Icon';
@@ -17,11 +16,6 @@ const ItemPickerItem = ({item, onChange}) => {
       <Icon color={iconColor} image={item.icon} />
     </div>
   );
-};
-
-ItemPickerItem.propTypes = {
-  item:     PropTypes.object.isRequired,
-  onChange: PropTypes.func,
 };
 
 const tiers = [1, 2, 3, 4];
@@ -66,10 +60,6 @@ const ItemPicker = ({onChange}) => {
       </div>
     </div>
   );
-};
-
-ItemPicker.propTypes = {
-  onChange: PropTypes.func,
 };
 
 export {ItemPicker};

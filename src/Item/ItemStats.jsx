@@ -1,5 +1,4 @@
 import {observer} from 'mobx-react-lite';
-import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
@@ -18,18 +17,10 @@ const ItemStatLine = observer(({model, index}) => {
   );
 });
 
-ItemStatLine.propTypes = {
-  model: PropTypes.object.isRequired,
-};
-
 const ItemStats = observer(({model}) => (
   <div className="mock-item-stats">
     {model.stats.map((x, i) => <ItemStatLine key={i} index={i} model={model} />)}
   </div>
 ));
-
-ItemStats.propTypes = {
-  model: PropTypes.object.isRequired,
-};
 
 export {ItemStats};

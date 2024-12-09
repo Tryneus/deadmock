@@ -1,57 +1,43 @@
 import {makeAutoObservable} from 'mobx';
 
-import {deepCopy, itemsByName, placeholderGridSection, placeholderMarkdownSection, tierCosts} from '../Common';
+import {deepCopy, isString, itemsByName, placeholderGrid, placeholderMarkdown, tierCosts} from '../Common';
 import {GridModel} from '../Grid';
+import {serializeable} from '../Serialize';
 import {ValueModel} from '../Value';
 
-class ItemEffectSection {
-  type = '';
-  data = null;
-
-  constructor(raw) {
-    if (raw) {
-      this.type = raw.type;
-      if (raw.data) {
-        if (this.type === 'markdown') {
-          this.data = raw.data;
-        }
-        if (this.type === 'grid') {
-          this.data = new GridModel(raw.data);
-        }
-      }
-    }
-    makeAutoObservable(this);
-  }
-}
-
-class ItemEffect {
+class ItemEffectModel {
   active = false;
   cooldown = 0;
-  description = placeholderMarkdownSection.data;
+  description = placeholderMarkdown;
   sections = [];
 
   constructor(raw) {
-    if (raw) {
-      this.active = raw.active;
-      this.cooldown = raw.cooldown;
-      this.description = raw.description || this.description;
-      this.sections = raw.sections.map((x) => new ItemEffectSection(x));
-    }
+    this.active = Boolean(raw?.active);
+    this.cooldown = raw?.cooldown || this.cooldown;
+    this.description = raw?.description || this.description;
+    this.sections = raw?.sections?.map((x) => (isString(x) ? x : new GridModel(x))) || this.sections;
     makeAutoObservable(this);
   }
 
   addMarkdownSection() {
-    this.sections.push(new ItemEffectSection(placeholderMarkdownSection));
+    this.sections.push(placeholderMarkdown);
   }
 
   addGridSection() {
-    this.sections.push(new ItemEffectSection(placeholderGridSection));
+    this.sections.push(new GridModel(placeholderGrid));
   }
 
   removeSection(i) {
     this.sections.splice(i, 1);
   }
 }
+
+serializeable(ItemEffectModel, [
+  ['description'],
+  ['sections', [GridModel]],
+  ['active'],
+  ['cooldown'],
+]);
 
 class ItemModel {
   id;
@@ -64,21 +50,12 @@ class ItemModel {
 
   constructor(raw) {
     this.id = raw && raw.id || crypto.randomUUID();
-    if (raw) {
-      this.category = raw.category;
-      this.name = raw.name;
-      this.tier = raw.tier;
-      if (raw.components) {
-        this.components = deepCopy(raw.components);
-      }
-      if (raw.stats) {
-        this.stats = raw.stats.map((x) => new ValueModel(x));
-      }
-      if (raw.effects) {
-        this.effects = raw.effects.map((x) => new ItemEffect(x));
-      }
-    }
-
+    this.category = raw?.category || this.category;
+    this.name = raw?.name || this.name;
+    this.tier = raw?.tier || this.tier;
+    this.components = deepCopy(raw?.components || this.components);
+    this.stats = raw?.stats?.map((x) => new ValueModel(x)) || this.stats;
+    this.effects = raw?.effects?.map((x) => new ItemEffectModel(x)) || this.effects;
     makeAutoObservable(this);
   }
 
@@ -107,10 +84,10 @@ class ItemModel {
   }
 
   addEffect(raw) {
-    this.effects.push(new ItemEffect({
+    this.effects.push(new ItemEffectModel({
       active:   false,
       cooldown: 6,
-      sections: [placeholderGridSection],
+      sections: [placeholderGrid],
       ...raw,
     }));
   }
@@ -119,5 +96,14 @@ class ItemModel {
     this.effects.splice(i, 1);
   }
 }
+
+serializeable(ItemModel, [
+  ['category'],
+  ['name'],
+  ['tier'],
+  ['components'],
+  ['stats', [ValueModel]],
+  ['effects', [ItemEffectModel]],
+]);
 
 export {ItemModel};

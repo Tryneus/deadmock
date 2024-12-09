@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
-import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {EditableMarkdown} from '../Editable';
@@ -43,9 +42,5 @@ const AbilityUpgrade = observer(({active, model, tier}) => {
     </div>
   );
 });
-
-AbilityUpgrade.propTypes = {
-  model: PropTypes.object.isRequired,
-};
 
 export {AbilityUpgrade};

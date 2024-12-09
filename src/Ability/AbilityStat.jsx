@@ -1,5 +1,4 @@
 import {observer} from 'mobx-react-lite';
-import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
@@ -29,10 +28,5 @@ const AbilityStat = observer(({model, value}) => {
     </Deleteable>
   );
 });
-
-AbilityStat.propTypes = {
-  model: PropTypes.object.isRequired,
-  value: PropTypes.object,
-};
 
 export {AbilityStat};

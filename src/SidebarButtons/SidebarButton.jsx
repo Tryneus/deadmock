@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import {Icon} from '../Icon';
 import {SemiBold} from '../Text';
 
@@ -12,11 +10,6 @@ const SidebarButton = ({label, onClick}) => {
       <Icon color="bright-green" image="plus" />
     </div>
   );
-};
-
-SidebarButton.propTypes = {
-  label:   PropTypes.string,
-  onClick: PropTypes.func,
 };
 
 export {SidebarButton};

@@ -7,7 +7,6 @@ import {Ability, AbilityModel} from '../Ability';
 import {isFirefox} from '../Common';
 import {TooltipContainer} from '../Editable';
 import {Item, ItemModel} from '../Item';
-import {serializationVersion} from '../State';
 import {EditorHistory} from './EditorHistory';
 
 import './Editor.css';
@@ -77,11 +76,10 @@ const Editor = observer(({state}) => {
   ), [state, contentRef]);
 
   const onCopyLink = useCallback(() => {
-    const data = JSON.parse(JSON.stringify(state.activeModel));
-    data.version = serializationVersion;
-    const serialized = window.btoa(JSON.stringify(data));
+    const serialized = state.serializeActive();
+    const hash = window.btoa(JSON.stringify(serialized));
     const url = new URL(window.location);
-    url.hash = serialized;
+    url.hash = hash;
     navigator.clipboard.write([new ClipboardItem({'text/plain': url.toString()})]);
   }, [state]);
 

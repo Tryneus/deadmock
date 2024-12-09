@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
-import PropTypes from 'prop-types';
 
 import './TooltipContainer.css';
 
@@ -28,17 +27,6 @@ const Tooltip = ({down, click, children, warning, onClose}) => {
       {children}
     </div>
   );
-};
-
-Tooltip.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  click:   PropTypes.bool,
-  down:    PropTypes.bool,
-  onClose: PropTypes.func,
-  warning: PropTypes.bool,
 };
 
 const TooltipContainer = ({renderTooltip, direction, click, children, warning}) => {
@@ -81,17 +69,6 @@ const TooltipContainer = ({renderTooltip, direction, click, children, warning}) 
       {tooltip()}
     </div>
   );
-};
-
-TooltipContainer.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  click:         PropTypes.bool,
-  direction:     PropTypes.oneOf(['up', 'down']),
-  renderTooltip: PropTypes.func.isRequired,
-  warning:       PropTypes.bool,
 };
 
 export {TooltipContainer};

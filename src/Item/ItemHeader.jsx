@@ -1,6 +1,5 @@
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
-import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {EditableText} from '../Editable';
@@ -87,9 +86,5 @@ const ItemHeader = observer(({model}) => {
     </SidebarButtons>
   );
 });
-
-ItemHeader.propTypes = {
-  model: PropTypes.object.isRequired,
-};
 
 export {ItemHeader};

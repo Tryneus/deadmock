@@ -1,9 +1,8 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
-import PropTypes from 'prop-types';
 
-import {useAction} from '../Common';
+import {isString, useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
 import {EditableMarkdown, EditableText} from '../Editable';
 import {Grid} from '../Grid';
@@ -13,33 +12,27 @@ import {Bold, SemiBold, Text} from '../Text';
 
 // TODO: almost identical to AbilitySection, any way to abstract these?
 const ItemEffectSection = observer(({model, index}) => {
+  const value = model.sections[index];
+
   // onChange is only used for markdown sections, as the grid is given its own model for updating
-  const section = model.sections[index];
   const onDelete = useAction(() => model.removeSection(index), [index, model]);
   const onChangeMarkdown = useAction((x) => {
     if (x.length === 0) {
       onDelete();
     } else {
-      section.data;
+      model.sections[index] = x;
     }
-  }, [section, onDelete]);
+  }, [model, index, onDelete]);
 
-  if (section.type === 'markdown') {
+  if (isString(value)) {
     return (
       <div className="mock-item-effect-markdown">
-        <EditableMarkdown text={section.data} onChange={onChangeMarkdown} />
+        <EditableMarkdown text={value} onChange={onChangeMarkdown} />
       </div>
     );
-  } else if (section.type === 'grid') {
-    return <Grid data={section.data} onEmpty={onDelete} />;
   }
-  return null;
+  return <Grid data={value} onEmpty={onDelete} />;
 });
-
-ItemEffectSection.propTypes = {
-  model: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
-};
 
 const ItemEffect = observer(({item, model}) => {
   const onChangeCooldown = useAction((x) => {
@@ -117,10 +110,5 @@ const ItemEffect = observer(({item, model}) => {
     </SidebarButtons>
   );
 });
-
-ItemEffect.propTypes = {
-  item:  PropTypes.object.isRequired,
-  model: PropTypes.object.isRequired,
-};
 
 export {ItemEffect};

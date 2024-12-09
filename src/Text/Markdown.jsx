@@ -1,5 +1,4 @@
 import markdownit from 'markdown-it';
-import PropTypes from 'prop-types';
 
 import {Bold, Text} from './Text';
 
@@ -66,11 +65,6 @@ const Markdown = ({text, format = defaultFormat}) => {
   const md = convertTokens(tokens[0].children, format);
 
   return <>{md}</>;
-};
-
-Markdown.propTypes = {
-  text:   PropTypes.string.required,
-  format: PropTypes.object,
 };
 
 export {Markdown};

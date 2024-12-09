@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
-import PropTypes from 'prop-types';
 
 import {Icon} from '../Icon';
 import {loadHistory} from '../State';
@@ -21,12 +20,6 @@ const EditorHistoryTemplate = ({state, data, onClose}) => {
       <span>Template</span>
     </div>
   );
-};
-
-EditorHistoryTemplate.propTypes = {
-  state:   PropTypes.object.isRequired,
-  data:    PropTypes.object.isRequired,
-  onClose: PropTypes.func.isRequired,
 };
 
 const prettyTimeDelta = (timestamp, now) => {
@@ -81,12 +74,6 @@ const EditorHistoryEntry = ({state, data, onClose}) => {
   );
 };
 
-EditorHistoryEntry.propTypes = {
-  state:   PropTypes.object.isRequired,
-  data:    PropTypes.object.isRequired,
-  onClose: PropTypes.func,
-};
-
 const EditorHistoryCurrent = ({data}) => {
   const classes = classNames('mock-editor-history-current', `mock-editor-history-${data.category}`);
   return (
@@ -95,10 +82,6 @@ const EditorHistoryCurrent = ({data}) => {
       <span />
     </div>
   );
-};
-
-EditorHistoryCurrent.propTypes = {
-  data: PropTypes.object,
 };
 
 const EditorHistoryClear = ({state, onClose}) => {
@@ -113,11 +96,6 @@ const EditorHistoryClear = ({state, onClose}) => {
       <span>Clear Data</span>
     </div>
   );
-};
-
-EditorHistoryClear.propTypes = {
-  state:   PropTypes.object.isRequired,
-  onClose: PropTypes.func.isRequired,
 };
 
 const EditorHistoryDropdown = ({state, onClose}) => {
@@ -152,11 +130,6 @@ const EditorHistoryDropdown = ({state, onClose}) => {
   );
 };
 
-EditorHistoryDropdown.propTypes = {
-  state:   PropTypes.object.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
-
 const getActiveInfo = (state) => {
   const {category, name} = state.activeModel;
   return {category, name};
@@ -178,9 +151,5 @@ const EditorHistory = observer(({state}) => {
     </div>
   );
 });
-
-EditorHistory.propTypes = {
-  state: PropTypes.object.isRequired,
-};
 
 export {EditorHistory};

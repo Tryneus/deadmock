@@ -1,5 +1,4 @@
 import {observer} from 'mobx-react-lite';
-import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {EditableText} from '../Editable';
@@ -32,12 +31,6 @@ const Value = observer((props) => {
   );
 });
 
-Value.propTypes = {
-  signed: PropTypes.bool,
-  units:  PropTypes.string,
-  value:  PropTypes.number,
-};
-
 const EditableValue = observer(({model}) => {
   const onChange = useAction((x) => {
     const matches = x.match(parseRegex);
@@ -57,9 +50,5 @@ const EditableValue = observer(({model}) => {
     </EditableText>
   );
 });
-
-EditableValue.propTypes = {
-  model: PropTypes.object.isRequired,
-};
 
 export {EditableValue, Value};

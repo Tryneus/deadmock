@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useRef, useState} from 'preact/hooks';
-import PropTypes from 'prop-types';
 
 import {Markdown} from '../Text';
 
@@ -72,14 +71,6 @@ const EditableText = observer(({onChange, children}) => {
   );
 });
 
-EditableText.propTypes = {
-  onChange: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-};
-
 const EditableMarkdown = observer(({text, format, onChange}) => {
   const ref = useRef(null);
   const [editing, setEditing] = useState(false);
@@ -120,11 +111,5 @@ const EditableMarkdown = observer(({text, format, onChange}) => {
     </div>
   );
 });
-
-EditableMarkdown.propTypes = {
-  text:     PropTypes.string,
-  format:   PropTypes.object,
-  onChange: PropTypes.func,
-};
 
 export {EditableMarkdown, EditableText};

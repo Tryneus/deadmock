@@ -44,6 +44,7 @@ export default [
        */
       'react/no-deprecated': 'error',
       'react/react-in-jsx-scope': 'off', // handled this automatically
+      'react/prop-types': 'off',
       'react/display-name': ['warn', { ignoreTranspilerName: false }],
       'react/jsx-no-bind': ['warn', {
         ignoreRefs: true,

@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
-import PropTypes from 'prop-types';
 
 import {useAction} from '../Common';
 import {textColors} from '../Text';
@@ -15,11 +14,6 @@ const StylePickerColor = observer(({model, color}) => {
   );
 });
 
-StylePickerColor.propTypes = {
-  model: PropTypes.object.isRequired,
-  color: PropTypes.string.isRequired,
-};
-
 const weights = [400, 500, 600, 700];
 
 const StylePickerWeight = observer(({model, weight}) => {
@@ -33,11 +27,6 @@ const StylePickerWeight = observer(({model, weight}) => {
   );
 });
 
-StylePickerWeight.propTypes = {
-  model:  PropTypes.object.isRequired,
-  weight: PropTypes.oneOf([400, 500, 600, 700]).isRequired,
-};
-
 const StylePicker = observer(({model}) => {
   return (
     <div className="mock-style-picker">
@@ -50,9 +39,5 @@ const StylePicker = observer(({model}) => {
     </div>
   );
 });
-
-StylePicker.propTypes = {
-  model: PropTypes.object.isRequired,
-};
 
 export {StylePicker};

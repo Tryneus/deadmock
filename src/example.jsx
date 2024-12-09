@@ -17,11 +17,8 @@ const HeroicAura = {
 
       sections: [
         {
-          type: 'grid',
-          data: {
-            cells:  [{icon: {image: 'stat/fire_rate', color: 'orange'}, value: 40, units: '%', stat: 'Minions Fire Rate', signed: true, conditional: true}],
-            values: [{value: 20, units: 'm', stat: 'Radius'}],
-          },
+          cells:  [{icon: {image: 'stat/fire_rate', color: 'orange'}, value: 40, units: '%', stat: 'Minions Fire Rate', signed: true, conditional: true}],
+          values: [{value: 20, units: 'm', stat: 'Radius'}],
         },
       ],
     }, {
@@ -31,17 +28,14 @@ const HeroicAura = {
 
       sections: [
         {
-          type: 'grid',
-          data: {
-            cells: [
-              {icon: {image: 'stat/move_speed', color: 'grey'}, value: 2, units: 'm/s', stat: 'Movement Speed', signed: true, conditional: true},
-              {icon: {image: 'stat/fire_rate', color: 'orange'}, value: 25, units: '%', stat: 'Fire Rate', signed: true, conditional: true},
-            ],
-            values: [
-              {value: 30, units: 'm', stat: 'Active Radius'},
-              {value: 6, units: 's', stat: 'Duration'},
-            ],
-          },
+          cells: [
+            {icon: {image: 'stat/move_speed', color: 'grey'}, value: 2, units: 'm/s', stat: 'Movement Speed', signed: true, conditional: true},
+            {icon: {image: 'stat/fire_rate', color: 'orange'}, value: 25, units: '%', stat: 'Fire Rate', signed: true, conditional: true},
+          ],
+          values: [
+            {value: 30, units: 'm', stat: 'Active Radius'},
+            {value: 6, units: 's', stat: 'Duration'},
+          ],
         },
       ],
     },
@@ -69,18 +63,15 @@ const SlowingHex = {
 
       sections: [
         {
-          type: 'grid',
-          data: {
-            cells: [
-              {icon: {image: 'stat/spirit_damage', color: 'purple', large: true}, value: 80, units: '', stat: 'Damage', color: 'purple'},
-              {icon: {image: 'stat/move_slow'}, value: 20, units: '%', stat: 'Movement Slow', conditional: true},
-              {icon: {image: 'stat/move_slow'}, value: -30, units: '%', stat: 'Dash Distance', signed: true, conditional: true},
-            ],
-            values: [
-              {value: 29, units: 'm', stat: 'Cast Range'},
-              {value: 3, units: 's', stat: 'Duration'},
-            ],
-          },
+          cells: [
+            {icon: {image: 'stat/spirit_damage', color: 'purple', large: true}, value: 80, units: '', stat: 'Damage', color: 'purple'},
+            {icon: {image: 'stat/move_slow'}, value: 20, units: '%', stat: 'Movement Slow', conditional: true},
+            {icon: {image: 'stat/move_slow'}, value: -30, units: '%', stat: 'Dash Distance', signed: true, conditional: true},
+          ],
+          values: [
+            {value: 29, units: 'm', stat: 'Cast Range'},
+            {value: 3, units: 's', stat: 'Duration'},
+          ],
         },
       ],
     },
@@ -105,15 +96,12 @@ const ReturnFire = {
 
       sections: [
         {
-          type: 'grid',
-          data: {
-            cells: [
-              {icon: {image: 'stat/weapon_damage', color: 'orange', large: true}, value: 60, units: '%', stat: 'Bullet Damage Returned', color: 'orange'},
-              {icon: {image: 'stat/spirit_damage', color: 'purple', large: true}, value: 30, units: '%', stat: 'Spirit Damage Returned', color: 'purple'},
-              {icon: {image: 'stat/bullet_shield', color: 'orange'}, value: 25, units: '%', stat: 'Bullet Resist', signed: true, conditional: true},
-            ],
-            values: [{value: 7, units: 's', stat: 'Duration'}],
-          },
+          cells: [
+            {icon: {image: 'stat/weapon_damage', color: 'orange', large: true}, value: 60, units: '%', stat: 'Bullet Damage Returned', color: 'orange'},
+            {icon: {image: 'stat/spirit_damage', color: 'purple', large: true}, value: 30, units: '%', stat: 'Spirit Damage Returned', color: 'purple'},
+            {icon: {image: 'stat/bullet_shield', color: 'orange'}, value: 25, units: '%', stat: 'Bullet Resist', signed: true, conditional: true},
+          ],
+          values: [{value: 7, units: 's', stat: 'Duration'}],
         },
       ],
     },
@@ -132,18 +120,15 @@ const Tornado = {
 
   sections: [
     {
-      type: 'grid',
-      data: {
-        cells: [
-          {icon: {image: 'stat/spirit_damage', color: 'purple'}, value: 70, units: '', stat: 'Damage', spiritScaling: 0.7},
-          {value: 1.5, units: 's', stat: 'Lift Duration', icon: {image: 'stat/duration'}},
-          {value: 30, units: '%', stat: 'Bullet Evasion Chance', icon: {image: 'stat/placeholder'}},
-        ],
-        values: [
-          {value: 3.5, units: 's', stat: 'Bullet Evasion Duration', icon: {image: 'stat/placeholder'}},
-          {value: 3.5, units: 'm', stat: 'Radius', icon: {image: 'stat/aoe'}},
-        ],
-      },
+      cells: [
+        {icon: {image: 'stat/spirit_damage', color: 'purple'}, value: 70, units: '', stat: 'Damage', spiritScaling: 0.7},
+        {value: 1.5, units: 's', stat: 'Lift Duration', icon: {image: 'stat/duration'}},
+        {value: 30, units: '%', stat: 'Bullet Evasion Chance', icon: {image: 'stat/placeholder'}},
+      ],
+      values: [
+        {value: 3.5, units: 's', stat: 'Bullet Evasion Duration', icon: {image: 'stat/placeholder'}},
+        {value: 3.5, units: 'm', stat: 'Radius', icon: {image: 'stat/aoe'}},
+      ],
     },
   ],
 

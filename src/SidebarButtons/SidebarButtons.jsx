@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import './SidebarButtons.css';
 
 const SidebarButtons = ({renderButtons, children}) => {
@@ -13,14 +11,6 @@ const SidebarButtons = ({renderButtons, children}) => {
       {children}
     </div>
   );
-};
-
-SidebarButtons.propTypes = {
-  renderButtons: PropTypes.func,
-  children:      PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
 };
 
 export {SidebarButtons};

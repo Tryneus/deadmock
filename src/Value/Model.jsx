@@ -1,6 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 
 import {IconModel} from '../Icon';
+import {serializeable} from '../Serialize';
 
 class ValueModel {
   icon;
@@ -27,5 +28,17 @@ class ValueModel {
     makeAutoObservable(this);
   }
 }
+
+serializeable(ValueModel, [
+  ['icon', IconModel],
+  ['stat'],
+  ['value'],
+  ['units'],
+  ['signed'],
+  ['spiritScaling'],
+  ['conditional'],
+  ['weight'],
+  ['color'],
+]);
 
 export {ValueModel};

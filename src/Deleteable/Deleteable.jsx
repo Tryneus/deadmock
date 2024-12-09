@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 
 import {Icon} from '../Icon';
 
@@ -18,15 +17,6 @@ const Deleteable = ({children, onClick, overlap}) => {
       </span>
     </div>
   );
-};
-
-Deleteable.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  onClick: PropTypes.func,
-  overlap: PropTypes.bool,
 };
 
 export {Deleteable};
