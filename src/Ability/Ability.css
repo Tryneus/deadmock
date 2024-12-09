@@ -121,11 +121,7 @@
                     padding: 1rem 0.2rem;
 
                     .mock-grid-cell-value {
-                        font-size: 1.1rem;
-
-                        .mock-icon {
-                            font-size: 1.15rem;
-                        }
+                        font-size: 1.15rem;
                     }
                 }
 

@@ -186,7 +186,7 @@ const GridCellValue = observer(({model}) => {
   return (
     <>
       <div className="mock-grid-cell-value">
-        <EditableIcon model={model.icon} />
+        <EditableIcon resize model={model.icon} />
         <EditableValue model={model} />
       </div>
       <EditableText onChange={onChange}>

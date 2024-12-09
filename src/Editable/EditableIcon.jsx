@@ -25,15 +25,20 @@ const IconPickerColor = observer(({color, model}) => {
   );
 });
 
-const IconPicker = observer(({model}) => {
+const IconPicker = observer(({model, resize}) => {
   const toggleSize = useAction(() => (model.large = !model.large), [model]);
   const resizeImage = model.large ? 'compress' : 'expand';
+
+  const renderResize = () => (
+    <span onClick={toggleSize}>
+      <Icon image={resizeImage} />
+    </span>
+  );
+
   return (
     <div className="mock-icon-picker">
       <div>
-        <span onClick={toggleSize}>
-          <Icon image={resizeImage} />
-        </span>
+        {resize && renderResize()}
         {iconColors.map((c) => <IconPickerColor key={c} color={c} model={model} />)}
       </div>
       {
@@ -47,8 +52,8 @@ const IconPicker = observer(({model}) => {
   );
 });
 
-const EditableIcon = observer(({model}) => {
-  const renderTooltip = useCallback(() => <IconPicker model={model} />, [model]);
+const EditableIcon = observer(({model, resize}) => {
+  const renderTooltip = useCallback(() => <IconPicker model={model} resize={resize} />, [model, resize]);
 
   return (
     <TooltipContainer click direction="down" renderTooltip={renderTooltip}>
