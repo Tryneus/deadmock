@@ -68,7 +68,7 @@ const EditorHistoryEntry = ({state, data, onClose}) => {
 
   return (
     <div className={classes} onClick={onClick}>
-      <span>{data.name}</span>
+      <span>{data.name || 'unnamed'}</span>
       <span>{timeDelta}</span>
     </div>
   );
@@ -78,7 +78,7 @@ const EditorHistoryCurrent = ({data}) => {
   const classes = classNames('mock-editor-history-current', `mock-editor-history-${data.category}`);
   return (
     <div className={classes}>
-      <span>{data.name}</span>
+      <span>{data.name || 'unnamed'}</span>
       <span />
     </div>
   );

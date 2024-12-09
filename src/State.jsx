@@ -116,6 +116,25 @@ class State {
     return [serializationVersion, this.activeModel.serialize()];
   }
 
+  deserializeActive([version, modelData]) {
+    if (!version) {
+      throw new Error('missing a serialization version');
+    } else if (version !== serializationVersion) {
+      throw new Error(`unrecognized serialization version: ${JSON.stringify(version)}`);
+    }
+
+    // Category should be the first element
+    console.log(modelData);
+    const category = modelData[0];
+    if (category === 'ability') {
+      this._setActive(AbilityModel.deserialize(modelData));
+    } else if (['weapon', 'vitality', 'spirit'].includes(category)) {
+      this._setActive(ItemModel.deserialize(modelData));
+    } else {
+      throw new Error(`unrecognized model category: ${category}`);
+    }
+  }
+
   _setActive(model) {
     runInAction(() => {
       this.activeModel = model;

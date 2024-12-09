@@ -8,11 +8,22 @@ const coerceZero = (x) => {
   return x;
 };
 
-const doSerialize = (x) => {
+const doSerialize = (typename, field, x) => {
   let result = x?.serialize?.() || x;
+
   if (Array.isArray(result)) {
-    result = result.map(doSerialize);
+    result = result.map((x) => doSerialize(typename, `${field}[]`, x));
   }
+
+  // Optimizations for large zero-values
+  if (typename === 'IconModel') {
+    if (field === 'image' && x === 'stat/placeholder') {
+      return 0;
+    } else if (field === 'color' && x === 'grey') {
+      return 0;
+    }
+  }
+
   return coerceZero(result);
 };
 
@@ -38,8 +49,8 @@ const pruneResult = (x) => {
 
 const serializeable = (model, fields) => {
   model.prototype.serialize = function () {
-    return pruneResult(fields.map(([name]) => {
-      return doSerialize(this[name]);
+    return pruneResult(fields.map(([field]) => {
+      return doSerialize(model.name, field, this[field]);
     }));
   };
 

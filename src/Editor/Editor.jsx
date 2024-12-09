@@ -100,7 +100,7 @@ const Editor = observer(({state}) => {
           Save
         </div>
         <div className="mock-editor-button" onClick={onCopyLink}>
-          Link
+          Copy Link
         </div>
         <EditorHistory state={state} />
       </div>
