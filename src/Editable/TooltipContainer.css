@@ -4,7 +4,6 @@
 
     .mock-tooltip {
         cursor: auto;
-        max-width: 13rem;
         position: absolute;
         z-index: 10;
         text-align: start;

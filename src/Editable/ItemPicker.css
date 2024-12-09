@@ -4,7 +4,7 @@
     padding: 0.3rem;
     display: flex;
     flex-direction: column;
-    width: 25rem;
+    white-space: nowrap;
     font-size: 1.2rem; 
 
     .mock-item-picker-icon-vitality {
@@ -20,7 +20,6 @@
     }
 
     .mock-item-picker-tier {
-
         > * {
             cursor: pointer;
             display: inline-block;

@@ -26,9 +26,14 @@ const IconPickerColor = observer(({color, model}) => {
 });
 
 const IconPicker = observer(({model}) => {
+  const toggleSize = useAction(() => (model.large = !model.large), [model]);
+  const resizeImage = model.large ? 'compress' : 'expand';
   return (
     <div className="mock-icon-picker">
       <div>
+        <span onClick={toggleSize}>
+          <Icon image={resizeImage} />
+        </span>
         {iconColors.map((c) => <IconPickerColor key={c} color={c} model={model} />)}
       </div>
       {
