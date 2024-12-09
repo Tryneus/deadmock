@@ -8,8 +8,8 @@ class GridModel {
   values = [];
 
   constructor(raw) {
-    this.cells = raw?.cells.map((x) => new ValueModel(x)) || this.cells;
-    this.values = raw?.values.map((x) => new ValueModel(x)) || this.values;
+    this.cells = raw?.cells?.map((x) => new ValueModel(x)) || this.cells;
+    this.values = raw?.values?.map((x) => new ValueModel(x)) || this.values;
     makeAutoObservable(this);
   }
 

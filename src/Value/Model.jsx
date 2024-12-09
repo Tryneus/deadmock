@@ -8,7 +8,7 @@ class ValueModel {
   signed = false;
   conditional = false;
   value = 0;
-  units = '%';
+  units = '';
   stat = 'Stat';
   weight = null;
   color = null;
