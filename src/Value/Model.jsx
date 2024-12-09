@@ -9,7 +9,7 @@ class ValueModel {
   conditional = false;
   value = 0;
   units = '';
-  stat = 'Stat';
+  stat = 'stat';
   weight = null;
   color = null;
   spiritScaling = null;

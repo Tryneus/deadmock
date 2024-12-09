@@ -274,12 +274,10 @@ const statIcons = groupedStatIcons.flat();
 
 const tierCosts = [0, 500, 1250, 3000, 6200];
 
-const placeholderMarkdown = {type: 'markdown', data: 'Insert **markdown** here.'};
+const placeholderMarkdown = 'Insert **markdown** _here_.';
 
-const placeholderGrid = {
-  cells:  [{icon: {image: 'stat/placeholder'}, value: 0, signed: false, stat: 'stat'}],
-  values: [{value: 0, units: 'm', stat: 'stat'}],
-};
+
+const placeholderGrid = {cells:  [{}], values: [{}]};
 
 const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
 

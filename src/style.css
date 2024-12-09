@@ -137,10 +137,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+}
 
-    --mock-green: #7cbb1e;
-    --mock-purple: #ce91ff;
-    --mock-orange: #dd9642;
+@media (max-width: 700px) {
+    :root {
+        font-size: calc(100vw / 35);
+    }
 }
 
 body {

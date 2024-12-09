@@ -8,15 +8,15 @@
     font-size: 1.2rem; 
 
     .mock-item-picker-icon-vitality {
-        background-color: var(--mock-green);
+        background-color: #7cbb1e;
     }
 
     .mock-item-picker-icon-spirit {
-        background-color: var(--mock-purple);
+        background-color: #ce91ff;
     }
 
     .mock-item-picker-icon-weapon {
-        background-color: var(--mock-orange);
+        background-color: #dd9642;
     }
 
     .mock-item-picker-tier {

@@ -84,12 +84,13 @@ const Editor = observer(({state}) => {
   }, [state]);
 
   const renderActive = () => {
-    if (state.activeModel instanceof AbilityModel) {
+    // TODO: `instanceof` stopped working here when vite refreshes the code on an open page...
+    if (state.activeModel.constructor.name === 'AbilityModel') {
       return <Ability model={state.activeModel} />;
-    } else if (state.activeModel instanceof ItemModel) {
+    } else if (state.activeModel.constructor.name === 'ItemModel') {
       return <Item model={state.activeModel} />;
     }
-    console.error('unknown model', state.activeModel);
+    console.error('unknown model', state.activeModel.constructor.name);
   };
 
   return (
