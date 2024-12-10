@@ -14,7 +14,7 @@ class ItemEffectModel {
   constructor(raw) {
     this.active = Boolean(raw?.active);
     this.cooldown = raw?.cooldown || this.cooldown;
-    this.description = raw?.description || this.description;
+    this.description = raw?.description ?? this.description;
     this.sections = raw?.sections?.map((x) => (isString(x) ? x : new GridModel(x))) || this.sections;
     makeAutoObservable(this);
   }

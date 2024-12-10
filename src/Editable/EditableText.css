@@ -6,6 +6,13 @@
     min-height: 1lh;
 }
 
+.mock-editable-markdown {
+    display: block;
+    resize: none;
+    cursor: pointer;
+    min-height: 1lh;
+}
+
 [contenteditable] {
     outline: 0 solid transparent;
 }

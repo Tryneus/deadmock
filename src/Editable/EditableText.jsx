@@ -93,7 +93,7 @@ const EditableMarkdown = observer(({text, format, onChange}) => {
     window.getSelection().removeAllRanges();
   }, [setEditing, onChange]);
 
-  const classes = classNames('mock-editable-text', 'mock-text', {
+  const classes = classNames('mock-editable-markdown', 'mock-text', {
     'mock-text-color-bright': editing,
   });
 

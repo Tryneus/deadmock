@@ -18,7 +18,7 @@ class AbilityModel {
     this.id = raw?.id || crypto.randomUUID();
     this.category = raw?.category || this.category;
     this.name = raw?.name || this.name;
-    this.description = raw?.description || this.description;
+    this.description = raw?.description ?? this.description;
     this.stats = raw?.stats?.map((x) => new ValueModel(x)) || this.stats;
     this.sections = raw?.sections?.map((x) => (isString(x) ? x : new GridModel(x))) || this.sections;
     this.upgrades = deepCopy(raw?.upgrades || this.upgrades);
