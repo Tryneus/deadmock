@@ -1,7 +1,8 @@
 .mock-editable-text {
+    display: inline-block;
     resize: none;
     cursor: pointer;
-    min-width: 0.5em;
+    min-width: 1em;
     min-height: 1lh;
 }
 

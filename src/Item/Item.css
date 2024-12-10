@@ -25,7 +25,7 @@
 
         > div:first-child {
             align-content: center;
-            margin: 1.1rem 0.7rem 1rem 0.7rem;
+            margin: 0.85rem 0.7rem 1rem 0.7rem;
         }
 
         > div:last-child {
@@ -34,9 +34,11 @@
 
         .item-name {
             font-size: 1.5rem;
+            line-height: 100%;
             font-weight: 700;
             text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.6);
             margin-left: 0.2rem;
+            word-break: break-word;
         }
 
         .item-cost {
@@ -44,7 +46,7 @@
             color: #9affd6;
             font-size: 1rem;
             font-weight: 700;
-            margin-top: 0.8rem;
+            margin-top: 0.2rem;
             display: flex;
             align-items: center;
             user-select: none;
@@ -152,6 +154,16 @@
             align-items: center;
             line-height: 1;
 
+            > * {
+                flex-shrink: 0;
+            }
+
+            > *:nth-child(2) {
+                flex-shrink: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
             &:not(:first-child) {
                 margin-top: 0.4rem;
             }
@@ -216,7 +228,7 @@
             padding: 0 0.8rem;
 
             &:not(:first-child) {
-                margin-top: 0.8rem;
+                margin-top: 0.6rem;
             }
         }
     }

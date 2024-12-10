@@ -43,6 +43,7 @@
         white-space: nowrap;
         padding: 0.05rem 0.5rem;
         cursor: pointer;
+        min-height: 1lh;
 
         > span:first-child {
             overflow: hidden;

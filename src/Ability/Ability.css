@@ -18,16 +18,12 @@
             flex-direction: column;
             justify-content: space-between;
 
-            .mock-ability-header-title {
-                margin-bottom: 0.3rem;
-            }
-
             .mock-ability-header-misc-stats {
                 display: flex;
                 flex-wrap: wrap;
 
                 > * {
-                    margin-top: 0.4rem;
+                    margin-top: 0.3rem;
                     margin-right: 0.5rem;
                 }
             }
@@ -97,7 +93,7 @@
             padding-top: 0.9rem;
 
             > *:not(:first-child) {
-                margin-top: 1.2rem;
+                margin-top: 0.9rem;
             }
 
             .mock-ability-markdown {
