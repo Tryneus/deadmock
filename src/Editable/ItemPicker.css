@@ -6,45 +6,45 @@
     flex-direction: column;
     white-space: nowrap;
     font-size: 1.2rem; 
+}
 
-    .mock-item-picker-icon-vitality {
-        background-color: #7cbb1e;
-    }
+.mock-item-picker-icon-vitality {
+    background-color: #7cbb1e;
+}
 
-    .mock-item-picker-icon-spirit {
-        background-color: #ce91ff;
-    }
+.mock-item-picker-icon-spirit {
+    background-color: #ce91ff;
+}
 
-    .mock-item-picker-icon-weapon {
-        background-color: #dd9642;
-    }
+.mock-item-picker-icon-weapon {
+    background-color: #dd9642;
+}
 
-    .mock-item-picker-tier {
-        > * {
-            cursor: pointer;
-            display: inline-block;
-            white-space: nowrap;
-            margin: 0.1rem;
+.mock-item-picker-tier {
+    > * {
+        cursor: pointer;
+        display: inline-block;
+        white-space: nowrap;
+        margin: 0.1rem;
 
-            &:hover {
-                border: 0.1rem solid orange;
-                margin: 0;
-            }
+        &:hover {
+            border: 0.1rem solid orange;
+            margin: 0;
         }
     }
+}
 
-    .mock-item-picker-weapon-group {
-        display: flex;
-        flex-direction: column;
-    }
+.mock-item-picker-weapon-group {
+    display: flex;
+    flex-direction: column;
+}
 
-    .mock-item-picker-vitality-group {
-        display: flex;
-        flex-direction: column;
-    }
+.mock-item-picker-vitality-group {
+    display: flex;
+    flex-direction: column;
+}
 
-    .mock-item-picker-spirit-group {
-        display: flex;
-        flex-direction: column;
-    }
+.mock-item-picker-spirit-group {
+    display: flex;
+    flex-direction: column;
 }

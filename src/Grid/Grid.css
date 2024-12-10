@@ -1,7 +1,103 @@
+.mock-grid-cell-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > *:not(:first-child) {
+        margin-left: 0.2em;
+    }
+}
+
+.mock-grid-cell-values-value {
+    display: flex;
+    justify-content: center;
+    margin-right: 0.7em;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    > *:not(:first-child) {
+        margin-left: 0.2em;
+    }
+}
+
+.mock-grid-cell-values-item-delete {
+    margin-left: 0.1em;
+    visibility: hidden;
+}
+
+.mock-grid-cell-values-item {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-basis: 50%;
+
+    .mock-editable-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &:hover .mock-grid-cell-values-item-delete {
+        visibility: visible;
+    }
+}
+
+.mock-grid-cell-hover-buttons {
+    width: 0;
+    height: 0;
+    z-index: 5;
+    visibility: hidden;
+    line-height: 1;
+    font-size: 0.8rem;
+
+    > * {
+        position: relative;
+        right: 1.3rem; /* ugh */
+        margin-top: 0.1rem;
+        padding: 0.1rem;
+        border-radius: 0.4rem;
+        border: 0.1rem solid rgb(10 10 10 / 50%);
+        background-color: rgb(40 40 40 / 80%);
+        display: inline-flex;
+        flex-direction: column;
+
+        .mock-icon:not(:first-child) {
+            margin-top: 0.1rem;
+        }
+    }
+
+    .mock-tooltip {
+        visibility: visible;
+    }
+}
+
+.mock-grid-cell {
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
 .mock-grid-row {
     display: flex;
     justify-content: stretch;
     margin-top: 0.2rem;
+}
+
+.mock-grid-row > * {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.mock-grid-row > *:not(:first-child) {
+    margin-left: 0.2rem;
+    margin-top: 0;
+}
+
+.mock-grid-row > div:has(.mock-spirit-scaling) {
+    display: flex;
+    flex-direction: column;
 }
 
 .mock-grid-row:first-child {
@@ -24,55 +120,10 @@
     }
 }
 
-
-.mock-grid-row > * {
-    flex-basis: 0;
-    flex-grow: 1;
-}
-
-.mock-grid-row > *:not(:first-child) {
-    margin-left: 0.2rem;
-    margin-top: 0;
-}
-
-.mock-grid-row > div:has(.mock-spirit-scaling) {
-    display: flex;
-    flex-direction: column;
-}
-
 .mock-grid-cell-container {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
-
-    .mock-grid-cell-hover-buttons {
-        width: 0;
-        height: 0;
-        z-index: 5;
-        visibility: hidden;
-        line-height: 1;
-        font-size: 0.8rem;
-
-        > * {
-            position: relative;
-            right: 1.3rem; /* ugh */
-            margin-top: 0.1rem;
-            padding: 0.1rem;
-            border-radius: 0.4rem;
-            border: 0.1rem solid rgb(10 10 10 / 50%);
-            background-color: rgb(40 40 40 / 80%);
-            display: inline-flex;
-            flex-direction: column;
-
-            .mock-icon:not(:first-child) {
-                margin-top: 0.1rem;
-            }
-        }
-
-        .mock-tooltip {
-            visibility: visible;
-        }
-    }
 
     &:hover .mock-grid-cell-hover-buttons {
         visibility: visible;
@@ -99,57 +150,5 @@
         .mock-grid-cell-values-item:not(:last-child), .mock-grid-cell-values-item:nth-child(even) {
             max-width: 50%;
         }
-    }
-}
-
-.mock-grid-cell {
-    display: flex;
-    flex-direction: column;
-    place-content: center;
-    text-align: center;
-    flex-grow: 1;
-}
-
-.mock-grid-cell-value {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    > *:not(:first-child) {
-        margin-left: 0.2em;
-    }
-}
-
-.mock-grid-cell-values-item {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    flex-basis: 50%;
-
-    .mock-editable-text {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .mock-grid-cell-values-value {
-        display: flex;
-        justify-content: center;
-        margin-right: 0.7em;
-        flex-grow: 0;
-        flex-shrink: 0;
-
-        > *:not(:first-child) {
-            margin-left: 0.2em;
-        }
-    }
-
-    .mock-grid-cell-values-item-delete {
-        margin-left: 0.1em;
-        visibility: hidden;
-    }
-
-    &:hover .mock-grid-cell-values-item-delete {
-        visibility: visible;
     }
 }

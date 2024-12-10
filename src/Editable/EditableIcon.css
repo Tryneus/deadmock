@@ -4,15 +4,15 @@
     padding: 0.2rem;
     white-space: nowrap;
     font-size: 1.2rem;
+}
 
-    .mock-icon-picker-button {
-        cursor: pointer;
-        display: inline-block;
-        margin: 0.1rem;
+.mock-icon-picker-button {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0.1rem;
 
-        &:hover {
-            border: 0.1rem solid orange;
-            margin: 0;
-        }
+    &:hover {
+        border: 0.1rem solid orange;
+        margin: 0;
     }
 }

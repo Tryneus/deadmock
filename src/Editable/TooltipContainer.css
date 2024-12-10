@@ -1,47 +1,47 @@
 .mock-tooltip-container {
     cursor: pointer;
     position: relative;
+}
 
-    .mock-tooltip {
-        cursor: auto;
-        position: absolute;
-        z-index: 10;
-        text-align: start;
+.mock-tooltip {
+    cursor: auto;
+    position: absolute;
+    z-index: 10;
+    text-align: start;
 
-        &.mock-tooltip-up {
-            bottom: 75%;
+    &.mock-tooltip-up {
+        bottom: 75%;
 
-            &::after {
-                display: block;
-                width: 0;
-                height: 0;
-                border-width: 0.5rem;
-                border-color: #999 transparent transparent;
-                border-style: solid;
-                content: "";
-            }
+        &::after {
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 0.5rem;
+            border-color: #999 transparent transparent;
+            border-style: solid;
+            content: "";
+        }
+    }
+
+    &.mock-tooltip-down {
+        &::before {
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 0.5rem;
+            border-color: transparent transparent #999;
+            border-style: solid;
+            content: "";
+        }
+    }
+
+    &.mock-tooltip-warning {
+        &.mock-tooltip-up&::after {
+            border-color: #c44 transparent transparent;
         }
 
-        &.mock-tooltip-down {
-            &::before {
-                display: block;
-                width: 0;
-                height: 0;
-                border-width: 0.5rem;
-                border-color: transparent transparent #999;
-                border-style: solid;
-                content: "";
-            }
-        }
-
-        &.mock-tooltip-warning {
-            &.mock-tooltip-up&::after {
-                border-color: #c44 transparent transparent;
-            }
-
-            &.mock-tooltip-down&::before {
-                border-color: transparent transparent #c44;
-            }
+        &.mock-tooltip-down&::before {
+            border-color: transparent transparent #c44;
         }
     }
 }

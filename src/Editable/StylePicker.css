@@ -3,35 +3,35 @@
     border: 0.1rem solid #999;
     padding: 0.3rem;
     white-space: nowrap;
+}
 
-    .mock-style-picker-color {
-        cursor: pointer;
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
-        margin: 0.1rem;
-        background-color: currentcolor;
+.mock-style-picker-color {
+    cursor: pointer;
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin: 0.1rem;
+    background-color: currentcolor;
 
-        &:hover {
-            border: 0.1rem solid orange;
-            margin: 0;
-        }
+    &:hover {
+        border: 0.1rem solid orange;
+        margin: 0;
     }
+}
 
-    .mock-style-picker-weight {
-        cursor: pointer;
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
-        margin: 0.1rem;
-        font-size: 0.8rem;
-        background-color: #333;
-        text-align: center;
-        align-content: center;
+.mock-style-picker-weight {
+    cursor: pointer;
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin: 0.1rem;
+    font-size: 0.8rem;
+    background-color: #333;
+    text-align: center;
+    align-content: center;
 
-        &:hover {
-            border: 0.1rem solid orange;
-            margin: 0;
-        }
-    };
+    &:hover {
+        border: 0.1rem solid orange;
+        margin: 0;
+    }
 }

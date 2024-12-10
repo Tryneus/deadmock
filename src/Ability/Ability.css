@@ -46,14 +46,6 @@
             flex-basis: 50%;
         }
 
-        .mock-ability-stat-group {
-            display: flex;
-
-            *:nth-child(2n) .mock-ability-stat {
-                background-color: #242424;
-            }
-        }
-
         .mock-ability-stat {
             display: flex;
             align-items: center;
@@ -70,6 +62,14 @@
                 margin-left: 0.3em;
             }
         }
+
+        .mock-ability-stat-group {
+            display: flex;
+
+            *:nth-child(2n) .mock-ability-stat {
+                background-color: #242424;
+            }
+        }
     }
 
     .mock-ability-body-background {
@@ -84,55 +84,55 @@
             width: 100%;
             height: 100%;
         }
+    }
 
-        .mock-ability-body {
-            position: relative;
-            font-size: 0.96rem;
-            padding-top: 0.9rem;
+    .mock-ability-body {
+        position: relative;
+        font-size: 0.96rem;
+        padding-top: 0.9rem;
 
-            > *:not(:first-child) {
-                margin-top: 0.9rem;
+        > *:not(:first-child) {
+            margin-top: 0.9rem;
+        }
+
+        .mock-ability-markdown {
+            line-height: 135%;
+            padding-left: 1.2rem;
+            padding-right: 1.2rem;
+        }
+
+        .mock-grid {
+            line-height: 135%;
+            padding-left: 1.2rem;
+            padding-right: 1.2rem;
+            font-size: 0.8rem;
+
+            .mock-grid-cell {
+                background: rgb(24 24 24 / 50%);
+                padding: 1rem 0.2rem;
+
+                .mock-grid-cell-value {
+                    font-size: 1.15rem;
+                }
             }
 
-            .mock-ability-markdown {
-                line-height: 135%;
-                padding-left: 1.2rem;
-                padding-right: 1.2rem;
-            }
-
-            .mock-grid {
-                line-height: 135%;
-                padding-left: 1.2rem;
-                padding-right: 1.2rem;
+            .mock-grid-cell.mock-grid-cell-values {
+                padding: 0.5rem 0.3rem 0.5rem 0.8rem;
                 font-size: 0.8rem;
+                font-weight: 500;
 
-                div:has(> .mock-spirit-scaling) .mock-grid-cell {
-                    padding: 0.9rem 0.1rem;
-                }
+                .mock-grid-cell-values-value {
+                    font-size: 0.9rem;
+                    margin-right: 0.6rem;
 
-                .mock-grid-cell {
-                    background: rgb(24 24 24 / 50%);
-                    padding: 1rem 0.2rem;
-
-                    .mock-grid-cell-value {
-                        font-size: 1.15rem;
+                    .mock-icon {
+                        font-size: 1.1rem;
                     }
                 }
+            }
 
-                .mock-grid-cell.mock-grid-cell-values {
-                    padding: 0.5rem 0.3rem 0.5rem 0.8rem;
-                    font-size: 0.8rem;
-                    font-weight: 500;
-
-                    .mock-grid-cell-values-value {
-                        font-size: 0.9rem;
-                        margin-right: 0.6rem;
-
-                        .mock-icon {
-                            font-size: 1.1rem;
-                        }
-                    }
-                }
+            div:has(> .mock-spirit-scaling) .mock-grid-cell {
+                padding: 0.9rem 0.1rem;
             }
         }
     }
@@ -153,19 +153,17 @@
             &:not(:first-child) {
                 margin-left: 0.5rem;
             }
-        }
 
-        .mock-ability-upgrade.mock-ability-upgrade-inactive {
-            border: 0.1rem solid rgb(16 16 16 / 25%);
-        }
+            &.mock-ability-upgrade-inactive {
+                border: 0.1rem solid rgb(16 16 16 / 25%);
 
-        .mock-ability-upgrade-inactive {
-            .mock-ability-upgrade-cost {
-                background: rgb(24 24 24 / 30%);
-            }
+                .mock-ability-upgrade-cost {
+                    background: rgb(24 24 24 / 30%);
+                }
 
-            .mock-ability-upgrade-text {
-                background: rgb(48 48 48 / 40%);
+                .mock-ability-upgrade-text {
+                    background: rgb(48 48 48 / 40%);
+                }
             }
         }
 
