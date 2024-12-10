@@ -191,6 +191,10 @@
             padding: 0.2rem 1rem 0.3rem;
             font-weight: 700;
 
+            .mock-editable-text {
+                min-width: 0.5em;
+            }
+
             .mock-icon {
                 font-size: 1.1rem;
             }
