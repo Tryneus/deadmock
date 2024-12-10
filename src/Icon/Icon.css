@@ -24,14 +24,11 @@
  * https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/
  */
 
-/* #ffffff */
-.mock-icon.mock-icon-white-default, .mock-icon.mock-icon-white-firefox {
-}
-
 /* ability tooltip icons - #999999 */
 .mock-icon.mock-icon-grey-default {
     filter: invert(39%) sepia(0%) saturate(1925%) hue-rotate(235deg) brightness(101%) contrast(86%);
 }
+
 .mock-icon.mock-icon-grey-firefox {
     filter: invert(31%) sepia(6%) saturate(4%) hue-rotate(16deg) brightness(89%) contrast(84%);
 }
@@ -40,6 +37,7 @@
 .mock-icon.mock-icon-orange-default {
     filter: invert(27%) sepia(82%) saturate(2866%) hue-rotate(353deg) brightness(99%) contrast(87%);
 }
+
 .mock-icon.mock-icon-orange-firefox {
     filter: invert(40%) sepia(99%) saturate(816%) hue-rotate(350deg) brightness(97%) contrast(91%);
 }
@@ -48,6 +46,7 @@
 .mock-icon.mock-icon-green-default {
     filter: invert(39%) sepia(62%) saturate(579%) hue-rotate(42deg) brightness(96%) contrast(83%);
 }
+
 .mock-icon.mock-icon-green-firefox {
     filter: invert(40%) sepia(72%) saturate(553%) hue-rotate(41deg) brightness(98%) contrast(77%);
 }
@@ -56,6 +55,7 @@
 .mock-icon.mock-icon-purple-default {
     filter: invert(24%) sepia(50%) saturate(4639%) hue-rotate(216deg) brightness(102%) contrast(108%);
 }
+
 .mock-icon.mock-icon-purple-firefox {
     filter: invert(25%) sepia(32%) saturate(6667%) hue-rotate(217deg) brightness(104%) contrast(105%);
 }
@@ -64,6 +64,7 @@
 .mock-icon.mock-icon-aqua-default {
     filter: invert(25%) sepia(87%) saturate(820%) hue-rotate(90deg) brightness(99%) contrast(105%);
 }
+
 .mock-icon.mock-icon-aqua-firefox {
     filter: invert(24%) sepia(96%) saturate(896%) hue-rotate(87deg) brightness(99%) contrast(105%);
 }
@@ -72,6 +73,7 @@
 .mock-icon.mock-icon-red-default {
     filter: invert(64%) sepia(97%) saturate(2852%) hue-rotate(351deg) brightness(97%) contrast(110%);
 }
+
 .mock-icon.mock-icon-red-firefox {
     filter: invert(53%) sepia(56%) saturate(7499%) hue-rotate(354deg) brightness(99%) contrast(104%);
 }
@@ -80,6 +82,7 @@
 .mock-icon.mock-icon-yellow-default {
     filter: invert(27%) sepia(79%) saturate(423%) hue-rotate(357deg) brightness(98%) contrast(94%);
 }
+
 .mock-icon.mock-icon-yellow-firefox {
     filter: invert(19%) sepia(84%) saturate(1301%) hue-rotate(327deg) brightness(97%) contrast(97%);
 }
@@ -88,6 +91,7 @@
 .mock-icon.mock-icon-cyan-default {
     filter: invert(12%) sepia(21%) saturate(650%) hue-rotate(91deg) brightness(103%) contrast(101%);
 }
+
 .mock-icon.mock-icon-cyan-firefox {
     filter: invert(6%) sepia(90%) saturate(393%) hue-rotate(73deg) brightness(98%) contrast(107%);
 }
@@ -96,6 +100,7 @@
 .mock-icon.mock-icon-bright-green-default {
     filter: invert(34%) sepia(33%) saturate(5067%) hue-rotate(73deg) brightness(117%) contrast(76%);
 }
+
 .mock-icon.mock-icon-bright-green-firefox {
     filter: invert(37%) sepia(93%) saturate(3763%) hue-rotate(76deg) brightness(125%) contrast(73%);
 }
@@ -104,6 +109,7 @@
 .mock-icon.mock-icon-item-vitality-default {
     filter: invert(72%) sepia(4%) saturate(585%) hue-rotate(97deg) brightness(94%) contrast(96%);
 }
+
 .mock-icon.mock-icon-item-vitality-firefox {
     filter: invert(73%) sepia(9%) saturate(307%) hue-rotate(98deg) brightness(92%) contrast(90%);
 }
@@ -112,6 +118,7 @@
 .mock-icon.mock-icon-item-spirit-default {
     filter: invert(78%) sepia(12%) saturate(3292%) hue-rotate(231deg) brightness(91%) contrast(78%);
 }
+
 .mock-icon.mock-icon-item-spirit-firefox {
     filter: invert(77%) sepia(47%) saturate(702%) hue-rotate(230deg) brightness(93%) contrast(85%);
 }
@@ -120,6 +127,7 @@
 .mock-icon.mock-icon-item-weapon-default {
     filter: invert(80%) sepia(40%) saturate(1948%) hue-rotate(16deg) brightness(100%) contrast(93%);
 }
+
 .mock-icon.mock-icon-item-weapon-firefox {
     filter: invert(82%) sepia(90%) saturate(1576%) hue-rotate(30deg) brightness(93%) contrast(93%);
 }

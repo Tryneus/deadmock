@@ -16,7 +16,7 @@
                 width: 0;
                 height: 0;
                 border-width: 0.5rem;
-                border-color: #999999 transparent transparent transparent;
+                border-color: #999 transparent transparent;
                 border-style: solid;
                 content: "";
             }
@@ -28,7 +28,7 @@
                 width: 0;
                 height: 0;
                 border-width: 0.5rem;
-                border-color: transparent transparent #999999 transparent;
+                border-color: transparent transparent #999;
                 border-style: solid;
                 content: "";
             }
@@ -36,10 +36,11 @@
 
         &.mock-tooltip-warning {
             &.mock-tooltip-up&::after {
-                border-color: #cc4444 transparent transparent transparent;
+                border-color: #c44 transparent transparent;
             }
+
             &.mock-tooltip-down&::before {
-                border-color: transparent transparent #cc4444 transparent;
+                border-color: transparent transparent #c44;
             }
         }
     }

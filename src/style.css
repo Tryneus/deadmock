@@ -1,145 +1,161 @@
 @font-face {
-    font-family: "Deadlock";
+    font-family: Deadlock;
     src: url("/deadmock/font/retaildemo-regular.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
 }
+
 @font-face {
-    font-family: "Deadlock";
+    font-family: Deadlock;
     src: url("/deadmock/font/retaildemo-medium.otf") format("opentype");
     font-weight: 500;
     font-style: normal;
 }
+
 @font-face {
-    font-family: "Deadlock";
+    font-family: Deadlock;
     src: url("/deadmock/font/retaildemo-semibold.otf") format("opentype");
     font-weight: 600;
     font-style: normal;
 }
+
 @font-face {
-    font-family: "Deadlock";
+    font-family: Deadlock;
     src: url("/deadmock/font/retaildemo-bold.otf") format("opentype");
     font-weight: 700;
     font-style: normal;
 }
+
 @font-face {
-    font-family: "Deadlock";
+    font-family: Deadlock;
     src: url("/deadmock/font/retaildemo-italic.otf") format("opentype");
     font-weight: 400;
     font-style: italic;
 }
+
 @font-face {
-    font-family: "Deadlock";
+    font-family: Deadlock;
     src: url("/deadmock/font/retaildemo-mediumitalic.otf") format("opentype");
     font-weight: 500;
     font-style: italic;
 }
+
 @font-face {
-    font-family: "Deadlock";
+    font-family: Deadlock;
     src: url("/deadmock/font/retaildemo-semibolditalic.otf") format("opentype");
     font-weight: 600;
     font-style: italic;
 }
+
 @font-face {
-    font-family: "Deadlock";
+    font-family: Deadlock;
     src: url("/deadmock/font/retaildemo-bolditalic.otf") format("opentype");
     font-weight: 700;
     font-style: italic;
 }
 
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-thin.ttf") format("truetype");
     font-weight: 100;
     font-style: normal;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-thin-italic.ttf") format("truetype");
     font-weight: 100;
     font-style: italic;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-light.ttf") format("truetype");
     font-weight: 300;
     font-style: normal;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-light-italic.ttf") format("truetype");
     font-weight: 300;
     font-style: italic;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-regular.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-regular-italic.ttf") format("truetype");
     font-weight: 400;
     font-style: italic;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-medium.ttf") format("truetype");
     font-weight: 500;
     font-style: normal;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-medium-italic.ttf") format("truetype");
     font-weight: 500;
     font-style: italic;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-bold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-bold-italic.ttf") format("truetype");
     font-weight: 700;
     font-style: italic;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-black.ttf") format("truetype");
     font-weight: 900;
     font-style: normal;
 }
+
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-black-italic.ttf") format("truetype");
     font-weight: 900;
     font-style: italic;
 }
 
 :root {
-    font-family: "Deadlock", sans-serif;
+    font-family: Deadlock, sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-size: 20px;
     line-height: 100%;
     font-weight: 400;
-
     color: #ffefd7;
-    background-color: #ffffff;
+    background-color: #fff;
     overflow-y: scroll;
-
     font-synthesis: none;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizelegibility;
+    text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
 }
 
-@media (max-width: 700px) {
+@media (width <= 700px) {
     :root {
         font-size: calc(100vw / 35);
     }
@@ -180,11 +196,11 @@ div, span {
     filter: blur(0.3rem) saturate(60%) contrast(80%);
     transform: scale(1.1);
 
-    @media (min-aspect-ratio: 16/9) {
+    @media (aspect-ratio >= 16/9) {
         background-size: 100% auto;
     }
 
-    @media (max-aspect-ratio: 16/9) {
+    @media (aspect-ratio < 16/9) {
         background-size: auto 100%;
     }
 }

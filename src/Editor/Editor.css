@@ -3,15 +3,15 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 17rem; /* safety margin so tooltips don't change the page height */
-    padding: 0 1.5rem 1.5rem 1.5rem;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 0.1rem solid rgba(0, 0, 0, 0.3);
+    padding: 0 1.5rem 1.5rem;
+    background-color: rgb(0 0 0 / 50%);
+    border: 0.1rem solid rgb(0 0 0 / 50%);
     border-top: none;
     border-radius: 0 0 1.5rem 1.5rem;
 
     .mock-editor-buttons {
         display: flex;
-        font-family: "Roboto", sans-serif;
+        font-family: Roboto, sans-serif;
         font-weight: 700;
         font-style: normal;
         font-size: 0.6rem;
@@ -24,12 +24,12 @@
             border-radius: 0.3rem;
             padding: 0 0.2rem;
             cursor: pointer;
-            border: 0.1rem solid #222222;
+            border: 0.1rem solid #222;
             font-variant: all-petite-caps;
 
             &:hover {
-                background: #666699;
-                border: 0.1rem solid #8888aa;
+                background: #669;
+                border: 0.1rem solid #88a;
             }
         }
 
@@ -55,13 +55,12 @@
                     content: "deadmock";
                     text-align: end;
                     text-justify: end;
-
                     font-weight: 700;
                     font-size: 1rem;
                     background-color: #000;
                     background-clip: text;
                     color: transparent;
-                    text-shadow: rgba(245,245,245,0.2) 0.025rem 0.05rem 0.012rem;
+                    text-shadow: rgb(245 245 245 / 20%) 0.025rem 0.05rem 0.012rem;
                     opacity: 0.4;
                     user-select: none;
                 }
@@ -81,12 +80,12 @@
 }
 
 .mock-editor-warning {
-    font-family: "Roboto", sans-serif;
+    font-family: Roboto, sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 0.6rem;
     background-color: #601414;
-    border: 0.1rem solid #cc4444;
+    border: 0.1rem solid #c44;
     width: 15rem;
     padding: 0.3rem;
 }

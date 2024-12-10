@@ -39,5 +39,5 @@
 }
 
 div:has(> .mock-spirit-scaling) {
-    background: radial-gradient(transparent 20%, rgba(88, 56, 117, 0.7) 100%) !important; /* TODO: add another div for stacking backgrounds? */
+    background: radial-gradient(transparent 20%, rgb(88 56 117 / 70%) 100%) !important; /* TODO: add another div for stacking backgrounds? */
 }

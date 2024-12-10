@@ -1,6 +1,6 @@
 .mock-item-picker {
-    background: #222222;
-    border: 0.1rem solid #999999;
+    background: #222;
+    border: 0.1rem solid #999;
     padding: 0.3rem;
     display: flex;
     flex-direction: column;

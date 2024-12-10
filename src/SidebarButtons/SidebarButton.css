@@ -3,17 +3,17 @@
     user-select: none;
     flex-grow: 0;
     flex-shrink: 0;
-    padding: 0.05rem 0.3rem 0 0.3rem;
+    padding: 0.05rem 0.3rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #707070;
-    border: 0.1rem solid #222222;
+    border: 0.1rem solid #222;
     border-radius: 0.2rem;
     line-height: 1;
     width: min-content;
     font-size: 0.65rem;
-    font-family: "Roboto", sans-serif;
+    font-family: Roboto, sans-serif;
     font-variant: all-petite-caps;
     color: #ffefd7;
 
@@ -22,8 +22,8 @@
     }
 
     &:hover {
-        background: #666699;
-        border: 0.1rem solid #8888aa;
+        background: #669;
+        border: 0.1rem solid #88a;
     }
 
     .mock-icon {

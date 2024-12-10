@@ -1,6 +1,6 @@
 .mock-editor-history {
     display: flex;
-    background-color: #222222;
+    background-color: #222;
     border: 0.1rem solid black;
     border-radius: 0.2rem;
 
@@ -13,27 +13,8 @@
         width: 1lh;
     }
 
-    .mock-editor-history-dropdown {
-        position: relative;
-        width: 0;
-
-        > div {
-            position: absolute;
-            top: 100%;
-            left: -0.1rem;
-            width: min-content;
-            z-index: 10;
-
-            border: 0.1rem solid black;
-        }
-
-        .mock-editor-history-entry, .mock-editor-history-template {
-            &:hover {
-                filter: brightness(120%) saturate(120%);
-                border: 0.05rem solid black;
-                padding: 0 0.45rem;
-            }
-        }
+    .mock-editor-history-template {
+        filter: brightness(80%) saturate(70%);
     }
 
     .mock-editor-history-entry, .mock-editor-history-template, .mock-editor-history-current {
@@ -73,11 +54,29 @@
         }
 
         &.mock-editor-history-clear {
-            background-color: #444444;
+            background-color: #444;
         }
     }
 
-    .mock-editor-history-template {
-        filter: brightness(80%) saturate(70%);
+    .mock-editor-history-dropdown {
+        position: relative;
+        width: 0;
+
+        > div {
+            position: absolute;
+            top: 100%;
+            left: -0.1rem;
+            width: min-content;
+            z-index: 10;
+            border: 0.1rem solid black;
+        }
+
+        .mock-editor-history-entry, .mock-editor-history-template {
+            &:hover {
+                filter: brightness(120%) saturate(120%);
+                border: 0.05rem solid black;
+                padding: 0 0.45rem;
+            }
+        }
     }
 }
