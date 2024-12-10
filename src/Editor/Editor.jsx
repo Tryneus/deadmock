@@ -55,10 +55,14 @@ const renderCopyImageButton = (onClick) => {
 };
 
 const generateBlob = (elem, model) => {
+  // target width is 2x((30rem or 23rem) + (2px border))
+  const rect = elem.getBoundingClientRect();
+  const canvasWidth = model instanceof AbilityModel ? 1204 : 924;
+  const canvasHeight = Math.ceil((rect.height + 2) * canvasWidth / (rect.width + 2));
+
   elem.classList.add('mock-to-image');
-  const canvasWidth = model instanceof AbilityModel ? 1200 : 920;
   const promise =
-    toBlob(elem, {filter: filterClasses, canvasWidth})
+    toBlob(elem, {filter: filterClasses, canvasWidth, canvasHeight, pixelRatio: 1})
       .finally(() => elem.classList.remove('mock-to-image'));
   promise.catch((error) => console.error('failed to generate image', error));
   return promise;
