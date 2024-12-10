@@ -58,7 +58,7 @@ const generateBlob = (elem, model) => {
   elem.classList.add('mock-to-image');
   const canvasWidth = model instanceof AbilityModel ? 1200 : 920;
   const promise =
-    toBlob(elem, {filter: filterClasses, canvasWidth: canvasWidth})
+    toBlob(elem, {filter: filterClasses, canvasWidth})
       .finally(() => elem.classList.remove('mock-to-image'));
   promise.catch((error) => console.error('failed to generate image', error));
   return promise;
