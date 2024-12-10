@@ -1,4 +1,4 @@
-![Deadmock Logo](public/deadlock196.png)
+![Deadmock Logo](public/deadmock196.png)
 
 # Deadmock
 
