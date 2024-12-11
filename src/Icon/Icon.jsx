@@ -41,7 +41,7 @@ const Icon = ({image, large, color, onClick}) => {
   return (
     <span
       className={classes}
-      style={{backgroundImage: image && `url("/deadmock/icon/${image}.png")`}}
+      style={{backgroundImage: image && `url("${import.meta.env.BASE_URL}icon/${image}.png")`}}
       onClick={onClick}
     />
   );

@@ -2,6 +2,7 @@ import {render} from 'preact';
 import {Editor} from './Editor';
 import {State} from './State';
 
+import './preload';
 import './style.css';
 
 const state = new State();
