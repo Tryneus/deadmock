@@ -5,8 +5,8 @@ import {useCallback, useRef} from 'preact/hooks';
 
 import {Ability, AbilityModel} from '../Ability';
 import {isFirefox} from '../Common';
-import {TooltipContainer} from '../Editable';
 import {Item, ItemModel} from '../Item';
+import {TooltipContainer} from '../Tooltip';
 import {EditorHistory} from './EditorHistory';
 
 import './Editor.css';

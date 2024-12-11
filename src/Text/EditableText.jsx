@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useRef, useState} from 'preact/hooks';
 
-import {Markdown} from '../Text';
+import {Markdown} from './Markdown';
 
 import './EditableText.css';
 

@@ -2,8 +2,8 @@ import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
 import {groupedStatIcons, useAction} from '../Common';
-import {Icon, iconColors} from '../Icon';
-import {TooltipContainer} from './TooltipContainer';
+import {TooltipContainer} from '../Tooltip';
+import {Icon, iconColors} from './Icon';
 
 import './EditableIcon.css';
 

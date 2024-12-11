@@ -1,8 +1,8 @@
 import {observer} from 'mobx-react-lite';
 
 import {isString, useAction} from '../Common';
-import {EditableMarkdown} from '../Editable';
 import {Grid} from '../Grid';
+import {EditableMarkdown} from '../Text';
 
 const AbilitySection = observer(({model, index}) => {
   const value = model.sections[index];

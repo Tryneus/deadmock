@@ -4,10 +4,11 @@ import {useCallback} from 'preact/hooks';
 
 import {useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
-import {EditableIcon, EditableText, StylePicker, TooltipContainer} from '../Editable';
-import {Icon} from '../Icon';
+import {EditableIcon, Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {SemiBold, Text} from '../Text';
+import {StylePicker} from '../StylePicker';
+import {EditableText, SemiBold, Text} from '../Text';
+import {TooltipContainer} from '../Tooltip';
 import {EditableValue} from '../Value';
 import {SpiritScaling} from './SpiritScaling';
 

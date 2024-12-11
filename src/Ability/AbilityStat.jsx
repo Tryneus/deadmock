@@ -2,7 +2,7 @@ import {observer} from 'mobx-react-lite';
 
 import {useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
-import {EditableIcon} from '../Editable';
+import {EditableIcon} from '../Icon';
 import {EditableValue} from '../Value';
 
 const AbilityStat = observer(({model, value}) => {

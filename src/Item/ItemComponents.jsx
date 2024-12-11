@@ -4,9 +4,10 @@ import {useCallback} from 'preact/hooks';
 
 import {useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
-import {ItemPicker, TooltipContainer} from '../Editable';
 import {Icon} from '../Icon';
+import {ItemPicker} from '../ItemPicker';
 import {Bold} from '../Text';
+import {TooltipContainer} from '../Tooltip';
 
 const ItemComponent = observer(({model, index}) => {
   const onDelete = useAction(() => model.removeComponent(index), [index, model]);

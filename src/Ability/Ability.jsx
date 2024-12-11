@@ -1,8 +1,7 @@
 import {observer} from 'mobx-react-lite';
 
 import {useAction} from '../Common';
-import {EditableMarkdown} from '../Editable';
-import {Bold, Medium} from '../Text';
+import {Bold, EditableMarkdown, Medium} from '../Text';
 import {AbilityHeader} from './AbilityHeader';
 import {AbilitySection} from './AbilitySection';
 import {AbilityUpgrade} from './AbilityUpgrade';

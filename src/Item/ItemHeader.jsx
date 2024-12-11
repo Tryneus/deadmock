@@ -2,10 +2,9 @@ import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
 import {useAction} from '../Common';
-import {EditableText} from '../Editable';
 import {Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {Text} from '../Text';
+import {EditableText, Text} from '../Text';
 import {Value} from '../Value';
 
 const categoryBonuses = {

@@ -2,7 +2,7 @@ import {observer} from 'mobx-react-lite';
 
 import {useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
-import {EditableText} from '../Editable';
+import {EditableText} from '../Text';
 import {EditableValue} from '../Value';
 
 const ItemStatLine = observer(({model, index}) => {

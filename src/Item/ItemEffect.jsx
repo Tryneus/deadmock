@@ -4,11 +4,10 @@ import {useCallback} from 'preact/hooks';
 
 import {isString, useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
-import {EditableMarkdown, EditableText} from '../Editable';
 import {Grid} from '../Grid';
 import {Icon} from '../Icon';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {Bold, SemiBold, Text} from '../Text';
+import {Bold, EditableMarkdown, EditableText, SemiBold, Text} from '../Text';
 
 // TODO: almost identical to AbilitySection, any way to abstract these?
 const ItemEffectSection = observer(({model, index}) => {
