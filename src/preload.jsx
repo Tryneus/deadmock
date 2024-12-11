@@ -1,13 +1,18 @@
 import {allItems, statIcons} from './Common';
 
 const itemIcons = allItems.map((x) => x.icon);
-const allIcons = itemIcons.concat(statIcons);
+const remaining = itemIcons.concat(statIcons);
+const parallel = 10;
 
-const nextPreload = (i) => {
-  if (i < allIcons.length) {
+const nextPreload = () => {
+  if (remaining.length > 0) {
+    const path = remaining.pop();
     const img = new Image();
-    img.addEventListener('load', () => nextPreload(i + 1));
-    img.src = `${import.meta.env.BASE_URL}icon/${allIcons[i]}.png`;
+    img.addEventListener('load', () => nextPreload());
+    img.src = `${import.meta.env.BASE_URL}icon/${path}.png`;
   }
 };
-nextPreload(0);
+
+for (let i = 0; i < parallel; i++) {
+  nextPreload();
+}
