@@ -23,40 +23,42 @@ const preserveNewlines = (text) => (
     })}
   </>);
 
-const cleanupInput = (text) => {
-  return text.replaceAll(/\n+/g, '\n').trim();
+const handleEditingOn = (ref, setEditing) => {
+  setEditing(true);
+  setTimeout(() => {
+    ref.current.contentEditable = 'true';
+    ref.current.focus();
+    window.getSelection().selectAllChildren(ref.current);
+  }, 0);
 };
 
-// TODO: try to unify this with the markdown version
+const handleEditingOff = (ev, setEditing, onChange) => {
+  setEditing(false);
+  onChange(ev.target.innerText.replaceAll(/\n+/g, '\n').trim());
+  // react seems to have trouble with the DOM changing due to user editing?
+  ev.target.innerText = '';
+  ev.target.contentEditable = 'false';
+  window.getSelection().removeAllRanges();
+};
+
 const EditableText = observer(({onChange, children}) => {
   const ref = useRef(null);
   const [editing, setEditing] = useState(false);
   const [text, setText] = useState(null);
 
   const editingOn = useCallback(() => {
-    setEditing(true);
     setText(ref.current.innerText);
-    // For some reason this does nothing without an immediate timeout
-    setTimeout(() => {
-      ref.current.contentEditable = 'true';
-      ref.current.focus();
-      window.getSelection().selectAllChildren(ref.current);
-    }, 0);
+    handleEditingOn(ref, setEditing);
   }, [ref, setEditing, setText]);
 
   const editingOff = useCallback((e) => {
-    setEditing(false);
-    onChange(cleanupInput(e.target.innerText));
-    e.target.innerText = ''; // react seems to have trouble with the DOM changing due to user editing?
-    e.target.contentEditable = 'false';
-    window.getSelection().removeAllRanges();
+    handleEditingOff(e, setEditing, onChange);
   }, [setEditing, onChange]);
 
+  const inner = editing ? preserveNewlines(text) : children;
   const classes = classNames('mock-editable-text', 'mock-text', {
     'mock-text-color-bright': editing,
   });
-
-  const inner = editing ? preserveNewlines(text) : children;
 
   return (
     <span
@@ -76,28 +78,17 @@ const EditableMarkdown = observer(({text, format, onChange}) => {
   const [editing, setEditing] = useState(false);
 
   const editingOn = useCallback(() => {
-    setEditing(true);
-    // For some reason this does nothing without an immediate timeout
-    setTimeout(() => {
-      ref.current.contentEditable = 'true';
-      ref.current.focus();
-      window.getSelection().selectAllChildren(ref.current);
-    }, 0);
+    handleEditingOn(ref, setEditing);
   }, [ref, setEditing]);
 
   const editingOff = useCallback((e) => {
-    setEditing(false);
-    onChange(cleanupInput(e.target.innerText));
-    e.target.innerText = ''; // react seems to have trouble with the DOM changing due to user editing?
-    e.target.contentEditable = 'false';
-    window.getSelection().removeAllRanges();
+    handleEditingOff(e, setEditing, onChange);
   }, [setEditing, onChange]);
 
+  const inner = editing ? preserveNewlines(text) : <Markdown format={format} text={text} />;
   const classes = classNames('mock-editable-markdown', 'mock-text', {
     'mock-text-color-bright': editing,
   });
-
-  const inner = editing ? preserveNewlines(text) : <Markdown format={format} text={text} />;
 
   return (
     <div
