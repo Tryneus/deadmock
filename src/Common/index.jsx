@@ -256,7 +256,6 @@ const groupedStatIcons = [
     'stat/move_speed',
     'stat/stamina',
     'stat/move_slow',
-    'stat/move_debuff',
     'stat/stun',
     'stat/invisible',
   ], [
