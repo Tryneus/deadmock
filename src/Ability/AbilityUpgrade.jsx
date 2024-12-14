@@ -3,23 +3,14 @@ import {observer} from 'mobx-react-lite';
 
 import {useAction} from '../Common';
 import {Icon} from '../Icon';
-import {Bold, EditableMarkdown, Medium, SemiBold} from '../Text';
+import {Bold, EditableMarkdown} from '../Text';
 
 const tierCosts = [1, 2, 5];
 
 const upgradeMarkdownFormat = {
-  text: {
-    Component: SemiBold,
-    props:     {},
-  },
-  strong: {
-    Component: Bold,
-    props:     {color: 'bright'},
-  },
-  emphasis: {
-    Component: Medium,
-    props:     {color: 'muted', italic: true},
-  },
+  text:     {},
+  strong:   {weight: 700, color: 'bright'},
+  emphasis: {weight: 500, color: 'muted', italic: true},
 };
 
 const AbilityUpgrade = observer(({active, model, tier}) => {

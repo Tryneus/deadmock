@@ -17,10 +17,16 @@ const ItemStatLine = observer(({model, index}) => {
   );
 });
 
-const ItemStats = observer(({model}) => (
-  <div className="mock-item-stats">
-    {model.stats.map((x, i) => <ItemStatLine key={i} index={i} model={model} />)}
-  </div>
-));
+const ItemStats = observer(({model}) => {
+  if (model.stats.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="mock-item-stats">
+      {model.stats.map((x, i) => <ItemStatLine key={i} index={i} model={model} />)}
+    </div>
+  );
+});
 
 export {ItemStats};

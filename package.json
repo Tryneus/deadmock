@@ -16,7 +16,6 @@
 		"classnames": "^2.5.1",
 		"file-saver": "^2.0.5",
 		"html-to-image": "^1.11.11",
-		"markdown-it": "^14.1.0",
 		"mobx-react-lite": "^4.0.7",
 		"preact": "^10.22.1"
 	},

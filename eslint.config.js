@@ -109,7 +109,7 @@ export default [
       'constructor-super': 'error',
       'no-caller': 'error',
       'no-const-assign': 'error',
-      'no-console': ['error', {allow: ['warn', 'error']}],
+      'no-console': ['error', {allow: ['warn', 'error', 'debug']}],
       'no-constructor-return': 'error',
       'no-delete-var': 'error',
       'no-dupe-class-members': 'error',

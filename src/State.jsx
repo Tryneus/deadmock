@@ -1,7 +1,7 @@
 import {autorun, makeAutoObservable, runInAction} from 'mobx';
 
-import {AbilityModel} from './Ability';
-import {ItemModel} from './Item';
+import {AbilityModel} from './Ability/Model';
+import {ItemModel} from './Item/Model';
 import {examples} from './example';
 
 const versionKey = 'version';

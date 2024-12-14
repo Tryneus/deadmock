@@ -1,9 +1,9 @@
 import {makeAutoObservable} from 'mobx';
 
 import {deepCopy, isString, itemsByName, placeholderGrid, placeholderMarkdown, tierCosts} from '../Common';
-import {GridModel} from '../Grid';
+import {GridModel} from '../Grid/Model';
 import {serializeable} from '../Serialize';
-import {ValueModel} from '../Value';
+import {ValueModel} from '../Value/Model';
 
 class ItemEffectModel {
   active = false;

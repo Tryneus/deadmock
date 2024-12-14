@@ -1,27 +1,12 @@
 import {observer} from 'mobx-react-lite';
 
 import {useAction} from '../Common';
-import {Bold, EditableMarkdown, Medium} from '../Text';
+import {EditableMarkdown} from '../Text';
 import {AbilityHeader} from './AbilityHeader';
 import {AbilitySection} from './AbilitySection';
 import {AbilityUpgrade} from './AbilityUpgrade';
 
 import './Ability.css';
-
-const descriptionMarkdownFormat = {
-  text: {
-    Component: Medium,
-    props:     {},
-  },
-  strong: {
-    Component: Bold,
-    props:     {color: 'bright'},
-  },
-  emphasis: {
-    Component: Medium,
-    props:     {italic: true, color: 'muted'},
-  },
-};
 
 const Ability = observer(({model}) => {
   const onChange = useAction((x) => (model.description = x), [model]);
@@ -32,7 +17,7 @@ const Ability = observer(({model}) => {
         <div className="mock-ability-body-noise" />
         <div className="mock-ability-body">
           <div className="mock-ability-markdown">
-            <EditableMarkdown format={descriptionMarkdownFormat} text={model.description} onChange={onChange} />
+            <EditableMarkdown text={model.description} onChange={onChange} />
           </div>
           {model.sections.map((x, i) => <AbilitySection key={i} index={i} model={model} />)}
           <div className="mock-ability-upgrades">

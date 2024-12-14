@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 
-import {IconModel} from '../Icon';
+import {IconModel} from '../Icon/Model';
 import {serializeable} from '../Serialize';
 
 class ValueModel {

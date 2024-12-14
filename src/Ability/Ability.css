@@ -96,6 +96,7 @@
         }
 
         .mock-ability-markdown {
+            font-weight: 500;
             line-height: 135%;
             padding-left: 1.2rem;
             padding-right: 1.2rem;
@@ -197,6 +198,7 @@
             align-items: center;
             text-align: center;
             font-size: 0.9rem;
+            font-weight: 600;
             line-height: 145%;
 
             .mock-text-bold {

@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 
 import {serializeable} from '../Serialize';
-import {ValueModel} from '../Value';
+import {ValueModel} from '../Value/Model';
 
 class GridModel {
   cells = [];
