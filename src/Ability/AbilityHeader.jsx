@@ -26,8 +26,6 @@ const AbilityHeader = observer(({model}) => {
     model.addStat({icon: {image: 'stat/charge'}, value: 1, units: '', signed: false, stat: 'charges'});
     model.addStat({icon: {image: 'stat/charge_cooldown'}, value: 1, units: 's', signed: false, stat: 'chargeCooldown'});
   }, [model]);
-  const onAddMarkdown = useAction(() => model.addMarkdownSection());
-  const onAddGrid = useAction(() => model.addGridSection());
 
   const {charges, chargeCooldown, cooldown, remainder} = partitionStats(model.stats);
 
@@ -37,8 +35,6 @@ const AbilityHeader = observer(({model}) => {
         <SidebarButton label="Stat" onClick={onAddStat} />
         {cooldown ? null : <SidebarButton label="Cooldown" onClick={onAddCooldown} />}
         {charges && chargeCooldown ? null : <SidebarButton label="Charges" onClick={onAddCharges} />}
-        <SidebarButton label="Markdown" onClick={onAddMarkdown} />
-        <SidebarButton label="Grid" onClick={onAddGrid} />
       </>
     );
   };

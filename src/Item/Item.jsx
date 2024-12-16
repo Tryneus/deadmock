@@ -1,6 +1,11 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 
+<<<<<<< HEAD
+=======
+import {useAction} from '../Common';
+import {DragList} from '../DragList';
+>>>>>>> drag
 import {AnimatedDiv, AnimatedList} from '../Animated';
 import {ItemComponents} from './ItemComponents';
 import {ItemEffect} from './ItemEffect';
@@ -11,6 +16,10 @@ import './Item.css';
 
 const Item = observer(({model}) => {
   const classes = classNames('mock-item', `mock-item-${model.category}`);
+
+  const onMove = useAction((mutation) => mutation(model.effects), [model]);
+
+
   return (
     <div className={classes}>
       <AnimatedDiv className="mock-item-header-animated">
@@ -23,7 +32,9 @@ const Item = observer(({model}) => {
         <ItemStats model={model} />
       </AnimatedDiv>
       <AnimatedList className="mock-item-effect-animated">
-        {model.effects.map((x) => <ItemEffect key={x.id} item={model} model={x} />)}
+        <DragList onMove={onMove}>
+          {model.effects.map((x) => <ItemEffect key={x.id} item={model} model={x} />)}
+        </DragList>
       </AnimatedList>
     </div>
   );

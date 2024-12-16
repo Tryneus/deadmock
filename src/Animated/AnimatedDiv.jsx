@@ -1,7 +1,15 @@
 import classNames from 'classnames';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
+import './AnimatedDiv.css';
+
 const observerConfig = { attributes: true, childList: true, subtree: true, characterData: true };
+
+// Try to include margins for our computed height, otherwise the contents will overflow
+const elementHeight = (el) => {
+  const style = document.defaultView.getComputedStyle(el);
+  return el.getBoundingClientRect().height + (parseInt(style.marginTop) || 0) + (parseInt(style.marginBottom) || 0);
+};
 
 const AnimatedDiv = ({className, children}) => {
   const classes = classNames('mock-animated-div', className);
@@ -11,7 +19,7 @@ const AnimatedDiv = ({className, children}) => {
 
   const updateHeight = useCallback(() => {
     if (ref.current) {
-      setHeight(ref.current.getBoundingClientRect().height);
+      setHeight(elementHeight(ref.current));
       if (ref.current.parentElement) {
         setTimeout(() => ref.current?.parentElement?.scrollTo(0, 0), 0);
       }

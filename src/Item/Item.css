@@ -137,13 +137,13 @@
         font-size: 0.85rem;
         font-weight: 600;
         line-height: 120%;
-        padding: 0.7rem 0;
+        padding: 0.5rem 0;
 
-        > div {
-            padding: 0 0.8rem;
+        .mock-item-stat .mock-deleteable {
             display: flex;
             align-items: center;
             line-height: 1;
+            padding: 0.2rem 0;
 
             > * {
                 flex-shrink: 0;
@@ -155,12 +155,8 @@
                 text-overflow: ellipsis;
             }
 
-            &:not(:first-child) {
-                margin-top: 0.4rem;
-            }
-
-            > *:not(:first-child) {
-                margin-left: 0.5em;
+            > *:nth-child(n+3) {
+                margin-left: 0.5rem;
             }
         }
     }
@@ -177,16 +173,16 @@
             margin-bottom: 0.1rem;
         }
 
-        > * {
-            padding: 0.2rem 0.8rem 0.3rem;
-            display: flex;
-            align-items: center;
+        *:has(> .mock-item-effect-type) {
+            padding: 0.2rem 0 0.3rem;
         }
 
         .mock-item-effect-cooldown {
             background-color: #0c1414;
             padding: 0.2rem 1rem 0.3rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
 
             .mock-editable-text {
                 min-width: 0.5em;
@@ -214,19 +210,11 @@
         }
     }
 
-    .mock-item-effect-body {
+    .mock-item-effect .mock-details {
         padding: 0.45rem 0;
         font-size: 0.85rem;
         font-weight: 600;
         line-height: 145%;
-
-        .mock-grid, .mock-item-effect-markdown {
-            padding: 0 0.8rem;
-
-            &:not(:first-child) {
-                margin-top: 0.6rem;
-            }
-        }
     }
 
     .mock-grid {

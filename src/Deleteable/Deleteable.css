@@ -4,11 +4,17 @@
     margin-left: 0.4em;
     filter: drop-shadow(0 0 0.1rem rgb(0 0 0 / 70%));
 
-    &.mock-delete-button-overlap {
+}
+
+.mock-delete-button-overlap {
+    position: absolute;
+    width: 0;
+
+    .mock-delete-button {
         position: absolute;
-        width: 0;
         margin-left: 0;
-        right: 0.35rem;
+        left: -0.35rem;
+        top: -0.35rem;
         z-index: 5;
     }
 }

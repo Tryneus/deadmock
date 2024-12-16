@@ -153,3 +153,8 @@
         }
     }
 }
+
+.mock-grid {
+    /* to leave space for the spirit scaling box going out-of-bounds */
+    margin-top: 0.2rem;
+}
