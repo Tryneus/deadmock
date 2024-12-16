@@ -1,11 +1,8 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 
-<<<<<<< HEAD
-=======
 import {useAction} from '../Common';
 import {DragList} from '../DragList';
->>>>>>> drag
 import {AnimatedDiv, AnimatedList} from '../Animated';
 import {ItemComponents} from './ItemComponents';
 import {ItemEffect} from './ItemEffect';
