@@ -49,10 +49,11 @@
     visibility: hidden;
     line-height: 1;
     font-size: 0.8rem;
+    position: absolute;
 
     > * {
-        position: relative;
-        right: 1.3rem; /* ugh */
+        position: absolute;
+        left: 0.1rem;
         margin-top: 0.1rem;
         padding: 0.1rem;
         border-radius: 0.4rem;

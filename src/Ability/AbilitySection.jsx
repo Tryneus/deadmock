@@ -19,12 +19,16 @@ const AbilitySection = observer(({model, index}) => {
 
   if (isString(value)) {
     return (
-      <div className="mock-ability-markdown">
+      <div className="mock-ability-markdown mock-ability-body-section">
         <EditableMarkdown text={value} onChange={onChangeMarkdown} />
       </div>
     );
   }
-  return <Grid data={value} onEmpty={onDelete} />;
+  return (
+    <div className="mock-ability-body-section">
+      <Grid data={value} onEmpty={onDelete} />
+    </div>
+  );
 });
 
 export {AbilitySection};

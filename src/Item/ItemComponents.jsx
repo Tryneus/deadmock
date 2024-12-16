@@ -41,7 +41,7 @@ const ItemComponents = observer(({model}) => {
   }
 
   return (
-    <div className="mock-components">
+    <div className="mock-item-components">
       <div><Bold>COMPONENTS:</Bold></div>
       {model.components.map((_, i) => <ItemComponent key={i} index={i} model={model} />)}
     </div>

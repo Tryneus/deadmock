@@ -6,12 +6,14 @@ import {serializeable} from '../Serialize';
 import {ValueModel} from '../Value/Model';
 
 class ItemEffectModel {
+  id; // only used for rendering purposes as a react `key`, not persisted
   active = false;
   cooldown = 0;
   description = placeholderMarkdown;
   sections = [];
 
   constructor(raw) {
+    this.id = crypto.randomUUID();
     this.active = Boolean(raw?.active);
     this.cooldown = raw?.cooldown || this.cooldown;
     this.description = raw?.description ?? this.description;

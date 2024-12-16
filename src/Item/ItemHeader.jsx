@@ -62,7 +62,7 @@ const ItemHeader = observer(({model}) => {
 
   return (
     <SidebarButtons renderButtons={renderSidebarButtons}>
-      <div className="mock-header">
+      <div className="mock-item-header">
         <div>
           <div className="item-name">
             <EditableText onChange={onChangeName}>

@@ -1,8 +1,15 @@
 .mock-ability {
     width: 30rem;
 
-    .mock-ability-header {
+    .mock-ability-header-animated {
         background-color: #121212;
+    }
+
+    .mock-ability-upgrades-animated {
+        background-color: rgb(16 16 16 / 15%);
+    }
+
+    .mock-ability-header {
         padding: 1.2rem;
         display: flex;
         line-height: 1;
@@ -100,6 +107,14 @@
             line-height: 135%;
             padding-left: 1.2rem;
             padding-right: 1.2rem;
+
+            .mock-text {
+                padding-bottom: 0;
+            }
+        }
+
+        .mock-ability-body-section {
+            margin-top: 0.7rem;
         }
 
         .mock-grid {
@@ -109,7 +124,7 @@
             font-size: 0.8rem;
 
             .mock-grid-cell {
-                background: rgb(24 24 24 / 50%);
+                background-color: rgb(24 24 24 / 50%);
                 padding: 1rem 0.2rem;
 
                 .mock-grid-cell-value {
@@ -141,7 +156,6 @@
     .mock-ability-upgrades {
         padding: 1.3rem;
         display: flex;
-        background: rgb(16 16 16 / 15%);
 
         .mock-ability-upgrade {
             flex-basis: 50%;
@@ -159,18 +173,18 @@
                 border: 0.1rem solid rgb(16 16 16 / 25%);
 
                 .mock-ability-upgrade-cost {
-                    background: rgb(24 24 24 / 30%);
+                    background-color: rgb(24 24 24 / 30%);
                 }
 
                 .mock-ability-upgrade-text {
-                    background: rgb(48 48 48 / 40%);
+                    background-color: rgb(48 48 48 / 40%);
                 }
             }
         }
 
         .mock-ability-upgrade-cost {
             padding: 0.2rem;
-            background: #11140e;
+            background-color: #11140e;
             border-radius: 0.2rem 0.2rem 0 0;
             display: flex;
             justify-content: center;
@@ -188,7 +202,7 @@
 
         .mock-ability-upgrade-text {
             padding: 1rem 0.5rem;
-            background: #8b56b4;
+            background-color: #8b56b4;
             border-radius: 0 0 0.2rem 0.2rem;
             flex-grow: 1;
             min-height: 5.2rem;

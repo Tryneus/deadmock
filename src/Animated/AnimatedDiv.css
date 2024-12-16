@@ -1,0 +1,5 @@
+.mock-animated-div {
+    transition: height 0.3s cubic-bezier(.35,.06,.4,1);
+    height: 0;
+    overflow: hidden;
+}

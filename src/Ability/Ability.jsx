@@ -1,5 +1,6 @@
 import {observer} from 'mobx-react-lite';
 
+import {AnimatedDiv} from '../Animated';
 import {useAction} from '../Common';
 import {EditableMarkdown} from '../Text';
 import {AbilityHeader} from './AbilityHeader';
@@ -12,17 +13,23 @@ const Ability = observer(({model}) => {
   const onChange = useAction((x) => (model.description = x), [model]);
   return (
     <div className="mock-ability">
-      <AbilityHeader model={model} />
+      <AnimatedDiv className="mock-ability-header-animated">
+        <AbilityHeader model={model} />
+      </AnimatedDiv>
       <div className="mock-ability-body-background">
         <div className="mock-ability-body-noise" />
         <div className="mock-ability-body">
-          <div className="mock-ability-markdown">
-            <EditableMarkdown text={model.description} onChange={onChange} />
-          </div>
-          {model.sections.map((x, i) => <AbilitySection key={i} index={i} model={model} />)}
-          <div className="mock-ability-upgrades">
-            {model.upgrades.map((x, i) => <AbilityUpgrade key={i} model={model} tier={i} />)}
-          </div>
+          <AnimatedDiv>
+            <div className="mock-ability-markdown">
+              <EditableMarkdown text={model.description} onChange={onChange} />
+            </div>
+            {model.sections.map((x, i) => <AbilitySection key={i} index={i} model={model} />)}
+          </AnimatedDiv>
+          <AnimatedDiv className="mock-ability-upgrades-animated">
+            <div className="mock-ability-upgrades">
+              {model.upgrades.map((x, i) => <AbilityUpgrade key={i} model={model} tier={i} />)}
+            </div>
+          </AnimatedDiv>
         </div>
       </div>
     </div>

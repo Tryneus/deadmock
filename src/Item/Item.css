@@ -9,14 +9,11 @@
     }
 
     > div:last-child {
-        &.mock-item-stats, .mock-item-effect {
-            padding-bottom: 0.4rem;
-            border-radius: 0 0 0.5rem 0.5rem;
-        }
+        padding-bottom: 0.4rem;
+        border-radius: 0 0 0.5rem 0.5rem;
     }
 
-    .mock-header {
-        border-radius: 0.5rem 0.5rem 0 0;
+    .mock-item-header {
         display: flex;
         justify-content: space-between;
 
@@ -85,7 +82,7 @@
     }
 
 
-    .mock-components {
+    .mock-item-components {
         font-size: 0.6rem;
         padding: 0.1rem 0.8rem 0.3rem;
         user-select: none;
@@ -232,34 +229,43 @@
         }
     }
 
-    .mock-grid-cell {
-        padding: 0.3rem;
-        line-height: 110%;
-        font-size: 0.8rem;
-        font-weight: 600;
+    .mock-grid {
+        .mock-grid-cell {
+            padding: 0.3rem;
+            line-height: 110%;
+            font-size: 0.8rem;
+            font-weight: 600;
 
-        .mock-grid-cell-value {
-            font-size: 1.1rem;
+            .mock-grid-cell-value {
+                font-size: 1.1rem;
+            }
+        }
+
+        .mock-grid-cell.mock-grid-cell-values {
+            padding: 0.5rem 0.3rem 0.5rem 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        .mock-grid-cell-values-value .mock-icon {
+            display: none;
+        }
+
+        /* items aren't really designed to render spirit scaling, but if they ever are, this compensates for the extra border pixels */
+        div:has(> .mock-spirit-scaling) .mock-grid-cell {
+            padding: 0.2rem 0.2rem;
         }
     }
 
-    .mock-grid-cell.mock-grid-cell-values {
-        padding: 0.5rem 0.3rem 0.5rem 0.8rem;
-        font-size: 0.85rem;
-    }
 
-    .mock-grid-cell-values-value .mock-icon {
-        display: none;
-    }
 
     &.mock-item-spirit {
-        .mock-header {
+        .mock-item-header-animated {
             background-color: #8b56b4;
             .item-bonus-value { background-color: #704491; }
             .item-bonus-stat { background-color: #5c3778; }
         }
 
-        .mock-components {
+        .mock-item-components-animated {
             color: #d0cdc7;
             background-color: #372248;
             .mock-item-component-badge { background-color: #291937; }
@@ -271,7 +277,7 @@
             &.mock-item-effect-header-active { background-color: #3b2250; }
         }
 
-        .mock-item-stats, .mock-item-effect {
+        .mock-item-stats-animated, .mock-item-effect-animated {
             background-color: #623585;
             .mock-text-color-muted { color: #a99db7; }
         }
@@ -284,13 +290,13 @@
     }
 
     &.mock-item-weapon {
-        .mock-header {
+        .mock-item-header-animated {
             background-color: #c97a03;
             .item-bonus-value { background-color: #a36202; }
             .item-bonus-stat { background-color: #885101; }
         }
 
-        .mock-components {
+        .mock-item-components-animated {
             color: #dccfc6;
             background-color: #9e630c;
             .mock-item-component-badge { background-color: #7c4d08; }
@@ -302,7 +308,7 @@
             &.mock-item-effect-header-active { background-color: #4e340e; }
         }
 
-        .mock-item-stats, .mock-item-effect {
+        .mock-item-stats-animated, .mock-item-effect-animated {
             background-color: #80550f;
             .mock-text-color-muted { color: #b5a599; }
         }
@@ -315,13 +321,13 @@
     }
 
     &.mock-item-vitality {
-        .mock-header {
+        .mock-item-header-animated {
             background-color: #659818;
             .item-bonus-value { background-color: #507a11; }
             .item-bonus-stat { background-color: #41650c; }
         }
 
-        .mock-components {
+        .mock-item-components-animated {
             color: #c7c9c6;
             background-color: #203500;
             .mock-item-component-badge { background-color: #172801; }
@@ -333,7 +339,7 @@
             &.mock-item-effect-header-active { background-color: #2f4510; }
         }
 
-        .mock-item-stats, .mock-item-effect {
+        .mock-item-stats-animated, .mock-item-effect-animated {
             background-color: #4d7214;
             .mock-text-color-muted { color: #a3af99; }
         }
