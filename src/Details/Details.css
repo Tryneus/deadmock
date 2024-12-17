@@ -1,12 +1,11 @@
 .mock-details-section {
     display: flex;
-    margin-top: 0.4rem;
-    margin-bottom: 0.4rem;
-
+    margin: 0.4rem 1rem 0.4rem 0;
 
     > .mock-drag-list-grip {
         display: flex;
         flex-direction: column;
+        width: 1rem;
 
         .mock-icon {
             flex-grow: 1;
@@ -20,12 +19,11 @@
 }
 
 .mock-details-description {
-    margin-left: 0.85rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .mock-details {
-    margin-right: 0.85rem;
-
     /* can't be last child because of the drag list divider */
     > .mock-drag-list > *:nth-last-child(2) > .mock-details-section {
         margin-bottom: 0;
