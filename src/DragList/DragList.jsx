@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import {toChildArray} from 'preact';
+import {toChildArray, cloneElement} from 'preact';
 import {useCallback, useRef, useState} from 'preact/hooks';
 
 import {Icon} from '../Icon';
@@ -24,8 +24,6 @@ const DragListItem = ({children, index, active, onStart, onEnd}) => {
   const onDragEnd = useCallback((ev) => {
     onEnd(ev);
   }, [onEnd]);
-
-  console.log(toChildArray(children));
 
   return (
     <div className={classes} onDragStart={onDragStart} onDragEnd={onDragEnd}>
@@ -117,7 +115,7 @@ const DragList = ({children, horizontal, onMove}) => {
   }, [dragging, target, setDragging, setTarget]);
 
   const wrappedChildren = toChildArray(children).map((child, index) => (
-    <DragListItem index={index} active={index === dragging} onStart={onStart} onEnd={onDrop}>
+    <DragListItem key={child.key} index={index} active={index === dragging} onStart={onStart} onEnd={onDrop}>
       {child}
     </DragListItem>
   ));

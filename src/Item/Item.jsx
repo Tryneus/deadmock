@@ -28,10 +28,8 @@ const Item = observer(({model}) => {
       <AnimatedDiv className="mock-item-stats-animated">
         <ItemStats model={model} />
       </AnimatedDiv>
-      <AnimatedList className="mock-item-effect-animated">
-        <DragList onMove={onMove}>
-          {model.effects.map((x) => <ItemEffect key={x.id} item={model} model={x} />)}
-        </DragList>
+      <AnimatedList draggable onMove={onMove}>
+        {model.effects.map((x) => <ItemEffect key={x.id} item={model} model={x} />)}
       </AnimatedList>
     </div>
   );

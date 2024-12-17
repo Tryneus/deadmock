@@ -1,25 +1,46 @@
 import {toChildArray} from 'preact';
 import {useEffect, useRef, useState} from 'preact/hooks';
 
+import {DragList} from '../DragList';
 import {AnimatedDiv} from './AnimatedDiv';
 
-const removedEntryTimeout = 200;
+const removedEntryTimeout = 5000;
 
-// TODO: check if order of keys has changed and update allKeys accordingly, but presently nothing is reordered anyway
-const mergeNewKeys = (allKeys, childKeys) => {
-  const acc = [];
-  childKeys.forEach((x) => {
-    const idx = allKeys.indexOf(x);
-    if (idx === -1) {
-      acc.push(x);
-    } else if (acc.length > 0) {
-      allKeys.splice(idx, 0, ...acc);
+// Make an attempt to preserve key order for removed keys while their divs
+// expire, but the order of 'newKeys' must always be used.
+const mergeKeys = (oldKeys, newKeys) => {
+  const newSet = new Set(newKeys);
+  const result = [];
+
+  let i = 0;
+  let j = 0;
+  while (i < oldKeys.length && j < newKeys.length) {
+    if (!newSet.has(oldKeys[i])) {
+      result.push(oldKeys[i]);
+      ++i;
+    } else if (oldKeys[i] === newKeys[j]) {
+      result.push(oldKeys[i]);
+      ++i;
+      ++j;
+    } else {
+      result.push(newKeys[j]);
+      ++j;
     }
-  });
-  return allKeys.concat(acc);
+  }
+
+  if (i < oldKeys.length) {
+    const resultSet = new Set(result);
+    result.push(...oldKeys.slice(i).filter((x) => !resultSet.has(x)));
+  } else if (j < newKeys.length) {
+    result.push(...newKeys.slice(j));
+  }
+
+  console.log(JSON.stringify({oldKeys, newKeys, result}, ' '));
+
+  return result;
 };
 
-const AnimatedList = ({className, children}) => {
+const AnimatedList = ({children, draggable, onMove}) => {
   const [allKeys, setAllKeys] = useState([]);
   const [timeouts, setTimeouts] = useState([]);
 
@@ -27,15 +48,12 @@ const AnimatedList = ({className, children}) => {
   useEffect(() => {
     const childArray = toChildArray(children);
     const childKeys = childArray.map((x) => x.key);
-    setAllKeys(mergeNewKeys(allKeys, childKeys));
+    setAllKeys(mergeKeys(allKeys, childKeys));
 
     const leavingKeys = (new Set(allKeys)).difference(new Set(childKeys));
     if (leavingKeys.size > 0) {
       const timestamp = Date.now() + removedEntryTimeout;
-      setTimeouts((prev) => {
-        leavingKeys.forEach((id) => prev.push({id, timestamp}));
-        return prev;
-      });
+      setTimeouts((prev) => prev.concat(Array.from(leavingKeys).map((id) => ({id, timestamp}))));
     }
   }, [children, setAllKeys, setTimeouts]);
 
@@ -68,11 +86,20 @@ const AnimatedList = ({className, children}) => {
   const keyedChildren = Object.fromEntries(toChildArray(children).map((x) => [x.key, x]));
   const wrappedChildren = allKeys.map((x) => {
     return (
-      <AnimatedDiv className={className} key={x}>
+      <AnimatedDiv key={x}>
         {keyedChildren[x]}
       </AnimatedDiv>
     );
   });
+
+  // Shitty workaround because I can't get walking the virtual dom to work for some reason
+  if (draggable) {
+    return (
+      <DragList onMove={onMove}>
+        {wrappedChildren}
+      </DragList>
+    );
+  }
 
   return <>{wrappedChildren}</>;
 };

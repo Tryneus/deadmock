@@ -39,7 +39,7 @@
             display: flex;
             flex-direction: column;
             align-items: end;
-            justify-content: space-between;
+            justify-content: flex-end;
 
             > div:not(:first-child) {
                 margin-top: 0.5rem;

@@ -16,7 +16,7 @@ const convertTree = (node, format) => {
         {node.data.map((x) => convertTree(x, format))}
         <br />
       </>
-    ); // TODO: extra break at end
+    );
   } else if (node.type === 'linebreak') {
     return <><br /></>;
   } else if (node.type === 'text') {

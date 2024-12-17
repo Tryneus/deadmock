@@ -265,7 +265,7 @@
             &.mock-item-effect-header-active { background-color: #3b2250; }
         }
 
-        .mock-item-stats-animated, .mock-item-effect-animated {
+        .mock-item-stats-animated, > .mock-drag-list {
             background-color: #623585;
             .mock-text-color-muted { color: #a99db7; }
         }
@@ -296,7 +296,7 @@
             &.mock-item-effect-header-active { background-color: #4e340e; }
         }
 
-        .mock-item-stats-animated, .mock-item-effect-animated {
+        .mock-item-stats-animated, > .mock-drag-list {
             background-color: #80550f;
             .mock-text-color-muted { color: #b5a599; }
         }
@@ -327,7 +327,7 @@
             &.mock-item-effect-header-active { background-color: #2f4510; }
         }
 
-        .mock-item-stats-animated, .mock-item-effect-animated {
+        .mock-item-stats-animated, > .mock-drag-list {
             background-color: #4d7214;
             .mock-text-color-muted { color: #a3af99; }
         }
