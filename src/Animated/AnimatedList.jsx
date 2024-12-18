@@ -1,72 +1,76 @@
+import {observer} from 'mobx-react-lite';
 import {toChildArray} from 'preact';
 import {useEffect, useRef, useState} from 'preact/hooks';
 
+import {isString} from '../Common';
 import {DragList} from '../DragList';
 import {AnimatedDiv} from './AnimatedDiv';
 
-const removedEntryTimeout = 5000;
+const removedEntryTimeout = 300;
+
+// TODO: when combined with a DragList, the animated divs cannot capture the
+// height of the interleaved dividers, so there is a small pop-in effect when
+// an element is removed, once it times out.  The animation is fast enough that
+// this is very hard to notice.
 
 // Make an attempt to preserve key order for removed keys while their divs
-// expire, but the order of 'newKeys' must always be used.
-const mergeKeys = (oldKeys, newKeys) => {
-  const newSet = new Set(newKeys);
+// expire, but the order of 'newIds' must always be used.
+const mergeIds = (oldIds, newIds) => {
+  const newSet = new Set(newIds);
   const result = [];
 
   let i = 0;
   let j = 0;
-  while (i < oldKeys.length && j < newKeys.length) {
-    if (!newSet.has(oldKeys[i])) {
-      result.push(oldKeys[i]);
+  while (i < oldIds.length && j < newIds.length) {
+    if (!newSet.has(oldIds[i])) {
+      result.push(oldIds[i]);
       ++i;
-    } else if (oldKeys[i] === newKeys[j]) {
-      result.push(oldKeys[i]);
+    } else if (oldIds[i] === newIds[j]) {
+      result.push(oldIds[i]);
       ++i;
       ++j;
     } else {
-      result.push(newKeys[j]);
+      result.push(newIds[j]);
       ++j;
     }
   }
 
-  if (i < oldKeys.length) {
+  if (i < oldIds.length) {
     const resultSet = new Set(result);
-    result.push(...oldKeys.slice(i).filter((x) => !resultSet.has(x)));
-  } else if (j < newKeys.length) {
-    result.push(...newKeys.slice(j));
+    result.push(...oldIds.slice(i).filter((x) => !resultSet.has(x)));
+  } else if (j < newIds.length) {
+    result.push(...newIds.slice(j));
   }
-
-  console.log(JSON.stringify({oldKeys, newKeys, result}, ' '));
 
   return result;
 };
 
-const AnimatedList = ({children, draggable, onMove}) => {
-  const [allKeys, setAllKeys] = useState([]);
+const AnimatedList = observer(({items, draggable, renderItem}) => {
+  const [allIds, setAllIds] = useState([]);
   const [timeouts, setTimeouts] = useState([]);
 
   // Track which keys are being rendered, and create a timeout entry when one is removed
   useEffect(() => {
-    const childArray = toChildArray(children);
-    const childKeys = childArray.map((x) => x.key);
-    setAllKeys(mergeKeys(allKeys, childKeys));
+    const newIds = items.map((x) => x.id);
+    setAllIds(mergeIds(allIds, newIds));
 
-    const leavingKeys = (new Set(allKeys)).difference(new Set(childKeys));
-    if (leavingKeys.size > 0) {
+    const leavingIds = (new Set(allIds)).difference(new Set(newIds));
+    if (leavingIds.size > 0) {
       const timestamp = Date.now() + removedEntryTimeout;
-      setTimeouts((prev) => prev.concat(Array.from(leavingKeys).map((id) => ({id, timestamp}))));
+      setTimeouts((prev) => prev.concat(Array.from(leavingIds).map((id) => ({id, timestamp}))));
     }
-  }, [children, setAllKeys, setTimeouts]);
+  }, [items, setAllIds, setTimeouts]);
 
   // Whenever timeouts change, create a timer to remove the earliest associated entry
   useEffect(() => {
-    let modifiedKeys = false;
+    let modifiedIds = false;
     let modifiedTimeouts = false;
     const now = Date.now();
     while (timeouts.length > 0 && timeouts[0].timestamp < now) {
-      const idx = allKeys.indexOf(timeouts[0].id);
+      const idx = allIds.indexOf(timeouts[0].id);
       if (idx !== -1) {
-        allKeys.splice(idx, 1);
-        modifiedKeys = true;
+        allIds.splice(idx, 1);
+        modifiedIds = true;
       }
       modifiedTimeouts = true;
       timeouts.shift();
@@ -74,34 +78,36 @@ const AnimatedList = ({children, draggable, onMove}) => {
     if (modifiedTimeouts) {
       setTimeouts(Array.from(timeouts));
     }
-    if (modifiedKeys) {
-      setAllKeys(allKeys);
+    if (modifiedIds) {
+      setAllIds(allIds);
     }
     if (timeouts.length > 0) {
       const timer = setTimeout(() => setTimeouts((x) => Array.from(x)), timeouts[0].timestamp - now);
       return () => clearTimeout(timer);
     }
-  }, [allKeys, timeouts, setAllKeys, setTimeouts]);
+  }, [allIds, timeouts, setAllIds, setTimeouts]);
 
-  const keyedChildren = Object.fromEntries(toChildArray(children).map((x) => [x.key, x]));
-  const wrappedChildren = allKeys.map((x) => {
+  const itemsById = Object.fromEntries(items.map((x) => [x.id, x]));
+  const auxItems = allIds.map((id) => itemsById[id] || id);
+  const wrappedRender = (item) => {
+    if (isString(item)) {
+      // This is a placeholder for a deleted entry
+      return <AnimatedDiv key={item} />;
+    }
+
     return (
-      <AnimatedDiv key={x}>
-        {keyedChildren[x]}
+      <AnimatedDiv key={item.id}>
+        {item && renderItem(item)}
       </AnimatedDiv>
     );
-  });
+  };
 
   // Shitty workaround because I can't get walking the virtual dom to work for some reason
   if (draggable) {
-    return (
-      <DragList onMove={onMove}>
-        {wrappedChildren}
-      </DragList>
-    );
+    return <DragList items={items} auxItems={auxItems} renderItem={wrappedRender} />;
   }
 
-  return <>{wrappedChildren}</>;
-};
+  return <>{allIds.map(renderId)}</>;
+});
 
 export {AnimatedList};

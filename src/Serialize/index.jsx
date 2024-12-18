@@ -55,6 +55,12 @@ const serializeable = (model, fields) => {
   };
 
   model.deserialize = (data) => {
+    /*
+    if (!Array.isArray(data)) {
+      return data;
+    }
+    */
+
     const pairs = data.map((x, i) => {
       const [name, type] = fields[i];
       return [name, doDeserialize(x, type)];

@@ -4,6 +4,7 @@ import {IconModel} from '../Icon/Model';
 import {serializeable} from '../Serialize';
 
 class ValueModel {
+  id; // only used for rendering purposes as a react `key`, not persisted
   icon;
   signed = false;
   conditional = false;
@@ -15,6 +16,7 @@ class ValueModel {
   spiritScaling = null;
 
   constructor(raw) {
+    this.id = crypto.randomUUID();
     this.stat = raw?.stat ?? this.stat;
     this.value = raw?.value || this.value;
     this.units = raw?.units ?? this.units;

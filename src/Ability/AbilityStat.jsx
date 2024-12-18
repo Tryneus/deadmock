@@ -6,14 +6,7 @@ import {EditableIcon} from '../Icon';
 import {EditableValue} from '../Value';
 
 const AbilityStat = observer(({model, value}) => {
-  const onDelete = useAction(() => {
-    const idx = model.stats.indexOf(value);
-    if (idx === -1) {
-      console.error('could not find stat', value, model.stats);
-    } else {
-      model.removeStat(idx);
-    }
-  }, [value, model]);
+  const onDelete = useAction(() => model.removeStat(value), [model, value]);
 
   if (!value) {
     return null;

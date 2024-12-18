@@ -23,14 +23,7 @@ const ItemEffect = observer(({item, model}) => {
 
   const onChangeActive = useAction(() => (model.active = !model.active), [model]);
 
-  const onDelete = useAction(() => {
-    const index = item.effects.indexOf(model);
-    if (index === -1) {
-      console.error('item effect not found', model);
-    } else {
-      item.removeEffect(index);
-    }
-  }, [item, model]);
+  const onDelete = useAction(() => item.removeEffect(model), [item, model]);
 
   const effectType = model.active ?
     <Bold color="bright">Active</Bold> :
@@ -62,7 +55,7 @@ const ItemEffect = observer(({item, model}) => {
           </Bold>
         </div>
       </div>
-      <Details model={model} />
+      <Details model={model.details} />
     </div>
   );
 });

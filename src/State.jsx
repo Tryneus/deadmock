@@ -18,6 +18,7 @@ const serializationVersion = 'v1';
 const storage = window.localStorage;
 
 // No migrations are currently handled
+// TODO: v1 -> v2 migration (move section data into DetailsModel)
 const writeVersion = () => {
   const foundVersion = storage.getItem(versionKey);
   if (!foundVersion) {

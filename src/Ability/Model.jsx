@@ -1,6 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 
-import {deepCopy, isString, placeholderGrid, placeholderMarkdown} from '../Common';
+import {deepCopy, isString} from '../Common';
+import {DetailsModel} from '../Details/Model';
 import {GridModel} from '../Grid/Model';
 import {serializeable} from '../Serialize';
 import {ValueModel} from '../Value/Model';
@@ -10,18 +11,16 @@ class AbilityModel {
   category = 'ability';
   name = '';
   stats = [];
-  description = placeholderMarkdown;
-  sections = [];
   upgrades = ['', '', ''];
+  details = null;
 
   constructor(raw) {
     this.id = raw?.id || crypto.randomUUID();
     this.category = raw?.category || this.category;
     this.name = raw?.name || this.name;
-    this.description = raw?.description ?? this.description;
     this.stats = raw?.stats?.map((x) => new ValueModel(x)) || this.stats;
-    this.sections = raw?.sections?.map((x) => (isString(x) ? x : new GridModel(x))) || this.sections;
     this.upgrades = deepCopy(raw?.upgrades || this.upgrades);
+    this.details = new DetailsModel(raw?.details);
     makeAutoObservable(this);
   }
 
@@ -29,20 +28,11 @@ class AbilityModel {
     this.stats.push(new ValueModel(raw));
   }
 
-  removeStat(i) {
-    this.stats.splice(i, 1);
-  }
-
-  addMarkdownSection() {
-    this.sections.push(placeholderMarkdown);
-  }
-
-  addGridSection() {
-    this.sections.push(new GridModel(placeholderGrid));
-  }
-
-  removeSection(i) {
-    this.sections.splice(i, 1);
+  removeStat(stat) {
+    const index = this.stats.indexOf(stat);
+    if (index !== -1) {
+      this.stats.splice(index, 1);
+    }
   }
 }
 

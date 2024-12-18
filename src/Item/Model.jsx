@@ -1,36 +1,32 @@
 import {makeAutoObservable} from 'mobx';
 
-import {deepCopy, isString, itemsByName, placeholderGrid, placeholderMarkdown, tierCosts} from '../Common';
+import {deepCopy, isString, itemsByName, tierCosts} from '../Common';
+import {DetailsModel, defaultGridSection} from '../Details/Model';
 import {GridModel} from '../Grid/Model';
 import {serializeable} from '../Serialize';
 import {ValueModel} from '../Value/Model';
+
+const defaultEffect = {
+    active:   false,
+    cooldown: 6,
+    details: {
+      sections: [defaultGridSection],
+    },
+};
 
 class ItemEffectModel {
   id; // only used for rendering purposes as a react `key`, not persisted
   active = false;
   cooldown = 0;
-  description = placeholderMarkdown;
   sections = [];
+  details = null;
 
   constructor(raw) {
     this.id = crypto.randomUUID();
     this.active = Boolean(raw?.active);
     this.cooldown = raw?.cooldown || this.cooldown;
-    this.description = raw?.description ?? this.description;
-    this.sections = raw?.sections?.map((x) => (isString(x) ? x : new GridModel(x))) || this.sections;
+    this.details = new DetailsModel(raw?.details);
     makeAutoObservable(this);
-  }
-
-  addMarkdownSection() {
-    this.sections.push(placeholderMarkdown);
-  }
-
-  addGridSection() {
-    this.sections.push(new GridModel(placeholderGrid));
-  }
-
-  removeSection(i) {
-    this.sections.splice(i, 1);
   }
 }
 
@@ -81,21 +77,25 @@ class ItemModel {
     this.stats.push(new ValueModel({signed: true, ...raw}));
   }
 
-  removeStat(i) {
-    this.stats.splice(i, 1);
+  removeStat(statModel) {
+    const index = this.stats.indexOf(statModel);
+    if (index !== -1) {
+      this.stats.splice(index, 1);
+    }
   }
 
   addEffect(raw) {
     this.effects.push(new ItemEffectModel({
-      active:   false,
-      cooldown: 6,
-      sections: [placeholderGrid],
+      ...deepCopy(defaultEffect),
       ...raw,
     }));
   }
 
   removeEffect(i) {
-    this.effects.splice(i, 1);
+    const index = this.effects.indexOf(model);
+    if (index !== -1) {
+      this.effects.splice(index, 1);
+    }
   }
 }
 

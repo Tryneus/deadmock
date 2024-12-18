@@ -19,6 +19,8 @@ const snapshots = [
 ];
 /* eslint-enable @stylistic/js/comma-spacing */
 
+// TODO: existing bug in v1 where markdown sections don't deserialize properly - add test case and fix
+
 describe('serialization', () => {
   describe.each(examples)('examples', (ex) => {
     describe(ex.name, () => {

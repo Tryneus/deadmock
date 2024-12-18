@@ -11,7 +11,6 @@ import './Ability.css';
 
 const Ability = observer(({model}) => {
   const onChange = useAction((x) => (model.description = x), [model]);
-  const onMove = useAction((mutation) => mutation(model.sections));
 
   return (
     <div className="mock-ability">
@@ -22,7 +21,7 @@ const Ability = observer(({model}) => {
         <div className="mock-ability-body-noise" />
         <div className="mock-ability-body">
           <AnimatedDiv>
-            <Details model={model} />
+            <Details model={model.details} />
           </AnimatedDiv>
           <AnimatedDiv className="mock-ability-upgrades-animated">
             <div className="mock-ability-upgrades">

@@ -9,20 +9,21 @@ import {EditableMarkdown} from '../Text';
 
 import './Details.css';
 
-const DetailsSection = observer(({index, sections}) => {
-  const onDelete = useAction(() => sections.splice(index, 1), [index, sections]);
+const DetailsSection = observer(({details, section}) => {
+  const onDelete = useAction(() => {
+    details.removeSection(section)
+  }, [details, section]);
   const onChangeMarkdown = useAction((x) => {
     if (x.length === 0) {
       onDelete();
     } else {
-      sections[index] = x;
+      section.markdownData = x;
     }
-  }, [index, sections, onDelete]);
+  }, [section, onDelete]);
 
-  const value = sections[index];
-  const inner = isString(value) ?
-    <EditableMarkdown text={value} onChange={onChangeMarkdown} /> :
-    <Grid data={value} onEmpty={onDelete} />;
+  const inner = section.gridData ?
+    <Grid data={section.gridData} onEmpty={onDelete} /> :
+    <EditableMarkdown text={section.markdownData} onChange={onChangeMarkdown} />;
 
   return (
     <div className="mock-details-section">
@@ -39,6 +40,9 @@ const Details = observer(({model}) => {
   const onChangeDescription = useAction((x) => (model.description = x), [model]);
   const onMove = useAction((mutation) => mutation(model.sections), [model]);
 
+  const renderSection = useCallback((section) => (
+    <DetailsSection sections={model.sections} section={section} />
+  ), [model]);
   const renderSidebarButtons = useCallback(() => (
     <>
       <SidebarButton label="Markdown" onClick={onAddMarkdown} />
@@ -52,9 +56,7 @@ const Details = observer(({model}) => {
         <div className="mock-details-description">
           <EditableMarkdown text={model.description} onChange={onChangeDescription} />
         </div>
-        <DragList onMove={onMove}>
-          {model.sections.map((x, i) => <DetailsSection key={i} index={i} sections={model.sections} />)}
-        </DragList>
+        <DragList items={model.sections} renderItem={renderSection} />
       </div>
     </SidebarButtons>
   );

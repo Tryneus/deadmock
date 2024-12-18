@@ -1,7 +1,9 @@
 import classNames from 'classnames';
+import {observer} from 'mobx-react-lite';
 import {toChildArray, cloneElement} from 'preact';
 import {useCallback, useRef, useState} from 'preact/hooks';
 
+import {useAction} from '../Common';
 import {Icon} from '../Icon';
 
 import './DragList.css';
@@ -49,18 +51,12 @@ const calcDragPosition = (ev, list, horizontal) => {
   return centers.length;
 };
 
-const interleaveDividers = (items, target) => {
-  const makeDivider = (i) => {
-    const classes = classNames('mock-drag-list-divider', {'mock-drag-list-divider-highlighted': i === target});
-    return <div className={classes} />;
-  };
-  
-  const result = items.flatMap((x, i) => [makeDivider(i), x]);
-  result.push(makeDivider(items.length));
-  return result;
+const renderDivider = (index, target) => {
+  const classes = classNames('mock-drag-list-divider', {'mock-drag-list-divider-highlighted': index === target});
+  return <div className={classes} />;
 };
 
-const DragList = ({children, horizontal, onMove}) => {
+const DragList = observer(({horizontal, items, auxItems, renderItem}) => {
   const ref = useRef();
   const [dragging, setDragging] = useState(null);
   const [target, setTarget] = useState(null);
@@ -99,13 +95,11 @@ const DragList = ({children, horizontal, onMove}) => {
     }
   }, [dragging, setDepth, setTarget]);
 
-  const onDrop = useCallback((ev) => {
+  const onDrop = useAction((ev) => {
     if (dragging !== null) {
       if (target !== null && (target < dragging || target > dragging + 1)) {
-        onMove((list) => {
-          const item = list.splice(dragging, 1);
-          list.splice(target < dragging ? target : target - 1, 0, ...item);
-        });
+        const item = items.splice(dragging, 1);
+        items.splice(target < dragging ? target : target - 1, 0, ...item);
       }
       setDepth(null);
       setTarget(null);
@@ -114,17 +108,38 @@ const DragList = ({children, horizontal, onMove}) => {
     }
   }, [dragging, target, setDragging, setTarget]);
 
-  const wrappedChildren = toChildArray(children).map((child, index) => (
-    <DragListItem key={child.key} index={index} active={index === dragging} onStart={onStart} onEnd={onDrop}>
-      {child}
-    </DragListItem>
-  ));
+  const wrapItem = (item, index) => (
+    <>
+      {renderDivider(index, target)}
+      <DragListItem key={item.id} index={index} active={index === dragging} onStart={onStart} onEnd={onDrop}>
+        {renderItem(item)}
+      </DragListItem>
+    </>
+  );
+
+  const renderList = () => {
+    if (!auxItems) {
+      return items.map((item, index) => wrapItem(item, index));
+    }
+
+    let index = 0;
+    const itemSet = new Set(items);
+    const result = auxItems.map((item) => {
+      // If an item is only in the aux list, we don't consider it part of the draggable interface so just pass it through
+      if (!itemSet.has(item)) {
+        return renderItem(item);
+      }
+      return wrapItem(item, index++);
+    });
+    return result;
+  };
 
   return (
     <div className="mock-drag-list" ref={ref} onDragOver={onDragOver} onDrop={onDrop} onDragEnter={onDragEnter} onDragLeave={onDragLeave}>
-      {interleaveDividers(wrappedChildren, target)}
+      {renderList()}
+      {renderDivider(items.length, target)}
     </div>
   );
-};
+});
 
 export {DragList, DragListGrip};
