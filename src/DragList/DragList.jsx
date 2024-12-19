@@ -64,7 +64,7 @@ const renderDivider = (index, target) => {
   return <div className={classes} />;
 };
 
-const DragList = observer(({horizontal, items, auxItems, renderItem, wrapItem}) => {
+const DragList = observer(({horizontal, items, auxItems, renderItem}) => {
   const ref = useRef();
   const [dragging, setDragging] = useState(null);
   const [target, setTarget] = useState(null);

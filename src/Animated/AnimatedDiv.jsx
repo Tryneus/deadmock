@@ -11,6 +11,10 @@ const elementHeight = (el) => {
   return el.getBoundingClientRect().height + (parseInt(style.marginTop) || 0) + (parseInt(style.marginBottom) || 0);
 };
 
+const sumChildrenHeights = (el) => {
+  return Array.from(el.children).map(elementHeight).reduce((x, acc) => acc + x, 0);
+}
+
 const AnimatedDiv = ({className, children}) => {
   const classes = classNames('mock-animated-div', className);
   const ref = useRef();
@@ -19,7 +23,7 @@ const AnimatedDiv = ({className, children}) => {
 
   const updateHeight = useCallback(() => {
     if (ref.current) {
-      setHeight(elementHeight(ref.current));
+      setHeight(sumChildrenHeights(ref.current));
       if (ref.current.parentElement) {
         setTimeout(() => ref.current?.parentElement?.scrollTo(0, 0), 0);
       }
@@ -41,10 +45,8 @@ const AnimatedDiv = ({className, children}) => {
   }, [updateHeight]);
 
   return (
-    <div className={classes} style={style}>
-      <div ref={ref}>
-        {children}
-      </div>
+    <div ref={ref} className={classes} style={style}>
+      {children}
     </div>
   );
 };
