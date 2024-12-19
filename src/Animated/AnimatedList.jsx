@@ -6,7 +6,7 @@ import {isString} from '../Common';
 import {DragList} from '../DragList';
 import {AnimatedDiv} from './AnimatedDiv';
 
-const removedEntryTimeout = 300;
+const removedEntryTimeout = 3000;
 
 // TODO: when combined with a DragList, the animated divs cannot capture the
 // height of the interleaved dividers, so there is a small pop-in effect when
@@ -41,6 +41,8 @@ const mergeIds = (oldIds, newIds) => {
   } else if (j < newIds.length) {
     result.push(...newIds.slice(j));
   }
+
+  console.log({oldIds, newIds, result});
 
   return result;
 };

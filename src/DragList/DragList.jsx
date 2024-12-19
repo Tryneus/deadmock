@@ -17,15 +17,23 @@ const DragListGrip = () => (
 );
 
 const DragListItem = ({children, index, active, onStart, onEnd}) => {
-  const classes = classNames('mock-drag-list-item', {'mock-drag-list-item-active': active});
+  const classes = classNames({
+    'mock-drag-list-item': index !== null,
+    'mock-drag-list-item-unused': index === null,
+    'mock-drag-list-item-active': active,
+  });
   const onDragStart = useCallback((ev) => {
     onStart(index);
     ev.stopPropagation();
-  }, [onStart]);
+  }, [index, onStart]);
 
   const onDragEnd = useCallback((ev) => {
     onEnd(ev);
   }, [onEnd]);
+
+  if (index === null) {
+    return <div className={classes}>{children}</div>;
+  }
 
   return (
     <div className={classes} onDragStart={onDragStart} onDragEnd={onDragEnd}>
@@ -56,7 +64,7 @@ const renderDivider = (index, target) => {
   return <div className={classes} />;
 };
 
-const DragList = observer(({horizontal, items, auxItems, renderItem}) => {
+const DragList = observer(({horizontal, items, auxItems, renderItem, wrapItem}) => {
   const ref = useRef();
   const [dragging, setDragging] = useState(null);
   const [target, setTarget] = useState(null);
@@ -117,6 +125,14 @@ const DragList = observer(({horizontal, items, auxItems, renderItem}) => {
     </>
   );
 
+  const wrapUnused = (item) => (
+    <>
+      <DragListItem key={item.id}>
+        {renderItem(item)}
+      </DragListItem>
+    </>
+  );
+
   const renderList = () => {
     if (!auxItems) {
       return items.map((item, index) => wrapItem(item, index));
@@ -127,7 +143,7 @@ const DragList = observer(({horizontal, items, auxItems, renderItem}) => {
     const result = auxItems.map((item) => {
       // If an item is only in the aux list, we don't consider it part of the draggable interface so just pass it through
       if (!itemSet.has(item)) {
-        return renderItem(item);
+        return wrapUnused(item);
       }
       return wrapItem(item, index++);
     });
