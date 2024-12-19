@@ -14,9 +14,7 @@ const migrateSections = (raw) => {
 
 const migrateV1Details = (raw) => {
   const {description} = raw;
-  console.log('migrate sections before', raw.sections);
   const sections = migrateSections(raw.sections);
-  console.log('migrate sections after', sections);
   raw.details = {description, sections};
   delete raw.description;
   delete raw.sections;

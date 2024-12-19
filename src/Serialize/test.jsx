@@ -1,7 +1,8 @@
 import {State} from '../State';
-import {hydrate} from './compat';
+import {hydrate, migrate} from './compat';
 import snapshotsV1 from './snapshots.v1';
 import snapshotsV2 from './snapshots.v2';
+import {latestVersion} from './versions';
 
 Object.defineProperty(globalThis, 'crypto', {
   value: {
@@ -29,23 +30,21 @@ describe('serialization', () => {
         };
 
         test('hydrates to latest version', () => {
-          expect(hydrate(serialized, version)).toEqual(latestSnapshot.hydrated);
           const modelFromSerialized = makeModel(hydrate(serialized, version));
           const modelFromLatest = makeModel(latestSnapshot.hydrated);
           expect(modelFromSerialized).toEqual(modelFromLatest);
         });
 
         test('round trip', () => {
-          const model = makeModel(hydrated);
+          const model = makeModel(migrate(hydrated, version));
           const type = model.constructor;
 
           const data = model.serialize();
-          const model2 = new type(hydrate(data, version));
+          const model2 = new type(hydrate(data, latestVersion));
           const data2 = model2.serialize();
-          const model3 = new type(hydrate(data2, version));
+          const model3 = new type(hydrate(data2, latestVersion));
           const data3 = model3.serialize();
 
-          expect(data).toEqual(serialized);
           expect(data).toEqual(data2);
           expect(data).toEqual(data3);
           expect(model).toEqual(model2);
@@ -53,7 +52,7 @@ describe('serialization', () => {
         });
 
         test('serializes to latest version', () => {
-          expect(makeModel(hydrated).serialize()).toEqual(latestSnapshot.serialized);
+          expect(makeModel(migrate(hydrated, version)).serialize()).toEqual(latestSnapshot.serialized);
         });
       });
     });

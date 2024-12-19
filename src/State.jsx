@@ -2,7 +2,8 @@ import {autorun, makeAutoObservable, runInAction} from 'mobx';
 
 import {AbilityModel} from './Ability/Model';
 import {ItemModel} from './Item/Model';
-import {deserialize, examples} from './Serialize';
+import {examples} from './Serialize';
+import {deserialize} from './Serialize/compat';
 
 const versionKey = 'version';
 const historyKey = 'history';

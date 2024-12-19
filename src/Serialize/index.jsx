@@ -1,4 +1,3 @@
-import {deserialize} from './compat';
 import {serializeable} from './serialization';
 import {snapshots} from './snapshots.v2';
 import {latestVersion, versions} from './versions';
@@ -11,4 +10,4 @@ const examples = [
   snapshots.Tornado.hydrated,
 ];
 
-export {deserialize, examples, latestVersion, serializeable, snapshots, versions};
+export {examples, latestVersion, serializeable, snapshots, versions};
