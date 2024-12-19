@@ -36,13 +36,22 @@ class AbilityModel {
   }
 }
 
-serializeable(AbilityModel, [
-  ['category'],
-  ['name'],
-  ['stats', [ValueModel]],
-  ['description'],
-  ['sections', [GridModel]],
-  ['upgrades'],
-]);
+serializeable(AbilityModel, {
+  v1: [
+    ['category'],
+    ['name'],
+    ['stats', [ValueModel]],
+    ['description'],
+    ['sections', [GridModel]],
+    ['upgrades'],
+  ],
+  v2: [
+    ['category'],
+    ['name'],
+    ['stats', [ValueModel]],
+    ['details', DetailsModel],
+    ['upgrades'],
+  ],
+});
 
 export {AbilityModel};

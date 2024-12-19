@@ -18,7 +18,6 @@ class ItemEffectModel {
   id; // only used for rendering purposes as a react `key`, not persisted
   active = false;
   cooldown = 0;
-  sections = [];
   details = null;
 
   constructor(raw) {
@@ -30,12 +29,19 @@ class ItemEffectModel {
   }
 }
 
-serializeable(ItemEffectModel, [
-  ['description'],
-  ['sections', [GridModel]],
-  ['active'],
-  ['cooldown'],
-]);
+serializeable(ItemEffectModel, {
+  v1: [
+    ['description'],
+    ['sections', [GridModel]],
+    ['active'],
+    ['cooldown'],
+  ],
+  v2: [
+    ['details', DetailsModel],
+    ['active'],
+    ['cooldown'],
+  ],
+});
 
 class ItemModel {
   id;
@@ -77,8 +83,8 @@ class ItemModel {
     this.stats.push(new ValueModel({signed: true, ...raw}));
   }
 
-  removeStat(statModel) {
-    const index = this.stats.indexOf(statModel);
+  removeStat(stat) {
+    const index = this.stats.indexOf(stat);
     if (index !== -1) {
       this.stats.splice(index, 1);
     }
@@ -91,8 +97,8 @@ class ItemModel {
     }));
   }
 
-  removeEffect(i) {
-    const index = this.effects.indexOf(model);
+  removeEffect(effect) {
+    const index = this.effects.indexOf(effect);
     if (index !== -1) {
       this.effects.splice(index, 1);
     }
@@ -108,4 +114,4 @@ serializeable(ItemModel, [
   ['effects', [ItemEffectModel]],
 ]);
 
-export {ItemModel};
+export {ItemModel, ItemEffectModel};

@@ -2,7 +2,7 @@ import {autorun, makeAutoObservable, runInAction} from 'mobx';
 
 import {AbilityModel} from './Ability/Model';
 import {ItemModel} from './Item/Model';
-import {examples} from './example';
+import {deserialize, examples} from './Serialize';
 
 const versionKey = 'version';
 const historyKey = 'history';
@@ -120,19 +120,8 @@ class State {
   deserializeActive([version, modelData]) {
     if (!version) {
       throw new Error('missing a serialization version');
-    } else if (version !== serializationVersion) {
-      throw new Error(`unrecognized serialization version: ${JSON.stringify(version)}`);
     }
-
-    // Category should be the first element
-    const category = modelData[0];
-    if (category === 'ability') {
-      this._setActive(AbilityModel.deserialize(modelData));
-    } else if (['weapon', 'vitality', 'spirit'].includes(category)) {
-      this._setActive(ItemModel.deserialize(modelData));
-    } else {
-      throw new Error(`unrecognized model category: ${category}`);
-    }
+    this.loadRaw(deserialize(modelData, version));
   }
 
   _setActive(model) {

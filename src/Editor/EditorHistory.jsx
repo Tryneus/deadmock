@@ -4,7 +4,7 @@ import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
 import {Icon} from '../Icon';
 import {loadHistory} from '../State';
-import {examples} from '../example';
+import {examples} from '../Serialize';
 import './EditorHistory.css';
 
 const EditorHistoryTemplate = ({state, data, onClose}) => {

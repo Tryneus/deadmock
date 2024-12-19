@@ -1,72 +1,14 @@
-const isZeroValue = (x) => !x || x?.length === 0;
-const coerceZero = (x) => {
-  if (x === true) {
-    return 1;
-  } else if (x === false || x === null || x === undefined) {
-    return 0;
-  }
-  return x;
-};
+import {serializeable} from './serialization';
+import {snapshots} from './snapshots.v2';
+import {latestVersion, versions} from './versions';
+import {deserialize} from './compat';
 
-const doSerialize = (typename, field, value) => {
-  let result = value?.serialize?.() || value;
+// The first entry will be the default object loaded when there is nothing in particular to show
+const examples = [
+  snapshots.HeroicAura.hydrated,
+  snapshots.ReturnFire.hydrated,
+  snapshots.SlowingHex.hydrated,
+  snapshots.Tornado.hydrated,
+];
 
-  if (Array.isArray(result)) {
-    result = result.map((x) => doSerialize(typename, `${field}[]`, x));
-  }
-
-  // Optimizations for large zero-values
-  if (typename === 'IconModel') {
-    if (field === 'image' && value === 'stat/placeholder') {
-      return 0;
-    } else if (field === 'color' && value === 'grey') {
-      return 0;
-    }
-  }
-
-  return coerceZero(result);
-};
-
-const doDeserialize = (data, type) => {
-  if (Array.isArray(type)) {
-    return data.map((x) => doDeserialize(x, type[0]));
-  } else if (!type || !type.deserialize) {
-    return data;
-  }
-  return type.deserialize(data);
-};
-
-const pruneResult = (x) => {
-  if (!Array.isArray(x)) {
-    return x;
-  }
-  let lastNonZeroIndex = x.length - 1;
-  while (x[lastNonZeroIndex] === 0) {
-    lastNonZeroIndex--;
-  }
-  return x.slice(0, lastNonZeroIndex + 1);
-};
-
-const serializeable = (model, fields) => {
-  model.prototype.serialize = function() {
-    return pruneResult(fields.map(([field]) => {
-      return doSerialize(model.name, field, this[field]);
-    }));
-  };
-
-  model.deserialize = (data) => {
-    /*
-    if (!Array.isArray(data)) {
-      return data;
-    }
-    */
-
-    const pairs = data.map((x, i) => {
-      const [name, type] = fields[i];
-      return [name, doDeserialize(x, type)];
-    });
-    return new model(Object.fromEntries(pairs.filter(([, v]) => !isZeroValue(v))));
-  };
-};
-
-export {serializeable};
+export {deserialize, examples, serializeable, snapshots};
