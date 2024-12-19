@@ -2,30 +2,41 @@ import {autorun, makeAutoObservable, runInAction} from 'mobx';
 
 import {AbilityModel} from './Ability/Model';
 import {ItemModel} from './Item/Model';
-import {examples} from './Serialize';
-import {deserialize} from './Serialize/compat';
+import {examples, latestVersion, versions} from './Serialize';
+import {hydrate, migrate} from './Serialize/compat';
 
 const versionKey = 'version';
 const historyKey = 'history';
 const reservedKeys = [versionKey, historyKey];
-
 const historyLimit = 10;
-
-const serializationVersion = 'v1';
-// activeItem: string (uuid key),
-// activeAbility: string (uuid key),
-// history: [{category: string, name: string, timestamp: number, key: string}...] (max length = historyLimit)
-
 const storage = window.localStorage;
 
-// No migrations are currently handled
-// TODO: v1 -> v2 migration (move section data into DetailsModel)
+// This currently handles the v1 -> v2 migration
+const migrateStorage = (fromVersion) => {
+  // Migrate all items and abilities, but currently the reserved keys need no migrations
+  const count = storage.length;
+  for (let i = 0; i < count; i++) {
+    const key = storage.key(i);
+    if (!reservedKeys.includes(key)) {
+      const data = JSON.parse(storage.getItem(key));
+      storage.setItem(key, JSON.stringify(migrate(data, fromVersion)));
+    }
+  }
+
+  storage.setItem(versionKey, latestVersion);
+};
+
 const writeVersion = () => {
+  console.log(versions);
   const foundVersion = storage.getItem(versionKey);
   if (!foundVersion) {
-    storage.setItem(versionKey, serializationVersion);
-  } else if (foundVersion !== serializationVersion) {
-    console.error('unsupported stored data version in localStorage', {expected: serializationVersion, found: foundVersion});
+    storage.setItem(versionKey, latestVersion);
+  } else if (foundVersion !== latestVersion) {
+    if (versions.includes(foundVersion)) {
+      migrateStorage(foundVersion);
+    } else {
+      console.error('unsupported stored data version in localStorage', foundVersion);
+    }
   }
 };
 
@@ -115,14 +126,14 @@ class State {
   }
 
   serializeActive() {
-    return [serializationVersion, this.activeModel.serialize()];
+    return [latestVersion, this.activeModel.serialize()];
   }
 
   deserializeActive([version, modelData]) {
     if (!version) {
       throw new Error('missing a serialization version');
     }
-    this.loadRaw(deserialize(modelData, version));
+    this.loadRaw(hydrate(modelData, version));
   }
 
   _setActive(model) {
@@ -132,4 +143,4 @@ class State {
   }
 }
 
-export {State, loadHistory, serializationVersion};
+export {State, loadHistory};
