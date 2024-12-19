@@ -27,7 +27,6 @@ const migrateStorage = (fromVersion) => {
 };
 
 const writeVersion = () => {
-  console.log(versions);
   const foundVersion = storage.getItem(versionKey);
   if (!foundVersion) {
     storage.setItem(versionKey, latestVersion);

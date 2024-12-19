@@ -3,8 +3,9 @@ import {observer} from 'mobx-react-lite';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
 import {Icon} from '../Icon';
-import {loadHistory} from '../State';
 import {examples} from '../Serialize';
+import {loadHistory} from '../State';
+
 import './EditorHistory.css';
 
 const EditorHistoryTemplate = ({state, data, onClose}) => {

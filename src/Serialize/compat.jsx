@@ -3,7 +3,7 @@ import {deepCopy, isString} from '../Common';
 import {ItemModel} from '../Item/Model';
 import {latestVersion} from './versions';
 
-const migrateSections = (raw) => {
+const migrateV1Sections = (raw) => {
   return raw.map((x) => {
     if (isString(x)) {
       return {markdownData: x};
@@ -14,7 +14,7 @@ const migrateSections = (raw) => {
 
 const migrateV1Details = (raw) => {
   const {description} = raw;
-  const sections = migrateSections(raw.sections);
+  const sections = migrateV1Sections(raw.sections);
   raw.details = {description, sections};
   delete raw.description;
   delete raw.sections;
