@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
-import {toChildArray, cloneElement} from 'preact';
+import {toChildArray} from 'preact';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
 import {AnimatedDiv} from '../Animated';
@@ -12,14 +12,14 @@ import './DragList.css';
 const removedEntryTimeout = 300;
 
 const DragListGrip = () => (
-  <div className="mock-drag-list-grip" draggable>
+  <div draggable className="mock-drag-list-grip">
     <Icon color="grey" image="grip" />
   </div>
 );
 
 const DragListItem = ({children, index, active, onStart, onEnd}) => {
   const classes = classNames({
-    'mock-drag-list-item': index !== null,
+    'mock-drag-list-item':        index !== null,
     'mock-drag-list-item-unused': index === null,
     'mock-drag-list-item-active': active,
   });
@@ -37,16 +37,16 @@ const DragListItem = ({children, index, active, onStart, onEnd}) => {
   }
 
   return (
-    <div className={classes} onDragStart={onDragStart} onDragEnd={onDragEnd}>
+    <div className={classes} onDragEnd={onDragEnd} onDragStart={onDragStart}>
       {children}
     </div>
   );
 };
 
 const getRectCenter = (rect, horizontal) =>
-  horizontal ?
+  (horizontal ?
     rect.x + rect.width / 2 :
-    rect.y + rect.height / 2;
+    rect.y + rect.height / 2);
 
 const calcDragPosition = (ev, list, horizontal) => {
   const listItems = Array.from(list.children).filter((x) => x.classList.contains('mock-drag-list-item'));
@@ -96,26 +96,22 @@ const mergeKeys = (oldKeys, newKeys) => {
     result.push(...newKeys.slice(j));
   }
 
-  console.log({oldKeys, newKeys, result});
-
   return result;
 };
 
 const wrapChildren = (childArray, dragging, target, onStart, onEnd) => {
-  const result = [];
   return childArray.flatMap((child, index) => [
     renderDivider(index, target),
     (
-      <DragListItem key={child.key} index={index} active={index === dragging} onStart={onStart} onEnd={onEnd}>
-      {child}
-    </DragListItem>
+      <DragListItem key={child.key} active={index === dragging} index={index} onEnd={onEnd} onStart={onStart}>
+        {child}
+      </DragListItem>
     ),
   ]);
 };
 
 const wrapAnimatedChildren = (allKeys, childArray, dragging, target, onStart, onEnd) => {
   const keyedChildren = Object.fromEntries(childArray.map((x) => [x.key, x]));
-  const result = [];
   let nextIndex = 0;
 
   return allKeys.flatMap((key) => {
@@ -129,7 +125,7 @@ const wrapAnimatedChildren = (allKeys, childArray, dragging, target, onStart, on
       renderDivider(index, target),
       (
         <AnimatedDiv key={key}>
-          <DragListItem index={index} active={index === dragging} onStart={onStart} onEnd={onEnd}>
+          <DragListItem active={index === dragging} index={index} onEnd={onEnd} onStart={onStart}>
             {child}
           </DragListItem>
         </AnimatedDiv>
@@ -142,7 +138,7 @@ const DragList = observer(({horizontal, animated, children, onMove}) => {
   const ref = useRef();
   const [dragging, setDragging] = useState(null);
   const [target, setTarget] = useState(null);
-  const [depth, setDepth] = useState(null);
+  const [, setDepth] = useState(null);
 
   // Only used for animated lists, to keep around removed children until the animation finishes
   const [allKeys, setAllKeys] = useState([]);
@@ -161,15 +157,15 @@ const DragList = observer(({horizontal, animated, children, onMove}) => {
       ev.preventDefault();
       ev.stopPropagation();
     }
-  }, [dragging, setTarget]);
+  }, [dragging, horizontal, setTarget]);
 
-  const onDragEnter = useCallback((ev) => {
+  const onDragEnter = useCallback(() => {
     if (dragging !== null) {
       setDepth((x) => x + 1);
     }
   }, [dragging, setDepth]);
 
-  const onDragLeave = useCallback((ev) => {
+  const onDragLeave = useCallback(() => {
     if (dragging !== null) {
       setDepth((x) => {
         if (x <= 1) {
@@ -194,7 +190,7 @@ const DragList = observer(({horizontal, animated, children, onMove}) => {
       setDragging(null);
       ev.stopPropagation();
     }
-  }, [dragging, target, setDragging, setTarget]);
+  }, [dragging, target, setDragging, setTarget, onMove]);
 
   // Track which keys are being rendered, and create a timeout entry when one is removed
   useEffect(() => {
@@ -202,13 +198,13 @@ const DragList = observer(({horizontal, animated, children, onMove}) => {
       const newKeys = toChildArray(children).map((x) => x.key);
       setAllKeys(mergeKeys(allKeys, newKeys));
 
-      const leavingKeys = (new Set(allKeys)).difference(new Set(newKeys));
+      const leavingKeys = new Set(allKeys).difference(new Set(newKeys));
       if (leavingKeys.size > 0) {
         const timestamp = Date.now() + removedEntryTimeout;
         setTimeouts((prev) => prev.concat(Array.from(leavingKeys).map((id) => ({id, timestamp}))));
       }
     }
-  }, [children, setAllKeys, setTimeouts]);
+  }, [allKeys, animated, children, setAllKeys, setTimeouts]);
 
   // Whenever timeouts change, create a timer to remove the earliest associated entry
   useEffect(() => {
@@ -236,7 +232,7 @@ const DragList = observer(({horizontal, animated, children, onMove}) => {
         return () => clearTimeout(timer);
       }
     }
-  }, [allKeys, timeouts, setAllKeys, setTimeouts]);
+  }, [allKeys, animated, timeouts, setAllKeys, setTimeouts]);
 
   const childArray = toChildArray(children);
   const wrappedChildren = animated ?
@@ -244,7 +240,7 @@ const DragList = observer(({horizontal, animated, children, onMove}) => {
     wrapChildren(childArray, dragging, target, onStart, onDrop);
 
   return (
-    <div className="mock-drag-list" ref={ref} onDragOver={onDragOver} onDrop={onDrop} onDragEnter={onDragEnter} onDragLeave={onDragLeave}>
+    <div ref={ref} className="mock-drag-list" onDragEnter={onDragEnter} onDragLeave={onDragLeave} onDragOver={onDragOver} onDrop={onDrop}>
       {wrappedChildren}
       {renderDivider(childArray.length, target)}
     </div>

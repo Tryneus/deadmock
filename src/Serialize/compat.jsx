@@ -1,6 +1,6 @@
 import {AbilityModel} from '../Ability/Model';
 import {deepCopy, isString} from '../Common';
-import {ItemModel, ItemEffectModel} from '../Item/Model';
+import {ItemModel} from '../Item/Model';
 import {latestVersion} from './versions';
 
 const migrateSections = (raw) => {

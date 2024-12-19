@@ -1,7 +1,7 @@
 import {State} from '../State';
+import {hydrate} from './compat';
 import snapshotsV1 from './snapshots.v1';
 import snapshotsV2 from './snapshots.v2';
-import {hydrate} from './compat';
 
 Object.defineProperty(globalThis, 'crypto', {
   value: {

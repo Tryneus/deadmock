@@ -1,17 +1,17 @@
 import {makeAutoObservable} from 'mobx';
 
-import {deepCopy, isString, itemsByName, tierCosts} from '../Common';
+import {deepCopy, itemsByName, tierCosts} from '../Common';
 import {DetailsModel, defaultGridSection} from '../Details/Model';
 import {GridModel} from '../Grid/Model';
 import {serializeable} from '../Serialize';
 import {ValueModel} from '../Value/Model';
 
 const defaultEffect = {
-    active:   false,
-    cooldown: 6,
-    details: {
-      sections: [defaultGridSection],
-    },
+  active:   false,
+  cooldown: 6,
+  details:  {
+    sections: [defaultGridSection],
+  },
 };
 
 class ItemEffectModel {
@@ -114,4 +114,4 @@ serializeable(ItemModel, [
   ['effects', [ItemEffectModel]],
 ]);
 
-export {ItemModel, ItemEffectModel};
+export {ItemModel};

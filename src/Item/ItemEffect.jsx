@@ -1,15 +1,12 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
-import {useCallback} from 'preact/hooks';
 
-import {isString, useAction} from '../Common';
+import {useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
 import {Details} from '../Details';
 import {DragListGrip} from '../DragList';
-import {Grid} from '../Grid';
 import {Icon} from '../Icon';
-import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {Bold, EditableMarkdown, EditableText, SemiBold, Text} from '../Text';
+import {Bold, EditableText, SemiBold, Text} from '../Text';
 
 const ItemEffect = observer(({item, model}) => {
   const onChangeCooldown = useAction((x) => {

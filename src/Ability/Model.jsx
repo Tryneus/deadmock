@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 
-import {deepCopy, isString} from '../Common';
+import {deepCopy} from '../Common';
 import {DetailsModel} from '../Details/Model';
 import {GridModel} from '../Grid/Model';
 import {serializeable} from '../Serialize';

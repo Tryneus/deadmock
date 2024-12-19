@@ -56,7 +56,7 @@ const pruneResult = (x) => {
 };
 
 const serializeable = (model, fieldsData) => {
-  const fieldsVersions = Array.isArray(fieldsData) ? 
+  const fieldsVersions = Array.isArray(fieldsData) ?
     {[latestVersion]: fieldsData} :
     fieldsData;
   const latestFields = fieldsVersions[latestVersion];

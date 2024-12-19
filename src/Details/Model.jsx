@@ -1,20 +1,18 @@
 import {makeAutoObservable} from 'mobx';
 
-import {deepCopy, isString} from '../Common';
 import {GridModel} from '../Grid/Model';
 import {serializeable} from '../Serialize';
-import {ValueModel} from '../Value/Model';
 
 const defaultGridSection = {
   gridData: {
-    cells: [{}],
+    cells:  [{}],
     values: [{}],
   },
 };
 
 const defaultMarkdown = 'Insert **markdown** _here_.';
 const defaultMarkdownSection = {
-  markdownData: defaultMarkdown, 
+  markdownData: defaultMarkdown,
 };
 
 class DetailSectionModel {
@@ -62,7 +60,7 @@ class DetailsModel {
       this.sections.splice(index, 1);
     }
   }
-};
+}
 
 serializeable(DetailsModel, [
   ['description'],

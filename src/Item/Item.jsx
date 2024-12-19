@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
-import {useCallback} from 'preact/hooks';
 
 import {AnimatedDiv} from '../Animated';
 import {useAction} from '../Common';

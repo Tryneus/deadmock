@@ -1,7 +1,7 @@
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
-import {isString, useAction} from '../Common';
+import {useAction} from '../Common';
 import {DragList, DragListGrip} from '../DragList';
 import {Grid} from '../Grid';
 import {SidebarButton, SidebarButtons} from '../SidebarButtons';
@@ -11,7 +11,7 @@ import './Details.css';
 
 const DetailsSection = observer(({details, section}) => {
   const onDelete = useAction(() => {
-    details.removeSection(section)
+    details.removeSection(section);
   }, [details, section]);
   const onChangeMarkdown = useAction((x) => {
     if (x.length === 0) {
@@ -54,7 +54,7 @@ const Details = observer(({model}) => {
           <EditableMarkdown text={model.description} onChange={onChangeDescription} />
         </div>
         <DragList onMove={onMove}>
-          {model.sections.map((x) => <DetailsSection sections={model.sections} section={x} />)}
+          {model.sections.map((x) => <DetailsSection key={x.id} section={x} sections={model.sections} />)}
         </DragList>
       </div>
     </SidebarButtons>

@@ -1,17 +1,13 @@
 import {observer} from 'mobx-react-lite';
 
 import {AnimatedDiv} from '../Animated';
-import {useAction} from '../Common';
 import {Details} from '../Details';
-import {EditableMarkdown} from '../Text';
 import {AbilityHeader} from './AbilityHeader';
 import {AbilityUpgrade} from './AbilityUpgrade';
 
 import './Ability.css';
 
 const Ability = observer(({model}) => {
-  const onChange = useAction((x) => (model.description = x), [model]);
-
   return (
     <div className="mock-ability">
       <AnimatedDiv className="mock-ability-header-animated">

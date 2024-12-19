@@ -1,5 +1,4 @@
 import {observer} from 'mobx-react-lite';
-import {useCallback} from 'preact/hooks';
 
 import {useAction} from '../Common';
 import {Deleteable} from '../Deleteable';
@@ -32,7 +31,7 @@ const ItemStats = observer(({model}) => {
   return (
     <div className="mock-item-stats">
       <DragList onMove={onMove}>
-        {model.stats.map((x) => <ItemStatLine itemModel={model} statModel={x} />)}
+        {model.stats.map((x) => <ItemStatLine key={x.id} itemModel={model} statModel={x} />)}
       </DragList>
     </div>
   );

@@ -15,6 +15,7 @@ const HeroicAuraHydrated = {
       active:      false,
       details: {
         description: 'Provides **Fire Rate** to nearby player minions.',
+
         sections: [{
           gridData: {
             cells:  [{icon: {image: 'stat/fire_rate', color: 'orange'}, value: 40, units: '%', stat: 'Minions Fire Rate', signed: true, conditional: true}],
@@ -25,8 +26,10 @@ const HeroicAuraHydrated = {
     }, {
       active:      true,
       cooldown:    32,
+
       details: {
         description: 'Provides bonus **Movement Speed** and **Fire Rate** to you and nearby allies.',
+
         sections: [{
           gridData: {
             cells: [
@@ -64,8 +67,10 @@ const SlowingHexHydrated = {
     {
       active:      true,
       cooldown:    26,
+
       details: {
         description: 'Deals **Spirit Damage**, **Slows** targets movement and dashes.  Also **Silences their movement-based items and abilities.**\n_Does not affect target\'s stamina usage._',
+
         sections: [{
           gridData: {
             cells: [
@@ -101,8 +106,10 @@ const ReturnFireHydrated = {
     {
       active:      true,
       cooldown:    25,
+
       details: {
         description: 'Automatically **fire a bullet** towards any attacker who damages you with their abilities or weapon.',
+
         sections: [{
           gridData: {
             cells: [
@@ -130,7 +137,7 @@ const ShadowWeaveHydrated = {
   stats: [
     {signed: true, value: 15, stat: 'Health Regen'},
     {signed: true, value: 300, stat: 'Spirit Shield Health'},
-    {signed: true, value: 30, units: '%', stat: 'Ammo'}
+    {signed: true, value: 30, units: '%', stat: 'Ammo'},
   ],
 
   effects: [{
@@ -138,11 +145,12 @@ const ShadowWeaveHydrated = {
     cooldown: 48,
     details:  {
       description: 'Become **Stealthed**. Whenever you take damage while Stealthed you get briefly revealed.',
+
       sections: [
         {
           gridData: {
             cells: [
-              {icon: {image: 'stat/invisible'}, conditional: true, value: 25, units: 's', stat: 'Invisibility'}
+              {icon: {image: 'stat/invisible'}, conditional: true, value: 25, units: 's', stat: 'Invisibility'},
             ],
             values: [
               {value: 26, units: 'm', stat: 'Spot Radius'},
@@ -180,6 +188,7 @@ const TornadoHydrated = {
 
   details: {
     description: 'Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.',
+
     sections: [{
       gridData: {
         cells: [
