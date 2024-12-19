@@ -2,7 +2,9 @@ import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
-import {AnimatedDiv, AnimatedList} from '../Animated';
+import {AnimatedDiv} from '../Animated';
+import {useAction} from '../Common';
+import {DragList} from '../DragList';
 import {ItemComponents} from './ItemComponents';
 import {ItemEffect} from './ItemEffect';
 import {ItemHeader} from './ItemHeader';
@@ -12,9 +14,7 @@ import './Item.css';
 
 const Item = observer(({model}) => {
   const classes = classNames('mock-item', `mock-item-${model.category}`);
-  const renderEffect = useCallback((effect) => (
-    <ItemEffect key={effect.id} item={model} model={effect} />
-  ), [model]);
+  const onMove = useAction((mutation) => mutation(model.effects), [model]);
 
   return (
     <div className={classes}>
@@ -27,7 +27,9 @@ const Item = observer(({model}) => {
       <AnimatedDiv className="mock-item-stats-animated">
         <ItemStats model={model} />
       </AnimatedDiv>
-      <AnimatedList draggable items={model.effects} renderItem={renderEffect} />
+      <DragList animated onMove={onMove}>
+        {model.effects.map((x) => <ItemEffect key={x.id} item={model} model={x} />)}
+      </DragList>
     </div>
   );
 });

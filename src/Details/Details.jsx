@@ -40,9 +40,6 @@ const Details = observer(({model}) => {
   const onChangeDescription = useAction((x) => (model.description = x), [model]);
   const onMove = useAction((mutation) => mutation(model.sections), [model]);
 
-  const renderSection = useCallback((section) => (
-    <DetailsSection sections={model.sections} section={section} />
-  ), [model]);
   const renderSidebarButtons = useCallback(() => (
     <>
       <SidebarButton label="Markdown" onClick={onAddMarkdown} />
@@ -56,7 +53,9 @@ const Details = observer(({model}) => {
         <div className="mock-details-description">
           <EditableMarkdown text={model.description} onChange={onChangeDescription} />
         </div>
-        <DragList items={model.sections} renderItem={renderSection} />
+        <DragList onMove={onMove}>
+          {model.sections.map((x) => <DetailsSection sections={model.sections} section={x} />)}
+        </DragList>
       </div>
     </SidebarButtons>
   );

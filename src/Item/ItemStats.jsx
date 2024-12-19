@@ -23,17 +23,17 @@ const ItemStatLine = observer(({itemModel, statModel}) => {
 });
 
 const ItemStats = observer(({model}) => {
+  const onMove = useAction((mutation) => mutation(model.stats), [model]);
+
   if (model.stats.length === 0) {
     return null;
   }
 
-  const renderStat = useCallback((statModel) => (
-    <ItemStatLine itemModel={model} statModel={statModel} />
-  ), [model]);
-
   return (
     <div className="mock-item-stats">
-      <DragList items={model.stats} renderItem={renderStat} />
+      <DragList onMove={onMove}>
+        {model.stats.map((x) => <ItemStatLine itemModel={model} statModel={x} />)}
+      </DragList>
     </div>
   );
 });

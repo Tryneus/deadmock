@@ -104,6 +104,7 @@ const AnimatedList = observer(({items, draggable, renderItem}) => {
     );
   };
 
+
   // Shitty workaround because I can't get walking the virtual dom to work for some reason
   if (draggable) {
     return <DragList items={items} auxItems={auxItems} renderItem={wrappedRender} />;
