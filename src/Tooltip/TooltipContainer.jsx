@@ -18,8 +18,8 @@ const Tooltip = ({down, click, children, warning, onClose}) => {
       }
     };
 
-    window.addEventListener('click', handleClick);
-    return () => window.removeEventListener('click', handleClick);
+    window.addEventListener('mousedown', handleClick);
+    return () => window.removeEventListener('mousedown', handleClick);
   }, [click, ref, onClose]);
 
   return (

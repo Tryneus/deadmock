@@ -100,8 +100,10 @@
 
         .mock-details {
             padding: 0.9rem 0;
-            .mock-text {
-                padding-bottom: 0;
+            .mock-editable-markdown, .mock-grid {
+                .mock-text {
+                    padding-bottom: 0;
+                }
             }
         }
 

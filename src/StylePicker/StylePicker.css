@@ -3,6 +3,7 @@
     border: 0.1rem solid #999;
     padding: 0.3rem;
     white-space: nowrap;
+    user-select: none;
 }
 
 .mock-style-picker-color {
