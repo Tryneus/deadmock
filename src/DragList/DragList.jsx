@@ -49,7 +49,12 @@ const getRectCenter = (rect, horizontal) =>
     rect.y + rect.height / 2);
 
 const calcDragPosition = (ev, list, horizontal) => {
-  const listItems = Array.from(list.children).filter((x) => x.classList.contains('mock-drag-list-item'));
+  const listItems = Array.from(list.children).filter((x) =>
+    x.classList.contains('mock-drag-list-item') || (
+      x.classList.contains('mock-animated-div') &&
+      Array.from(x.children).some((x) => x.classList.contains('mock-drag-list-item'))
+    )
+  );
   const centers = listItems.map((x) => getRectCenter(x.getBoundingClientRect()));
   const position = horizontal ? ev.clientX : ev.clientY;
   for (let i = 0; i < centers.length; i++) {
