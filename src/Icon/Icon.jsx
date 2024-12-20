@@ -29,11 +29,11 @@ const hiddenColors = [
 // use different color profiles, so good luck.
 const filterType = isFirefox ? 'firefox' : 'default';
 
-const Icon = ({image, large, color, onClick}) => {
+const Icon = ({image, large, color, onClick, onMouseDown}) => {
   const colorClass = `mock-icon-${color}-${filterType}`;
   const classes = classNames('mock-icon', {
     [colorClass]:          Boolean(color),
-    'mock-icon-clickable': Boolean(onClick),
+    'mock-icon-clickable': Boolean(onClick || onMouseDown),
     'mock-icon-image':     Boolean(image),
     'mock-icon-large':     Boolean(large),
   });
@@ -43,6 +43,7 @@ const Icon = ({image, large, color, onClick}) => {
       className={classes}
       style={{backgroundImage: image && `url("${import.meta.env.BASE_URL}icon/${image}.png")`}}
       onClick={onClick}
+      onMouseDown={onMouseDown}
     />
   );
 };

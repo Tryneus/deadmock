@@ -7,6 +7,7 @@ import {Ability, AbilityModel} from '../Ability';
 import {isFirefox} from '../Common';
 import {Item, ItemModel} from '../Item';
 import {TooltipContainer} from '../Tooltip';
+import {CopyTextButton} from './CopyTextButton';
 import {EditorHistory} from './EditorHistory';
 
 import './Editor.css';
@@ -109,6 +110,7 @@ const Editor = observer(({state}) => {
         <div className="mock-editor-button" onClick={onCopyLink}>
           Copy Link
         </div>
+        <CopyTextButton />
         <EditorHistory state={state} />
       </div>
       <div ref={contentRef} className="mock-editor-content">

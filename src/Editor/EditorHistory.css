@@ -11,6 +11,11 @@
     .mock-icon {
         height: 1lh;
         width: 1lh;
+
+        &:hover {
+            transition: none;
+            background-color: #669;
+        }
     }
 
     .mock-editor-history-template {
@@ -65,7 +70,6 @@
         > div {
             position: absolute;
             top: 100%;
-            left: -0.1rem;
             width: min-content;
             z-index: 10;
             border: 0.1rem solid black;

@@ -103,9 +103,9 @@ const EditorHistoryDropdown = ({state, onClose}) => {
   const ref = useRef(null);
   const [history, setHistory] = useState([]);
   useEffect(() => {
-    const h = loadHistory();
-    h.splice(0, 1); // Remove latest (currently active) record
-    setHistory(h);
+    const data = loadHistory();
+    data.splice(0, 1); // Remove latest (currently active) record
+    setHistory(data);
   }, [setHistory]);
 
   // Dismiss dropdown if user clicks outside of it
@@ -116,8 +116,8 @@ const EditorHistoryDropdown = ({state, onClose}) => {
       }
     };
 
-    window.addEventListener('click', handleClick);
-    return () => window.removeEventListener('click', handleClick);
+    window.addEventListener('mousedown', handleClick);
+    return () => window.removeEventListener('mousedown', handleClick);
   }, [ref, onClose]);
 
   return (
