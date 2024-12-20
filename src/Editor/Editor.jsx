@@ -110,7 +110,7 @@ const Editor = observer(({state}) => {
         <div className="mock-editor-button" onClick={onCopyLink}>
           Copy Link
         </div>
-        <CopyTextButton />
+        <CopyTextButton model={state.activeModel} />
         <EditorHistory state={state} />
       </div>
       <div ref={contentRef} className="mock-editor-content">

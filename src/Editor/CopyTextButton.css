@@ -1,0 +1,68 @@
+.mock-editor-copy-text-button {
+    display: flex;
+    cursor: pointer;
+    font-variant: all-petite-caps;
+
+    > div:first-child {
+        border: 0.1rem solid #000;
+        border-right: none;
+        border-radius: 0.3rem 0 0 0.3rem;
+        background-color: #707070;
+        padding: 0 0.2rem;
+        transition: none;
+
+        &:hover {
+            background-color: #669;
+            border: 0.1rem solid #88a;
+        }
+    }
+
+    > .mock-icon {
+        border: 0.1rem solid #000;
+        border-radius: 0 0.3rem 0.3rem 0;
+        background-color: #222;
+        height: calc(100% - 0.2rem);
+        width: 1rem;
+        transition: none;
+
+
+        &:hover {
+            background-color: #669;
+            border: 0.1rem solid #88a;
+        }
+    }
+
+    &:has(> div:first-child:hover) {
+        > .mock-icon {
+            border-left: none;
+        }
+    }
+}
+
+.mock-editor-copy-text-dropdown {
+    position: relative;
+    width: 0;
+    white-space: nowrap;
+
+    > div {
+        position: absolute;
+        top: 100%;
+        right: calc(1rem + 4px);
+        width: min-content;
+        z-index: 10;
+    }
+}
+
+.mock-editor-copy-text-entry {
+    background: #707070;
+    text-align: end;
+    padding: 0 0.5rem;
+
+    &.mock-editor-copy-text-entry-selected {
+        background: #55a;
+    }
+
+    &:hover {
+        filter: brightness(120%) saturate(120%);
+    }
+}
