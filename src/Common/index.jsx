@@ -44,15 +44,15 @@ const allItems = [
   {name: 'Titanic Magazine', tier: 3, cost: 3500, category: WEAPON_CATEGORY, active: false, icon: 'item/titanic_magazine'},
   {name: 'Toxic Bullets', tier: 3, cost: 3000, category: WEAPON_CATEGORY, active: false, icon: 'item/toxic_bullets'},
   {name: 'Warp Stone', tier: 3, cost: 3000, category: WEAPON_CATEGORY, active: true, icon: 'item/warp_stone'},
-  {name: 'Crippling Headshot', tier: 4, cost: 6200, category: WEAPON_CATEGORY, active: false, icon: 'item/crippling_headshot'},
-  {name: 'Frenzy', tier: 4, cost: 6200, category: WEAPON_CATEGORY, active: false, icon: 'item/frenzy'},
-  {name: 'Glass Cannon', tier: 4, cost: 6200, category: WEAPON_CATEGORY, active: false, icon: 'item/glass_cannon'},
-  {name: 'Lucky Shot', tier: 4, cost: 6200, category: WEAPON_CATEGORY, active: false, icon: 'item/lucky_shot'},
-  {name: 'Ricochet', tier: 4, cost: 6200, category: WEAPON_CATEGORY, active: false, icon: 'item/ricochet'},
-  {name: 'Shadow Weave', tier: 4, cost: 6200, category: WEAPON_CATEGORY, active: true, icon: 'item/shadow_weave'},
+  {name: 'Crippling Headshot', tier: 4, cost: 6000, category: WEAPON_CATEGORY, active: false, icon: 'item/crippling_headshot'},
+  {name: 'Frenzy', tier: 4, cost: 6000, category: WEAPON_CATEGORY, active: false, icon: 'item/frenzy'},
+  {name: 'Glass Cannon', tier: 4, cost: 6000, category: WEAPON_CATEGORY, active: false, icon: 'item/glass_cannon'},
+  {name: 'Lucky Shot', tier: 4, cost: 6000, category: WEAPON_CATEGORY, active: false, icon: 'item/lucky_shot'},
+  {name: 'Ricochet', tier: 4, cost: 6000, category: WEAPON_CATEGORY, active: false, icon: 'item/ricochet'},
+  {name: 'Shadow Weave', tier: 4, cost: 6000, category: WEAPON_CATEGORY, active: true, icon: 'item/shadow_weave'},
   {name: 'Silencer', tier: 4, cost: 7450, category: WEAPON_CATEGORY, active: false, icon: 'item/silencer'},
-  {name: 'Spiritual Overflow', tier: 4, cost: 6200, category: WEAPON_CATEGORY, active: false, icon: 'item/spiritual_overflow'},
-  {name: 'Vampiric Burst', tier: 4, cost: 6200, category: WEAPON_CATEGORY, active: true, icon: 'item/vampiric_burst'},
+  {name: 'Spiritual Overflow', tier: 4, cost: 6000, category: WEAPON_CATEGORY, active: false, icon: 'item/spiritual_overflow'},
+  {name: 'Vampiric Burst', tier: 4, cost: 6000, category: WEAPON_CATEGORY, active: true, icon: 'item/vampiric_burst'},
 
   {name: 'Enduring Spirit', tier: 1, cost:  500, category: VITALITY_CATEGORY, active: false, icon: 'item/enduring_spirit'},
   {name: 'Extra Health', tier: 1, cost:  500, category: VITALITY_CATEGORY, active: false, icon: 'item/extra_health'},
@@ -85,13 +85,13 @@ const allItems = [
   {name: 'Metal Skin', tier: 3, cost: 3000, category: VITALITY_CATEGORY, active: true, icon: 'item/metal_skin'},
   {name: 'Rescue Beam', tier: 3, cost: 3000, category: VITALITY_CATEGORY, active: true, icon: 'item/rescue_beam'},
   {name: 'Superior Stamina', tier: 3, cost: 3500, category: VITALITY_CATEGORY, active: false, icon: 'item/superior_stamina'},
-  {name: 'Veil Walker', tier: 3, cost: 3000, category: VITALITY_CATEGORY, active: false, icon: 'item/veil_walker'},
-  {name: 'Colossus', tier: 4, cost: 6200, category: VITALITY_CATEGORY, active: true, icon: 'item/colossus'},
-  {name: 'Inhibitor', tier: 4, cost: 6200, category: VITALITY_CATEGORY, active: false, icon: 'item/inhibitor'},
-  {name: 'Leech', tier: 4, cost: 6200, category: VITALITY_CATEGORY, active: false, icon: 'item/leech'},
-  {name: 'Phantom Strike', tier: 4, cost: 6200, category: VITALITY_CATEGORY, active: true, icon: 'item/phantom_strike'},
-  {name: 'Siphon Bullets', tier: 4, cost: 6200, category: VITALITY_CATEGORY, active: false, icon: 'item/siphon_bullets'},
-  {name: 'Unstoppable', tier: 4, cost: 6200, category: VITALITY_CATEGORY, active: true, icon: 'item/unstoppable'},
+  {name: 'Colossus', tier: 4, cost: 6000, category: VITALITY_CATEGORY, active: true, icon: 'item/colossus'},
+  {name: 'Inhibitor', tier: 4, cost: 6000, category: VITALITY_CATEGORY, active: false, icon: 'item/inhibitor'},
+  {name: 'Leech', tier: 4, cost: 6000, category: VITALITY_CATEGORY, active: false, icon: 'item/leech'},
+  {name: 'Phantom Strike', tier: 4, cost: 6000, category: VITALITY_CATEGORY, active: true, icon: 'item/phantom_strike'},
+  {name: 'Siphon Bullets', tier: 4, cost: 6000, category: VITALITY_CATEGORY, active: false, icon: 'item/siphon_bullets'},
+  {name: 'Unstoppable', tier: 4, cost: 6000, category: VITALITY_CATEGORY, active: true, icon: 'item/unstoppable'},
+  {name: 'Veil Walker', tier: 4, cost: 6000, category: VITALITY_CATEGORY, active: false, icon: 'item/veil_walker'},
 
   {name: 'Ammo Scavenger', tier: 1, cost:  500, category: SPIRIT_CATEGORY, active: false, icon: 'item/ammo_scavenger'},
   {name: 'Extra Charge', tier: 1, cost:  500, category: SPIRIT_CATEGORY, active: false, icon: 'item/extra_charge'},
@@ -125,13 +125,13 @@ const allItems = [
   {name: 'Surge of Power', tier: 3, cost: 3000, category: SPIRIT_CATEGORY, active: false, icon: 'item/surge_of_power'},
   {name: 'Torment Pulse', tier: 3, cost: 3000, category: SPIRIT_CATEGORY, active: false, icon: 'item/torment_pulse'},
   {name: 'Boundless Spirit', tier: 4, cost: 9700, category: SPIRIT_CATEGORY, active: false, icon: 'item/boundless_spirit'},
-  {name: 'Curse', tier: 4, cost: 6200, category: SPIRIT_CATEGORY, active: true, icon: 'item/curse'},
-  {name: 'Diviner\'s Kevlar', tier: 4, cost: 6200, category: SPIRIT_CATEGORY, active: false, icon: 'item/diviners_kevlar'},
-  {name: 'Echo Shard', tier: 4, cost: 6200, category: SPIRIT_CATEGORY, active: true, icon: 'item/echo_shard'},
+  {name: 'Curse', tier: 4, cost: 6000, category: SPIRIT_CATEGORY, active: true, icon: 'item/curse'},
+  {name: 'Diviner\'s Kevlar', tier: 4, cost: 6000, category: SPIRIT_CATEGORY, active: false, icon: 'item/diviners_kevlar'},
+  {name: 'Echo Shard', tier: 4, cost: 6000, category: SPIRIT_CATEGORY, active: true, icon: 'item/echo_shard'},
   {name: 'Escalating Exposure', tier: 4, cost: 7450, category: SPIRIT_CATEGORY, active: false, icon: 'item/escalating_exposure'},
-  {name: 'Magic Carpet', tier: 4, cost: 6200, category: SPIRIT_CATEGORY, active: true, icon: 'item/magic_carpet'},
-  {name: 'Mystic Reverb', tier: 4, cost: 6200, category: SPIRIT_CATEGORY, active: false, icon: 'item/mystic_reverb'},
-  {name: 'Refresher', tier: 4, cost: 6200, category: SPIRIT_CATEGORY, active: true, icon: 'item/refresher'},
+  {name: 'Magic Carpet', tier: 4, cost: 6000, category: SPIRIT_CATEGORY, active: true, icon: 'item/magic_carpet'},
+  {name: 'Mystic Reverb', tier: 4, cost: 6000, category: SPIRIT_CATEGORY, active: false, icon: 'item/mystic_reverb'},
+  {name: 'Refresher', tier: 4, cost: 6000, category: SPIRIT_CATEGORY, active: true, icon: 'item/refresher'},
 ];
 
 const itemsByName = Object.fromEntries(allItems.map((x) => [x.name, x]));
@@ -271,7 +271,7 @@ const groupedStatIcons = [
 
 const statIcons = groupedStatIcons.flat();
 
-const tierCosts = [0, 500, 1250, 3000, 6200];
+const tierCosts = [0, 500, 1250, 3000, 6000];
 
 const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
 
