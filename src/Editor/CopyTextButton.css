@@ -9,11 +9,16 @@
         border-radius: 0.3rem 0 0 0.3rem;
         background-color: #707070;
         padding: 0 0.2rem;
-        transition: none;
+        transition: transform 0s 0.05s ease-in-out;
 
         &:hover {
             background-color: #669;
             border: 0.1rem solid #88a;
+        }
+
+        &:active {
+            transition: 0s;
+            transform: scale(0.9);
         }
     }
 

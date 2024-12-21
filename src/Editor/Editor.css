@@ -74,10 +74,16 @@
     cursor: pointer;
     border: 0.1rem solid #000;
     font-variant: all-petite-caps;
+    transition: transform 0s 0.05s ease-in-out;
 
     &:hover {
         background: #669;
         border: 0.1rem solid #88a;
+    }
+
+    &:active {
+        transition: 0s;
+        transform: scale(0.9);
     }
 }
 

@@ -62,7 +62,7 @@ ${list.map((x) => `[*] ${formatValue(x)}`).join('\n')}
 
   const formatItemEffect = (effect) => {
     const cooldown = effect.cooldown !== 0 ? ` (${bold(effect.cooldown)}${bold(grey('s'))} Cooldown)` : '';
-    const details = formatDetails(effect.details);
+    const details = indent(formatDetails(effect.details));
     return `
 ${bold(effect.active ? 'Active' : 'Passive')}${cooldown}:
 ${details}

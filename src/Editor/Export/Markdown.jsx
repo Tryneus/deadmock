@@ -15,15 +15,15 @@ const formatValueList = (list) => {
   return list.length === 0 ? '' : list.map((x) => `- ${formatValue(x)}`).join('\n');
 };
 
-const preserveNewlines = (s) => s.replaceAll(/[\n]/g, '\\\n');
+const preserveNewlines = (s) => s.replaceAll(/[\n]/g, '  \n');
 
 const formatDetails = (details) => {
   const sections = details.sections.map((x) => {
     if (x.markdownData) {
-      return `\n${preserveNewlines(x.markdownData)}`;
+      return `\n\n${preserveNewlines(x.markdownData)}`;
     }
-    return `\n${formatValueList(gridValues(x.gridData))}`;
-  }).join('\n');
+    return `\n\n${formatValueList(gridValues(x.gridData))}`;
+  }).join('');
   return `${preserveNewlines(details.description)}${sections}`;
 };
 
@@ -31,14 +31,15 @@ const formatItemEffect = (effect) => {
   const cooldown = effect.cooldown !== 0 ? ` (${effect.cooldown}s Cooldown)` : '';
   const details = formatDetails(effect.details);
   return quote(`
-${effect.active ? '**Active**' : '**Passive**'}${cooldown}:\\
+${effect.active ? '**Active**' : '**Passive**'}${cooldown}:  
+
 ${details}
 `.trim());
 };
 
 const formatComponents = (names) => {
   const formattedNames = names.join(', ');
-  return formattedNames ? `Components: ${formattedNames}\\\n` : '';
+  return formattedNames ? `Components: ${formattedNames}  \n` : '';
 };
 
 const formatItem = (model) => {
@@ -47,20 +48,21 @@ const formatItem = (model) => {
   const effects = model.effects.map((x) => `\n\n${formatItemEffect(x)}`).join('');
   return `
 ##### ${model.name}
-${capitalize(model.category)} Tier ${model.tier}\\
+${capitalize(model.category)} Tier ${model.tier}  
 ${components}${model.cost} Souls
+
 ${stats}${effects}
 `.trim();
 };
 
 const formatAbilityStats = (stats) => {
   const result = stats.map(renameAbilityHeaderStat).filter((x) => x).map(formatValue).join(' | ');
-  return result ? `${result}\\\n` : '';
+  return result ? `${result}  \n` : '';
 };
 
 const stripWhitespace = (s) => s.replaceAll(/[\r\n\t]+/g, ' ');
 const formatAbilityUpgrades = (upgrades) => {
-  return upgrades.map((x, i) => `Tier ${i + 1}: ${stripWhitespace(x)}`).join('\\\n');
+  return upgrades.map((x, i) => `Tier ${i + 1}: ${stripWhitespace(x)}`).join('  \n');
 };
 
 const formatAbility = (model) => {
@@ -70,6 +72,7 @@ const formatAbility = (model) => {
   return `
 ##### ${model.name}
 ${stats}${details}
+
 ${upgrades}
 `.trim();
 };

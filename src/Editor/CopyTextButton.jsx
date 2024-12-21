@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
 import {Icon} from '/src/Icon';
-import {exportFormats, defaultExportFormat} from './Export';
+import {defaultExportFormat, exportFormats} from './Export';
 import './CopyTextButton.css';
 
 const doFormat = (model, formatter) => {
