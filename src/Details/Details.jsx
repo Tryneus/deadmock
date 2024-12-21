@@ -54,7 +54,7 @@ const Details = observer(({model}) => {
           <EditableMarkdown text={model.description} onChange={onChangeDescription} />
         </div>
         <DragList onMove={onMove}>
-          {model.sections.map((x) => <DetailsSection key={x.id} section={x} sections={model.sections} />)}
+          {model.sections.map((x) => <DetailsSection key={x.id} section={x} details={model} />)}
         </DragList>
       </div>
     </SidebarButtons>
