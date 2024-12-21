@@ -5,29 +5,16 @@ import {renameAbilityHeaderStat} from './ExportCommon';
 
 const gridValues = (grid) => grid.cells.concat(grid.values);
 
-const color = (s, c) => s ? `[COLOR=${c}]${s}[/COLOR]` : '';
-const bold = (s) => s ? `[B]${s}[/B]` : '';
-const italic = (s) => s ? `[I]${s}[/I]` : '';
-const indent = (s) => s ? `[INDENT]${s}[/INDENT]` : '';
-const size = (s, sz) => s ? `[SIZE=${sz}]${s}[/SIZE]` : '';
-const capitalize = (s) => s[0].toUpperCase() + s.slice(1);
-
-// the simple formatting preserves structure but omits colors and sanitization
-const simpleCtx = new Proxy({}, {get: () => (x) => x});
-
-const colorCtx = {
-  sanitize: (s) => s ? `[PLAIN]${s}[/PLAIN]` : '',
-  orange: (s) => color(s, '#ec981a'),
-  purple: (s) => color(s, '#ce91ff'),
-  green: (s) => color(s, '#7cbb1e'),
-  blue: (s) => color(s, '#3399f3'),
-  cyan: (s) => color(s, '#9affd6'),
-  grey: (s) => color(s, '#aaaaaa'),
-};
+const color = (s, c) => (s ? `[COLOR=${c}]${s}[/COLOR]` : '');
+const bold = (s) => (s ? `[B]${s}[/B]` : '');
+const italic = (s) => (s ? `[I]${s}[/I]` : '');
+const indent = (s) => (s ? `[INDENT]${s}[/INDENT]` : '');
+const size = (s, sz) => (s ? `[SIZE=${sz}]${s}[/SIZE]` : '');
+const capitalize = (s) => `${s[0].toUpperCase()}${s.slice(1)}`;
 
 const generateFormatter = ({orange, purple, green, blue, cyan, grey, sanitize}) => {
   const categoryColors = {ability: blue, weapon: orange, vitality: green, spirit: purple};
-  const colorByCategory = (s, category) => categoryColors[category] ? categoryColors[category](s) : s;
+  const colorByCategory = (s, category) => (categoryColors[category] ? categoryColors[category](s) : s);
 
   const convertTree = (node, format) => {
     if (node.type === 'document' || node.type === 'paragraph') {
@@ -49,12 +36,14 @@ const generateFormatter = ({orange, purple, green, blue, cyan, grey, sanitize}) 
     const sign = value.signed && value.value > 0 ? '+' : '';
     const scaling = value.spiritScaling ? ` (${purple(`+${bold(value.spiritScaling)} x ${bold(`Spirit`)}`)})` : '';
     const conditional = value.conditional ? grey(italic(` (Conditional)`)) : '';
-    const numberStr = `${grey(sign)}${value.value}${grey(sanitize(value.units))}`
+    const numberStr = `${grey(sign)}${value.value}${grey(sanitize(value.units))}`;
     return `${bold(numberStr)} ${sanitize(value.stat)}${scaling}${conditional}`;
   };
 
   const formatValueList = (list) => {
-    return list.length === 0 ? '' : `
+    return list.length === 0 ?
+      '' :
+      `
 [LIST]
 ${list.map((x) => `[*] ${formatValue(x)}`).join('\n')}
 [/LIST]
@@ -64,12 +53,12 @@ ${list.map((x) => `[*] ${formatValue(x)}`).join('\n')}
   const formatDetails = (details) => {
     const sections = details.sections.map((x) => {
       if (x.markdownData) {
-        return '\n' + translateMarkdown(x.markdownData);
+        return `\n${translateMarkdown(x.markdownData)}`;
       }
-      return '\n' + formatValueList(gridValues(x.gridData));
+      return `\n${formatValueList(gridValues(x.gridData))}`;
     }).join('');
-    return `${translateMarkdown(details.description)}${sections}`
-  }
+    return `${translateMarkdown(details.description)}${sections}`;
+  };
 
   const formatItemEffect = (effect) => {
     const cooldown = effect.cooldown !== 0 ? ` (${bold(effect.cooldown)}${bold(grey('s'))} Cooldown)` : '';
@@ -81,14 +70,14 @@ ${details}
   };
 
   const formatComponents = (names) => {
-    const formattedNames = names.map((x) => itemsByName[x] ? `${colorByCategory(x, itemsByName[x].category)}` : x).map(bold).join(', ');
+    const formattedNames = names.map((x) => (itemsByName[x] ? `${colorByCategory(x, itemsByName[x].category)}` : x)).map(bold).join(', ');
     return formattedNames ? `${bold('Components')}: ${formattedNames}\n` : '';
   };
 
   const formatItem = (model) => {
     const stats = formatValueList(model.stats);
     const components = formatComponents(model.components);
-    const effects = model.effects.map((x) => '\n' + indent(formatItemEffect(x))).join('');
+    const effects = model.effects.map((x) => `\n${indent(formatItemEffect(x))}`).join('');
     return `
 ${size(bold(colorByCategory(sanitize(model.name), model.category)), 5)}
 ${bold(`${colorByCategory(capitalize(model.category), model.category)} Tier ${model.tier}`)}
@@ -121,6 +110,20 @@ ${upgrades}
   return {formatItem, formatAbility};
 };
 
-const bbcodeSimple = generateFormatter(simpleCtx);
+// the simple formatting preserves structure but omits colors and sanitization
+const simpleCtx = new Proxy({}, {get: () => (x) => x});
+
+const colorCtx = {
+  sanitize: (s) => (s ? `[PLAIN]${s}[/PLAIN]` : ''),
+  orange:   (s) => color(s, '#ec981a'),
+  purple:   (s) => color(s, '#ce91ff'),
+  green:    (s) => color(s, '#7cbb1e'),
+  blue:     (s) => color(s, '#3399f3'),
+  cyan:     (s) => color(s, '#9affd6'),
+  grey:     (s) => color(s, '#aaaaaa'),
+};
+
 const bbcodeColor = generateFormatter(colorCtx);
-export {bbcodeSimple, bbcodeColor};
+const bbcodeSimple = generateFormatter(simpleCtx);
+
+export {bbcodeColor, bbcodeSimple};

@@ -3,10 +3,10 @@ import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
 import {Icon} from '/src/Icon';
 
-import {plaintext} from './PlaintextExport';
-import {bbcodeSimple, bbcodeColor} from './BBCodeExport';
+import {bbcodeColor, bbcodeSimple} from './BBCodeExport';
 import {markdown} from './MarkdownExport';
-import './CopyTextButton.css'
+import {plaintext} from './PlaintextExport';
+import './CopyTextButton.css';
 
 const allFormats = [
   ['BBcode (simple)', bbcodeSimple],
@@ -60,7 +60,7 @@ const CopyTextDropdown = ({format, onChange, onClose}) => {
   return (
     <div ref={ref} className="mock-editor-copy-text-dropdown">
       <div>
-        {formats.map((x) => <CopyTextEntry selected={x === format} format={x} onChange={onChange} />)}
+        {formats.map((x) => <CopyTextEntry key={x} format={x} selected={x === format} onChange={onChange} />)}
       </div>
     </div>
   );

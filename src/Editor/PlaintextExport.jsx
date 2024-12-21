@@ -18,11 +18,11 @@ const formatValueList = (list) => {
 const formatDetails = (details) => {
   const sections = details.sections.map((x) => {
     if (x.markdownData) {
-      return '\n\n' + stripMarkdown(x.markdownData);
+      return `\n\n${stripMarkdown(x.markdownData)}`;
     }
-    return '\n\n' + formatValueList(gridValues(x.gridData));
+    return `\n\n${formatValueList(gridValues(x.gridData))}`;
   }).join('');
-  return `${stripMarkdown(details.description)}${sections}`
+  return `${stripMarkdown(details.description)}${sections}`;
 };
 
 const formatItemEffect = (effect) => {
@@ -42,7 +42,7 @@ const formatComponents = (names) => {
 const formatItem = (model) => {
   const stats = formatValueList(model.stats);
   const components = formatComponents(model.components);
-  const effects = model.effects.map((x) => '\n\n' + formatItemEffect(x)).join('');
+  const effects = model.effects.map((x) => `\n\n${formatItemEffect(x)}`).join('');
   return `
 ${model.name}
 ${capitalize(model.category)} Tier ${model.tier}
