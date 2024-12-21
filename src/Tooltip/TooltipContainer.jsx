@@ -45,7 +45,7 @@ const TooltipContainer = ({renderTooltip, direction, click, children, warning}) 
 
   const cbProps = {};
   if (click) {
-    cbProps.onClick = onToggle;
+    cbProps.onMouseDown = onToggle;
   } else {
     cbProps.onMouseEnter = onOpen;
     cbProps.onMouseLeave = onClose;
