@@ -2,20 +2,8 @@ import classNames from 'classnames';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
 import {Icon} from '/src/Icon';
-
-import {bbcodeColor, bbcodeSimple} from './BBCodeExport';
-import {markdown} from './MarkdownExport';
-import {plaintext} from './PlaintextExport';
+import {exportFormats, defaultExportFormat} from './Export';
 import './CopyTextButton.css';
-
-const allFormats = [
-  ['BBcode (simple)', bbcodeSimple],
-  ['BBcode (color)', bbcodeColor],
-  ['Markdown', markdown],
-  ['Plaintext', plaintext],
-];
-const defaultFormat = allFormats[0][0];
-const formatsByName = Object.fromEntries(allFormats);
 
 const doFormat = (model, formatter) => {
   if (model.category === 'ability') {
@@ -25,10 +13,10 @@ const doFormat = (model, formatter) => {
 };
 
 const doCopy = (model, format) => {
-  if (!formatsByName[format]) {
+  if (!exportFormats[format]) {
     throw new Error(`unknown export format: ${format}`);
   }
-  const blob = new Blob([doFormat(model, formatsByName[format])], {type: 'text/plain'});
+  const blob = new Blob([doFormat(model, exportFormats[format])], {type: 'text/plain'});
   navigator.clipboard.write([new ClipboardItem({'text/plain': blob})]);
 };
 
@@ -56,7 +44,7 @@ const CopyTextDropdown = ({format, onChange, onClose}) => {
     return () => window.removeEventListener('mousedown', handleClick);
   }, [ref, onClose]);
 
-  const formats = Object.keys(formatsByName);
+  const formats = Object.keys(exportFormats);
   return (
     <div ref={ref} className="mock-editor-copy-text-dropdown">
       <div>
@@ -67,7 +55,7 @@ const CopyTextDropdown = ({format, onChange, onClose}) => {
 };
 
 const CopyTextButton = ({model}) => {
-  const [format, setFormat] = useState(defaultFormat);
+  const [format, setFormat] = useState(defaultExportFormat);
   const [open, setOpen] = useState(false);
   const onOpen = useCallback(() => setOpen(true), [setOpen]);
   const onClose = useCallback(() => setOpen(false), [setOpen]);
