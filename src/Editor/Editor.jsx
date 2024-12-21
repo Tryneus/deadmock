@@ -3,10 +3,11 @@ import {toBlob} from 'html-to-image';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useRef} from 'preact/hooks';
 
-import {Ability, AbilityModel} from '../Ability';
-import {isFirefox} from '../Common';
-import {Item, ItemModel} from '../Item';
-import {TooltipContainer} from '../Tooltip';
+import {Ability, AbilityModel} from '/src/Ability';
+import {isFirefox} from '/src/Common';
+import {Item, ItemModel} from '/src/Item';
+import {TooltipContainer} from '/src/Tooltip';
+
 import {CopyTextButton} from './CopyTextButton';
 import {EditorHistory} from './EditorHistory';
 

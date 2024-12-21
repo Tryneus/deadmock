@@ -1,8 +1,9 @@
 import {observer} from 'mobx-react-lite';
 
-import {useAction} from '../Common';
-import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {EditableText} from '../Text';
+import {useAction} from '/src/Common';
+import {SidebarButton, SidebarButtons} from '/src/SidebarButtons';
+import {EditableText} from '/src/Text';
+
 import {AbilityStat} from './AbilityStat';
 
 // This doesn't appear to be totally consistent across abilities, so we'll go with:

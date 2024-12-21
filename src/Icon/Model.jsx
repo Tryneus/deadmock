@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 
-import {serializeable} from '../Serialize';
+import {serializeable} from '/src/Serialize';
 
 class IconModel {
   image = 'stat/placeholder';

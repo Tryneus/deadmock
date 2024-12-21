@@ -1,5 +1,5 @@
-import {Icon} from '../Icon';
-import {EditableText} from '../Text';
+import {Icon} from '/src/Icon';
+import {EditableText} from '/src/Text';
 
 import './SpiritScaling.css';
 

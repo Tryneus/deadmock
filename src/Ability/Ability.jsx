@@ -1,7 +1,8 @@
 import {observer} from 'mobx-react-lite';
 
-import {AnimatedDiv} from '../Animated';
-import {Details} from '../Details';
+import {AnimatedDiv} from '/src/Animated';
+import {Details} from '/src/Details';
+
 import {AbilityHeader} from './AbilityHeader';
 import {AbilityUpgrade} from './AbilityUpgrade';
 

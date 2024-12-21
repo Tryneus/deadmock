@@ -1,10 +1,10 @@
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
-import {groupedStatIcons, useAction} from '../Common';
-import {TooltipContainer} from '../Tooltip';
-import {Icon, iconColors} from './Icon';
+import {groupedStatIcons, useAction} from '/src/Common';
+import {TooltipContainer} from '/src/Tooltip';
 
+import {Icon, iconColors} from './Icon';
 import './EditableIcon.css';
 
 const IconPickerButton = observer(({image, model}) => {

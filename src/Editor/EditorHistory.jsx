@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
-import {Icon} from '../Icon';
-import {examples} from '../Serialize';
-import {loadHistory} from '../State';
+import {Icon} from '/src/Icon';
+import {examples} from '/src/Serialize';
+import {loadHistory} from '/src/State';
 
 import './EditorHistory.css';
 

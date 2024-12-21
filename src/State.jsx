@@ -1,9 +1,9 @@
 import {autorun, makeAutoObservable, runInAction} from 'mobx';
 
-import {AbilityModel} from './Ability/Model';
-import {ItemModel} from './Item/Model';
-import {examples, latestVersion, versions} from './Serialize';
-import {hydrate, migrate} from './Serialize/compat';
+import {AbilityModel} from '/src/Ability/Model';
+import {ItemModel} from '/src/Item/Model';
+import {examples, latestVersion, versions} from '/src/Serialize';
+import {hydrate, migrate} from '/src/Serialize/compat';
 
 const versionKey = 'version';
 const historyKey = 'history';

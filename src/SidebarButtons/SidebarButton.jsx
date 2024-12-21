@@ -1,5 +1,5 @@
-import {Icon} from '../Icon';
-import {SemiBold} from '../Text';
+import {Icon} from '/src/Icon';
+import {SemiBold} from '/src/Text';
 
 import './SidebarButton.css';
 

@@ -1,4 +1,4 @@
-import {allItems, statIcons} from './Common';
+import {allItems, statIcons} from '/src/Common';
 
 const itemIcons = allItems.map((x) => x.icon);
 const remaining = itemIcons.concat(statIcons);

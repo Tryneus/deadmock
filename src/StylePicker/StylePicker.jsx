@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 
-import {useAction} from '../Common';
-import {textColors} from '../Text';
+import {useAction} from '/src/Common';
+import {textColors} from '/src/Text';
 
 import './StylePicker.css';
 

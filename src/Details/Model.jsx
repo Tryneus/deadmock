@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 
-import {GridModel} from '../Grid/Model';
-import {serializeable} from '../Serialize';
+import {GridModel} from '/src/Grid/Model';
+import {serializeable} from '/src/Serialize';
 
 const defaultGridSection = {
   gridData: {

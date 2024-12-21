@@ -1,5 +1,6 @@
-import {MarkdownParser} from '../Text/MarkdownParser';
-import {itemsByName} from '../Common';
+import {MarkdownParser} from '/src/Text/MarkdownParser';
+import {itemsByName} from '/src/Common';
+
 import {renameAbilityHeaderStat} from './ExportCommon';
 
 const gridValues = (grid) => grid.cells.concat(grid.values);

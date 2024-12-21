@@ -1,4 +1,5 @@
-import {deepCopy} from '../Common';
+import {deepCopy} from '/src/Common';
+
 // The Editor doesn't make it possible to specify the stat name for header
 // stats, so (aside from the hard-coded ones like cooldown and charges),
 // attempt a best-guess at what they are.  Omit any not specified because it

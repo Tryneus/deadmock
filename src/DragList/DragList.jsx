@@ -3,9 +3,9 @@ import {observer} from 'mobx-react-lite';
 import {toChildArray} from 'preact';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
-import {AnimatedDiv} from '../Animated';
-import {useAction} from '../Common';
-import {Icon} from '../Icon';
+import {AnimatedDiv} from '/src/Animated';
+import {useAction} from '/src/Common';
+import {Icon} from '/src/Icon';
 
 import './DragList.css';
 

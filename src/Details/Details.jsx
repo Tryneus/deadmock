@@ -1,11 +1,11 @@
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
-import {useAction} from '../Common';
-import {DragList, DragListGrip} from '../DragList';
-import {Grid} from '../Grid';
-import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {EditableMarkdown} from '../Text';
+import {useAction} from '/src/Common';
+import {DragList, DragListGrip} from '/src/DragList';
+import {Grid} from '/src/Grid';
+import {SidebarButton, SidebarButtons} from '/src/SidebarButtons';
+import {EditableMarkdown} from '/src/Text';
 
 import './Details.css';
 

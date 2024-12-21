@@ -1,4 +1,5 @@
 import {render} from 'preact';
+
 import {Editor} from './Editor';
 import {State} from './State';
 

@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 
-import {useAction} from '../Common';
-import {Icon} from '../Icon';
-import {Bold, EditableMarkdown} from '../Text';
+import {useAction} from '/src/Common';
+import {Icon} from '/src/Icon';
+import {Bold, EditableMarkdown} from '/src/Text';
 
 const tierCosts = [1, 2, 5];
 

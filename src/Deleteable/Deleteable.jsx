@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import {Icon} from '../Icon';
+import {Icon} from '/src/Icon';
 
 import './Deleteable.css';
 

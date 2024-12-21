@@ -2,12 +2,12 @@ import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
-import {useAction} from '../Common';
-import {Deleteable} from '../Deleteable';
-import {Icon} from '../Icon';
-import {ItemPicker} from '../ItemPicker';
-import {Bold} from '../Text';
-import {TooltipContainer} from '../Tooltip';
+import {useAction} from '/src/Common';
+import {Deleteable} from '/src/Deleteable';
+import {Icon} from '/src/Icon';
+import {ItemPicker} from '/src/ItemPicker';
+import {Bold} from '/src/Text';
+import {TooltipContainer} from '/src/Tooltip';
 
 const ItemComponent = observer(({model, index}) => {
   const onDelete = useAction(() => model.removeComponent(index), [index, model]);

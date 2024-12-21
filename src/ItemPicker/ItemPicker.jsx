@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import {useCallback} from 'preact/hooks';
 
-import {allItems} from '../Common';
-import {Icon} from '../Icon';
+import {allItems} from '/src/Common';
+import {Icon} from '/src/Icon';
 
 import './ItemPicker.css';
 

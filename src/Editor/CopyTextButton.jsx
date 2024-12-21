@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
-import {Icon} from '../Icon';
+import {Icon} from '/src/Icon';
+
 import {plaintext} from './PlaintextExport';
 import {bbcodeSimple, bbcodeColor} from './BBCodeExport';
 import {markdown} from './MarkdownExport';

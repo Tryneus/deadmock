@@ -1,7 +1,7 @@
 import {observer} from 'mobx-react-lite';
 
-import {useAction} from '../Common';
-import {Bold, EditableText, SemiBold} from '../Text';
+import {useAction} from '/src/Common';
+import {Bold, EditableText, SemiBold} from '/src/Text';
 
 const parseRegex = /^(([+-]?)\d*(?:.\d+)?)(.*)$/;
 

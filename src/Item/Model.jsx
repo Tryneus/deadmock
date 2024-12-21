@@ -1,10 +1,10 @@
 import {makeAutoObservable} from 'mobx';
 
-import {deepCopy, itemsByName, tierCosts} from '../Common';
-import {DetailsModel, defaultGridSection} from '../Details/Model';
-import {GridModel} from '../Grid/Model';
-import {serializeable} from '../Serialize';
-import {ValueModel} from '../Value/Model';
+import {deepCopy, itemsByName, tierCosts} from '/src/Common';
+import {DetailsModel, defaultGridSection} from '/src/Details/Model';
+import {GridModel} from '/src/Grid/Model';
+import {serializeable} from '/src/Serialize';
+import {ValueModel} from '/src/Value/Model';
 
 const defaultEffect = {
   active:   false,

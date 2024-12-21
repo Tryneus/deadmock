@@ -1,10 +1,10 @@
 import {makeAutoObservable} from 'mobx';
 
-import {deepCopy} from '../Common';
-import {DetailsModel} from '../Details/Model';
-import {GridModel} from '../Grid/Model';
-import {serializeable} from '../Serialize';
-import {ValueModel} from '../Value/Model';
+import {deepCopy} from '/src/Common';
+import {DetailsModel} from '/src/Details/Model';
+import {GridModel} from '/src/Grid/Model';
+import {serializeable} from '/src/Serialize';
+import {ValueModel} from '/src/Value/Model';
 
 class AbilityModel {
   id;

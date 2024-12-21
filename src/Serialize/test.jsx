@@ -1,4 +1,5 @@
-import {State} from '../State';
+import {State} from '/src/State';
+
 import {hydrate, migrate} from './compat';
 import snapshotsV1 from './snapshots.v1';
 import snapshotsV2 from './snapshots.v2';

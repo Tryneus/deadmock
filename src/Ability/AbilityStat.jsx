@@ -1,9 +1,9 @@
 import {observer} from 'mobx-react-lite';
 
-import {useAction} from '../Common';
-import {Deleteable} from '../Deleteable';
-import {EditableIcon} from '../Icon';
-import {EditableValue} from '../Value';
+import {useAction} from '/src/Common';
+import {Deleteable} from '/src/Deleteable';
+import {EditableIcon} from '/src/Icon';
+import {EditableValue} from '/src/Value';
 
 const AbilityStat = observer(({model, value}) => {
   const onDelete = useAction(() => model.removeStat(value), [model, value]);

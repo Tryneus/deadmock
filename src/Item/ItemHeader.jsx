@@ -1,11 +1,11 @@
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
-import {useAction} from '../Common';
-import {Icon} from '../Icon';
-import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {EditableText, Text} from '../Text';
-import {Value} from '../Value';
+import {useAction} from '/src/Common';
+import {Icon} from '/src/Icon';
+import {SidebarButton, SidebarButtons} from '/src/SidebarButtons';
+import {EditableText, Text} from '/src/Text';
+import {Value} from '/src/Value';
 
 const categoryBonuses = {
   spirit: {

@@ -1,10 +1,10 @@
 import {observer} from 'mobx-react-lite';
 
-import {useAction} from '../Common';
-import {Deleteable} from '../Deleteable';
-import {DragList, DragListGrip} from '../DragList';
-import {EditableText} from '../Text';
-import {EditableValue} from '../Value';
+import {useAction} from '/src/Common';
+import {Deleteable} from '/src/Deleteable';
+import {DragList, DragListGrip} from '/src/DragList';
+import {EditableText} from '/src/Text';
+import {EditableValue} from '/src/Value';
 
 const ItemStatLine = observer(({itemModel, statModel}) => {
   const onChangeStat = useAction((x) => (statModel.stat = x), [statModel]);

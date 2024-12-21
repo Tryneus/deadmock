@@ -2,14 +2,15 @@ import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
-import {useAction} from '../Common';
-import {Deleteable} from '../Deleteable';
-import {EditableIcon, Icon} from '../Icon';
-import {SidebarButton, SidebarButtons} from '../SidebarButtons';
-import {StylePicker} from '../StylePicker';
-import {EditableText, SemiBold, Text} from '../Text';
-import {TooltipContainer} from '../Tooltip';
-import {EditableValue} from '../Value';
+import {useAction} from '/src/Common';
+import {Deleteable} from '/src/Deleteable';
+import {EditableIcon, Icon} from '/src/Icon';
+import {SidebarButton, SidebarButtons} from '/src/SidebarButtons';
+import {StylePicker} from '/src/StylePicker';
+import {EditableText, SemiBold, Text} from '/src/Text';
+import {TooltipContainer} from '/src/Tooltip';
+import {EditableValue} from '/src/Value';
+
 import {SpiritScaling} from './SpiritScaling';
 
 import './Grid.css';

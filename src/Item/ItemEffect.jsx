@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 
-import {useAction} from '../Common';
-import {Deleteable} from '../Deleteable';
-import {Details} from '../Details';
-import {DragListGrip} from '../DragList';
-import {Icon} from '../Icon';
-import {Bold, EditableText, SemiBold, Text} from '../Text';
+import {useAction} from '/src/Common';
+import {Deleteable} from '/src/Deleteable';
+import {Details} from '/src/Details';
+import {DragListGrip} from '/src/DragList';
+import {Icon} from '/src/Icon';
+import {Bold, EditableText, SemiBold, Text} from '/src/Text';
 
 const ItemEffect = observer(({item, model}) => {
   const onChangeCooldown = useAction((x) => {

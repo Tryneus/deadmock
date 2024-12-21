@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 
-import {isFirefox} from '../Common';
+import {isFirefox} from '/src/Common';
+
 import './Icon.css';
 
 const iconColors = [

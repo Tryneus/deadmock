@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 
-import {IconModel} from '../Icon/Model';
-import {serializeable} from '../Serialize';
+import {IconModel} from '/src/Icon/Model';
+import {serializeable} from '/src/Serialize';
 
 class ValueModel {
   id; // only used for rendering purposes as a react `key`, not persisted
