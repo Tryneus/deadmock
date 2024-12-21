@@ -80,12 +80,12 @@
     }
 
     .mock-ability-body-background {
-        background: radial-gradient(circle 900px at 75% 140px, #4b4b4b 20%, #121212);
+        background: radial-gradient(circle 900px at 75% 140px, #404040 20%, #161616);
         position: relative;
 
         .mock-ability-body-noise {
             position: absolute;
-            background: radial-gradient(circle 500px at 75% 140px, #4b4b4b 15%, #080808);
+            background: radial-gradient(circle 500px at 75% 140px, #404040 15%, #080808);
             mask-image: url("/deadmock/noise.png");
             width: 100%;
             height: 100%;
