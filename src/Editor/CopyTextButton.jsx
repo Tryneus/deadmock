@@ -6,7 +6,6 @@ import {Icon} from '/src/Icon';
 import {plaintext} from './PlaintextExport';
 import {bbcodeSimple, bbcodeColor} from './BBCodeExport';
 import {markdown} from './MarkdownExport';
-
 import './CopyTextButton.css'
 
 const allFormats = [

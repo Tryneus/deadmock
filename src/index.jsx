@@ -1,10 +1,9 @@
 import {render} from 'preact';
 
-import {Editor} from './Editor';
-import {State} from './State';
-
-import './preload';
-import './style.css';
+import {Editor} from '/src/Editor';
+import {State} from '/src/State';
+import '/src/preload';
+import '/src/style.css';
 
 const state = new State();
 

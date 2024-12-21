@@ -12,7 +12,6 @@ import {TooltipContainer} from '/src/Tooltip';
 import {EditableValue} from '/src/Value';
 
 import {SpiritScaling} from './SpiritScaling';
-
 import './Grid.css';
 
 // Partition the cells such that:

@@ -3,7 +3,6 @@ import {observer} from 'mobx-react-lite';
 import {useCallback, useRef, useState} from 'preact/hooks';
 
 import {Markdown} from './Markdown';
-
 import './EditableText.css';
 
 // React discards the newlines otherwise, so shove in some line-break elements

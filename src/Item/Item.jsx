@@ -9,7 +9,6 @@ import {ItemComponents} from './ItemComponents';
 import {ItemEffect} from './ItemEffect';
 import {ItemHeader} from './ItemHeader';
 import {ItemStats} from './ItemStats';
-
 import './Item.css';
 
 const Item = observer(({model}) => {

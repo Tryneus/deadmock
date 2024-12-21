@@ -10,7 +10,6 @@ import {TooltipContainer} from '/src/Tooltip';
 
 import {CopyTextButton} from './CopyTextButton';
 import {EditorHistory} from './EditorHistory';
-
 import './Editor.css';
 
 const classBlacklist = [

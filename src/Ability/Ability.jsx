@@ -5,7 +5,6 @@ import {Details} from '/src/Details';
 
 import {AbilityHeader} from './AbilityHeader';
 import {AbilityUpgrade} from './AbilityUpgrade';
-
 import './Ability.css';
 
 const Ability = observer(({model}) => {
