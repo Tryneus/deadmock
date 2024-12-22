@@ -7,7 +7,7 @@ import {Bold, EditableMarkdown} from '/src/Text';
 
 const tierCosts = [1, 2, 5];
 
-const valueRegex = /^[+-]?\*?\*?[+-]?[0-9.]+[A-z/%]+\*?\*?\n[A-z ]+$/;
+const valueRegex = /^[+-]?\*?\*?[+-]?[0-9.]+\s*[A-z/%]*\*?\*?\n[A-z ]+$/;
 
 const upgradeMarkdownFormat = {
   text:     {},
