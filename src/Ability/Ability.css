@@ -215,10 +215,10 @@
             font-size: 0.9rem;
             font-weight: 600;
             line-height: 145%;
+        }
 
-            .mock-text-bold {
-                font-size: 1.2rem;
-            }
+        .mock-ability-upgrade-value .mock-text-bold {
+            font-size: 1.2rem;
         }
     }
 
