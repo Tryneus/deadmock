@@ -8,7 +8,7 @@
         border-left: 0.1rem solid black;
     }
 
-    .mock-icon {
+    > .mock-icon {
         height: 1lh;
         width: 1lh;
 
@@ -23,23 +23,12 @@
     }
 
     .mock-editor-history-entry, .mock-editor-history-template, .mock-editor-history-current {
-        width: 10rem;
         display: flex;
-        justify-content: space-between;
-        white-space: nowrap;
-        padding: 0.05rem 0.5rem;
         cursor: pointer;
         min-height: 1lh;
 
-        > span:first-child {
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        > span:last-child {
-            font-size: 0.5rem;
-            font-style: italic;
-            font-weight: 400;
+        .mock-icon {
+            opacity: 0.6;
         }
 
         &.mock-editor-history-ability {
@@ -63,6 +52,36 @@
         }
     }
 
+    .mock-editor-history-label {
+        padding: 0.05rem 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        white-space: nowrap;
+        flex-grow: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &.mock-editor-history-template {
+            padding-right: 1.5rem;
+        }
+
+        span:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        span:last-child {
+            font-size: 0.5rem;
+            font-style: italic;
+            font-weight: 400;
+        }
+    }
+
+    .mock-editor-history-current {
+        width: 10rem;
+        box-sizing: border-box;
+    }
+
     .mock-editor-history-dropdown {
         position: relative;
         width: 0;
@@ -70,17 +89,45 @@
         > div {
             position: absolute;
             top: 100%;
-            width: min-content;
+            width: 10rem;
             z-index: 10;
             border: 0.1rem solid black;
+            max-height: 20rem;
+            overflow-y: auto;
+            overscroll-behavior: none;
         }
 
         .mock-editor-history-entry, .mock-editor-history-template {
             &:hover {
                 filter: brightness(120%) saturate(120%);
-                border: 0.05rem solid black;
-                padding: 0 0.45rem;
+                border-top: 0.05rem solid black;
+                border-bottom: 0.05rem solid black;
+
+                &.mock-editor-history-label, .mock-editor-history-label {
+                    padding-top: 0;
+                    padding-bottom: 0;
+                }
             }
+        }
+    }
+
+    .mock-editor-history-entry {
+        .mock-hold-timer {
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.1rem;
+
+            > div:first-child {
+                flex-grow: 1;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    .mock-editor-history-clear {
+        .mock-hold-timer {
+            flex-grow: 1;
         }
     }
 }

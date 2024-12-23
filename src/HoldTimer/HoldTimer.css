@@ -1,0 +1,69 @@
+.mock-hold-timer {
+    display: flex;
+
+    .mock-hold-timer-icon {
+        position: relative;
+        height: 1.5em;
+        width: 1.5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .mock-icon {
+            transition: height 0.05s ease-in-out, width 0.1s ease-in-out;
+            height: 1.2em;
+            width: 1.2em
+        }
+    }
+}
+
+
+.mock-hold-timer-circle {
+    position: absolute;
+    line-height: 0;
+
+    svg {
+        width: 100%;
+
+        circle {
+            stroke-dasharray: var(--filled) 100;
+        }
+    }
+
+    --filled: var(--progress);
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.mock-hold-timer .mock-hold-timer-icon-animating {
+    .mock-hold-timer-circle {
+        animation-name: fill-circle;
+
+        svg {
+            circle {
+                stroke-width: 3;
+            }
+        }
+    }
+
+    .mock-icon {
+        height: 1.0em;
+        width: 1.0em;
+    }
+}
+
+@property --progress {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes fill-circle {
+  from {
+      --progress: 0;
+  }
+  to {
+      --progress: 100;
+  }
+}

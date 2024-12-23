@@ -8,7 +8,6 @@ import {hydrate, migrate} from '/src/Serialize/compat';
 const versionKey = 'version';
 const historyKey = 'history';
 const reservedKeys = [versionKey, historyKey];
-const historyLimit = 10;
 const storage = window.localStorage;
 
 // This currently handles the v1 -> v2 migration
@@ -51,7 +50,11 @@ const pushHistory = (model) => {
     history.splice(idx, 1);
   }
   history.unshift({id: model.id, category: model.category, name: model.name, timestamp: Date.now()});
-  history.splice(historyLimit);
+  storage.setItem(historyKey, JSON.stringify(history));
+};
+
+const removeFromHistory = (key) => {
+  const history = loadHistory(historyKey).filter((x) => x.id !== key);
   storage.setItem(historyKey, JSON.stringify(history));
 };
 
@@ -117,6 +120,11 @@ class State {
     } else {
       console.error('failed to load record from localStorage', key);
     }
+  }
+
+  deleteRecord(key) {
+    removeFromHistory(key);
+    storage.removeItem(key);
   }
 
   clearData() {

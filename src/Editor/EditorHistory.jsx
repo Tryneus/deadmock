@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import {observer} from 'mobx-react-lite';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
+import {HoldTimer} from '/src/HoldTimer';
 import {Icon} from '/src/Icon';
 import {examples} from '/src/Serialize';
 import {loadHistory} from '/src/State';
@@ -9,7 +10,11 @@ import {loadHistory} from '/src/State';
 import './EditorHistory.css';
 
 const EditorHistoryTemplate = ({state, data, onClose}) => {
-  const classes = classNames('mock-editor-history-template', `mock-editor-history-${data.category}`);
+  const classes = classNames(
+    'mock-editor-history-template',
+    `mock-editor-history-${data.category}`,
+    'mock-editor-history-label',
+  );
   const onClick = useCallback(() => {
     state.loadRaw(data);
     onClose();
@@ -30,20 +35,14 @@ const prettyTimeDelta = (timestamp, now) => {
 
   const delta = (now - timestamp) / 1000;
   if (delta < 0) {
-    return 'in the future';
+    return '';
   }
-  if (delta <= 2) {
-    return '1 second ago';
-  } else if (delta < 60) {
-    return `${Math.floor(delta)} seconds ago`;
-  } else if (delta < 120) {
-    return '1 minute ago';
+  if (delta < 60) {
+    return `${Math.floor(delta)} sec ago`;
   } else if (delta < 3600) {
-    return `${Math.floor(delta / 60)} minutes ago`;
-  } else if (delta < 7200) {
-    return '1 hour ago';
+    return `${Math.floor(delta / 60)} min ago`;
   } else if (delta < 172800) {
-    return `${Math.floor(delta / 3600)} hours ago`;
+    return `${Math.floor(delta / 3600)} hr ago`;
   }
   return `${Math.floor(delta / 86400)} days ago`;
 };
@@ -52,10 +51,13 @@ const EditorHistoryEntry = ({state, data, onClose}) => {
   const [now, setNow] = useState(null);
   const classes = classNames('mock-editor-history-entry', `mock-editor-history-${data.category}`);
   const onClick = useCallback(() => {
-    if (onClose) {
-      state.loadRecord(data.id);
-      onClose();
-    }
+    state.loadRecord(data.id);
+    onClose();
+  }, [state, data, onClose]);
+
+  const onDelete = useCallback(() => {
+    state.deleteRecord(data.id);
+    onClose();
   }, [state, data, onClose]);
 
   // Rerender every 1s
@@ -68,15 +70,22 @@ const EditorHistoryEntry = ({state, data, onClose}) => {
   const timeDelta = prettyTimeDelta(data.timestamp, now) || 0;
 
   return (
-    <div className={classes} onClick={onClick}>
-      <span>{data.name || '-'}</span>
-      <span>{timeDelta}</span>
+    <div className={classes}>
+      <div className="mock-editor-history-label" onClick={onClick}>
+        <span>{data.name || '-'}</span>
+        <span>{timeDelta}</span>
+      </div>
+      <HoldTimer duration={1000} image="trash" onComplete={onDelete} />
     </div>
   );
 };
 
 const EditorHistoryCurrent = ({data}) => {
-  const classes = classNames('mock-editor-history-current', `mock-editor-history-${data.category}`);
+  const classes = classNames(
+    'mock-editor-history-current',
+    `mock-editor-history-${data.category}`,
+    'mock-editor-history-label',
+  );
   return (
     <div className={classes}>
       <span>{data.name || '-'}</span>
@@ -87,14 +96,16 @@ const EditorHistoryCurrent = ({data}) => {
 
 const EditorHistoryClear = ({state, onClose}) => {
   const classes = classNames('mock-editor-history-entry', `mock-editor-history-clear`);
-  const onClick = useCallback(() => {
+  const onClear = useCallback(() => {
     state.clearData();
     onClose();
   }, [state, onClose]);
 
   return (
-    <div className={classes} onClick={onClick}>
-      <span>Clear Data</span>
+    <div className={classes}>
+      <HoldTimer duration={1000} image="trash" onComplete={onClear}>
+        <div className="mock-editor-history-label"><span>Clear Data</span></div>
+      </HoldTimer>
     </div>
   );
 };
