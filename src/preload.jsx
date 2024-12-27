@@ -1,7 +1,6 @@
-import {allItems, statIcons} from '/src/Common';
+import {allIconFiles} from '/src/Icon';
 
-const itemIcons = allItems.map((x) => x.icon);
-const remaining = itemIcons.concat(statIcons);
+const remaining = [...allIconFiles];
 const parallel = 10;
 
 const nextPreload = () => {
@@ -9,7 +8,7 @@ const nextPreload = () => {
     const path = remaining.pop();
     const img = new Image();
     img.addEventListener('load', () => nextPreload());
-    img.src = `${import.meta.env.BASE_URL}icon/${path}.png`;
+    img.src = `${import.meta.env.BASE_URL}icon/${path}`;
   }
 };
 

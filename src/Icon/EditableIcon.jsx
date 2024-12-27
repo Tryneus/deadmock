@@ -31,7 +31,7 @@ const IconPicker = observer(({model, resize}) => {
 
   const renderResize = () => (
     <span onClick={toggleSize}>
-      <Icon image={resizeImage} />
+      <Icon color="white" image={resizeImage} />
     </span>
   );
 

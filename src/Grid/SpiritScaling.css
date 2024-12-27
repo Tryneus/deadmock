@@ -5,20 +5,29 @@
     height: 0;
     display: flex;
     align-items: center;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        height: 1.35rem;
+        width: 2rem;
+        left: -0.5rem;
+        background-image: url("/deadmock/icon/spirit_scaling.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 }
 
 /* spirit scaling icon has wonky aspect ratio */
 .mock-spirit-scaling .mock-icon {
-    font-size: 1.55rem;
-    width: 1.5em;
-    position: relative;
-    left: 0.65em;
 }
 
 .mock-spirit-scaling .mock-spirit-scaling-box {
     background-color: #65358a;
     height: 0.7lh;
-    padding: 0.25rem 0.3rem 0.2rem 1rem;
+    padding: 0.25rem 0.3rem 0.2rem 0.8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

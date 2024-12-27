@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="256" height="256" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <mask id="outerCircle" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+    <rect width="256" height="256" fill="white"/>
+    <circle cx="128" cy="128" r="94" fill="black"/>
+    <path d="M 208 170 L 238 188 L 256 138 L 192 134" fill="black"/>
+    <path d="M 210 127 L 4 267 L 74 145" fill="black"/>
+  </mask>
+  <mask id="loop">
+    <circle cx="128" cy="128" r="110" mask="url(#outerCircle)" fill="white"/>
+    <path d="M 188 180 L 232 200 L 228 152" fill="white"/>
+  </mask>
+  <rect width="256" height="256" mask="url(#loop)" fill-opacity="0.5" fill="black"/>
+  <path d="M 99.539 68.39 L 188.743 68.39 L 157.593 120.778 L 191.575 120.778 L 45.735 219.894 L 95.293 133.522 L 61.31 133.522" fill="black"/>
+</svg>

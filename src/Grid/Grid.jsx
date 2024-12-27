@@ -151,7 +151,7 @@ const GridCellHoverButtons = observer(({data, cell, onEmpty}) => {
           <Icon color="white" image="font" />
         </TooltipContainer>
         <Icon color="purple" image="spirit" onClick={onSpiritScaling} />
-        <Icon color="white" image="hourglass-half" onClick={onConditional} />
+        <Icon color="white" image="hourglass_half" onClick={onConditional} />
       </div>
     </div>
   );

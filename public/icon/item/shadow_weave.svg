@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="figure-mask">
+      <rect width="256" height="256" fill="black"/>
+      <use href="#figure" fill="white" />
+    </mask>
+    <mask id="figure-mask-reverse">
+      <rect width="256" height="256" fill="white"/>
+      <use href="#figure" fill="black" />
+    </mask>
+    <mask id="lines-mask">
+      <rect width="256" height="256" fill="white"/>
+      <use href="#lines" stroke="black" stroke-width="9"/>
+    </mask>
+    <pattern id="lines-reverse" width="256" height="256" viewBox="0 0 256 256" patternUnits="userSpaceOnUse">
+      <rect width="256" height="256" mask="url(#lines-mask)" fill="black" />
+    </pattern>
+    <path id="figure" d="M128 16A 24 24 0 0 0 128 64 A 24 24 0 0 0 128 16ZM148 67H155A10 10 0 01165 77L165 142A10 10 0 01155 152H150V230A10 10 0 01140 240H115A10 10 0 01105 230V152H100A10 10 0 0190 142V77A10 10 0 01100 67Z" />
+    <path id="lines" d="M16 15H240M16 39H240M16 63H240M16 87H240M16 111H240M16 135H240M16 159H240M16 183H240M16 207H240M16 231H240" stroke="black" stroke-width="9" stroke-linecap="round" transform="scale(0.9) translate(10,19)" />
+  </defs>
+  <use href="#lines" mask="url(#figure-mask-reverse)" />
+  <rect width="256" height="256" fill="url(#lines-reverse)" mask="url(#figure-mask)" />
+  <use href="#figure" stroke="black" stroke-width="8" />
+</svg>

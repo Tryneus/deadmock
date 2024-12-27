@@ -107,7 +107,7 @@
 
                     .mock-icon {
                         font-size: 1.2rem;
-                        background-size: 85% !important;
+                        mask-size: 85%;
                         border-radius: 5rem;
                     }
 

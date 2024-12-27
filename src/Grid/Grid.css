@@ -61,9 +61,10 @@
         background-color: rgb(40 40 40 / 80%);
         display: inline-flex;
         flex-direction: column;
+        font-size: 0.7rem;
 
-        .mock-icon:not(:first-child) {
-            margin-top: 0.1rem;
+        > *:not(:first-child) {
+            margin-top: 0.2rem;
         }
     }
 

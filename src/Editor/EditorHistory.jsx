@@ -155,7 +155,7 @@ const EditorHistory = observer(({state}) => {
 
   return (
     <div className="mock-editor-history">
-      <Icon image="dropdown" onMouseDown={onToggle} />
+      <Icon color="white" image="dropdown" onMouseDown={onToggle} />
       {open && <EditorHistoryDropdown state={state} onClose={onClose} />}
       <div onMouseDown={onToggle}>
         <EditorHistoryCurrent data={getActiveInfo(state)} />

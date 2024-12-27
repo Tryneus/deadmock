@@ -6,14 +6,19 @@
 
     > div:last-child {
         border-left: 0.1rem solid black;
+
+        > div {
+            border-radius: 0 0.1rem 0.1rem 0;
+        }
     }
 
     > .mock-icon {
-        height: 1lh;
-        width: 1lh;
+        height: 1.1rem;
+        width: 1.1rem;
+        mask-size: 50% 50%;
+        transition: none;
 
         &:hover {
-            transition: none;
             background-color: #669;
         }
     }

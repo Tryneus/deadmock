@@ -2,14 +2,9 @@
     height: 1em;
     width: 1em;
     display: inline-block;
-    background: white;
-}
-
-.mock-icon-image {
-    background: transparent;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 
 .mock-icon-clickable {
@@ -24,111 +19,67 @@
  * https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/
  */
 
-/* ability tooltip icons - #999999 */
-.mock-icon.mock-icon-grey-default {
-    filter: invert(39%) sepia(0%) saturate(1925%) hue-rotate(235deg) brightness(101%) contrast(86%);
+/* some UI icons */
+.mock-icon-white {
+    background-color: #ffffff;
 }
 
-.mock-icon.mock-icon-grey-firefox {
-    filter: invert(31%) sepia(6%) saturate(4%) hue-rotate(16deg) brightness(89%) contrast(84%);
+/* ability tooltip icons */
+.mock-icon-grey {
+    background-color: #999999;
 }
 
-/* weapon - #ec981a */
-.mock-icon.mock-icon-orange-default {
-    filter: invert(27%) sepia(82%) saturate(2866%) hue-rotate(353deg) brightness(99%) contrast(87%);
+/* weapon */
+.mock-icon-orange {
+    background-color: #ec981a;
 }
 
-.mock-icon.mock-icon-orange-firefox {
-    filter: invert(40%) sepia(99%) saturate(816%) hue-rotate(350deg) brightness(97%) contrast(91%);
+/* vitality */
+.mock-icon-green {
+    background-color: #7cbb1e;
 }
 
-/* vitality - #7cbb1e */
-.mock-icon.mock-icon-green-default {
-    filter: invert(39%) sepia(62%) saturate(579%) hue-rotate(42deg) brightness(96%) contrast(83%);
+/* spirit */
+.mock-icon-purple {
+    background-color: #ce91ff;
 }
 
-.mock-icon.mock-icon-green-firefox {
-    filter: invert(40%) sepia(72%) saturate(553%) hue-rotate(41deg) brightness(98%) contrast(77%);
+/* healing */
+.mock-icon-aqua {
+    background-color: #00ff9a;
 }
 
-/* spirit - #ce91ff */
-.mock-icon.mock-icon-purple-default {
-    filter: invert(24%) sepia(50%) saturate(4639%) hue-rotate(216deg) brightness(102%) contrast(108%);
+/* damage amp (TODO: double-check the rgb value) */
+.mock-icon-red {
+    background-color: #ff410d;
 }
 
-.mock-icon.mock-icon-purple-firefox {
-    filter: invert(25%) sepia(32%) saturate(6667%) hue-rotate(217deg) brightness(104%) contrast(105%);
+/* stun (TODO: double-check the rgb value) */
+.mock-icon-yellow {
+    background-color: #f3c733;
 }
 
-/* healing - #00ff9a */
-.mock-icon.mock-icon-aqua-default {
-    filter: invert(25%) sepia(87%) saturate(820%) hue-rotate(90deg) brightness(99%) contrast(105%);
+/* souls */
+.mock-icon-cyan {
+    background-color: #9affd6;
 }
 
-.mock-icon.mock-icon-aqua-firefox {
-    filter: invert(24%) sepia(96%) saturate(896%) hue-rotate(87deg) brightness(99%) contrast(105%);
+/* plus */
+.mock-icon-bright-green {
+    background-color: #3ed830;
 }
 
-/* damage amp - #ff410d (TODO: double-check the rgb value) */
-.mock-icon.mock-icon-red-default {
-    filter: invert(64%) sepia(97%) saturate(2852%) hue-rotate(351deg) brightness(97%) contrast(110%);
+/* Vitality Item */
+.mock-icon-item-vitality {
+    background-color: #424845;
 }
 
-.mock-icon.mock-icon-red-firefox {
-    filter: invert(53%) sepia(56%) saturate(7499%) hue-rotate(354deg) brightness(99%) contrast(104%);
+/* Spirit Item */
+.mock-icon-item-spirit {
+    background-color: #583b6f;
 }
 
-/* stun - #f3c733 (TODO: double-check the rgb value) */
-.mock-icon.mock-icon-yellow-default {
-    filter: invert(27%) sepia(79%) saturate(423%) hue-rotate(357deg) brightness(98%) contrast(94%);
+/* Weapon Item */
+.mock-icon-item-weapon {
+    background-color: #5e3e09;
 }
-
-.mock-icon.mock-icon-yellow-firefox {
-    filter: invert(19%) sepia(84%) saturate(1301%) hue-rotate(327deg) brightness(97%) contrast(97%);
-}
-
-/* souls - #9affd6 */
-.mock-icon.mock-icon-cyan-default {
-    filter: invert(12%) sepia(21%) saturate(650%) hue-rotate(91deg) brightness(103%) contrast(101%);
-}
-
-.mock-icon.mock-icon-cyan-firefox {
-    filter: invert(6%) sepia(90%) saturate(393%) hue-rotate(73deg) brightness(98%) contrast(107%);
-}
-
-/* plus - #3ed830 */
-.mock-icon.mock-icon-bright-green-default {
-    filter: invert(34%) sepia(33%) saturate(5067%) hue-rotate(73deg) brightness(117%) contrast(76%);
-}
-
-.mock-icon.mock-icon-bright-green-firefox {
-    filter: invert(37%) sepia(93%) saturate(3763%) hue-rotate(76deg) brightness(125%) contrast(73%);
-}
-
-/* Vitality Item - #424845 */
-.mock-icon.mock-icon-item-vitality-default {
-    filter: invert(72%) sepia(4%) saturate(585%) hue-rotate(97deg) brightness(94%) contrast(96%);
-}
-
-.mock-icon.mock-icon-item-vitality-firefox {
-    filter: invert(73%) sepia(9%) saturate(307%) hue-rotate(98deg) brightness(92%) contrast(90%);
-}
-
-/* Spirit Item - #583b6f */
-.mock-icon.mock-icon-item-spirit-default {
-    filter: invert(78%) sepia(12%) saturate(3292%) hue-rotate(231deg) brightness(91%) contrast(78%);
-}
-
-.mock-icon.mock-icon-item-spirit-firefox {
-    filter: invert(77%) sepia(47%) saturate(702%) hue-rotate(230deg) brightness(93%) contrast(85%);
-}
-
-/* Weapon Item - #5e3e09 */
-.mock-icon.mock-icon-item-weapon-default {
-    filter: invert(80%) sepia(40%) saturate(1948%) hue-rotate(16deg) brightness(100%) contrast(93%);
-}
-
-.mock-icon.mock-icon-item-weapon-firefox {
-    filter: invert(82%) sepia(90%) saturate(1576%) hue-rotate(30deg) brightness(93%) contrast(93%);
-}
-

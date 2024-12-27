@@ -9,7 +9,7 @@
 
         .mock-icon {
             flex-grow: 1;
-            background-size: 100% 100%;
+            mask-size: 100% 100%;
         }
     }
     

@@ -68,9 +68,9 @@ const CopyTextButton = ({model}) => {
   return (
     <div className="mock-editor-copy-text-button">
       <div onClick={onClick}>
-        Copy Text
+        <span>Copy Text</span>
       </div>
-      <Icon image="dropdown" onMouseDown={open ? null : onOpen} />
+      <Icon color="white" image="dropdown" onMouseDown={open ? null : onOpen} />
       {open && <CopyTextDropdown format={format} onChange={onChangeFormat} onClose={onClose} />}
     </div>
   );
