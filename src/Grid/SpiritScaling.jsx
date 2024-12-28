@@ -21,7 +21,6 @@ const renderValue = (detailed, value, onChange) => {
 const SpiritScaling = ({value, detailed, onChange}) => {
   return (
     <div className="mock-spirit-scaling">
-      <Icon image="spirit_scaling" />
       {renderValue(detailed, value, onChange)}
     </div>
   );

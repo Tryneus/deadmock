@@ -43,7 +43,7 @@ const ItemEffect = observer(({item, model}) => {
           </span>
         </Deleteable>
         <div className={cooldownClasses}>
-          <Icon image="stat/cooldown" />
+          <Icon color="white" image="stat/cooldown" />
           <EditableText onChange={onChangeCooldown}>
             <Text color="bright">{model.cooldown || 0}</Text>
           </EditableText>

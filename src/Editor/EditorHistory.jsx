@@ -75,7 +75,7 @@ const EditorHistoryEntry = ({state, data, onClose}) => {
         <span>{data.name || '-'}</span>
         <span>{timeDelta}</span>
       </div>
-      <HoldTimer duration={1000} image="trash" onComplete={onDelete} />
+      <HoldTimer duration={1000} iconColor="white" image="trash" onComplete={onDelete} />
     </div>
   );
 };
@@ -103,7 +103,7 @@ const EditorHistoryClear = ({state, onClose}) => {
 
   return (
     <div className={classes}>
-      <HoldTimer duration={1000} image="trash" onComplete={onClear}>
+      <HoldTimer duration={1000} iconColor="white" image="trash" onComplete={onClear}>
         <div className="mock-editor-history-label"><span>Clear Data</span></div>
       </HoldTimer>
     </div>
