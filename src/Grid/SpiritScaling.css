@@ -1,18 +1,17 @@
 .mock-spirit-scaling {
     z-index: 5;
-    align-self: flex-end;
-    line-height: 120%;
     height: 0;
     display: flex;
     align-items: center;
-    position: relative;
+    position: absolute;
+    right: 0;
+    top: 0;
 
-    &::before {
-        content: "";
+    .mock-spirit-scaling-icon {
         position: absolute;
-        height: 1.35rem;
-        width: 2rem;
-        left: -1.3rem;
+        height: 1.8em;
+        width: 2.7em;
+        left: -1.8em;
         background-image: url("/deadmock/icon/spirit_scaling.png");
         background-size: contain;
         background-repeat: no-repeat;
@@ -20,33 +19,30 @@
     }
 }
 
-/* spirit scaling icon has wonky aspect ratio */
-.mock-spirit-scaling .mock-icon {
-}
-
 .mock-spirit-scaling .mock-spirit-scaling-box {
     background-color: #65358a;
-    height: 0.7lh;
-    padding: 0.2rem 0.3rem 0.3rem 0.8rem;
+    height: 1.2em;
+    padding: 0.15em 0.5em 0.25em 1.1em;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    white-space: no-wrap;
+    white-space: nowrap;
     color: #cdcdcd;
-    font-size: 0.75rem;
     font-weight: 600;
     font-style: italic;
+    font-size: 0.9em;
 
-    > div > span:first-child {
-        margin-right: 0.2em;
-        user-select: none;
+    > div {
+        padding-bottom: 0.2em;
+
+        > span:first-child {
+            margin-right: 0.2em;
+            user-select: none;
+        }
     }
 }
 
-.mock-spirit-scaling + * .mock-grid-cell {
+.mock-grid-cell:has(.mock-spirit-scaling) .mock-grid-cell-contents {
     border: 0.1rem solid #5a3875;
-}
-
-div:has(> .mock-spirit-scaling) {
-    background: radial-gradient(transparent 20%, rgb(88 56 117 / 70%) 100%) !important; /* TODO: add another div for stacking backgrounds? */
+    background: radial-gradient(transparent 20%, rgb(88 56 117 / 70%) 100%);
 }

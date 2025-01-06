@@ -218,7 +218,7 @@
     }
 
     .mock-grid {
-        .mock-grid-cell {
+        .mock-grid-cell-contents {
             padding: 0.3rem;
             line-height: 110%;
             font-size: 0.8rem;
@@ -229,18 +229,21 @@
             }
         }
 
-        .mock-grid-cell.mock-grid-cell-values {
+        .mock-grid-values-cell {
             padding: 0.5rem 0.3rem 0.5rem 0.8rem;
             font-size: 0.85rem;
         }
 
-        .mock-grid-cell-values-value .mock-icon {
+        .mock-grid-values-cell-value .mock-icon {
             display: none;
         }
 
-        /* items aren't really designed to render spirit scaling, but if they ever are, this compensates for the extra border pixels */
-        div:has(> .mock-spirit-scaling) .mock-grid-cell {
-            padding: 0.2rem 0.2rem;
+        .mock-grid-cell:has(.mock-spirit-scaling) .mock-grid-cell-contents {
+            padding: 0.2rem;
+        }
+
+        .mock-spirit-scaling .mock-text {
+            padding-bottom: 0;
         }
     }
 
@@ -272,10 +275,13 @@
             .mock-text-color-muted { color: #a99db7; }
         }
 
-        .mock-grid .mock-grid-cell {
+        .mock-grid-cell, .mock-grid-values-cell {
             background-color: #4d2869;
             .mock-text-color-muted { color: #a18f97; }
-            .mock-grid-cell-values { color: #c2bec8; }
+        }
+
+        .mock-grid-values-cell {
+            color: #c2bec8;
         }
     }
 
@@ -303,10 +309,13 @@
             .mock-text-color-muted { color: #b5a599; }
         }
 
-        .mock-grid .mock-grid-cell {
+        .mock-grid-cell, .mock-grid-values-cell {
             background-color: #67430a;
             .mock-text-color-muted { color: #aba099; }
-            .mock-grid-cell-values { color: #c0b9b4; }
+        }
+
+        .mock-grid-values-cell {
+            color: #c0b9b4;
         }
     }
 
@@ -334,10 +343,13 @@
             .mock-text-color-muted { color: #a3af99; }
         }
 
-        .mock-grid .mock-grid-cell {
+        .mock-grid-cell, .mock-grid-values-cell {
             background-color: #3c590e;
             .mock-text-color-muted { color: #9fa799; }
-            .mock-grid-cell-values { color: #c0c4bd; }
+        }
+
+        .mock-grid-values-cell {
+            color: #c0c4bd;
         }
     }
 }

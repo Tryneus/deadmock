@@ -13,7 +13,7 @@ const AbilityStat = observer(({model, value}) => {
   }
 
   return (
-    <Deleteable overlap onClick={onDelete}>
+    <Deleteable overlap onMouseDown={onDelete}>
       <div className="mock-ability-stat">
         <EditableIcon model={value.icon} />
         <EditableValue model={value} />

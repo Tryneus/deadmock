@@ -1,9 +1,10 @@
-import {Icon} from '/src/Icon';
-import {EditableText} from '/src/Text';
+import {observer} from 'mobx-react-lite';
 
+import {useAction} from '/src/Common';
+import {EditableText} from '/src/Text';
 import './SpiritScaling.css';
 
-const renderValue = (detailed, value, onChange) => {
+const renderValue = (detailed, model, onChange) => {
   if (!detailed) {
     return null;
   }
@@ -12,18 +13,32 @@ const renderValue = (detailed, value, onChange) => {
     <div className="mock-spirit-scaling-box">
       <div>
         <span>x</span>
-        <EditableText onChange={onChange}>{value}</EditableText>
+        <EditableText onChange={onChange}>{model.spiritScaling}</EditableText>
       </div>
     </div>
   );
 };
 
-const SpiritScaling = ({value, detailed, onChange}) => {
+const SpiritScaling = observer(({model, detailed}) => {
+  const onChange = useAction((x) => {
+    const newValue = parseFloat(x);
+    if (isNaN(newValue)) {
+      console.error('failed to parse', x);
+    } else {
+      model.spiritScaling = newValue;
+    }
+  }, [model]);
+
+  if (model.spiritScaling === null || model.spiritScaling === undefined) {
+    return null;
+  }
+
   return (
     <div className="mock-spirit-scaling">
-      {renderValue(detailed, value, onChange)}
+      <span className="mock-spirit-scaling-icon" />
+      {renderValue(detailed, model, onChange)}
     </div>
   );
-};
+});
 
 export {SpiritScaling};

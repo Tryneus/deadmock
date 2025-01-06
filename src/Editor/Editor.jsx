@@ -1,11 +1,13 @@
 import {saveAs} from 'file-saver';
 import {toBlob} from 'html-to-image';
 import {observer} from 'mobx-react-lite';
-import {useCallback, useRef} from 'preact/hooks';
+import {useCallback, useEffect, useRef} from 'preact/hooks';
 
-import {Ability, AbilityModel} from '/src/Ability';
-import {isFirefox} from '/src/Common';
-import {Item, ItemModel} from '/src/Item';
+import {Ability} from '/src/Ability';
+import {isFirefox, itemCategories, useAction} from '/src/Common';
+import {Hero} from '/src/Hero';
+import {Item} from '/src/Item';
+import {latestVersion} from '/src/Serialize';
 import {TooltipContainer} from '/src/Tooltip';
 
 import {CopyTextButton} from './CopyTextButton';
@@ -15,6 +17,7 @@ import './Editor.css';
 const classBlacklist = [
   'mock-sidebar-buttons',
   'mock-tooltip',
+  'mock-hero-ability-display-hidden',
 ];
 
 const filterClasses = (node) => {
@@ -55,11 +58,19 @@ const renderCopyImageButton = (onClick) => {
   return button;
 };
 
+const categoryWidths = {
+  ability:  1204,
+  weapon:   924,
+  vitality: 924,
+  spirit:   924,
+  hero:     2004,
+};
+
 const generateBlob = (elem, model) => {
   // target width is 2x((30rem or 23rem) + (2px border))
   const rect = elem.getBoundingClientRect();
-  const canvasWidth = model instanceof AbilityModel ? 1204 : 924;
-  const canvasHeight = Math.ceil((rect.height + 2) * canvasWidth / (rect.width + 2));
+  const canvasWidth = categoryWidths[model.category] || 924;
+  const canvasHeight = Math.ceil(rect.height * canvasWidth / rect.width);
 
   elem.classList.add('mock-to-image');
   const promise =
@@ -71,6 +82,7 @@ const generateBlob = (elem, model) => {
 
 const Editor = observer(({state}) => {
   const contentRef = useRef(null);
+  const {category, name} = state.activeModel || {};
 
   const onCopyImage = useCallback(() => {
     const blobPromise = generateBlob(contentRef.current, state.activeModel);
@@ -83,7 +95,7 @@ const Editor = observer(({state}) => {
     ), [contentRef, state]);
 
   const onCopyLink = useCallback(() => {
-    const serialized = state.serializeActive();
+    const serialized = [latestVersion, state.activeModel.serialize()];
     const hash = window.btoa(JSON.stringify(serialized));
     const url = new URL(window.location);
     url.hash = hash;
@@ -91,14 +103,35 @@ const Editor = observer(({state}) => {
     navigator.clipboard.write([new ClipboardItem({'text/plain': blob})]);
   }, [state]);
 
+  const onChangeModel = useAction((id) => {
+    state.loadRecord(id);
+  }, [state]);
+
+  useEffect(() => {
+    if (name) {
+      document.title = `${name} - Deadmock`;
+    }
+  }, [name]);
+
   const renderActive = () => {
-    if (state.activeModel instanceof AbilityModel) {
+    if (category === 'ability') {
       return <Ability model={state.activeModel} />;
-    } else if (state.activeModel instanceof ItemModel) {
+    } else if (category === 'hero') {
+      return <Hero model={state.activeModel} onChangeModel={onChangeModel} />;
+    } else if (itemCategories.includes(category)) {
       return <Item model={state.activeModel} />;
     }
-    console.error('unknown model', state.activeModel);
+    return null;
   };
+
+  // Conditionally render the 'Copy Link' button because we don't have a way to
+  // transfer custom icons or hero portrait over a link - we only have a
+  // static server.
+  const copyLinkButton = (
+    <div className="mock-editor-button" onClick={onCopyLink}>
+      Copy Link
+    </div>
+  );
 
   return (
     <div className="mock-editor">
@@ -107,9 +140,7 @@ const Editor = observer(({state}) => {
         <div className="mock-editor-button" onClick={onSaveImage}>
           Save
         </div>
-        <div className="mock-editor-button" onClick={onCopyLink}>
-          Copy Link
-        </div>
+        {category === 'hero' ? null : copyLinkButton}
         <CopyTextButton model={state.activeModel} />
         <EditorHistory state={state} />
       </div>

@@ -1,0 +1,486 @@
+.mock-hero {
+    width: 50rem;
+    background-color: rgb(20 20 20 / 50%);
+}
+
+.mock-hero-top {
+    display: flex;
+}
+
+.mock-hero-synopsis {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+    width: 21rem;
+    padding: 0.5rem 1.5rem;
+    text-align: center;
+
+    > * {
+        margin-top: 0.3rem;
+    }
+}
+
+.mock-hero-name {
+    font-family: Forevs, sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 100%;
+
+    .mock-text {
+        padding-bottom: 0;
+    }
+}
+
+.mock-hero-tagline {
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.mock-hero-description {
+    font-weight: 500;
+    font-size: 0.7rem;
+    padding: 0.4rem 1.2rem;
+}
+
+.mock-hero-ability-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.mock-hero-ability-button {
+    padding: 0.4rem;
+    user-select: none;
+
+    &:hover {
+        filter: brightness(120%);
+        transform: scale(115%);
+    }
+
+    .mock-image-modal-trigger:hover {
+        .mock-image-modal-overlay::before {
+            mask-position-y: 40%;
+        }
+    }
+}
+
+.mock-hero-ability-icon-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    filter: drop-shadow(0 0 0.2rem rgb(0 0 0));
+    position: relative;
+}
+
+.mock-hero-ability-icon {
+    background-color: #bfaba1;
+    border-radius: 100%;
+    padding: 0.5rem;
+    line-height: 0;
+
+    .mock-stored-image {
+        font-size: 2.5rem;
+    }
+}
+
+.mock-hero-ability-number {
+    position: relative;
+    background-color: #bfaba1;
+    color: #333026;
+    font-weight: 700;
+	top: -0.2rem;
+	font-size: 0.55rem;
+	line-height: 0.4rem;
+	padding: 0 0.3rem 0.25rem;
+}
+
+.mock-hero-portrait-frame {
+    display: flex;
+    flex-grow: 1;
+    padding: 0.5rem;
+
+    > .mock-image-modal-trigger {
+        display: flex;
+        flex-grow: 1;
+
+        &:hover {
+            transform: scale(1.1);
+            filter: brightness(120%);
+        }
+
+        /* kinda dumb but ok */
+        > .mock-file-drop-zone {
+            display: flex;
+            flex-grow: 1;
+
+            > .mock-stored-image {
+                display: flex;
+                flex-grow: 1;
+                justify-content: center;
+                align-items: center;
+                font-size: 5rem;
+
+                > .mock-hero-portrait {
+                    display: flex;
+                    flex-grow: 1;
+                }
+            }
+        }
+    }
+}
+
+.mock-hero-stats {
+    display: flex;
+    margin: 0.5rem;
+    gap: 0.5rem;
+}
+
+.mock-hero-stats-grid {
+    flex: 1 0;
+    border-radius: 0.4rem 0.4rem 0 0;
+    background-color: rgb(20 20 20 / 50%);
+}
+
+.mock-hero-stats-grid-label {
+    font-weight: 700;
+    text-align: center;
+    margin: 0.5rem 0.25rem;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+.mock-hero-stats-grid-cells {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.25rem;
+}
+
+.mock-hero-stat {
+    background-color: rgb(62 62 62);
+    flex: 1 21%;
+
+    .mock-hero-stat-position {
+        position: relative;
+        height: 0;
+
+        .mock-spirit-scaling {
+            font-size: 0.6rem;
+
+            .mock-text {
+                padding-bottom: 0;
+            }
+        }
+
+        .mock-hero-stat-spirit-scaling-button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            visibility: hidden;
+            filter: drop-shadow(0 0 0.1rem black);
+        }
+    }
+
+    &:has(.mock-spirit-scaling) .mock-hero-stat-contents {
+        border: 0.1rem solid #65358a;
+        background: radial-gradient(transparent 20%, rgb(88 56 117 / 70%) 100%);
+        padding: 0.4rem 0.1rem;
+    }
+
+    &:hover .mock-hero-stat-spirit-scaling-button {
+        visibility: visible;
+    }
+
+    .mock-hero-stat-contents {
+        padding: 0.5rem 0.2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        white-space: nowrap;
+
+        > div:first-child {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            > * {
+                display: inline-block;
+            }
+
+            .mock-editable-text {
+                margin-left: 0.3rem;
+            }
+        }
+
+        > .mock-text {
+            color: rgb(153 153 153);
+            font-weight: 600;
+            font-size: 0.7rem;
+            line-height: 1em;
+        }
+
+        .mock-text-color-muted {
+            color: rgb(153 153 153);
+        }
+    }
+}
+
+.mock-hero-abilities {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+    user-select: none;
+}
+
+.mock-hero-ability-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.mock-hero-ability-display {
+    flex: 0 40%;
+    display: flex;
+    z-index: 1;
+
+    &:has(.mock-hero-ability-display-rendered:hover, .mock-hero-ability-gutter:hover, .mock-hero-ability-loading:hover) {
+        .mock-hero-ability-display-rendered, .mock-hero-ability-loading {
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                mask-image: url("/deadmock/icon/edit.svg");
+                mask-size: 3rem;
+                mask-repeat: no-repeat;
+                mask-position: center;
+                background-color: white;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+            }
+        }
+
+        .mock-hero-ability-display-rendered > img,
+        .mock-hero-ability-gutter,
+        .mock-hero-ability-loading > div {
+            filter: brightness(80%) saturate(80%) blur(1.5px);
+        }
+    }
+
+    &:has(.mock-hero-ability-display-rendered:hover, .mock-hero-ability-gutter:hover, .mock-hero-ability-loading:hover, .mock-hero-ability-picker:hover) {
+        .mock-hero-ability-picker {
+            opacity: 1;
+        }
+    }
+}
+
+.mock-hero-ability-gutter {
+    position: relative;
+    width: 0;
+    height: 0;
+    cursor: pointer;
+    pointer-events: none;
+
+    > div {
+        position: absolute;
+        transform: scaleX(-1);
+        right: -0.05rem;
+        width: 4.5rem;
+        height: 9.5rem;
+        z-index: 1;
+
+        > div {
+            position: absolute;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            filter: brightness(15%);
+
+            path {
+                pointer-events: auto;
+            }
+        }
+    }
+}
+
+.mock-hero-ability-gutter-icon {
+    position: absolute;
+    top: 3rem;
+    left: 0.5rem;
+    transform: scaleX(-1);
+}
+
+.mock-hero-ability-display-rendered {
+	width: 22.7rem;
+	border: 0.05rem solid black;
+	line-height: 0;
+	height: fit-content;
+    cursor: pointer;
+    z-index: -1;
+}
+
+.mock-hero-ability-display-hidden {
+    position: fixed;
+    z-index: -10;
+    overflow: hidden;
+    top: 100%;
+
+    > div {
+        max-width: fit-content;
+
+        /* Unset things that may make the rendering incorrect for a brief
+         * moment - mostly AnimatedDiv but also background-color transitions */
+
+        div, span {
+            transition: unset !important;
+        }
+
+        .mock-animated-div {
+            height: unset !important;
+        }
+    }
+}
+
+.mock-hero-ability-loading > div {
+	width: 22.7rem;
+	height: 20rem;
+	border: 0.05rem solid black;
+    font-size: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #262626, #3b3b3b);
+    cursor: pointer;
+}
+
+.mock-hero-ability-picker {
+    position: relative;
+    height: min-content;
+
+    &:not(:has(.mock-hero-ability-picker-dropdown)) {
+        opacity: 0;
+    }
+}
+
+.mock-hero-ability-picker-trigger {
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.2rem;
+
+    &:hover {
+        transform: scale(110%);
+    }
+}
+
+.mock-hero-ability-picker-dropdown {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 10rem;
+    background-color: black;
+    z-index: 10;
+    font-size: 0.6rem;
+    cursor: pointer;
+    border: 0.1rem solid black;
+    white-space: nowrap;
+
+    > div {
+        padding: 0.1rem 0.3rem;
+        display: flex;
+        justify-content: space-between;
+        background-color: #3399f3;
+
+        &:hover {
+            filter: brightness(120%);
+        }
+
+        > *:first-child {
+            font-weight: 700;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        > *:last-child {
+            font-weight: 400;
+            font-style: italic;
+        }
+    }
+
+    > div:nth-child(2n) {
+        background-color: #188fd2;
+    }
+}
+
+@media (width > 1000px) {
+    .mock-hero-bottom {
+        justify-content: space-between;
+    }
+
+    .mock-hero-ability-display {
+        flex: 0 40%;
+    }
+
+    .mock-hero-ability-display:nth-of-type(2n) {
+        .mock-hero-ability-gutter > div > div {
+            top: 4.75rem;
+        }
+    }
+
+    .mock-hero-ability-display:nth-of-type(2n+1) {
+        flex-direction: row-reverse;
+
+        .mock-hero-ability-picker-dropdown {
+            left: unset;
+            right: 0;
+        }
+
+        .mock-hero-ability-gutter {
+            > div {
+                left: -0.05rem;
+                z-index: 2;
+
+                > div {
+                    svg {
+                        transform: scaleX(-1);
+                        filter: brightness(24%);
+                    }
+
+                    .mock-hero-ability-gutter-icon {
+                        transform: unset;
+                        transform: scaleX(-1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (width <= 1000px) {
+    .mock-hero-abilities {
+        align-items: center;
+    }
+
+    .mock-hero-ability-row {
+        width: min-content;
+    }
+
+    .mock-hero-ability-display {
+        flex: 0 100%;
+        justify-content: center;
+
+        /* The JS has positioned the divider to not overlap the other one
+         * sharing the same gutter.  Since we are stacking each ability on its
+         * own row now, we can revert that positioning */
+        .mock-hero-ability-gutter > div {
+            top: 6.25rem !important;
+        }
+    }
+
+    .mock-hero-ability-display-rendered, .mock-hero-ability-loading > div {
+        width: 30rem;
+    }
+}

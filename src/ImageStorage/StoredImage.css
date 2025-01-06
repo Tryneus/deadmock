@@ -1,0 +1,19 @@
+/* To avoid jarring pop-in when the spinner is shown and the image is loaded,
+ * fade-in the contents */
+.mock-stored-image {
+    line-height: 0;
+
+    > * {
+        animation: fade-in 0.15s ease-in;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

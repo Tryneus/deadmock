@@ -1,11 +1,15 @@
-import {renameAbilityHeaderStat} from './Common';
+import {
+  capitalize,
+  gridValues,
+  partitionHeroStats,
+  renameAbilityHeaderStat,
+} from './Common';
 
+const indent = (s) => s.split('\n').map((x) => `  ${x}`.trimEnd()).join('\n');
 const stripMarkdown = (s) => s.replaceAll(/[*_]/g, '');
-const gridValues = (grid) => grid.cells.concat(grid.values);
-const capitalize = (s) => s[0].toUpperCase() + s.slice(1);
 
 const formatValue = (value) => {
-  const sign = value.signed && value.value > 0 ? '+' : '';
+  const sign = value.signed && value.value >= 0 ? '+' : '';
   const scaling = value.spiritScaling ? ` (+${value.spiritScaling} x Spirit)` : '';
   const conditional = value.conditional ? ` (Conditional)` : '';
   return `${sign}${value.value}${value.units} ${value.stat}${scaling}${conditional}`;
@@ -68,11 +72,31 @@ const formatAbility = (model) => {
   const upgrades = formatAbilityUpgrades(model.upgrades);
   return `
 ${model.name}
-${stats}${details}
+${stats}
+${details}
 
 ${upgrades}
 `.trim();
 };
 
-const plaintext = {formatItem, formatAbility};
+const formatHero = (model) => {
+  const stats = partitionHeroStats(model.statGroups).map((group) =>
+    group.map((line) => line.map(formatValue).join(' | ')).join('\n'),
+  ).join('\n\n');
+  const prefixes = ['Ability (1)', 'Ability (2)', 'Ability (3)', 'Ultimate'];
+  const abilities = model.abilities.map((x, i) => `${prefixes[i]}: ${indent(formatAbility(x)).trim()}`).join('\n\n');
+
+  return `
+${model.name}
+${model.tagline}
+
+${model.description}
+
+${stats}
+
+${abilities}
+`.trim();
+};
+
+const plaintext = {formatItem, formatAbility, formatHero};
 export {plaintext};

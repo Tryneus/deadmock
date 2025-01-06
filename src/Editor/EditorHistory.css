@@ -6,15 +6,20 @@
 
     > div:last-child {
         border-left: 0.1rem solid black;
+        border-radius: 0 0.1rem 0.1rem 0;
+    }
 
-        > div {
-            border-radius: 0 0.1rem 0.1rem 0;
-        }
+    .mock-editor-history-current {
+        width: 11rem;
+        background-color: var(--badge-color);
+        padding: 0.05rem 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     > .mock-icon {
-        height: 1.1rem;
-        width: 1.1rem;
+        font-size: 1.1rem;
         mask-size: 50% 50%;
         transition: none;
 
@@ -23,116 +28,117 @@
         }
     }
 
-    .mock-editor-history-template {
-        filter: brightness(80%) saturate(70%);
+    .mock-editor-history-dropdown {
+        position: absolute;
+        top: 100%;
+        width: 12rem;
+        z-index: 10;
+        border: 0.1rem solid black;
+        max-height: 20rem;
+        overflow-y: auto;
+        overscroll-behavior: none;
+        scrollbar-width: thin;
     }
+}
 
-    .mock-editor-history-entry, .mock-editor-history-template, .mock-editor-history-current {
-        display: flex;
-        cursor: pointer;
-        min-height: 1lh;
+.mock-editor-history-position {
+    position: relative;
+    width: 0;
+}
 
-        .mock-icon {
-            opacity: 0.6;
-        }
+.mock-editor-history-entry, .mock-editor-history-template {
+    display: flex;
+    gap: 0.2rem;
+    cursor: pointer;
+    min-height: 1lh;
+    border: 0.05rem solid transparent;
+    padding: 0.05rem 0.2rem;
+    white-space: nowrap;
 
-        &.mock-editor-history-ability {
-            background-color: #3399f3;
-        }
-
-        &.mock-editor-history-weapon {
-            background-color: #c87a02;
-        }
-
-        &.mock-editor-history-vitality {
-            background-color: #659818;
-        }
-
-        &.mock-editor-history-spirit {
-            background-color: #8b56b4;
-        }
-
-        &.mock-editor-history-clear {
-            background-color: #444;
-        }
-    }
-
-    .mock-editor-history-label {
-        padding: 0.05rem 0.5rem;
-        display: flex;
-        justify-content: space-between;
-        white-space: nowrap;
+    > *:nth-child(1) {
         flex-grow: 1;
         overflow: hidden;
         text-overflow: ellipsis;
 
-        &.mock-editor-history-template {
-            padding-right: 1.5rem;
+        > * {
+            background-color: var(--badge-color);
+            border-radius: 0.7rem / 100%;
+            padding: 0.05rem 0.3rem;
         }
+    }
 
-        span:first-child {
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    > *:nth-child(2) {
+        font-size: 0.5rem;
+        font-style: italic;
+        font-weight: 400;
+    }
 
-        span:last-child {
-            font-size: 0.5rem;
+    > *:nth-child(3) {
+        display: flex;
+        place-content: center;
+        min-width: 1rem;
+    }
+
+    &:hover {
+        filter: brightness(120%) saturate(120%);
+        border-color: black;
+    }
+}
+
+.mock-editor-history-template {
+    background-color: #333;
+}
+
+.mock-editor-history-entry {
+    background-color: #444;
+}
+
+.mock-editor-history-template {
+    > *:first-child {
+        font-size: 0.6rem;
+        font-style: italic;
+        font-weight: 400;
+    }
+}
+
+.mock-editor-history-clear {
+    background-color: #444;
+    cursor: pointer;
+    padding: 0.1rem 0.3rem 0.1rem 0.5rem;
+
+    .mock-hold-timer {
+        align-items: center;
+        > div:first-child {
+            flex-grow: 1;
+            font-size: 0.6rem;
             font-style: italic;
             font-weight: 400;
         }
     }
+}
 
-    .mock-editor-history-current {
-        width: 10rem;
-        box-sizing: border-box;
+.mock-editor-history-entry, .mock-editor-history-template, .mock-editor-history-clear {
+    .mock-icon {
+        opacity: 0.6;
     }
+}
 
-    .mock-editor-history-dropdown {
-        position: relative;
-        width: 0;
+.mock-editor-history-ability {
+    --badge-color: #3399f3;
+}
 
-        > div {
-            position: absolute;
-            top: 100%;
-            width: 10rem;
-            z-index: 10;
-            border: 0.1rem solid black;
-            max-height: 20rem;
-            overflow-y: auto;
-            overscroll-behavior: none;
-        }
+.mock-editor-history-weapon {
+    --badge-color: #c87a02;
+}
 
-        .mock-editor-history-entry, .mock-editor-history-template {
-            &:hover {
-                filter: brightness(120%) saturate(120%);
-                border-top: 0.05rem solid black;
-                border-bottom: 0.05rem solid black;
+.mock-editor-history-vitality {
+    --badge-color: #659818;
+}
 
-                &.mock-editor-history-label, .mock-editor-history-label {
-                    padding-top: 0;
-                    padding-bottom: 0;
-                }
-            }
-        }
-    }
+.mock-editor-history-spirit {
+    --badge-color: #8b56b4;
+}
 
-    .mock-editor-history-entry {
-        .mock-hold-timer {
-            justify-content: center;
-            align-items: center;
-            margin-right: 0.1rem;
-
-            > div:first-child {
-                flex-grow: 1;
-                display: flex;
-                justify-content: space-between;
-            }
-        }
-    }
-
-    .mock-editor-history-clear {
-        .mock-hold-timer {
-            flex-grow: 1;
-        }
-    }
+.mock-editor-history-hero {
+    --badge-color: #ee1e1e;
 }

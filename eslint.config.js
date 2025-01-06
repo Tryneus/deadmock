@@ -178,7 +178,6 @@ export default [
       'no-extend-native': 'error',
       'no-implicit-coercion': 'warn',
       'no-var': 'warn',
-      'semi': 'warn',
       'strict': ['error', 'never'], // assume type=module output (cli default)
       'no-array-constructor': 'warn',
       'no-case-declarations': 'warn',
@@ -239,7 +238,6 @@ export default [
       '@stylistic/js/switch-colon-spacing': 'error',
 
       '@stylistic/jsx/jsx-pascal-case': 'error',
-      '@stylistic/jsx/jsx-self-closing-comp': 'error',
       '@stylistic/jsx/jsx-sort-props': ['error', {ignoreCase: true, callbacksLast: true, shorthandFirst: true, reservedFirst: true}],
       '@stylistic/jsx/jsx-props-no-multi-spaces': 'error',
       '@stylistic/jsx/jsx-indent-props': ['error', 2],

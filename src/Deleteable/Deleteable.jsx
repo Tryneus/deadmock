@@ -4,7 +4,7 @@ import {Icon} from '/src/Icon';
 
 import './Deleteable.css';
 
-const Deleteable = ({children, onClick, overlap}) => {
+const Deleteable = ({children, onMouseDown, overlap}) => {
   const overlapClass = classNames({'mock-delete-button-overlap': overlap});
 
   return (
@@ -13,7 +13,7 @@ const Deleteable = ({children, onClick, overlap}) => {
       <span>
         <span className={overlapClass}>
           <span className="mock-delete-button">
-            <Icon color="red" image="cancel" onClick={onClick} />
+            <Icon color="red" image="cancel" onMouseDown={onMouseDown} />
           </span>
         </span>
       </span>

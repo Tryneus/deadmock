@@ -1,5 +1,6 @@
 import {AbilityModel} from '/src/Ability/Model';
-import {deepCopy, isString} from '/src/Common';
+import {deepCopy, isString, itemCategories} from '/src/Common';
+import {HeroModel} from '/src/Hero/Model';
 import {ItemModel} from '/src/Item/Model';
 
 import {latestVersion} from './versions';
@@ -44,7 +45,9 @@ const migrate = (hydrated, version) => {
 const typeFromCategory = (category) => {
   if (category === 'ability') {
     return AbilityModel;
-  } else if (['weapon', 'vitality', 'spirit'].includes(category)) {
+  } else if (category === 'hero') {
+    return HeroModel;
+  } else if (itemCategories.includes(category)) {
     return ItemModel;
   }
   throw new Error(`unrecognized model category: ${category}`);

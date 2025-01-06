@@ -1,0 +1,127 @@
+.mock-spinner-white {
+    color: #fff;
+}
+
+.mock-spinner-grey {
+    color: #999;
+}
+
+.mock-spinner-orange {
+    color: #ec981a;
+}
+
+.mock-spinner-green {
+    color: #7cbb1e;
+}
+
+.mock-spinner-purple {
+    color: #ce91ff;
+}
+
+.mock-spinner-aqua {
+    color: #00ff9a;
+}
+
+.mock-spinner-red {
+    color: #ff410d;
+}
+
+.mock-spinner-yellow {
+    color: #f3c733;
+}
+
+.mock-spinner-cyan {
+    color: #9affd6;
+}
+
+.mock-spinner-bright-green {
+    color: #3ed830;
+}
+
+.mock-spinner-item-vitality {
+    color: #424845;
+}
+
+.mock-spinner-item-spirit {
+    color: #583b6f;
+}
+
+.mock-spinner-item-weapon {
+    color: #5e3e09;
+}
+
+.mock-spinner-dark-grey {
+    color: #333026;
+}
+
+.mock-spinner, .mock-spinner div {
+  box-sizing: border-box;
+}
+
+.mock-spinner {
+  display: inline-block;
+  position: relative;
+  width: 1em;
+  aspect-ratio: 1;
+}
+
+.mock-spinner div {
+  position: absolute;
+  top: calc(1em * 5 / 12);
+  width: calc(1em / 6);
+  height: calc(1em / 6);
+  border-radius: 50%;
+  background: currentcolor;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.mock-spinner div:nth-child(1) {
+  left: calc(1em / 10);
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.mock-spinner div:nth-child(2) {
+  left: calc(1em / 10);
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.mock-spinner div:nth-child(3) {
+  left: calc(1em * 2 / 5);
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.mock-spinner div:nth-child(4) {
+  left: calc(1em * 7 / 10);
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(calc(1em * 3 / 10), 0);
+  }
+}
+

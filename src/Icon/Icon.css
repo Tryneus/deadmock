@@ -1,6 +1,6 @@
 .mock-icon {
-    height: 1em;
     width: 1em;
+    aspect-ratio: 1;
     display: inline-block;
     mask-size: contain;
     mask-repeat: no-repeat;
@@ -21,12 +21,12 @@
 
 /* some UI icons */
 .mock-icon-white {
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 /* ability tooltip icons */
 .mock-icon-grey {
-    background-color: #999999;
+    background-color: #999;
 }
 
 /* weapon */
@@ -82,4 +82,9 @@
 /* Weapon Item */
 .mock-icon-item-weapon {
     background-color: #5e3e09;
+}
+
+/* Ability Icon (TODO: get actual color value) */
+.mock-icon-dark-grey {
+    background-color: #333026;
 }

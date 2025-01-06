@@ -1,18 +1,15 @@
 import {MarkdownParser} from '/src/Text/MarkdownParser';
 import {itemsByName} from '/src/Common';
 
-import {renameAbilityHeaderStat} from './Common';
-
-const gridValues = (grid) => grid.cells.concat(grid.values);
+import {capitalize, gridValues, partitionHeroStats, renameAbilityHeaderStat} from './Common';
 
 const color = (s, c) => (s ? `[COLOR=${c}]${s}[/COLOR]` : '');
 const bold = (s) => (s ? `[B]${s}[/B]` : '');
 const italic = (s) => (s ? `[I]${s}[/I]` : '');
 const indent = (s) => (s ? `[INDENT]${s}[/INDENT]` : '');
-const size = (s, sz) => (s ? `[SIZE=${sz}]${s}[/SIZE]` : '');
-const capitalize = (s) => `${s[0].toUpperCase()}${s.slice(1)}`;
+const size = (sz, s) => (s ? `[SIZE=${sz}]${s}[/SIZE]` : '');
 
-const generateFormatter = ({orange, purple, green, blue, cyan, grey, sanitize}) => {
+const generateFormatter = ({orange, purple, green, blue, cyan, grey, red, sanitize}) => {
   const categoryColors = {ability: blue, weapon: orange, vitality: green, spirit: purple};
   const colorByCategory = (s, category) => (categoryColors[category] ? categoryColors[category](s) : s);
 
@@ -33,7 +30,7 @@ const generateFormatter = ({orange, purple, green, blue, cyan, grey, sanitize}) 
   const translateMarkdown = (s) => convertTree(MarkdownParser(s));
 
   const formatValue = (value) => {
-    const sign = value.signed && value.value > 0 ? '+' : '';
+    const sign = value.signed && value.value >= 0 ? '+' : '';
     const scaling = value.spiritScaling ? ` (${purple(`+${bold(value.spiritScaling)} x ${bold(`Spirit`)}`)})` : '';
     const conditional = value.conditional ? grey(italic(` (Conditional)`)) : '';
     const numberStr = `${grey(sign)}${value.value}${grey(sanitize(value.units))}`;
@@ -79,7 +76,7 @@ ${details}
     const components = formatComponents(model.components);
     const effects = model.effects.map((x) => `\n${indent(formatItemEffect(x))}`).join('');
     return `
-${size(bold(colorByCategory(sanitize(model.name), model.category)), 5)}
+${size(5, bold(colorByCategory(sanitize(model.name), model.category)))}
 ${bold(`${colorByCategory(capitalize(model.category), model.category)} Tier ${model.tier}`)}
 ${components}${bold(cyan(`§${model.cost} Souls`))}
 ${stats}${effects}
@@ -101,13 +98,38 @@ ${stats}${effects}
     const details = formatDetails(model.details);
     const upgrades = formatAbilityUpgrades(model.upgrades);
     return `
-${size(bold(blue(sanitize(model.name))), 5)}
+${size(5, bold(blue(sanitize(model.name))))}
 ${stats}${details}
 ${upgrades}
-  `.trim();
+`.trim();
   };
 
-  return {formatItem, formatAbility};
+  const indentAfterTitle = (s) => {
+    const lines = s.split('\n');
+    return `${lines[0]}\n${indent(lines.slice(1).join('\n'))}`;
+  };
+
+  const formatHero = (model) => {
+    const stats = partitionHeroStats(model.statGroups).map((group) =>
+      group.map((line) => line.map(formatValue).join(' | ')).join('\n'),
+    ).join('\n[HR][/HR]\n');
+    const abilities = model.abilities.map((x) => indentAfterTitle(formatAbility(x))).join('\n\n');
+
+    return `
+${size(6, bold(red(sanitize(model.name))))}
+${italic(sanitize(model.tagline))}
+
+${sanitize(model.description)}
+
+[HR][/HR]
+${stats}
+[HR][/HR]
+
+${abilities}
+`.trim();
+  };
+
+  return {formatItem, formatAbility, formatHero};
 };
 
 // the simple formatting preserves structure but omits colors and sanitization
@@ -121,6 +143,7 @@ const colorCtx = {
   blue:     (s) => color(s, '#3399f3'),
   cyan:     (s) => color(s, '#9affd6'),
   grey:     (s) => color(s, '#aaaaaa'),
+  red:      (s) => color(s, '#dd3939'),
 };
 
 const bbcodeColor = generateFormatter(colorCtx);

@@ -4,6 +4,11 @@
     cursor: pointer;
     min-width: 1em;
     min-height: 1lh;
+
+    &:hover {
+        filter: brightness(120%);
+        transform: scale(102%);
+    }
 }
 
 .mock-editable-markdown {
@@ -11,6 +16,11 @@
     resize: none;
     cursor: pointer;
     min-height: 1lh;
+
+    &:hover {
+        filter: brightness(120%);
+        transform: scale(102%);
+    }
 }
 
 [contenteditable] {

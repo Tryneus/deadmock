@@ -11,8 +11,7 @@
 
         .mock-icon {
             transition: height 0.05s ease-in-out, width 0.1s ease-in-out;
-            height: 1.2em;
-            width: 1.2em
+            font-size: 1.2em;
         }
     }
 }
@@ -30,10 +29,11 @@
         }
     }
 
-    --filled: var(--progress);
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+
+    --filled: var(--progress);
 }
 
 .mock-hold-timer .mock-hold-timer-icon-animating {
@@ -48,8 +48,7 @@
     }
 
     .mock-icon {
-        height: 1.0em;
-        width: 1.0em;
+        font-size: 1em;
     }
 }
 
@@ -63,6 +62,7 @@
   from {
       --progress: 0;
   }
+
   to {
       --progress: 100;
   }

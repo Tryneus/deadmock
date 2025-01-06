@@ -1,7 +1,5 @@
 import classNames from 'classnames';
 
-import {isFirefox} from '/src/Common';
-
 import './Icon.css';
 
 const iconColors = [
@@ -19,6 +17,7 @@ const iconColors = [
 // Icon colors that users can't really put to use
 const hiddenColors = [
   'bright-green', // Used for sidebar button '+' icon
+  'dark-grey', // Used for hero ability icons
   'item-spirit', // Used for the inner color of spirit item icons
   'item-vitality', // Used for the inner color of vitality item icons
   'item-weapon', // Used for the inner color of weapon item icons
@@ -266,6 +265,7 @@ const filenames = {
   'cancel':                              'cancel.svg',
   'compress':                            'compress.svg',
   'dropdown':                            'dropdown.svg',
+  'error':                               'error.svg',
   'expand':                              'expand.svg',
   'font':                                'font.svg',
   'gear':                                'gear.svg',
@@ -274,6 +274,7 @@ const filenames = {
   'plus':                                'plus.svg',
   'soul':                                'soul.svg',
   'spirit':                              'spirit.svg',
+  'swap':                                'swap.svg',
   'trash':                               'trash.svg',
   'vitality':                            'vitality.svg',
   'weapon':                              'weapon.svg',
@@ -281,25 +282,29 @@ const filenames = {
 
 const allIconFiles = Object.values(filenames);
 
-const Icon = ({image, large, color, onClick, onMouseDown}) => {
-  const filename = filenames[image] || filenames['stat/placeholder'];
-  const url = `url("${import.meta.env.BASE_URL}icon/${filename}")`;
+const dataRegex = /^data:/;
+const isData = (s) => Boolean(s.match(dataRegex));
 
+const Icon = ({image, large, color, onMouseDown}) => {
   const colorClass = `mock-icon-${color}`;
   const classes = classNames('mock-icon', {
-    'mock-icon-clickable': Boolean(onClick || onMouseDown),
-    'mock-icon-large':     Boolean(large),
     [colorClass]:          Boolean(color),
+    'mock-icon-clickable': Boolean(onMouseDown),
+    'mock-icon-large':     Boolean(large),
   });
+
+  const filename = filenames[image] || filenames['stat/placeholder'];
+  const url = image && isData(image) ?
+    `url(${image})` :
+    `url("${import.meta.env.BASE_URL}icon/${filename}")`;
 
   return (
     <span
       className={classes}
       style={{maskImage: url}}
-      onClick={onClick}
       onMouseDown={onMouseDown}
     />
   );
 };
 
-export {Icon, hiddenColors, iconColors, allIconFiles};
+export {Icon, allIconFiles, hiddenColors, iconColors};

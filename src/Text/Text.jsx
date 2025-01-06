@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 import './Text.css';
 
-const textColors = ['muted', 'normal', 'bright', 'purple', 'orange'];
+const textColors = ['muted', 'normal', 'bright', 'purple', 'orange', 'green'];
 
 const Text = ({italic, weight, color, children}) => {
   const colorClass = `mock-text-color-${color}`;

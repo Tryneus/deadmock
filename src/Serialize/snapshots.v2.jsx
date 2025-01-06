@@ -50,6 +50,36 @@ const HeroicAuraHydrated = {
 /* eslint-disable-next-line @stylistic/js/comma-spacing */
 const HeroicAuraSerialized = ['weapon','Heroic Aura',3,[],[[[],'Bullet Lifesteal',20,'%',1],[[],'Bonus Health',150,'',1],[[],'Move Speed',1,' m/s',1]],[[['Provides **Fire Rate** to nearby player minions.',[[[[[['stat/fire_rate','orange'],'Minions Fire Rate',40,'%',1,0,1]],[[[],'Radius',20,'m']]]]]]],[['Provides bonus **Movement Speed** and **Fire Rate** to you and nearby allies.',[[[[[['stat/move_speed'],'Movement Speed',2,'m/s',1,0,1],[['stat/fire_rate','orange'],'Fire Rate',25,'%',1,0,1]],[[[],'Active Radius',30,'m'],[[],'Duration',6,'s']]]]]],1,32]]];
 
+const HollowPointWardHydrated = {
+  category: 'weapon',
+  name:     'Hollow Point Ward',
+  tier:     1,
+
+  stats: [
+    {value: 95, stat: 'Spirit Shield Health', signed: true},
+    {value: 4, stat: 'Spirit Power', signed: true},
+  ],
+
+  effects: [{
+    active: false,
+
+    details: {
+      description: 'When you are **above 65% health**, deal additional **Weapon Damage**.',
+
+      sections: [{
+        gridData: {
+          cells: [
+            {icon: {image: 'stat/weapon_damage', color: 'orange'}, value: 20, units: '%', stat: 'Weapon Damage', color: 'orange', signed: true, conditional: true},
+          ],
+        },
+      }],
+    },
+  }],
+};
+
+/* eslint-disable-next-line @stylistic/js/comma-spacing */
+const HollowPointWardSerialized = ['weapon','Hollow Point Ward',1,[],[[[],'Spirit Shield Health',95,'',1],[[],'Spirit Power',4,'',1]],[[['When you are **above 65% health**, deal additional **Weapon Damage**.',[[[[[['stat/weapon_damage','orange'],'Weapon Damage',20,'%',1,0,1,0,'orange']],[]]]]]]]];
+
 const SlowingHexHydrated = {
   category: 'spirit',
   name:     'Slowing Hex',
@@ -214,12 +244,198 @@ const TornadoHydrated = {
 /* eslint-disable-next-line @stylistic/js/comma-spacing */
 const TornadoSerialized = ['ability','Tornado',[[['stat/cooldown'],'cooldown',32,'s'],[['stat/duration'],0,0.75,'s']],['Transform yourself into a tornado that travels forward, **damaging enemies** and **lifting them up in the air**.  After emerging from the tornado you gain **bullet evasion**.',[[[[[['stat/spirit_damage','purple'],'Damage',70,'',0,0.7],[['stat/duration'],'Lift Duration',1.5,'s'],[[],'Bullet Evasion Chance',30,'%']],[[[],'Bullet Evasion Duration',3.5,'s'],[['stat/aoe'],'Radius',3.5,'m']]]]]],['**+0.5s**\nLift Duration','**-14s**\nCooldown','**+20%**\nBullet Evasion Chance']];
 
+const DynamoHydrated = {
+  category:    'hero',
+  name:        'Dynamo',
+  portrait:    'dynamo.webp',
+  tagline:     'Locks down the enemy team',
+  description: 'Dynamo keeps himself and his allies healthy while waiting for his moment. Few things can warp a team fight more than a well coordinated use of Singularity.',
+
+  abilities: [
+    {id: 'KineticPulse', image: 'hero/dynamo/kinetic_pulse'},
+    {id: 'QuantumEntanglement', image: 'hero/dynamo/quantum_entanglement'},
+    {id: 'RejuvenatingAurora', image: 'hero/dynamo/rejuvenating_aurora'},
+    {id: 'Singularity', image: 'hero/dynamo/singularity'},
+  ],
+
+  statGroups: [{
+    label: 'Weapon',
+    color: 'orange',
+    stats: [
+      {icon: {image: 'stat/weapon_damage', color: 'orange'}, value: 60, units: '', stat: 'DPS'},
+      {icon: {image: 'stat/bullet', color: 'orange'}, value: 15, units: '', stat: 'Bullet Damage'},
+      {icon: {image: 'stat/ammo'}, value: 18, units: '', stat: 'Ammo'},
+      {icon: {image: 'stat/fire_rate'}, value: 4, units: '', stat: 'Bullets per sec'},
+      {icon: {image: 'stat/melee', color: 'orange'}, value: 63, units: '', stat: 'Light Melee'},
+      {icon: {image: 'stat/melee', color: 'orange'}, value: 116, units: '', stat: 'Heavy Melee'},
+    ],
+  }, {
+    label: 'Vitality',
+    color: 'green',
+    stats: [
+      {icon: {image: 'stat/health'}, value: 650, units: '', stat: 'Max Health'},
+      {icon: {image: 'stat/healing'}, value: 2, units: '', stat: 'Health Regen'},
+      {icon: {image: 'stat/bullet_armor'}, value: 0, units: '%', stat: 'Bullet Resist'},
+      {icon: {image: 'stat/spirit_armor'}, value: 0, units: '%', stat: 'Spirit Resist'},
+      {icon: {image: 'stat/move_speed'}, value: 6.5, units: ' m/s', stat: 'Move Speed'},
+      {icon: {image: 'stat/move_speed'}, signed: true, value: 0, units: ' m/s', stat: 'Sprint Speed'},
+      {icon: {image: 'stat/stamina'}, value: 3, units: '', stat: 'Stamina'},
+    ],
+  }],
+};
+
+/* eslint-disable-next-line @stylistic/js/comma-spacing */
+const DynamoSerialized = ['hero','Dynamo','Locks down the enemy team','Dynamo keeps himself and his allies healthy while waiting for his moment. Few things can warp a team fight more than a well coordinated use of Singularity.','dynamo.webp',[['Weapon','orange',[[['stat/weapon_damage','orange'],'DPS',60,''],[['stat/bullet','orange'],'Bullet Damage',15,''],[['stat/ammo'],'Ammo',18,''],[['stat/fire_rate'],'Bullets per sec',4,''],[['stat/melee','orange'],'Light Melee',63,''],[['stat/melee','orange'],'Heavy Melee',116,'']]],['Vitality','green',[[['stat/health'],'Max Health',650,''],[['stat/healing'],'Health Regen',2,''],[['stat/bullet_armor'],'Bullet Resist',0,'%'],[['stat/spirit_armor'],'Spirit Resist',0,'%'],[['stat/move_speed'],'Move Speed',6.5,' m/s'],[['stat/move_speed'],'Sprint Speed',0,' m/s',1],[['stat/stamina'],'Stamina',3,'']]]],[['KineticPulse','hero/dynamo/kinetic_pulse'],['QuantumEntanglement','hero/dynamo/quantum_entanglement'],['RejuvenatingAurora','hero/dynamo/rejuvenating_aurora'],['Singularity','hero/dynamo/singularity']]];
+
+const KineticPulseHydrated = {
+  category:    'ability',
+  name:        'Kinetic Pulse',
+
+  stats: [
+    {icon: {image: 'stat/cooldown'}, value: 25, units: 's', stat: 'cooldown'},
+    {icon: {image: 'stat/charge'}, value: 1, units: '', stat: 'charges'},
+    {icon: {image: 'stat/charge_cooldown'}, value: 5, units: 's', stat: 'chargeCooldown'},
+  ],
+
+  details: {
+    description: 'Release an energy pulse that knocks enemies up into the air.',
+
+    sections: [{
+      gridData: {
+        cells: [
+          {icon: {image: 'stat/spirit_damage', color: 'purple'}, value: 100, stat: 'Damage', spiritScaling: 1.4},
+          {icon: {image: 'stat/aoe'}, value: 15, units: 'm', stat: 'Stomp Range', spiritScaling: 0.275},
+        ],
+        values: [
+          {icon: {image: 'stat/aoe'}, value: 5, units: 'm', stat: 'Ability Width'},
+        ],
+      },
+    }],
+  },
+
+  upgrades: [
+    'Hit enemies are **fire rate and movement slowed** by **35%** for **4s**.',
+    'Dynamo deals **30% more Weapon Damage** to hit enemies for **8s**',
+    '**+125**\nDamage',
+  ],
+};
+
+/* eslint-disable-next-line @stylistic/js/comma-spacing */
+const KineticPulseSerialized = ['ability','Kinetic Pulse',[[['stat/cooldown'],'cooldown',25,'s'],[['stat/charge'],'charges',1,''],[['stat/charge_cooldown'],'chargeCooldown',5,'s']],['Release an energy pulse that knocks enemies up into the air.',[[[[[['stat/spirit_damage','purple'],'Damage',100,'',0,1.4],[['stat/aoe'],'Stomp Range',15,'m',0,0.275]],[[['stat/aoe'],'Ability Width',5,'m']]]]]],['Hit enemies are **fire rate and movement slowed** by **35%** for **4s**.','Dynamo deals **30% more Weapon Damage** to hit enemies for **8s**','**+125**\nDamage']];
+
+const QuantumEntanglementHydrated = {
+  category:    'ability',
+  name:        'Quantum Entanglement',
+
+  stats: [
+    {icon: {image: 'stat/cooldown'}, value: 11, units: 's', stat: 'cooldown'},
+    {icon: {image: 'stat/range'}, value: 9, units: 'm'},
+  ],
+
+  details: {
+    description: 'Dynamo briefly **disappears into the void** and then reappears a short distance away.  On reappearing, your weapon is **reloaded** and has a **fire rate bonus** for the next clip (Max 8s).  Can be Alt-Cast to also bring nearby allies and give them half fire rate bonus.',
+
+    sections: [{
+      gridData: {
+        cells: [
+          {icon: {image: 'stat/duration'}, value: 1.4, units: 's', stat: 'Void Time'},
+          {icon: {image: 'stat/aoe'}, value: 9, units: 'm', stat: 'Ally Distance'},
+          {icon: {image: 'stat/fire_rate'}, value: 25, units: '%', stat: 'Fire Rate Bonus'},
+        ],
+      },
+    }],
+  },
+
+  upgrades: [
+    '**+4m**\nCast Range',
+    '**+25%**\nFire Rate Bonus',
+    'On reappearing, **+120%** base ammo',
+  ],
+};
+
+/* eslint-disable-next-line @stylistic/js/comma-spacing */
+const QuantumEntanglementSerialized = ['ability','Quantum Entanglement',[[['stat/cooldown'],'cooldown',11,'s'],[['stat/range'],0,9,'m']],['Dynamo briefly **disappears into the void** and then reappears a short distance away.  On reappearing, your weapon is **reloaded** and has a **fire rate bonus** for the next clip (Max 8s).  Can be Alt-Cast to also bring nearby allies and give them half fire rate bonus.',[[[[[['stat/duration'],'Void Time',1.4,'s'],[['stat/aoe'],'Ally Distance',9,'m'],[['stat/fire_rate'],'Fire Rate Bonus',25,'%']],[]]]]],['**+4m**\nCast Range','**+25%**\nFire Rate Bonus','On reappearing, **+120%** base ammo']];
+
+const RejuvenatingAuroraHydrated = {
+  category:    'ability',
+  name:        'Rejuvenating Aurora',
+
+  stats: [
+    {icon: {image: 'stat/cooldown'}, value: 45, units: 's', stat: 'cooldown'},
+  ],
+
+  details: {
+    description: 'While channelling, **restore health over time** to you and any allies nearby.',
+
+    sections: [{
+      gridData: {
+        cells: [
+          {icon: {image: 'stat/healing'}, value: 32, units: '/s', stat: 'Health Restored', spiritScaling: 0.45},
+          {icon: {image: 'stat/charge'}, value: 5, units: 's', stat: 'Channel Duration'},
+        ],
+        values: [
+          {icon: {image: 'stat/aoe'}, value: 8, units: 'm', stat: 'Friendly Heal Radius'},
+        ],
+      },
+    }],
+  },
+
+  upgrades: [
+    'Gain **+4m/s movespeed bonus** for 8s if Aurora is fully channeled.  Gain instantly with 5AP Upgrade.',
+    '**-15s**\nCooldown',
+    '**Full move and ability use** and additionally heals **+4% of Max Health** per second',
+  ],
+};
+
+/* eslint-disable-next-line @stylistic/js/comma-spacing */
+const RejuvenatingAuroraSerialized = ['ability','Rejuvenating Aurora',[[['stat/cooldown'],'cooldown',45,'s']],['While channelling, **restore health over time** to you and any allies nearby.',[[[[[['stat/healing'],'Health Restored',32,'/s',0,0.45],[['stat/charge'],'Channel Duration',5,'s']],[[['stat/aoe'],'Friendly Heal Radius',8,'m']]]]]],['Gain **+4m/s movespeed bonus** for 8s if Aurora is fully channeled.  Gain instantly with 5AP Upgrade.','**-15s**\nCooldown','**Full move and ability use** and additionally heals **+4% of Max Health** per second']];
+
+const SingularityHydrated = {
+  category:    'ability',
+  name:        'Singularity',
+
+  stats: [
+    {icon: {image: 'stat/cooldown'}, value: 180, units: 's', stat: 'cooldown'},
+  ],
+
+  details: {
+    description: 'Create a singularity in your hands that **pulls in nearby enemies and damages them**. Once it\'s finished, enemies get knocked into the air.',
+
+    sections: [{
+      gridData: {
+        cells: [
+          {icon: {image: 'stat/charge'}, value: 2.75, units: 's', stat: 'Channel Duration'},
+          {icon: {image: 'stat/spirit_damage', color: 'purple'}, value: 60, stat: 'DPS', spiritScaling: 0.21},
+        ],
+        values: [
+          {icon: {image: 'stat/aoe'}, value: 8, units: 'm', stat: 'Singularity Radius'},
+        ],
+      },
+    }],
+  },
+
+  upgrades: [
+    '**+2m**\nSingularity Radius',
+    '**+0.75s**\nChannel Duration',
+    'Singularity takes **3.8%** of the enemies\' max health each second.',
+  ],
+};
+
+/* eslint-disable-next-line @stylistic/js/comma-spacing */
+const SingularitySerialized = ['ability','Singularity',[[['stat/cooldown'],'cooldown',180,'s']],['Create a singularity in your hands that **pulls in nearby enemies and damages them**. Once it\'s finished, enemies get knocked into the air.',[[[[[['stat/charge'],'Channel Duration',2.75,'s'],[['stat/spirit_damage','purple'],'DPS',60,'',0,0.21]],[[['stat/aoe'],'Singularity Radius',8,'m']]]]]],['**+2m**\nSingularity Radius','**+0.75s**\nChannel Duration','Singularity takes **3.8%** of the enemies\' max health each second.']];
+
 const snapshots = {
-  HeroicAura:  {hydrated: HeroicAuraHydrated, serialized: HeroicAuraSerialized},
-  ReturnFire:  {hydrated: ReturnFireHydrated, serialized: ReturnFireSerialized},
-  SlowingHex:  {hydrated: SlowingHexHydrated, serialized: SlowingHexSerialized},
-  ShadowWeave: {hydrated: ShadowWeaveHydrated, serialized: ShadowWeaveSerialized},
-  Tornado:     {hydrated: TornadoHydrated, serialized: TornadoSerialized},
+  HeroicAura:          {hydrated: HeroicAuraHydrated, serialized: HeroicAuraSerialized},
+  HollowPointWard:     {hydrated: HollowPointWardHydrated, serialized: HollowPointWardSerialized},
+  ReturnFire:          {hydrated: ReturnFireHydrated, serialized: ReturnFireSerialized},
+  SlowingHex:          {hydrated: SlowingHexHydrated, serialized: SlowingHexSerialized},
+  ShadowWeave:         {hydrated: ShadowWeaveHydrated, serialized: ShadowWeaveSerialized},
+  Tornado:             {hydrated: TornadoHydrated, serialized: TornadoSerialized},
+  Dynamo:              {hydrated: DynamoHydrated, serialized: DynamoSerialized},
+  KineticPulse:        {hydrated: KineticPulseHydrated, serialized: KineticPulseSerialized},
+  QuantumEntanglement: {hydrated: QuantumEntanglementHydrated, serialized: QuantumEntanglementSerialized},
+  RejuvenatingAurora:  {hydrated: RejuvenatingAuroraHydrated, serialized: RejuvenatingAuroraSerialized},
+  Singularity:         {hydrated: SingularityHydrated, serialized: SingularitySerialized},
 };
 
 export {snapshots};

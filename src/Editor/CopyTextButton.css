@@ -29,9 +29,7 @@
 
     > .mock-icon {
         transition: none;
-
-        height: 1.1rem;
-        width: 1.1rem;
+        font-size: 1.1rem;
         mask-size: 50% 50%;
 
         &:hover {
@@ -46,18 +44,17 @@
     }
 }
 
-.mock-editor-copy-text-dropdown {
+div:has(> .mock-editor-copy-text-dropdown) {
     position: relative;
-    width: 0;
-    white-space: nowrap;
+}
 
-    > div {
-        position: absolute;
-        top: 100%;
-        right: calc(1rem + 4px);
-        width: min-content;
-        z-index: 10;
-    }
+.mock-editor-copy-text-dropdown {
+    white-space: nowrap;
+    position: absolute;
+    top: 100%;
+    right: 1.3rem;
+    width: min-content;
+    z-index: 10;
 }
 
 .mock-editor-copy-text-entry {

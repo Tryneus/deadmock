@@ -1,11 +1,14 @@
-import {renameAbilityHeaderStat} from './Common';
+import {
+  capitalize,
+  gridValues,
+  partitionHeroStats,
+  renameAbilityHeaderStat,
+} from './Common';
 
 const quote = (s) => s.split('\n').map((x) => `> ${x}`).join('\n');
-const gridValues = (grid) => grid.cells.concat(grid.values);
-const capitalize = (s) => s[0].toUpperCase() + s.slice(1);
 
 const formatValue = (value) => {
-  const sign = value.signed && value.value > 0 ? '+' : '';
+  const sign = value.signed && value.value >= 0 ? '+' : '';
   const scaling = value.spiritScaling ? ` (+${value.spiritScaling} x Spirit)` : '';
   const conditional = value.conditional ? ` _(Conditional)_` : '';
   return `${sign}${value.value}${value.units} ${value.stat}${scaling}${conditional}`;
@@ -71,11 +74,34 @@ const formatAbility = (model) => {
   const upgrades = formatAbilityUpgrades(model.upgrades);
   return `
 ##### ${model.name}
-${stats}${details}
+${stats}
+${details}
 
 ${upgrades}
 `.trim();
 };
 
-const markdown = {formatItem, formatAbility};
+const formatHero = (model) => {
+  const stats = partitionHeroStats(model.statGroups).map((group) =>
+    group.map((line) => line.map(formatValue).join(' | ')).join('  \n'),
+  ).join('\n\n---\n\n');
+  const abilities = model.abilities.map(formatAbility).join('\n\n---\n\n');
+
+  return `
+### ${model.name}
+_${model.tagline}_
+
+${model.description}
+
+---
+
+${stats}
+
+---
+
+${abilities}
+`.trim();
+};
+
+const markdown = {formatItem, formatAbility, formatHero};
 export {markdown};

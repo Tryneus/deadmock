@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 
 import {GridModel} from '/src/Grid/Model';
-import {serializeable} from '/src/Serialize';
+import {serializeable} from '/src/Serialize/serialization';
 
 const defaultGridSection = {
   gridData: {

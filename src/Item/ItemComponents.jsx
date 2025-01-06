@@ -21,7 +21,7 @@ const ItemComponent = observer(({model, index}) => {
 
   return (
     <div className="mock-item-component">
-      <Deleteable onClick={onDelete}>
+      <Deleteable onMouseDown={onDelete}>
         <div className="mock-item-component-badge">
           <TooltipContainer click direction="down" renderTooltip={renderItemPicker}>
             <div className={classes}>

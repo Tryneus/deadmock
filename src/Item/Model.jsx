@@ -3,7 +3,7 @@ import {makeAutoObservable} from 'mobx';
 import {deepCopy, itemsByName, tierCosts} from '/src/Common';
 import {DetailsModel, defaultGridSection} from '/src/Details/Model';
 import {GridModel} from '/src/Grid/Model';
-import {serializeable} from '/src/Serialize';
+import {serializeable} from '/src/Serialize/serialization';
 import {ValueModel} from '/src/Value/Model';
 
 const defaultEffect = {

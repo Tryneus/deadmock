@@ -57,7 +57,9 @@ const EditableIcon = observer(({model, resize}) => {
 
   return (
     <TooltipContainer click direction="down" renderTooltip={renderTooltip}>
-      <Icon color={model.color} image={model.image} large={model.large} />
+      <div className="mock-editable-icon">
+        <Icon color={model.color} image={model.image} large={model.large} />
+      </div>
     </TooltipContainer>
   );
 });

@@ -55,6 +55,13 @@
 }
 
 @font-face {
+    font-family: Forevs;
+    src: url("/deadmock/font/forevsdemo-bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
     font-family: Roboto;
     src: url("/deadmock/font/roboto/roboto-thin.ttf") format("truetype");
     font-weight: 100;
@@ -147,7 +154,6 @@
     font-weight: 400;
     color: #ffefd7;
     background-color: #fff;
-    overflow-y: scroll;
     font-synthesis: none;
     text-rendering: optimizelegibility;
     text-size-adjust: 100%;
@@ -164,8 +170,21 @@
     }
 }
 
+@media (width <= 1000px) {
+    :root:has(.mock-ability) {
+        font-size: calc(100vw / 52);
+    }
+}
+
 body {
     margin: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &:has(dialog[open]) {
+        overflow: hidden;
+        padding-right: var(--scrollbar-width);
+    }
 }
 
 .app-container {
@@ -174,6 +193,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
+    padding-bottom: 17rem; /* safety margin so tooltips don't change the page height */
 
     #app {
         z-index: 3;

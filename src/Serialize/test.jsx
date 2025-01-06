@@ -1,5 +1,6 @@
 import {State} from '../State';
 
+import {ModelStorage} from './ModelStorage';
 import {hydrate, migrate} from './compat';
 import snapshotsV1 from './snapshots.v1';
 import snapshotsV2 from './snapshots.v2';
@@ -18,6 +19,28 @@ const snapshots = [
 ];
 const latest = snapshots[snapshots.length - 1][1];
 
+class MockStorage {
+  constructor() {
+    this._data = {};
+  }
+
+  clear() {
+    this._data = {};
+  }
+
+  getItem(k) {
+    return this._data[k] || null;
+  }
+
+  setItem(k, v) {
+    this._data[k] = String(v);
+  }
+
+  removeItem(k) {
+    delete this._data[k];
+  }
+}
+
 describe('serialization', () => {
   describe.each(snapshots)('snapshots', (version, versionSnapshots) => {
     describe.each(Object.entries(versionSnapshots))(version, (key, {hydrated, serialized}) => {
@@ -25,8 +48,8 @@ describe('serialization', () => {
         const latestSnapshot = Object.values(latest).find((x) => x.hydrated.name === hydrated.name);
 
         const makeModel = (data) => {
-          const state = new State();
-          state.loadRaw(data);
+          const modelStorage = new ModelStorage({storage: new MockStorage()});
+          const state = new State(modelStorage, data);
           return state.activeModel;
         };
 

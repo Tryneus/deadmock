@@ -2,23 +2,46 @@ import {render} from 'preact';
 
 import {Editor} from '/src/Editor';
 import {State} from '/src/State';
+import {ModelStorage, ModelStorageContext} from '/src/Serialize';
+import {hydrate} from '/src/Serialize/compat';
+import {ImageStorage, ImageStorageContext} from '/src/ImageStorage';
 import '/src/preload';
 import '/src/style.css';
 
-const state = new State();
-
-const loadFromFragment = () => {
+const fragmentToRaw = () => {
   if (window.location.hash !== '' && window.location.hash !== '#') {
     try {
-      state.deserializeActive(JSON.parse(window.atob(window.location.hash.replace('#', ''))));
+      const [version, modelData] = JSON.parse(window.atob(window.location.hash.replace('#', '')));
+      const result = hydrate(modelData, version);
       window.location.hash = '';
-    } catch (e) {
-      console.error('failed to load model from fragment:', e);
+      return result;
+    } catch (err) {
+      console.error('failed to load model from fragment:', err);
     }
   }
+  return null;
 };
 
-window.addEventListener('hashchange', loadFromFragment);
-loadFromFragment();
+const imageStorage = new ImageStorage();
+const modelStorage = new ModelStorage();
+const state = new State(modelStorage, fragmentToRaw());
 
-render(<Editor state={state} />, document.getElementById('app'));
+const loadFromFragment = () => {
+  const raw = fragmentToRaw();
+  if (raw) {
+    state.loadRaw(raw);
+  }
+};
+window.addEventListener('hashchange', loadFromFragment);
+
+// set CSS variable for scrollbar width for use in styling
+const scrollbarWidth = window.innerWidth - document.body.clientWidth;
+document.body.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+
+render((
+  <ImageStorageContext.Provider value={imageStorage}>
+    <ModelStorageContext.Provider value={modelStorage}>
+      <Editor state={state} />
+    </ModelStorageContext.Provider>
+  </ImageStorageContext.Provider>
+), document.getElementById('app'));

@@ -1,0 +1,7 @@
+.mock-hero-portrait {
+    width: 1em;
+    aspect-ratio: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

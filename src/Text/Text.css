@@ -23,13 +23,17 @@
 }
 
 .mock-text-color-bright {
-  color: #ffefd7;
+    color: #ffefd7;
 }
 
 .mock-text-color-orange {
-  color: #ed961e;
+    color: #ed961e;
 }
 
 .mock-text-color-purple {
-  color: #c78bf7;
+    color: #c78bf7;
+}
+
+.mock-text-color-green {
+    color: #7cbb1e;
 }

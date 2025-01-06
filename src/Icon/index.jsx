@@ -1,5 +1,5 @@
 import {EditableIcon} from './EditableIcon';
-import {Icon, iconColors, allIconFiles} from './Icon';
+import {Icon, allIconFiles, iconColors} from './Icon';
 import {IconModel} from './Model';
 
-export {EditableIcon, Icon, IconModel, iconColors, allIconFiles};
+export {EditableIcon, Icon, IconModel, allIconFiles, iconColors};

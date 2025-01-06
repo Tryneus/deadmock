@@ -36,7 +36,7 @@ const ItemEffect = observer(({item, model}) => {
   return (
     <div className="mock-item-effect">
       <div className={headerClasses}>
-        <Deleteable onClick={onDelete}>
+        <Deleteable onMouseDown={onDelete}>
           <DragListGrip />
           <span className="mock-item-effect-type" onClick={onChangeActive}>
             {effectType}

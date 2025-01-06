@@ -12,7 +12,7 @@ const ItemStatLine = observer(({itemModel, statModel}) => {
 
   return (
     <div className="mock-item-stat">
-      <Deleteable onClick={onDelete}>
+      <Deleteable onMouseDown={onDelete}>
         <DragListGrip />
         <EditableValue model={statModel} />
         <EditableText onChange={onChangeStat}>{statModel.stat}</EditableText>

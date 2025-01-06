@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
+import {useResize} from '/src/Common';
 import './AnimatedDiv.css';
 
 const observerConfig = {attributes: true, childList: true, subtree: true, characterData: true};
@@ -39,10 +40,7 @@ const AnimatedDiv = ({className, children}) => {
     }
   }, [ref, updateHeight]);
 
-  useEffect(() => {
-    window.addEventListener('resize', updateHeight);
-    return () => window.removeEventListener('resize', updateHeight);
-  }, [updateHeight]);
+  useResize(updateHeight);
 
   return (
     <div ref={ref} className={classes} style={style}>

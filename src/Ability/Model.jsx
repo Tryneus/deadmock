@@ -3,7 +3,7 @@ import {makeAutoObservable} from 'mobx';
 import {deepCopy} from '/src/Common';
 import {DetailsModel} from '/src/Details/Model';
 import {GridModel} from '/src/Grid/Model';
-import {serializeable} from '/src/Serialize';
+import {serializeable} from '/src/Serialize/serialization';
 import {ValueModel} from '/src/Value/Model';
 
 class AbilityModel {
@@ -16,7 +16,6 @@ class AbilityModel {
 
   constructor(raw) {
     this.id = raw?.id || crypto.randomUUID();
-    this.category = raw?.category || this.category;
     this.name = raw?.name || this.name;
     this.stats = raw?.stats?.map((x) => new ValueModel(x)) || this.stats;
     this.upgrades = deepCopy(raw?.upgrades || this.upgrades);

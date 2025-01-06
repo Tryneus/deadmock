@@ -1,0 +1,19 @@
+.mock-file-drop-zone {
+    position: relative;
+
+    .mock-file-drop-zone-icon {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 4;
+    }
+
+    .mock-file-drop-zone-icon-hover {
+        background-image: url("/deadmock/icon/upload.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 2.2rem;
+        opacity: .95;
+        backdrop-filter: saturate(120%) blur(1.5px);
+    }
+}
