@@ -37,6 +37,7 @@ const handleEditingOff = (ev, setEditing, onChange) => {
   // react seems to have trouble with the DOM changing due to user editing?
   ev.target.innerText = '';
   ev.target.contentEditable = 'false';
+  ev.target.scrollTo({top: 0, left: 0});
   window.getSelection().removeAllRanges();
 };
 
