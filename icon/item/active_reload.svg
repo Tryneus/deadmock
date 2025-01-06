@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="256" height="256" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+     <path id="bullet" d="M128.8064 70.847C128.8064 70.847 115.9922 82.2698 115.9922 108.3977 115.9922 139.6484 115.9922 153.4409 115.9922 150.6734L141.6197 150.6734C141.6197 153.4409 141.6197 139.6484 141.6197 108.3977 141.6197 82.2698 128.8064 70.847 128.8064 70.847ZM141.6197 160 115.9922 160 115.9922 173.3048 141.6197 173.3048Z" transform="scale(0.9)" transform-origin="center"/>
+    <path id="check" d="M218 160 174 201 153 182 137 197 174 230 233 176Z" fill="black" stroke="black" stroke-linejoin="round"/> 
+  </defs>
+  <mask id="outerCircle" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+    <rect width="256" height="256" fill="white"/>
+    <circle cx="128" cy="128" r="94" fill="black"/>
+    <path d="M128 40 V 10 H 75 V 64 Z" fill="black"/>
+    <use href="#check" stroke-width="24"/>
+  </mask>
+  <mask id="loop">
+    <circle cx="128" cy="128" r="116" mask="url(#outerCircle)" fill="white"/>
+    <path d="M82 70 50 20 110 20Z" fill="white"/>
+  </mask>
+  <rect width="256" height="256" mask="url(#loop)" fill="#000000b2"/>
+  <use href="#bullet" x="-37"/>
+  <use href="#bullet" x="0"/>
+  <use href="#bullet" x="37"/>
+  <use href="#check" stroke-width="8"/>
+</svg>
+

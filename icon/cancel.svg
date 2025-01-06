@@ -1,0 +1,12 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <mask id="cross">
+    <rect x="0" y="0" width="256" height="256" fill="white" />
+    <circle r="18.67" cx="83" cy="83" fill="black" />
+    <circle r="18.67" cx="83" cy="173" fill="black" />
+    <circle r="18.67" cx="173" cy="83" fill="black" />
+    <circle r="18.67" cx="173" cy="173" fill="black" />
+    <line x1="83" y1="83" x2="173" y2="173" stroke="black" stroke-width="37.33"/>
+    <line x1="173" y1="83" x2="83" y2="173" stroke="black" stroke-width="37.33"/>
+  </mask>
+  <circle r="112" cx="128" cy="128" fill="black" mask="url(#cross)" />
+</svg>

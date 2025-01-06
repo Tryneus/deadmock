@@ -1,0 +1,19 @@
+<svg width="256" height="256" viewBox="0 0 256" xmlns="http://www.w3.org/2000/svg">
+  <mask id="outerCircle" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+    <rect width="256" height="256" fill="white" />
+    <circle cx="128" cy="128" r="94" fill="black" />
+    <path d="M 208 170 L 238 188 L 256 138 L 192 134" fill="black" />
+  </mask>
+  <mask id="innerCircle">
+    <rect width="256" height="256" fill="black" />
+    <circle cx="128" cy="128" r="50" fill="white" />
+  </mask>
+  <mask id="hands" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+    <rect width="256" height="256" fill="white" />
+    <rect width="18" height="128" x="119" y="0" mask="url(#innerCircle)" />
+    <rect width="128" height="18" x="119" y="119" mask="url(#innerCircle)" />
+  </mask>
+  <circle cx="128" cy="128" r="60" fill="black" mask="url(#hands)" />
+  <circle cx="128" cy="128" r="110" mask="url(#outerCircle)" fill="black"/>
+  <path d="M 188 180 L 232 200 L 228 152" fill="black" />
+</svg>
