@@ -1,5 +1,6 @@
 import {render} from 'preact';
 
+import {Config, ConfigContext} from '/src/Common';
 import {Editor} from '/src/Editor';
 import {State} from '/src/State';
 import {ModelStorage, ModelStorageContext} from '/src/Serialize';
@@ -7,6 +8,10 @@ import {hydrate} from '/src/Serialize/compat';
 import {ImageStorage, ImageStorageContext} from '/src/ImageStorage';
 import '/src/preload';
 import '/src/style.css';
+
+const config = new Config({
+  baseUrl: import.meta.env.BASE_URL,
+});
 
 const fragmentToRaw = () => {
   if (window.location.hash !== '' && window.location.hash !== '#') {
@@ -39,9 +44,11 @@ const scrollbarWidth = window.innerWidth - document.body.clientWidth;
 document.body.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
 
 render((
-  <ImageStorageContext.Provider value={imageStorage}>
-    <ModelStorageContext.Provider value={modelStorage}>
-      <Editor state={state} />
-    </ModelStorageContext.Provider>
-  </ImageStorageContext.Provider>
+  <ConfigContext.Provider value={config}>
+    <ImageStorageContext.Provider value={imageStorage}>
+      <ModelStorageContext.Provider value={modelStorage}>
+        <Editor state={state} />
+      </ModelStorageContext.Provider>
+    </ImageStorageContext.Provider>
+  </ConfigContext.Provider>
 ), document.getElementById('app'));

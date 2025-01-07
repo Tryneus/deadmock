@@ -23,13 +23,7 @@
     display: flex;
     align-items: center;
     flex: 1 50%;
-    overflow: hidden;
     white-space: nowrap;
-
-    .mock-deleteable > .mock-editable-text {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
 
     &:hover .mock-grid-values-cell-item-delete {
         visibility: visible;
@@ -72,6 +66,7 @@
     flex: 1 0 30%;
     display: flex;
     flex-direction: column;
+    min-width: 0;
 
     &:hover .mock-grid-cell-hover-buttons {
         visibility: visible;
@@ -85,6 +80,10 @@
     text-align: center;
     border-radius: inherit;
     flex-grow: 1;
+
+    > span {
+        overflow-wrap: break-word;
+    }
 }
 
 .mock-grid-values-cell {

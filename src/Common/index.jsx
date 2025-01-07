@@ -1,3 +1,4 @@
+import {Config, ConfigContext} from './Config';
 import {DoubleClickListener} from './DoubleClickListener';
 import {MeasuredDiv} from './MeasuredDiv';
 import {Spinner} from './Spinner';
@@ -29,6 +30,8 @@ import {
 } from './util';
 
 export {
+  Config,
+  ConfigContext,
   DoubleClickListener,
   MeasuredDiv,
   Spinner,

@@ -1,5 +1,7 @@
 import classNames from 'classnames';
+import {useContext} from 'preact/hooks';
 
+import {ConfigContext} from '/src/Common';
 import './Icon.css';
 
 const iconColors = [
@@ -286,6 +288,7 @@ const dataRegex = /^data:/;
 const isData = (s) => Boolean(s.match(dataRegex));
 
 const Icon = ({image, large, color, onMouseDown}) => {
+  const config = useContext(ConfigContext);
   const colorClass = `mock-icon-${color}`;
   const classes = classNames('mock-icon', {
     [colorClass]:          Boolean(color),
@@ -296,7 +299,7 @@ const Icon = ({image, large, color, onMouseDown}) => {
   const filename = filenames[image] || filenames['stat/placeholder'];
   const url = image && isData(image) ?
     `url(${image})` :
-    `url("${import.meta.env.BASE_URL}icon/${filename}")`;
+    `url("${config.baseUrl}icon/${filename}")`;
 
   return (
     <span
