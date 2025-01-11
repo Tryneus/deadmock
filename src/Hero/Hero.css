@@ -59,7 +59,7 @@
 
     .mock-image-modal-trigger:hover {
         .mock-image-modal-overlay::before {
-            mask-position-y: 40%;
+            mask-position: center 40%;
         }
     }
 }
