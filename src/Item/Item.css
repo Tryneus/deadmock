@@ -238,12 +238,16 @@
             display: none;
         }
 
-        .mock-grid-cell:has(.mock-spirit-scaling) .mock-grid-cell-contents {
-            padding: 0.2rem;
+        .mock-grid-cell:has(.mock-spirit-scaling), .mock-grid-cell:has(.mock-melee-scaling) {
+            .mock-grid-cell-contents {
+                padding: 0.2rem;
+            }
         }
 
-        .mock-spirit-scaling .mock-text {
-            padding-bottom: 0;
+        .mock-spirit-scaling, .mock-melee-scaling {
+            .mock-text {
+                padding-bottom: 0;
+            }
         }
     }
 

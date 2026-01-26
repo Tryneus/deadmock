@@ -2,7 +2,7 @@ import {createContext} from 'preact';
 
 class Config {
   constructor(options) {
-    this.baseUrl = options?.baseUrl || '/'
+    this.baseUrl = options?.baseUrl || '/';
   }
 }
 

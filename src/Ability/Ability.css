@@ -129,8 +129,10 @@
                 }
             }
 
-            .mock-grid-cell:has(.mock-spirit-scaling) .mock-grid-cell-contents {
-                padding: 0.5rem 0.1rem;
+            .mock-grid-cell:has(.mock-spirit-scaling), .mock-grid-cell:has(.mock-melee-scaling) {
+                .mock-grid-cell-contents {
+                    padding: 0.5rem 0.1rem;
+                }
             }
 
             .mock-grid-values-cell {
