@@ -10,7 +10,10 @@ const stripMarkdown = (s) => s.replaceAll(/[*_]/g, '');
 
 const formatValue = (value) => {
   const sign = value.signed && value.value >= 0 ? '+' : '';
-  const scaling = value.spiritScaling ? ` (+${value.spiritScaling} x Spirit)` : '';
+  const scaling =
+    value.spiritScaling ? ` (+${value.spiritScaling} x Spirit)` :
+    value.meleeScaling ? ` (+${value.meleeScaling} x Melee)` :
+    '';
   const conditional = value.conditional ? ` (Conditional)` : '';
   return `${sign}${value.value}${value.units} ${value.stat}${scaling}${conditional}`;
 };

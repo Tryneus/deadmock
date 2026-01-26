@@ -1,5 +1,5 @@
 import {Grid} from './Grid';
 import {GridModel} from './Model';
-import {SpiritScaling} from './SpiritScaling';
+import {Scaling} from './Scaling';
 
-export {Grid, GridModel, SpiritScaling};
+export {Grid, GridModel, Scaling};

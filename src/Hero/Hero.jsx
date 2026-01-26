@@ -1,7 +1,7 @@
 import {observer} from 'mobx-react-lite';
 
 import {useAction} from '/src/Common';
-import {SpiritScaling} from '/src/Grid';
+import {Scaling} from '/src/Grid';
 import {Icon} from '/src/Icon';
 import {ImageModalTrigger} from '/src/ImageModal';
 import {EditableText, Text} from '/src/Text';
@@ -25,6 +25,8 @@ const HeroPortrait = observer(({model}) => {
 });
 
 const HeroStat = observer(({model}) => {
+  // We don't enable melee scaling here because I don't think there's any use
+  // for it at the moment - could easily add it if requested.
   const onToggleScaling = useAction(() => {
     const isUnset = model.spiritScaling === null || model.spiritScaling === undefined;
     model.spiritScaling = isUnset ? 0 : null;
@@ -33,7 +35,7 @@ const HeroStat = observer(({model}) => {
   return (
     <div className="mock-hero-stat">
       <div className="mock-hero-stat-position">
-        <SpiritScaling detailed model={model} />
+        <Scaling detailed model={model} />
         <div className="mock-hero-stat-spirit-scaling-button">
           <Icon color="purple" image="spirit" onMouseDown={onToggleScaling} />
         </div>

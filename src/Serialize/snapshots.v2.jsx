@@ -424,6 +424,26 @@ const SingularityHydrated = {
 /* eslint-disable-next-line @stylistic/js/comma-spacing */
 const SingularitySerialized = ['ability','Singularity',[[['stat/cooldown'],'cooldown',180,'s']],['Create a singularity in your hands that **pulls in nearby enemies and damages them**. Once it\'s finished, enemies get knocked into the air.',[[[[[['stat/charge'],'Channel Duration',2.75,'s'],[['stat/spirit_damage','purple'],'DPS',60,'',0,0.21]],[[['stat/aoe'],'Singularity Radius',8,'m']]]]]],['**+2m**\nSingularity Radius','**+0.75s**\nChannel Duration','Singularity takes **3.8%** of the enemies\' max health each second.']];
 
+const MeleeScalingHydrated = {
+  category:    'ability',
+  name:        'MeleeScaling',
+  stats: [],
+  details: {
+    description: 'words',
+    sections: [{
+      gridData: {
+        cells: [
+          {icon: {image: 'stat/ammo'}, value: 1, units: 's', stat: 'Stuff', meleeScaling: 1.5},
+        ],
+      },
+    }],
+  },
+  upgrades: ['one', 'two', 'three'],
+};
+
+/* eslint-disable-next-line @stylistic/js/comma-spacing */
+const MeleeScalingSerialized = ['ability','MeleeScaling',[],['words',[[[[[['stat/ammo'],'Stuff',1,'s',0,0,0,0,0,1.5]],[]]]]],['one','two','three']];
+
 const snapshots = {
   HeroicAura:          {hydrated: HeroicAuraHydrated, serialized: HeroicAuraSerialized},
   HollowPointWard:     {hydrated: HollowPointWardHydrated, serialized: HollowPointWardSerialized},
@@ -436,6 +456,7 @@ const snapshots = {
   QuantumEntanglement: {hydrated: QuantumEntanglementHydrated, serialized: QuantumEntanglementSerialized},
   RejuvenatingAurora:  {hydrated: RejuvenatingAuroraHydrated, serialized: RejuvenatingAuroraSerialized},
   Singularity:         {hydrated: SingularityHydrated, serialized: SingularitySerialized},
+  MeleeScaling:        {hydrated: MeleeScalingHydrated, serialized: MeleeScalingSerialized},
 };
 
 export {snapshots};

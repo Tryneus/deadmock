@@ -10,7 +10,7 @@ import {EditableText, SemiBold, Text} from '/src/Text';
 import {TooltipContainer} from '/src/Tooltip';
 import {EditableValue} from '/src/Value';
 
-import {SpiritScaling} from './SpiritScaling';
+import {Scaling} from './Scaling';
 import './Grid.css';
 
 const Grid = observer(({data, onEmpty}) => {
@@ -27,7 +27,7 @@ const Grid = observer(({data, onEmpty}) => {
   const cells = data.cells.map((cell, i) => (
     <div key={i} className="mock-grid-cell">
       <div className="mock-grid-cell-position">
-        <SpiritScaling detailed model={cell} />
+        <Scaling detailed model={cell} />
         <GridCellHoverButtons data={data} model={cell} onEmpty={onEmpty} />
       </div>
       <div className="mock-grid-cell-contents">
@@ -69,9 +69,15 @@ const GridCellHoverButtons = observer(({data, model, onEmpty}) => {
     }
   }, [data, model, onEmpty]);
 
-  const onToggleScaling = useAction(() => {
-    const isUnset = model.spiritScaling === null || model.spiritScaling === undefined;
-    model.spiritScaling = isUnset ? 0 : null;
+  const onSwitchScaling = useAction(() => {
+    if (model.spiritScaling !== null && model.spiritScaling !== undefined) {
+      model.spiritScaling = null;
+      model.meleeScaling = 0;
+    } else if (model.meleeScaling !== null && model.meleeScaling !== undefined) {
+      model.meleeScaling = null;
+    } else {
+      model.spiritScaling = 0;
+    }
   }, [model]);
 
   const onConditional = useAction(() => (model.conditional = !model.conditional), [model]);
@@ -84,7 +90,7 @@ const GridCellHoverButtons = observer(({data, model, onEmpty}) => {
       <TooltipContainer click direction="up" renderTooltip={renderStylePicker}>
         <Icon color="white" image="font" />
       </TooltipContainer>
-      <Icon color="purple" image="spirit" onMouseDown={onToggleScaling} />
+      <Icon color="purple" image="spirit" onMouseDown={onSwitchScaling} />
       <Icon color="white" image="hourglass_half" onMouseDown={onConditional} />
     </div>
   );

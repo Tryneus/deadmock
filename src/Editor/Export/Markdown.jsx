@@ -9,7 +9,10 @@ const quote = (s) => s.split('\n').map((x) => `> ${x}`).join('\n');
 
 const formatValue = (value) => {
   const sign = value.signed && value.value >= 0 ? '+' : '';
-  const scaling = value.spiritScaling ? ` (+${value.spiritScaling} x Spirit)` : '';
+  const scaling =
+    value.spiritScaling ? ` (+${value.spiritScaling} x Spirit)` :
+    value.meleeScaling ? ` (+${value.meleeScaling} x Melee)` :
+    '';
   const conditional = value.conditional ? ` _(Conditional)_` : '';
   return `${sign}${value.value}${value.units} ${value.stat}${scaling}${conditional}`;
 };
