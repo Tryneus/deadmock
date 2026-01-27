@@ -43,7 +43,7 @@ const HeroStat = observer(({model}) => {
       <div className="mock-hero-stat-position">
         <Scaling detailed model={model} />
         <div className="mock-hero-stat-scaling-button">
-          <Icon color="purple" image="spirit" onMouseDown={onSwitchScaling} />
+          <Icon color="white" image="boon_scaling" onMouseDown={onSwitchScaling} />
         </div>
       </div>
       <div className="mock-hero-stat-contents">
