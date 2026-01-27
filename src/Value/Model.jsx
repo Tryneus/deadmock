@@ -15,6 +15,7 @@ class ValueModel {
   color = null;
   spiritScaling = null;
   meleeScaling = null;
+  boonScaling = null;
 
   constructor(raw) {
     this.id = crypto.randomUUID();
@@ -25,6 +26,7 @@ class ValueModel {
     this.weight = raw?.weight || this.weight;
     this.spiritScaling = raw?.spiritScaling || this.spiritScaling;
     this.meleeScaling = raw?.meleeScaling || this.meleeScaling;
+    this.boonScaling = raw?.boonScaling || this.boonScaling;
     this.signed = Boolean(raw?.signed);
     this.conditional = Boolean(raw?.conditional);
     this.icon = new IconModel(raw?.icon);
@@ -44,6 +46,7 @@ serializeable(ValueModel, [
   ['weight'],
   ['color'],
   ['meleeScaling'],
+  ['boonScaling'],
 ]);
 
 export {ValueModel};

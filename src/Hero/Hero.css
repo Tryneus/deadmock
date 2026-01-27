@@ -164,7 +164,7 @@
         position: relative;
         height: 0;
 
-        .mock-spirit-scaling {
+        .mock-spirit-scaling, .mock-melee-scaling, .mock-boon-scaling {
             font-size: 0.6rem;
 
             .mock-text {
@@ -172,7 +172,7 @@
             }
         }
 
-        .mock-hero-stat-spirit-scaling-button {
+        .mock-hero-stat-scaling-button {
             position: absolute;
             left: 0;
             top: 0;
@@ -187,7 +187,19 @@
         padding: 0.4rem 0.1rem;
     }
 
-    &:hover .mock-hero-stat-spirit-scaling-button {
+    &:has(.mock-melee-scaling) .mock-hero-stat-contents {
+        border: 0.1rem solid #704c17;
+        background: radial-gradient(transparent 20%, rgb(112 76 23 / 70%) 100%);
+        padding: 0.4rem 0.1rem;
+    }
+
+    &:has(.mock-boon-scaling) .mock-hero-stat-contents {
+        border: 0.1rem solid #467768;
+        background: radial-gradient(transparent 20%, rgb(70 119 104 / 70%) 100%);
+        padding: 0.4rem 0.1rem;
+    }
+
+    &:hover .mock-hero-stat-scaling-button {
         visibility: visible;
     }
 

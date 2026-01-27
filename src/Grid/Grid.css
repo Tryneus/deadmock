@@ -56,7 +56,7 @@
     }
 }
 
-.mock-grid-cell:has(.mock-spirit-scaling), .mock-grid-cell:has(.mock-melee-scaling) {
+.mock-grid-cell:has(.mock-spirit-scaling), .mock-grid-cell:has(.mock-melee-scaling), .mock-grid-cell:has(.mock-boon-scaling) {
     .mock-grid-cell-hover-buttons {
         left: 0;
         top: 0;
@@ -109,7 +109,8 @@
     
     /* A bunch of bullshit to get border radii on the correct divs - we would
      * set the border on the grid and overflow: hidden, but we need
-     * spirit/melee-scaling to be able to render outside the grid's bounding-box */
+     * spirit/melee/boon--scaling to be able to render outside the grid's
+     * bounding-box */
     > *:first-child {
         border-top-left-radius: var(--border-radius);
     }

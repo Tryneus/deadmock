@@ -75,6 +75,9 @@ const GridCellHoverButtons = observer(({data, model, onEmpty}) => {
       model.meleeScaling = 0;
     } else if (model.meleeScaling !== null && model.meleeScaling !== undefined) {
       model.meleeScaling = null;
+      model.boonScaling = 0;
+    } else if (model.boonScaling !== null && model.boonScaling !== undefined) {
+      model.boonScaling = null;
     } else {
       model.spiritScaling = 0;
     }
@@ -90,7 +93,7 @@ const GridCellHoverButtons = observer(({data, model, onEmpty}) => {
       <TooltipContainer click direction="up" renderTooltip={renderStylePicker}>
         <Icon color="white" image="font" />
       </TooltipContainer>
-      <Icon color="purple" image="spirit" onMouseDown={onSwitchScaling} />
+      <Icon color="white" image="boon_scaling" onMouseDown={onSwitchScaling} />
       <Icon color="white" image="hourglass_half" onMouseDown={onConditional} />
     </div>
   );

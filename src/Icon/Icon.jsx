@@ -264,6 +264,7 @@ const filenames = {
   'stat/placeholder':                    'stat/placeholder.svg',
   'stat/ability_point':                  'stat/ability_point.svg',
   'stat/silence':                        'stat/silence.svg',
+  'boon_scaling':                        'boon_scaling.png',
   'cancel':                              'cancel.svg',
   'compress':                            'compress.svg',
   'dropdown':                            'dropdown.svg',
