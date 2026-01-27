@@ -75,6 +75,9 @@ const GridCellHoverButtons = observer(({data, model, onEmpty}) => {
       model.meleeScaling = 0;
     } else if (model.meleeScaling !== null && model.meleeScaling !== undefined) {
       model.meleeScaling = null;
+      model.boonScaling = 0;
+    } else if (model.boonScaling !== null && model.boonScaling !== undefined) {
+      model.boonScaling = null;
     } else {
       model.spiritScaling = 0;
     }

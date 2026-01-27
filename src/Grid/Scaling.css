@@ -1,4 +1,4 @@
-.mock-spirit-scaling, .mock-melee-scaling {
+.mock-spirit-scaling, .mock-melee-scaling, .mock-boon-scaling {
     z-index: 5;
     height: 0;
     display: flex;
@@ -9,21 +9,29 @@
 
     .mock-spirit-scaling-icon {
         background-image: url("/deadmock/icon/spirit_scaling.png");
-        left: -1.8em;
+        height: 1.8em;
+        left: -1.9em;
     }
 
     .mock-melee-scaling-icon {
         background-image: url("/deadmock/icon/melee_scaling.png");
-        left: -2.05em;
+        height: 1.8em;
+        left: -2.3em;
     }
 
-    .mock-spirit-scaling-icon, .mock-melee-scaling-icon {
+    .mock-boon-scaling-icon {
+        background-image: url("/deadmock/icon/boon_scaling.png");
+        height: 2.1em;
+        left: -1.6em;
+        top: -0.95em;
+    }
+
+    .mock-spirit-scaling-icon, .mock-melee-scaling-icon, .mock-boon-scaling-icon {
         position: absolute;
-        height: 1.8em;
         width: 2.7em;
         background-size: contain;
         background-repeat: no-repeat;
-        background-position: center;
+        background-position: right;
     }
 
     .mock-spirit-scaling-box {
@@ -34,7 +42,11 @@
         padding: 0.15em 0.5em 0.25em 0.85em;
     }
 
-    .mock-spirit-scaling-box, .mock-melee-scaling-box {
+    .mock-boon-scaling-box {
+        padding: 0.15em 0.5em 0.25em 0.85em;
+    }
+
+    .mock-spirit-scaling-box, .mock-melee-scaling-box, .mock-boon-scaling-box {
         height: 1.2em;
         display: flex;
         flex-direction: column;
@@ -61,7 +73,10 @@
 
     .mock-melee-scaling-box {
         background-color: #7b551a;
-        /*background-color: #ffffff;*/
+    }
+
+    .mock-boon-scaling-box {
+        background-color: #3e685b;
     }
 }
 
@@ -73,4 +88,9 @@
 .mock-grid-cell:has(.mock-melee-scaling) .mock-grid-cell-contents {
     border: 0.1rem solid #704c17;
     background: radial-gradient(transparent 20%, rgb(112 76 23 / 70%) 100%);
+}
+
+.mock-grid-cell:has(.mock-boon-scaling) .mock-grid-cell-contents {
+    border: 0.1rem solid #467768;
+    background: radial-gradient(transparent 20%, rgb(70 119 104 / 70%) 100%);
 }

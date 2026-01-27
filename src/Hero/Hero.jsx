@@ -27,17 +27,23 @@ const HeroPortrait = observer(({model}) => {
 const HeroStat = observer(({model}) => {
   // We don't enable melee scaling here because I don't think there's any use
   // for it at the moment - could easily add it if requested.
-  const onToggleScaling = useAction(() => {
-    const isUnset = model.spiritScaling === null || model.spiritScaling === undefined;
-    model.spiritScaling = isUnset ? 0 : null;
+  const onSwitchScaling = useAction(() => {
+    if (model.spiritScaling !== null && model.spiritScaling !== undefined) {
+      model.spiritScaling = null;
+      model.boonScaling = 0;
+    } else if (model.boonScaling !== null && model.boonScaling !== undefined) {
+      model.boonScaling = null;
+    } else {
+      model.spiritScaling = 0;
+    }
   }, [model]);
 
   return (
     <div className="mock-hero-stat">
       <div className="mock-hero-stat-position">
         <Scaling detailed model={model} />
-        <div className="mock-hero-stat-spirit-scaling-button">
-          <Icon color="purple" image="spirit" onMouseDown={onToggleScaling} />
+        <div className="mock-hero-stat-scaling-button">
+          <Icon color="purple" image="spirit" onMouseDown={onSwitchScaling} />
         </div>
       </div>
       <div className="mock-hero-stat-contents">

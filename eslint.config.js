@@ -216,7 +216,7 @@ export default [
       '@stylistic/js/key-spacing': ['error', {align: 'value', mode: 'minimum'}],
       '@stylistic/js/lines-between-class-members': ['error', 'always', {exceptAfterSingleLine: true}],
       '@stylistic/js/multiline-comment-style': ['error', 'separate-lines'],
-      '@stylistic/js/multiline-ternary': ['error', 'always-multiline'],
+      '@stylistic/js/multiline-ternary': 'off',
       '@stylistic/js/newline-per-chained-call': 'off',
       '@stylistic/js/no-confusing-arrow': 'error',
       '@stylistic/js/no-extra-parens': ['error', 'all', {

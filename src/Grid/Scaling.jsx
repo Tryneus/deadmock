@@ -34,14 +34,31 @@ const renderMeleeValue = (detailed, model, onChange) => {
   );
 };
 
+const renderBoonValue = (detailed, model, onChange) => {
+  if (!detailed) {
+    return null;
+  }
+
+  return (
+    <div className="mock-boon-scaling-box">
+      <div>
+        <span>x</span>
+        <EditableText onChange={onChange}>{model.boonScaling}</EditableText>
+      </div>
+    </div>
+  );
+};
+
 const getScalingField = (model) => {
   if (model.spiritScaling !== null && model.spiritScaling !== undefined) {
     return 'spiritScaling';
   } else if (model.meleeScaling !== null && model.meleeScaling !== undefined) {
     return 'meleeScaling';
+  } else if (model.boonScaling !== null && model.boonScaling !== undefined) {
+    return 'boonScaling';
   }
   return null;
-}
+};
 
 const Scaling = observer(({model, detailed}) => {
   const onChange = useAction((x) => {
@@ -68,9 +85,15 @@ const Scaling = observer(({model, detailed}) => {
         {renderMeleeValue(detailed, model, onChange)}
       </div>
     );
-  } else {
-    return null;
+  } else if (scalingField === 'boonScaling') {
+    return (
+      <div className="mock-boon-scaling">
+        <span className="mock-boon-scaling-icon" />
+        {renderBoonValue(detailed, model, onChange)}
+      </div>
+    );
   }
+  return null;
 });
 
 export {Scaling};
