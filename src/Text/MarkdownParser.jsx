@@ -17,7 +17,7 @@ const escape = map(
   (x) => x[1][0],
 );
 
-const textRegex = /[^_*\n\\]+/;
+const textRegex = /[^_*\n]+/;
 const text = map(any(escape, map(regex(textRegex), (x) => x[0])), (x) => ({type: 'text', data: x}));
 
 const tags = ({source, cursor}) => {
