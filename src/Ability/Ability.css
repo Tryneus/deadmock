@@ -45,6 +45,7 @@
 
 
         .mock-ability-header-title {
+            font-family: ValveOccult;
             font-size: 1.6rem;
             font-weight: 700;
             flex-basis: 50%;
@@ -53,6 +54,7 @@
         }
 
         .mock-ability-stat {
+            font-family: ValveOccult;
             display: flex;
             align-items: center;
             background-color: #2c2c2c;
@@ -125,7 +127,12 @@
                 padding: 0.6rem 0.2rem;
 
                 .mock-grid-cell-value {
-                    font-size: 1.15rem;
+                    font-family: ValveOccult;
+                    font-size: 1.3rem;
+                }
+
+                .mock-icon {
+                    opacity: 0.8;
                 }
             }
 
@@ -141,10 +148,12 @@
                 font-weight: 500;
 
                 .mock-grid-values-cell-value {
+                    font-family: ValveOccult;
                     font-size: 0.9rem;
                     margin-right: 0.6rem;
 
                     .mock-icon {
+                        opacity: 0.8;
                         font-size: 1.1rem;
                     }
                 }
