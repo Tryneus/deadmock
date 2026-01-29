@@ -21,14 +21,14 @@ const filterClasses = (node) => {
 
 const AbilityDivider = () => {
   return (
-    <svg viewBox="0 0 90 190">
+    <svg viewBox="0 9 91 170">
       <path
         d="M0 188.8A45 45 0 0130 146.4l30 -10A45 45 0 0089 94A45 45 0 0060 51.6l-30 -10A45 45 0 010 0"
-        fill="#ffffff"
+        fill="#221727"
         paintOrder="stroke"
-        stroke="black"
+        stroke="#6f5674"
         strokeLinejoin="round"
-        strokeWidth="2"
+        strokeWidth="4"
       />
     </svg>
   );

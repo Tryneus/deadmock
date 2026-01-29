@@ -1,5 +1,6 @@
 .mock-ability {
     width: 30rem;
+    border: #6f5674 solid 0.1rem;
 
     .mock-ability-upgrades-animated {
         background-color: rgb(16 16 16 / 15%);
