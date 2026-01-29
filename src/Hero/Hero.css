@@ -214,6 +214,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: ValveOccult;
 
             > * {
                 display: inline-block;
@@ -310,7 +311,7 @@
         svg {
             width: 100%;
             height: 100%;
-            filter: brightness(15%);
+            filter: brightness(60%) sepia(100%) saturate(210%) hue-rotate(240deg) brightness(15%);
 
             path {
                 pointer-events: auto;
@@ -458,7 +459,7 @@
                 > div {
                     svg {
                         transform: scaleX(-1);
-                        filter: brightness(24%);
+                        filter: brightness(15%) sepia(100%) saturate(199%) hue-rotate(240deg) brightness(40%);
                     }
 
                     .mock-hero-ability-gutter-icon {

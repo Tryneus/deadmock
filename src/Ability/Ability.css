@@ -77,14 +77,14 @@
     }
 
     .mock-ability-body-background {
-        background: radial-gradient(circle 70rem at 55% 10rem, #151218 20%, #71407b);
+        background: radial-gradient(circle 70rem at 65% 10rem, #151218 20%, #71407b);
         position: relative;
         z-index: 2;
 
         .mock-ability-body-noise {
             position: absolute;
             z-index: -1;
-            background: radial-gradient(circle 25rem at 55% 10rem, #151218 15%, #5e2a68);
+            background: radial-gradient(circle 25rem at 65% 10rem, #151218 15%, #5e2a68);
             mask-image: url("/deadmock/noise.png");
             width: 100%;
             height: 100%;
@@ -117,7 +117,7 @@
             font-size: 0.8rem;
 
             .mock-grid-cell, .mock-grid-values-cell {
-                background-color: rgb(24 24 24 / 50%);
+                background-color: rgb(80 80 80 / 60%);
             }
 
             .mock-grid-cell-contents {
@@ -135,6 +135,8 @@
             }
 
             .mock-grid-cell:has(.mock-spirit-scaling), .mock-grid-cell:has(.mock-melee-scaling), .mock-grid-cell:has(.mock-boon-scaling) {
+                background-color: transparent;
+
                 .mock-grid-cell-contents {
                     padding: 0.5rem 0.1rem;
                 }
