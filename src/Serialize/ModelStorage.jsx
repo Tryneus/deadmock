@@ -51,7 +51,6 @@ class ModelStorage {
     for (let i = 0; i < count; i++) {
       const key = this._storage.key(i);
       if (!reservedKeys.includes(key)) {
-        console.log(key);
         const model = this.load(key);
         if (model && model.id && model.category && model.name) {
           result.unshift({id: model.id, category: model.category, name: model.name, timestamp: Date.now()});

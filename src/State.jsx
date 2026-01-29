@@ -30,7 +30,7 @@ class State {
     if (raw) {
       this.loadRaw(raw, {noHistory: true});
     } else {
-      const h = this._modelStorage.history()
+      const h = this._modelStorage.history();
       for (let i = 0; i < h.length; i++) {
         const latestId = this._modelStorage.history()?.[i]?.id;
         if (latestId) {

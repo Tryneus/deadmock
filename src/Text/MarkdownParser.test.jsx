@@ -451,6 +451,11 @@ const testCases = [
       input:  '__a<https://foo.bar/?q=__>',
       output: '<p>__a<a href="https://foo.bar/?q=__">https://foo.bar/?q=__</a></p>',
     },
+  ]], ['newline bug', [
+    {
+      input:  'words, **bold \\n\\n words** more \\a\\b\\c\\d\\e words.',
+      output: '<p>words, <strong>bold \\n\\n words</strong> more \\a\\b\\c\\d\\e words.</p>',
+    },
   ]],
 ];
 
