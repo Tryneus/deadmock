@@ -1,4 +1,60 @@
 @font-face {
+    font-family: Radiance;
+    src: url("/deadmock/font/Radiance-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Radiance;
+    src: url("/deadmock/font/Radiance-BoldItalic.woff2") format("woff2");
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Radiance;
+    src: url("/deadmock/font/Radiance-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Radiance;
+    src: url("/deadmock/font/Radiance-SemiBoldItalic.woff2") format("woff2");
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: ValveOccult;
+    src: url("/deadmock/font/ValveOccult-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: ValvePulp;
+    src: url("/deadmock/font/ValvePulp-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Reaver;
+    src: url("/deadmock/font/Reaver-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Reaver;
+    src: url("/deadmock/font/Reaver-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
     font-family: Deadlock;
     src: url("/deadmock/font/retaildemo-regular.otf") format("opentype");
     font-weight: 400;
