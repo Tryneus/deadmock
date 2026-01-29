@@ -41,7 +41,26 @@ class ModelStorage {
 
   history() {
     const raw = this._storage.getItem(historyKey);
-    return raw && JSON.parse(raw) || [];
+    const result = raw && JSON.parse(raw) || [];
+    if (result.length > 0) {
+      return result;
+    }
+
+    // History is missing - regenerate a history with all parseable models in localstorage
+    const count = this._storage.length;
+    for (let i = 0; i < count; i++) {
+      const key = this._storage.key(i);
+      if (!reservedKeys.includes(key)) {
+        console.log(key);
+        const model = this.load(key);
+        if (model && model.id && model.category && model.name) {
+          result.unshift({id: model.id, category: model.category, name: model.name, timestamp: Date.now()});
+        }
+      }
+    }
+
+    this._storage.setItem(historyKey, JSON.stringify(result));
+    return result;
   }
 
   save(model) {

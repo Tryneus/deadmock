@@ -24,16 +24,23 @@ class State {
   }
 
   // Get a valid model loaded - either use the provided raw data, load the
-  // latest model from the localStorage history, or toss the default template
-  // into a new model.
+  // latest working model from the localStorage history, or toss the default
+  // template into a new model.
   _initializeModel(raw) {
-    const latestId = this._modelStorage.history()?.[0]?.id;
     if (raw) {
       this.loadRaw(raw, {noHistory: true});
-    } else if (latestId) {
-      this.loadRecord(latestId, {noHistory: true});
     } else {
-      this.loadRaw(templates[0].data, {noHistory: true});
+      const h = this._modelStorage.history()
+      for (let i = 0; i < h.length; i++) {
+        const latestId = this._modelStorage.history()?.[i]?.id;
+        if (latestId) {
+          this.loadRecord(latestId, {noHistory: true});
+        }
+      }
+
+      if (!this.activeModel) {
+        this.loadRaw(templates[0].data, {noHistory: true});
+      }
     }
     history.replaceState({
       id:    this.activeModel.id,
