@@ -75,6 +75,13 @@
     }
 }
 
+.mock-grid-cell-conditional {
+    cursor: default;
+    font-family: Deadlock;
+    font-variant: all-petite-caps;
+    font-weight: 700;
+}
+
 .mock-grid-cell-contents {
     display: flex;
     flex-direction: column;

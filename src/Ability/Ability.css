@@ -54,7 +54,7 @@
             font-family: ValveOccult;
             display: flex;
             align-items: center;
-            background-color: rgb(44 44 44 / 60%);
+            background-color: rgb(80 80 80 / 60%);
             width: fit-content;
             padding: 0.3rem 0.5rem;
             font-size: 0.9rem;
@@ -117,7 +117,7 @@
             line-height: 135%;
             font-size: 0.8rem;
 
-            .mock-grid-cell, .mock-grid-values-cell {
+            .mock-grid-cell-contents, .mock-grid-values-cell {
                 background-color: rgb(80 80 80 / 60%);
             }
 
@@ -136,9 +136,8 @@
             }
 
             .mock-grid-cell:has(.mock-spirit-scaling), .mock-grid-cell:has(.mock-melee-scaling), .mock-grid-cell:has(.mock-boon-scaling) {
-                background-color: transparent;
-
                 .mock-grid-cell-contents {
+                    background-color: transparent;
                     padding: 0.5rem 0.1rem;
                 }
             }
@@ -186,14 +185,14 @@
                     border: 0.1rem solid rgb(32 32 32 / 50%);
                     border-radius: 0.3rem 0.3rem 0 0;
                     border-bottom: none;
-                    background-color: rgb(40 40 40 / 50%);
+                    background-color: rgb(80 80 80 / 50%);
                 }
 
                 .mock-ability-upgrade-text {
                     border: 0.1rem solid rgb(20 20 20 / 50%);
                     border-radius: 0 0 0.3rem 0.3rem;
                     border-top: none;
-                    background-color: rgb(64 64 64 / 50%);
+                    background-color: rgb(100 100 100 / 50%);
                 }
             }
         }

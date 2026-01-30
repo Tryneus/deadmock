@@ -210,7 +210,7 @@
     font-weight: 400;
     color: #ffefd7;
     background-color: #fff;
-    font-synthesis: none;
+    font-synthesis: small-caps;
     text-rendering: optimizelegibility;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
