@@ -35,6 +35,9 @@ class State {
         const latestId = this._modelStorage.history()?.[i]?.id;
         if (latestId) {
           this.loadRecord(latestId, {noHistory: true});
+          if (this.activeModel) {
+            break;
+          }
         }
       }
 
