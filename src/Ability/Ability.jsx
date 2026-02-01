@@ -1,8 +1,10 @@
 import {observer} from 'mobx-react-lite';
+import {useCallback, useEffect, useRef, useState} from 'preact/hooks';
 
 import {AnimatedDiv} from '/src/Animated';
 import {Details} from '/src/Details';
 
+import {AbilityCard} from './AbilityCard';
 import {AbilityHeader} from './AbilityHeader';
 import {AbilityUpgrade} from './AbilityUpgrade';
 import './Ability.css';
@@ -10,11 +12,7 @@ import './Ability.css';
 const Ability = observer(({model}) => {
   return (
     <div className="mock-ability">
-      <div className="mock-ability-card">
-        <div className="mock-ability-card-shadow" />
-        <div className="mock-ability-card-background" />
-        <div className="mock-ability-card-noise" />
-      </div>
+      <AbilityCard />
       <AnimatedDiv className="mock-ability-header-animated">
         <AbilityHeader model={model} />
       </AnimatedDiv>
