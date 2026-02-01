@@ -10,11 +10,17 @@ import './Ability.css';
 
 // const observerConfig = {attributes: true, childList: true, subtree: true, characterData: true};
 const observerConfig = {attributes: true};
+const borderSize = 4;
 
 const pointsToPath = (points) => {
   const strs = points.map((pair) => `${pair[0]} ${pair[1]}`);
   return "M" + strs.join(" L") + " Z";
 };
+
+const pointsToClipPath = (points) => {
+  const strs = points.map((pair) => `${pair[0]}px ${pair[1]}px`);
+  return 'polygon(' + strs.join(', ') + ')';
+}
 
 const AbilityCard = observer(() => {
   const ref = useRef();
@@ -37,14 +43,23 @@ const AbilityCard = observer(() => {
     }
   }, [ref, onResize]);
 
-  const outlinePoints = [[0, 20], [40, height - 20], [width, height], [width, 0]];
-  const shadowPoints = [[0, 90], [75, 100], [95, 20], [15, 0]];
   const viewBox = `0 0 ${width} ${height}`;
-
+  const outlinePoints = [
+    [borderSize, 20],
+    [40, height - 20],
+    [width - borderSize, height - borderSize],
+    [width - borderSize, borderSize],
+  ];
+  const shadowPoints = [
+    [0, height * 0.9],
+    [width * 0.75, height],
+    [width, height * 0.2],
+    [width * 0.15, 0],
+  ];
+  const clipPath = pointsToClipPath(outlinePoints);
+  console.log(clipPath);
   return (
     <div ref={ref} className="mock-ability-card">
-      <div className="mock-ability-card-background" />
-      <div className="mock-ability-card-noise" />
       <div className="mock-ability-card-shadow">
         <svg viewBox={viewBox}>
           <path d={pointsToPath(shadowPoints)} fill="#bf86ec" />
@@ -55,6 +70,8 @@ const AbilityCard = observer(() => {
           <path d={pointsToPath(outlinePoints)} stroke="#6f5674" strokeWidth="4" fill="transparent" />
         </svg>
       </div>
+      <div className="mock-ability-card-background" style={{clipPath}} />
+      <div className="mock-ability-card-noise" style={{clipPath}} />
     </div>
   );
 });
