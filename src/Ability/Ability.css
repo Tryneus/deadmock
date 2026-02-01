@@ -1,6 +1,6 @@
 .mock-ability {
     width: 30rem;
-    border: #6f5674 solid 0.1rem;
+    position: relative;
 
     .mock-ability-upgrades-animated {
         background-color: rgb(16 16 16 / 15%);
@@ -77,14 +77,34 @@
         }
     }
 
-    .mock-ability-body-background {
-        background: radial-gradient(circle 70rem at 65% 10rem, #151218 20%, #71407b);
-        position: relative;
-        z-index: 2;
+    .mock-ability-card {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        transform-origin: 50% 0%;
+        transform: perspective(100rem) rotateX(-10deg) rotate(0.5deg) scaleX(1.05) scaleY(1.1);
+
+        .mock-ability-card-shadow {
+            background: #bf86ec;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-origin: 50% 80%;
+            transform: scale(1) perspective(75rem) rotateY(5deg) rotateX(15deg) rotate(10deg) translateY(-1rem);
+        }
+
+        .mock-ability-card-background {
+            background: radial-gradient(circle 70rem at 65% 10rem, #151218 20%, #71407b);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: #bf86ec solid 0.1rem;
+            filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+        }
 
         .mock-ability-body-noise {
             position: absolute;
-            z-index: -1;
             background: radial-gradient(circle 25rem at 65% 10rem, #151218 15%, #5e2a68);
             mask-image: url("/deadmock/noise.png");
             width: 100%;
