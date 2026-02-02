@@ -10,7 +10,7 @@ import './Ability.css';
 
 // const observerConfig = {attributes: true, childList: true, subtree: true, characterData: true};
 const observerConfig = {attributes: true};
-const borderSize = 4;
+const borderSize = 2;
 
 const pointsToPath = (points) => {
   const strs = points.map((pair) => `${pair[0]} ${pair[1]}`);
@@ -45,9 +45,9 @@ const AbilityCard = observer(() => {
 
   const viewBox = `0 0 ${width} ${height}`;
   const outlinePoints = [
-    [borderSize, 20],
-    [40, height - 20],
-    [width - borderSize, height - borderSize],
+    [borderSize, borderSize + 5],
+    [20, height - borderSize - 9],
+    [width - borderSize - 9, height - borderSize],
     [width - borderSize, borderSize],
   ];
   const shadowPoints = [
@@ -67,7 +67,7 @@ const AbilityCard = observer(() => {
       </div>
       <div className="mock-ability-card-border">
         <svg viewBox={viewBox}>
-          <path d={pointsToPath(outlinePoints)} stroke="#6f5674" strokeWidth="4" fill="transparent" />
+          <path d={pointsToPath(outlinePoints)} stroke="#6f5674" strokeWidth={borderSize * 2} fill="transparent" />
         </svg>
       </div>
       <div className="mock-ability-card-background" style={{clipPath}} />

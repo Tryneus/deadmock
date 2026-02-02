@@ -1,5 +1,5 @@
 .mock-ability {
-    width: 30rem;
+    width: 31rem;
     position: relative;
 
     .mock-ability-upgrades-animated {
@@ -7,9 +7,11 @@
     }
 
     .mock-ability-header {
-        padding: 1.2rem;
+        padding: 1.2rem 1.7rem;
         display: flex;
         line-height: 1;
+        z-index: 1;
+        position: relative;
 
         .mock-ability-header-left {
             display: flex;
@@ -122,6 +124,7 @@
         position: relative;
         font-size: 0.96rem;
         font-weight: 500;
+        padding: 0 0.5rem;
 
         .mock-details {
             padding: 0.9rem 0;

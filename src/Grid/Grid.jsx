@@ -24,7 +24,9 @@ const GridCellConditional = observer(({model}) => {
   return (
     <div className="mock-grid-cell-conditional">
       <EditableText onChange={onTextChange}>
-        {text}
+        <Text color="muted">
+          {text}
+        </Text>
       </EditableText>{":"}
     </div>
   );
