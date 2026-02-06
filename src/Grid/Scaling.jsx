@@ -1,7 +1,7 @@
 import {observer} from 'mobx-react-lite';
 
 import {useAction} from '/src/Common';
-import {EditableText} from '/src/Text';
+import {EditableText, Text} from '/src/Text';
 import './Scaling.css';
 
 const renderSpiritValue = (detailed, model, onChange) => {
@@ -11,10 +11,10 @@ const renderSpiritValue = (detailed, model, onChange) => {
 
   return (
     <div className="mock-spirit-scaling-box">
-      <div>
-        <span>x</span>
+      <Text color="purple">
+        {'x '}
         <EditableText onChange={onChange}>{model.spiritScaling}</EditableText>
-      </div>
+      </Text>
     </div>
   );
 };
@@ -26,10 +26,10 @@ const renderMeleeValue = (detailed, model, onChange) => {
 
   return (
     <div className="mock-melee-scaling-box">
-      <div>
-        <span>x</span>
+      <Text color="orange">
+        {'x '}
         <EditableText onChange={onChange}>{model.meleeScaling}</EditableText>
-      </div>
+      </Text>
     </div>
   );
 };
@@ -41,10 +41,10 @@ const renderBoonValue = (detailed, model, onChange) => {
 
   return (
     <div className="mock-boon-scaling-box">
-      <div>
-        <span>x</span>
+      <Text>
+        {'x '}
         <EditableText onChange={onChange}>{model.boonScaling}</EditableText>
-      </div>
+      </Text>
     </div>
   );
 };

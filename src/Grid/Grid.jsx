@@ -13,6 +13,25 @@ import {EditableValue} from '/src/Value';
 import {Scaling} from './Scaling';
 import './Grid.css';
 
+const GridCellConditional = observer(({model}) => {
+  const onTextChange = useAction((text) => model.conditional = text, [model]);
+
+  if (!model.conditional) {
+    return null;
+  }
+
+  const text = model.conditional === true ? "Conditional" : model.conditional;
+  return (
+    <div className="mock-grid-cell-conditional">
+      <EditableText onChange={onTextChange}>
+        <Text color="muted">
+          {text}
+        </Text>
+      </EditableText>{":"}
+    </div>
+  );
+});
+
 const Grid = observer(({data, onEmpty}) => {
   const onAddCell = useAction(() => data.addCell(), [data]);
   const onAddValue = useAction(() => data.addValue(), [data]);
@@ -26,6 +45,7 @@ const Grid = observer(({data, onEmpty}) => {
 
   const cells = data.cells.map((cell, i) => (
     <div key={i} className="mock-grid-cell">
+      <GridCellConditional model={cell} />
       <div className="mock-grid-cell-position">
         <Scaling detailed model={cell} />
         <GridCellHoverButtons data={data} model={cell} onEmpty={onEmpty} />
@@ -137,7 +157,6 @@ const GridCellValue = observer(({model}) => {
           {model.stat}
         </Text>
       </EditableText>
-      {model.conditional ? <SemiBold italic color="muted">Conditional</SemiBold> : null}
     </>
   );
 });

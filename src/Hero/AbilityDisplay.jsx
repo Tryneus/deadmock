@@ -21,24 +21,16 @@ const filterClasses = (node) => {
 
 const AbilityDivider = () => {
   return (
-    <svg viewBox="0 0 90 190">
-      <path
-        d="M0 188.8A45 45 0 0130 146.4l30 -10A45 45 0 0089 94A45 45 0 0060 51.6l-30 -10A45 45 0 010 0"
-        fill="#ffffff"
-        paintOrder="stroke"
-        stroke="black"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
+    <svg viewBox="0 0 415 230">
+        <path stroke="#6d5572" fill="#27192c" stroke-width="6" d="M0 80 L150 80 A95 95 0 0 0 229.3 44.3 A100 100 0 0 1 400 115 A100 100 0 0 1 229.3 185.7 A95 95 0 0 0 150 150 L0 150"></path>
     </svg>
   );
 };
 
 const AbilityGutter = ({id, number, offset, onClick}) => {
-  const top = `clamp(0rem, calc(${offset}px - 14.25rem), 6.25rem)`;
   return (
     <div className="mock-hero-ability-gutter" onClick={onClick}>
-      <div style={{top}}>
+      <div>
         <div>
           <AbilityDivider />
           <div className="mock-hero-ability-gutter-icon">

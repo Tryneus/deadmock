@@ -214,6 +214,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: ValveOccult;
 
             > * {
                 display: inline-block;
@@ -294,23 +295,16 @@
     height: 0;
     cursor: pointer;
     pointer-events: none;
+    z-index: -1;
 
     > div {
         position: absolute;
-        transform: scaleX(-1);
-        right: -0.05rem;
-        width: 4.5rem;
-        height: 9.5rem;
-        z-index: 1;
-
-        > div {
-            position: absolute;
-        }
+        left: -4.82rem;
+        top: 0.5rem;
 
         svg {
-            width: 100%;
-            height: 100%;
-            filter: brightness(15%);
+            width: 9rem;
+            transform: scaleX(-1);
 
             path {
                 pointer-events: auto;
@@ -321,14 +315,12 @@
 
 .mock-hero-ability-gutter-icon {
     position: absolute;
-    top: 3rem;
-    left: 0.5rem;
-    transform: scaleX(-1);
+    top: 0.75rem;
+    left: 0.75rem;
 }
 
 .mock-hero-ability-display-rendered {
 	width: 22.7rem;
-	border: 0.05rem solid black;
 	line-height: 0;
 	height: fit-content;
     cursor: pointer;
@@ -372,6 +364,7 @@
 .mock-hero-ability-picker {
     position: relative;
     height: min-content;
+    width: 0;
 
     &:not(:has(.mock-hero-ability-picker-dropdown)) {
         opacity: 0;
@@ -437,8 +430,12 @@
     }
 
     .mock-hero-ability-display:nth-of-type(2n) {
-        .mock-hero-ability-gutter > div > div {
-            top: 4.75rem;
+        .mock-hero-ability-gutter > div {
+            top: 6rem;
+
+            svg {
+            }
+
         }
     }
 
@@ -452,20 +449,16 @@
 
         .mock-hero-ability-gutter {
             > div {
-                left: -0.05rem;
-                z-index: 2;
-
-                > div {
-                    svg {
-                        transform: scaleX(-1);
-                        filter: brightness(24%);
-                    }
-
-                    .mock-hero-ability-gutter-icon {
-                        transform: unset;
-                        transform: scaleX(-1);
-                    }
+                left: unset;
+                right: -4.82rem;
+                svg {
+                    transform: unset;
                 }
+            }
+
+            .mock-hero-ability-gutter-icon {
+                left: unset;
+                right: 0.75rem;
             }
         }
     }
@@ -483,13 +476,6 @@
     .mock-hero-ability-display {
         flex: 0 100%;
         justify-content: center;
-
-        /* The JS has positioned the divider to not overlap the other one
-         * sharing the same gutter.  Since we are stacking each ability on its
-         * own row now, we can revert that positioning */
-        .mock-hero-ability-gutter > div {
-            top: 6.25rem !important;
-        }
     }
 
     .mock-hero-ability-display-rendered, .mock-hero-ability-loading > div {

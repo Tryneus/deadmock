@@ -10,8 +10,6 @@
 }
 
 .mock-editor-content {
-    border: 0.05rem solid black;
-
     &:has(.mock-item) {
         border-radius: 0.6rem;
     }

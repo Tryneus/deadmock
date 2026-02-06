@@ -28,7 +28,7 @@ class ValueModel {
     this.meleeScaling = raw?.meleeScaling || this.meleeScaling;
     this.boonScaling = raw?.boonScaling || this.boonScaling;
     this.signed = Boolean(raw?.signed);
-    this.conditional = Boolean(raw?.conditional);
+    this.conditional = raw?.conditional || this.conditional;
     this.icon = new IconModel(raw?.icon);
 
     makeAutoObservable(this);
