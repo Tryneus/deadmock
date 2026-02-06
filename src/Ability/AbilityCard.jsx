@@ -8,6 +8,10 @@ import {AbilityHeader} from './AbilityHeader';
 import {AbilityUpgrade} from './AbilityUpgrade';
 import './Ability.css';
 
+// TODO: the sizes used in this file are in pixels since it is based off of the
+// rendered size of the content - but the content is specified in 'rem', so it
+// may be annoying to line these back up if the scaling is changed.
+
 // const observerConfig = {attributes: true, childList: true, subtree: true, characterData: true};
 const observerConfig = {attributes: true};
 const borderSize = 2;
@@ -45,10 +49,10 @@ const AbilityCard = observer(() => {
 
   const viewBox = `0 0 ${width} ${height}`;
   const outlinePoints = [
-    [borderSize, borderSize + 5],
-    [20, height - borderSize - 9],
-    [width - borderSize - 9, height - borderSize],
-    [width - borderSize, borderSize],
+    [10 + borderSize, borderSize + 15],
+    [30, height - borderSize - 19],
+    [width - borderSize - 19, height - borderSize - 10],
+    [width - borderSize - 10, borderSize + 10],
   ];
   const shadowPoints = [
     [0, height * 0.9],

@@ -2,32 +2,31 @@
     z-index: 5;
     height: 0;
     display: flex;
-    align-items: center;
     position: absolute;
     right: 0;
     top: 0;
 
     .mock-spirit-scaling-icon {
         background-image: url("/deadmock/icon/spirit_scaling.png");
-        height: 1.8em;
         left: -1.9em;
+        top: -0.5em;
     }
 
     .mock-melee-scaling-icon {
         background-image: url("/deadmock/icon/melee_scaling.png");
-        height: 1.8em;
         left: -2.3em;
+        top: -0.5em;
     }
 
     .mock-boon-scaling-icon {
         background-image: url("/deadmock/icon/boon_scaling.png");
-        height: 2.1em;
-        left: -1.6em;
-        top: -0.95em;
+        left: -2.2em;
+        top: -0.7em;
     }
 
     .mock-spirit-scaling-icon, .mock-melee-scaling-icon, .mock-boon-scaling-icon {
         position: absolute;
+        height: 1.8em;
         width: 2.7em;
         background-size: contain;
         background-repeat: no-repeat;
@@ -44,6 +43,7 @@
 
     .mock-boon-scaling-box {
         padding: 0.15em 0.5em 0.25em 0.85em;
+        color: #99ffd6;
     }
 
     .mock-spirit-scaling-box, .mock-melee-scaling-box, .mock-boon-scaling-box {
@@ -52,10 +52,11 @@
         flex-direction: column;
         justify-content: center;
         white-space: nowrap;
-        color: #cdcdcd;
         font-weight: 600;
         font-style: italic;
         font-size: 0.9em;
+        font-family: ValvePulp;
+        text-shadow: 0 0 0.2rem black, 0 0 0.2rem black, 0 0 0.2rem black, 0 0 0.2rem black;
 
         > div {
             padding-bottom: 0.2em;
@@ -65,18 +66,6 @@
                 user-select: none;
             }
         }
-    }
-
-    .mock-spirit-scaling-box {
-        background-color: #65358a;
-    }
-
-    .mock-melee-scaling-box {
-        background-color: #7b551a;
-    }
-
-    .mock-boon-scaling-box {
-        background-color: #3e685b;
     }
 }
 

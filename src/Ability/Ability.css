@@ -1,13 +1,9 @@
 .mock-ability {
-    width: 31rem;
+    width: 33rem;
     position: relative;
 
-    .mock-ability-upgrades-animated {
-        background-color: rgb(16 16 16 / 15%);
-    }
-
     .mock-ability-header {
-        padding: 1.2rem 1.7rem;
+        padding: 2.2rem 2.5rem;
         display: flex;
         line-height: 1;
         z-index: 1;
@@ -124,16 +120,20 @@
         position: relative;
         font-size: 0.96rem;
         font-weight: 500;
-        padding: 0 0.5rem;
+        padding: 0 1.5rem 1rem 1.5rem;
 
         .mock-details {
-            padding: 0.9rem 0;
+            padding: 0 0 0.9rem 0;
 
             .mock-editable-markdown, .mock-grid {
                 .mock-text {
                     padding-bottom: 0;
                 }
             }
+        }
+
+        .mock-sidebar-buttons  > div {
+            right: 2rem;
         }
 
         .mock-editable-markdown {
@@ -194,7 +194,7 @@
     }
 
     .mock-ability-upgrades {
-        padding: 1.3rem 1rem;
+        padding: 1rem;
         display: flex;
 
         .mock-ability-upgrade {
