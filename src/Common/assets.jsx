@@ -207,11 +207,41 @@ const abilityIconsByHero = {
     'hero/bebop/hook',
     'hero/bebop/hyper_beam',
   ],
+  billy: [
+    'hero/billy/bashdown',
+    'hero/billy/blasted',
+    'hero/billy/chain_gang',
+    'hero/billy/rising_ram',
+  ],
+  calico: [
+    'hero/calico/ava',
+    'hero/calico/gloom_bombs',
+    'hero/calico/leaping_slash',
+    'hero/calico/return_to_shadows',
+  ],
+  doorman: [
+    'hero/doorman/call_bell',
+    'hero/doorman/doorway',
+    'hero/doorman/hotel_guest',
+    'hero/doorman/luggage_cart',
+  ],
+  drifter: [
+    'hero/drifter/bloodscent',
+    'hero/drifter/eternal_night',
+    'hero/drifter/rend',
+    'hero/drifter/stalkers_mark',
+  ],
   dynamo: [
     'hero/dynamo/kinetic_pulse',
     'hero/dynamo/quantum_entanglement',
     'hero/dynamo/rejuvenating_aurora',
     'hero/dynamo/singularity',
+  ],
+  graves: [
+    'hero/graves/borrowed_decree',
+    'hero/graves/essence_theft',
+    'hero/graves/grasping_hands',
+    'hero/graves/jar_of_dead',
   ],
   grey_talon: [
     'hero/grey_talon/charged_shot',
@@ -224,6 +254,12 @@ const abilityIconsByHero = {
     'hero/haze/smoke_bomb',
     'hero/haze/fixation',
     'hero/haze/bullet_dance',
+  ],
+  holliday: [
+    'hero/holliday/bounce_pad',
+    'hero/holliday/crackshot',
+    'hero/holliday/powder_key',
+    'hero/holliday/spirit_lasso',
   ],
   infernus: [
     'hero/infernus/napalm',
@@ -261,6 +297,12 @@ const abilityIconsByHero = {
     'hero/mcginnis/spectral_wall',
     'hero/mcginnis/heavy_barrage',
   ],
+  mina: [
+    'hero/mina/love_bites',
+    'hero/mina/nox_nostra',
+    'hero/mina/rake',
+    'hero/mina/sanguine_retreat',
+  ],
   mirage: [
     'hero/mirage/fire_scarabs',
     'hero/mirage/tornado',
@@ -272,6 +314,12 @@ const abilityIconsByHero = {
     'hero/mo_and_krill/burrow',
     'hero/mo_and_krill/sand_blast',
     'hero/mo_and_krill/combo',
+  ],
+  paige: [
+    'hero/paige/captivating_read',
+    'hero/paige/conjure_dragon',
+    'hero/paige/defend_and_fight',
+    'hero/paige/rallying_charge',
   ],
   paradox: [
     'hero/paradox/pulse_grenade',
@@ -285,6 +333,12 @@ const abilityIconsByHero = {
     'hero/pocket/enchanters_satchel',
     'hero/pocket/affliction',
   ],
+  rem: [
+    'hero/rem/lil_helpers',
+    'hero/rem/naptime',
+    'hero/rem/pillow_toss',
+    'hero/rem/tag_along',
+  ],
   seven: [
     'hero/seven/lightning_ball',
     'hero/seven/static_charge',
@@ -297,6 +351,30 @@ const abilityIconsByHero = {
     'hero/shiv/bloodletting',
     'hero/shiv/killing_blow',
   ],
+  silver: [
+    'hero/silver/boot_kick',
+    'hero/silver/entangling_bola',
+    'hero/silver/lycan_curse',
+    'hero/silver/slam_fire',
+  ],
+  sinclair: [
+    'hero/sinclair/audience_participation',
+    'hero/sinclair/rabbit_hex',
+    'hero/sinclair/spectral_assistant',
+    'hero/sinclair/vexing_bolt',
+  ],
+  venator: [
+    'hero/venator/consecrating_grenade',
+    'hero/venator/gutshot',
+    'hero/venator/hex_lined_snap_trap',
+    'hero/venator/ira_domini',
+  ],
+  victor: [
+    'hero/victor/aura_of_suffering',
+    'hero/victor/jumpstart',
+    'hero/victor/pain_battery',
+    'hero/victor/shocking_reanimation',
+  ],
   vindicta: [
     'hero/vindicta/stake',
     'hero/vindicta/flight',
@@ -308,6 +386,12 @@ const abilityIconsByHero = {
     'hero/viscous/the_cube',
     'hero/viscous/puddle_punch',
     'hero/viscous/goo_ball',
+  ],
+  vyper: [
+    'hero/vyper/lethal_venom',
+    'hero/vyper/petrifying_bola',
+    'hero/vyper/screwjab_dagger',
+    'hero/vyper/slither',
   ],
   warden: [
     'hero/warden/alchemical_flask',
