@@ -1,6 +1,6 @@
 import {useCallback, useState} from 'preact/hooks';
 
-import {abilityIconsByHero, groupedItems, groupedStatIcons} from '/src/Common';
+import {abilityIconsByHero, legacyIcons, groupedItems, groupedStatIcons} from '/src/Common';
 import {Icon} from '/src/Icon';
 import {StoredImage} from '/src/ImageStorage';
 import {CustomGallery} from './CustomGallery';
@@ -15,6 +15,7 @@ const staticImageGroups = {
     [1, 2, 3, 4].map((tier) => tiers[tier].map((x) => x.icon)),
   ).flat(),
   other:   groupedStatIcons,
+  legacy:  [legacyIcons],
 };
 
 const allModes = Object.keys(staticImageGroups).concat(['custom']);

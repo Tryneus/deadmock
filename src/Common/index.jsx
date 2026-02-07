@@ -11,6 +11,7 @@ import {
   groupedStatIcons,
   itemCategories,
   itemsByName,
+  legacyIcons,
   statIcons,
   tierCosts,
 } from './assets';
@@ -47,6 +48,7 @@ export {
   isUUID,
   itemCategories,
   itemsByName,
+  legacyIcons,
   partition,
   prettyTimeDelta,
   statIcons,
