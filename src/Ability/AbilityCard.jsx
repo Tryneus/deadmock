@@ -61,7 +61,6 @@ const AbilityCard = observer(() => {
     [width * 0.15, 0],
   ];
   const clipPath = pointsToClipPath(outlinePoints);
-  console.log(clipPath);
   return (
     <div ref={ref} className="mock-ability-card">
       <div className="mock-ability-card-shadow">
