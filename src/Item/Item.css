@@ -279,7 +279,7 @@
             .mock-text-color-muted { color: #a99db7; }
         }
 
-        .mock-grid-cell, .mock-grid-values-cell {
+        .mock-grid-cell-contents, .mock-grid-values-cell-contents {
             background-color: #4d2869;
             .mock-text-color-muted { color: #a18f97; }
         }

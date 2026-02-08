@@ -1,5 +1,4 @@
 .mock-spirit-scaling, .mock-melee-scaling, .mock-boon-scaling {
-    z-index: 5;
     height: 0;
     display: flex;
     position: absolute;
