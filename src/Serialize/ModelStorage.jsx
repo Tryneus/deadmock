@@ -51,9 +51,14 @@ class ModelStorage {
     for (let i = 0; i < count; i++) {
       const key = this._storage.key(i);
       if (!reservedKeys.includes(key)) {
-        const model = this.load(key);
-        if (model && model.id && model.category && model.name) {
-          result.unshift({id: model.id, category: model.category, name: model.name, timestamp: Date.now()});
+        try {
+          const model = this.load(key);
+          if (model && model.id && model.category && model.name) {
+            result.unshift({id: model.id, category: model.category, name: model.name, timestamp: Date.now()});
+          }
+        } catch {
+          // Ignore unparseable localStorage entries - sometimes extensions may add some?
+          console.log('unparseable localStorage entry:', key);
         }
       }
     }
