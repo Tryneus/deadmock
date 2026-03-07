@@ -157,10 +157,6 @@
                     font-family: ValveOccult;
                     font-size: 1.3rem;
                 }
-
-                .mock-icon {
-                    opacity: 0.8;
-                }
             }
 
             .mock-grid-cell:has(.mock-spirit-scaling), .mock-grid-cell:has(.mock-melee-scaling), .mock-grid-cell:has(.mock-boon-scaling) {

@@ -1,7 +1,7 @@
 import {observer} from 'mobx-react-lite';
 import {useCallback} from 'preact/hooks';
 
-import {groupedStatIcons, useAction} from '/src/Common';
+import {groupedPickableIcons, useAction} from '/src/Common';
 import {TooltipContainer} from '/src/Tooltip';
 
 import {Icon, iconColors} from './Icon';
@@ -42,7 +42,7 @@ const IconPicker = observer(({model, resize}) => {
         {iconColors.map((c) => <IconPickerColor key={c} color={c} model={model} />)}
       </div>
       {
-        groupedStatIcons.map((group, i) => (
+        groupedPickableIcons.map((group, i) => (
           <div key={i}>
             {group.map((path) => <IconPickerButton key={path} image={path} model={model} />)}
           </div>

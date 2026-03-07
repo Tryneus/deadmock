@@ -54,6 +54,11 @@
     .mock-tooltip {
         visibility: visible;
     }
+
+    /* We use the precolored boon scaling icon here, so just desaturate it to make it look more generic */
+    .mock-icon:nth-child(3) {
+        filter: saturate(0%) brightness(150%);
+    }
 }
 
 .mock-grid-cell:has(.mock-spirit-scaling), .mock-grid-cell:has(.mock-melee-scaling), .mock-grid-cell:has(.mock-boon-scaling) {

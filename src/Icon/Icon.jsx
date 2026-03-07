@@ -402,7 +402,11 @@ const filenames = {
   'stat/placeholder':                     'stat/placeholder.svg',
   'stat/ability_point':                   'stat/ability_point.svg',
   'stat/silence':                         'stat/silence.svg',
+  'spirit_damage':                        'spirit_damage.png',
   'boon_scaling':                         'boon_scaling.png',
+  'spirit_scaling':                       'spirit_scaling.png',
+  'weapon_scaling':                       'weapon_scaling.png',
+  'melee_scaling':                        'melee_scaling.png',
   'cancel':                               'cancel.svg',
   'compress':                             'compress.svg',
   'dropdown':                             'dropdown.svg',
@@ -421,6 +425,14 @@ const filenames = {
   'weapon':                               'weapon.svg',
 };
 
+const precoloredIcons = new Set([
+  'spirit_damage',
+  'boon_scaling',
+  'spirit_scaling',
+  'weapon_scaling',
+  'melee_scaling',
+]);
+
 const allIconFiles = Object.values(filenames);
 
 const dataRegex = /^data:/;
@@ -429,16 +441,31 @@ const isData = (s) => Boolean(s.match(dataRegex));
 const Icon = ({image, large, color, onMouseDown}) => {
   const config = useContext(ConfigContext);
   const colorClass = `mock-icon-${color}`;
-  const classes = classNames('mock-icon', {
-    [colorClass]:          Boolean(color),
-    'mock-icon-clickable': Boolean(onMouseDown),
-    'mock-icon-large':     Boolean(large),
-  });
-
   const filename = filenames[image] || filenames['stat/placeholder'];
   const url = image && isData(image) ?
     `url(${image})` :
     `url("${config.baseUrl}icon/${filename}")`;
+  
+  if (precoloredIcons.has(image)) {
+    const classes = classNames('mock-icon', {
+      'mock-icon-clickable': Boolean(onMouseDown),
+      'mock-icon-large':     Boolean(large),
+    });
+
+    return (
+      <span
+        className={classes}
+        style={{backgroundImage: url}}
+        onMouseDown={onMouseDown}
+      />
+    );
+  }
+
+  const classes = classNames('mock-icon', {
+    [colorClass]: Boolean(color),
+    'mock-icon-clickable': Boolean(onMouseDown),
+    'mock-icon-large':     Boolean(large),
+  });
 
   return (
     <span

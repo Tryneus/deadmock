@@ -2,9 +2,16 @@
     width: 1em;
     aspect-ratio: 1;
     display: inline-block;
+
+    /* Mask is used for reshadeable icons (utilizing only their opacity to produce the right color) */
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
+
+    /* Background images are used for precolored icons */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .mock-icon-clickable {

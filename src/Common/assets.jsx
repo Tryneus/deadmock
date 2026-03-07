@@ -1,3 +1,5 @@
+import {deepCopy} from './util';
+
 const WEAPON_CATEGORY = 'weapon';
 const VITALITY_CATEGORY = 'vitality';
 const SPIRIT_CATEGORY = 'spirit';
@@ -192,6 +194,10 @@ const groupedStatIcons = [
 ];
 
 const statIcons = groupedStatIcons.flat();
+
+const groupedPickableIcons = deepCopy(groupedStatIcons).concat([
+  ['spirit_damage', 'boon_scaling', 'weapon_scaling', 'melee_scaling', 'spirit_scaling'],
+]);
 
 // TODO: autogenerate these
 const abilityIconsByHero = {
@@ -504,6 +510,7 @@ export {
   abilityIconsByHero,
   allItems,
   groupedItems,
+  groupedPickableIcons,
   groupedStatIcons,
   itemCategories,
   itemsByName,
