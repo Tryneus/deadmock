@@ -34,6 +34,21 @@ const renderMeleeValue = (detailed, model, onChange) => {
   );
 };
 
+const renderWeaponValue = (detailed, model, onChange) => {
+  if (!detailed) {
+    return null;
+  }
+
+  return (
+    <div className="mock-weapon-scaling-box">
+      <Text color="orange">
+        {'x '}
+        <EditableText onChange={onChange}>{model.weaponScaling}</EditableText>
+      </Text>
+    </div>
+  );
+};
+
 const renderBoonValue = (detailed, model, onChange) => {
   if (!detailed) {
     return null;
@@ -54,6 +69,8 @@ const getScalingField = (model) => {
     return 'spiritScaling';
   } else if (model.meleeScaling !== null && model.meleeScaling !== undefined) {
     return 'meleeScaling';
+  } else if (model.weaponScaling !== null && model.weaponScaling !== undefined) {
+    return 'weaponScaling';
   } else if (model.boonScaling !== null && model.boonScaling !== undefined) {
     return 'boonScaling';
   }
@@ -83,6 +100,13 @@ const Scaling = observer(({model, detailed}) => {
       <div className="mock-melee-scaling">
         <span className="mock-melee-scaling-icon" />
         {renderMeleeValue(detailed, model, onChange)}
+      </div>
+    );
+  } else if (scalingField === 'weaponScaling') {
+    return (
+      <div className="mock-weapon-scaling">
+        <span className="mock-weapon-scaling-icon" />
+        {renderWeaponValue(detailed, model, onChange)}
       </div>
     );
   } else if (scalingField === 'boonScaling') {

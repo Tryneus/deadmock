@@ -12,9 +12,10 @@ const formatValue = (value) => {
   const sign = value.signed && value.value >= 0 ? '+' : '';
   const scaling =
     value.spiritScaling ? ` (+${value.spiritScaling} x Spirit)` :
-      value.meleeScaling ? ` (+${value.meleeScaling} x Melee)` :
-        value.boonScaling ? ` (+${value.boonScaling} x Boon)` :
-          '';
+      value.weaponScaling ? ` (+${value.weaponScaling} x Weapon)` :
+        value.meleeScaling ? ` (+${value.meleeScaling} x Melee)` :
+          value.boonScaling ? ` (+${value.boonScaling} x Boon)` :
+            '';
   const conditional = value.conditional ? ` (Conditional)` : '';
   return `${sign}${value.value}${value.units} ${value.stat}${scaling}${conditional}`;
 };

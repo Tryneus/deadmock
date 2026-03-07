@@ -14,6 +14,7 @@ class ValueModel {
   weight = null;
   color = null;
   spiritScaling = null;
+  weaponScaling = null;
   meleeScaling = null;
   boonScaling = null;
 
@@ -25,6 +26,7 @@ class ValueModel {
     this.color = raw?.color || this.color;
     this.weight = raw?.weight || this.weight;
     this.spiritScaling = raw?.spiritScaling || this.spiritScaling;
+    this.weaponScaling = raw?.weaponScaling || this.weaponScaling;
     this.meleeScaling = raw?.meleeScaling || this.meleeScaling;
     this.boonScaling = raw?.boonScaling || this.boonScaling;
     this.signed = Boolean(raw?.signed);
@@ -47,6 +49,7 @@ serializeable(ValueModel, [
   ['color'],
   ['meleeScaling'],
   ['boonScaling'],
+  ['weaponScaling'],
 ]);
 
 export {ValueModel};

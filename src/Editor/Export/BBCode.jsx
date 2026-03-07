@@ -33,9 +33,10 @@ const generateFormatter = ({orange, purple, green, blue, cyan, grey, red, saniti
     const sign = value.signed && value.value >= 0 ? '+' : '';
     const scaling =
       value.spiritScaling ? ` (${purple(`+${bold(value.spiritScaling)} x ${bold(`Spirit`)}`)})` :
-        value.meleeScaling ? ` (${orange(`+${bold(value.meleeScaling)} x ${bold(`Melee`)}`)})` :
-          value.boonScaling ? ` (${cyan(`+${bold(value.boonScaling)} x ${bold(`Boon`)}`)})` :
-            '';
+        value.weaponScaling ? ` (${orange(`+${bold(value.weaponScaling)} x ${bold(`Weapon`)}`)})` :
+          value.meleeScaling ? ` (${orange(`+${bold(value.meleeScaling)} x ${bold(`Melee`)}`)})` :
+            value.boonScaling ? ` (${cyan(`+${bold(value.boonScaling)} x ${bold(`Boon`)}`)})` :
+              '';
     const conditional = value.conditional ? grey(italic(` (Conditional)`)) : '';
     const numberStr = `${grey(sign)}${value.value}${grey(sanitize(value.units))}`;
     return `${bold(numberStr)} ${sanitize(value.stat)}${scaling}${conditional}`;

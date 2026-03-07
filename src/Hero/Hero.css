@@ -164,7 +164,7 @@
         position: relative;
         height: 0;
 
-        .mock-spirit-scaling, .mock-melee-scaling, .mock-boon-scaling {
+        .mock-spirit-scaling, .mock-melee-scaling, .mock-weapon-scaling, .mock-boon-scaling {
             font-size: 0.6rem;
 
             .mock-text {
@@ -177,26 +177,32 @@
             left: 0;
             top: 0;
             visibility: hidden;
-            filter: drop-shadow(0 0 0.1rem black);
+            filter: drop-shadow(0 0 0.1rem black) saturate(0%) brightness(150%);
         }
     }
 
     &:has(.mock-spirit-scaling) .mock-hero-stat-contents {
         border: 0.1rem solid #65358a;
         background: radial-gradient(transparent 20%, rgb(88 56 117 / 70%) 100%);
-        padding: 0.4rem 0.1rem;
+        padding: 0.7rem 0.1rem;
     }
 
     &:has(.mock-melee-scaling) .mock-hero-stat-contents {
         border: 0.1rem solid #704c17;
         background: radial-gradient(transparent 20%, rgb(112 76 23 / 70%) 100%);
-        padding: 0.4rem 0.1rem;
+        padding: 0.7rem 0.1rem;
+    }
+
+    &:has(.mock-weapon-scaling) .mock-hero-stat-contents {
+        border: 0.1rem solid #704c17;
+        background: radial-gradient(transparent 20%, rgb(112 76 23 / 70%) 100%);
+        padding: 0.7rem 0.1rem;
     }
 
     &:has(.mock-boon-scaling) .mock-hero-stat-contents {
         border: 0.1rem solid #467768;
         background: radial-gradient(transparent 20%, rgb(70 119 104 / 70%) 100%);
-        padding: 0.4rem 0.1rem;
+        padding: 0.7rem 0.1rem;
     }
 
     &:hover .mock-hero-stat-scaling-button {
@@ -204,7 +210,7 @@
     }
 
     .mock-hero-stat-contents {
-        padding: 0.5rem 0.2rem;
+        padding: 0.8rem 0.2rem;
         display: flex;
         flex-direction: column;
         align-items: center;

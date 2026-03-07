@@ -159,7 +159,7 @@
                 }
             }
 
-            .mock-grid-cell:has(.mock-spirit-scaling), .mock-grid-cell:has(.mock-melee-scaling), .mock-grid-cell:has(.mock-boon-scaling) {
+            .mock-grid-cell:has(.mock-spirit-scaling), .mock-grid-cell:has(.mock-melee-scaling), .mock-grid-cell:has(.mock-weapon-scaling), .mock-grid-cell:has(.mock-boon-scaling) {
                 .mock-grid-cell-contents {
                     background-color: transparent;
                     padding: 0.5rem 0.1rem;

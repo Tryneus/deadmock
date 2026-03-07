@@ -92,6 +92,9 @@ const GridCellHoverButtons = observer(({data, model, onEmpty}) => {
   const onSwitchScaling = useAction(() => {
     if (model.spiritScaling !== null && model.spiritScaling !== undefined) {
       model.spiritScaling = null;
+      model.weaponScaling = 0;
+    } else if (model.weaponScaling !== null && model.weaponScaling !== undefined) {
+      model.weaponScaling = null;
       model.meleeScaling = 0;
     } else if (model.meleeScaling !== null && model.meleeScaling !== undefined) {
       model.meleeScaling = null;

@@ -1,4 +1,4 @@
-.mock-spirit-scaling, .mock-melee-scaling, .mock-boon-scaling {
+.mock-spirit-scaling, .mock-melee-scaling, .mock-weapon-scaling, .mock-boon-scaling {
     height: 0;
     display: flex;
     position: absolute;
@@ -17,13 +17,19 @@
         top: -0.5em;
     }
 
+    .mock-weapon-scaling-icon {
+        background-image: url("/deadmock/icon/weapon_scaling.png");
+        left: -2.3em;
+        top: -0.5em;
+    }
+
     .mock-boon-scaling-icon {
         background-image: url("/deadmock/icon/boon_scaling.png");
         left: -2.2em;
         top: -0.7em;
     }
 
-    .mock-spirit-scaling-icon, .mock-melee-scaling-icon, .mock-boon-scaling-icon {
+    .mock-spirit-scaling-icon, .mock-melee-scaling-icon, .mock-weapon-scaling-icon, .mock-boon-scaling-icon {
         position: absolute;
         height: 1.8em;
         width: 2.7em;
@@ -40,12 +46,16 @@
         padding: 0.15em 0.5em 0.25em 0.85em;
     }
 
+    .mock-weapon-scaling-box {
+        padding: 0.15em 0.5em 0.25em 0.85em;
+    }
+
     .mock-boon-scaling-box {
         padding: 0.15em 0.5em 0.25em 0.85em;
         color: #99ffd6;
     }
 
-    .mock-spirit-scaling-box, .mock-melee-scaling-box, .mock-boon-scaling-box {
+    .mock-spirit-scaling-box, .mock-melee-scaling-box, .mock-weapon-scaling-box, .mock-boon-scaling-box {
         height: 1.2em;
         display: flex;
         flex-direction: column;
@@ -74,6 +84,11 @@
 }
 
 .mock-grid-cell:has(.mock-melee-scaling) .mock-grid-cell-contents {
+    border: 0.1rem solid #704c17;
+    background: radial-gradient(transparent 20%, rgb(112 76 23 / 70%) 100%);
+}
+
+.mock-grid-cell:has(.mock-weapon-scaling) .mock-grid-cell-contents {
     border: 0.1rem solid #704c17;
     background: radial-gradient(transparent 20%, rgb(112 76 23 / 70%) 100%);
 }

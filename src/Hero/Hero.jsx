@@ -30,6 +30,12 @@ const HeroStat = observer(({model}) => {
   const onSwitchScaling = useAction(() => {
     if (model.spiritScaling !== null && model.spiritScaling !== undefined) {
       model.spiritScaling = null;
+      model.weaponScaling = 0;
+    } else if (model.weaponScaling !== null && model.weaponScaling !== undefined) {
+      model.weaponScaling = null;
+      model.meleeScaling = 0;
+    } else if (model.meleeScaling !== null && model.meleeScaling !== undefined) {
+      model.meleeScaling = null;
       model.boonScaling = 0;
     } else if (model.boonScaling !== null && model.boonScaling !== undefined) {
       model.boonScaling = null;
